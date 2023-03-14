@@ -1,0 +1,13 @@
+/*!
+@file Item.cpp
+@brief ƒAƒCƒeƒ€‚ÌŽÀ‘Ì
+*/
+
+#include "stdafx.h"
+#include "Project.h"
+
+namespace basecross {
+
+
+}
+//end basecross
