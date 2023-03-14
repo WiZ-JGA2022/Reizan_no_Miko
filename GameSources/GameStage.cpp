@@ -32,7 +32,7 @@ namespace basecross {
 		try {
 
 			auto player =  AddGameObject<Player>();
-			AddGameObject<EnemyController>();
+			AddGameObject<EnemyController>(player);
 
 			//ビューとライトの作成
 			CreateViewLight();
