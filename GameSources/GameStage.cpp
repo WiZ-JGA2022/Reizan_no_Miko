@@ -35,7 +35,7 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 
-			AddGameObject<PlayerController>();
+			auto player = AddGameObject<PlayerController>();
 
 			//ビューとライトの作成
 			CreateViewLight();
@@ -43,6 +43,11 @@ namespace basecross {
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
+			if (maincamera) // エラーチェック
+			{
+				maincamera->SetTarget(player);
+			}
+
 
 		}
 		catch (...) {
