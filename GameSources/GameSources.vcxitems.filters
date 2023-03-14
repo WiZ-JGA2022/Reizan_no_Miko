@@ -32,6 +32,7 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h">
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -58,10 +59,14 @@
       <Filter>Sources</Filter>
     </ClCompile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp">
 =======
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
 >>>>>>> Enemy
+=======
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
+>>>>>>> UI
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
