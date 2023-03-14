@@ -30,6 +30,10 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
+
+			auto player =  AddGameObject<Player>();
+			AddGameObject<EnemyController>();
+
 			//ビューとライトの作成
 			CreateViewLight();
 		}
