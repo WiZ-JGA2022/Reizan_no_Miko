@@ -5,9 +5,11 @@
 
 #include "stdafx.h"
 #include "Project.h"
+#include "ExpBar.h"
 
-namespace basecross {
+namespace basecross
+{
 
-	
+
 }
-//end basecross
+

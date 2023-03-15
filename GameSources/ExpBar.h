@@ -9,10 +9,12 @@
 
 namespace basecross {
 	
-	class ExpBar : public GameObject //GameObject‚ğ—¬—p‚·‚éiŒp³j
-	{
-
-	};
+	class ExpBar : public GameObject {
 	
+	};
+
+
+
 }
-//end basecross#pragma once
+//end basecross
+
