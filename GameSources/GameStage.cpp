@@ -26,12 +26,27 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+	void GameStage::OnExpBarCreate()
+	{
 
+	}
 
 	void GameStage::OnCreate() {
 		try {
+			auto& app = App::GetApp();
+
+			auto mediaPath = app->GetDataDirWString();
+			auto texturePath = mediaPath + L"Textures/";
+
+			app->RegisterTexture(L"EXPBAR_BLACK", texturePath + L"ExpBar(Black).png");
+			app->RegisterTexture(L"EXPBAR_BLUE", texturePath + L"ExpBar(Blue).png");
+
 			//ビューとライトの作成
 			CreateViewLight();
+
+			OnExpBarCreate();
+			AddGameObject<ExpBar>();
+
 		}
 		catch (...) {
 			throw;

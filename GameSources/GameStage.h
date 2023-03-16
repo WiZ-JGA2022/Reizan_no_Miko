@@ -19,7 +19,9 @@ namespace basecross {
 		GameStage() :Stage() {}
 		virtual ~GameStage() {}
 		//‰Šú‰»
-		virtual void OnCreate()override;
+		virtual void OnCreate() override;
+
+		void OnExpBarCreate();
 	};
 
 

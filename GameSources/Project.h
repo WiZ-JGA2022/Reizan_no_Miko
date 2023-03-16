@@ -13,5 +13,7 @@
 #include "Character.h"
 #include "Player.h"
 
+#include "ExpBar.h"
+
 
 
