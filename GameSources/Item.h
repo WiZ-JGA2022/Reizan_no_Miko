@@ -6,23 +6,19 @@
 #pragma once
 #include "stdafx.h"
 
-namespace basecross 
-{
-	float m_moveSpeed;
-	float m_pickUpArea;
-	bool m_inArea;
+namespace basecross {
+	class Item : public GameObject {
 
-	class Item : public GameObject
-	{
-	public:
-		Item(const std::shaerd_ptr<Stage>& stage) :
+		std::shared_ptr<Transform>m_transform;
+
+		Vec3 m_Xsize;
+
+	public :
+		Item(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
-			m_moveSpeed(500.0f),
-			m_pickUpArea(400.0f),
-			m_inArea(false)
+			m_Xsize(Vec3(0))
 		{
 		}
-
 		void OnCreate() override;
 	};
 

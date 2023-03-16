@@ -32,6 +32,11 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
+
+			auto obj = AddGameObject<GameObject>();
+			auto drawComp = obj->AddComponent<PNTStaticDraw>();
+			drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+
 		}
 		catch (...) {
 			throw;
