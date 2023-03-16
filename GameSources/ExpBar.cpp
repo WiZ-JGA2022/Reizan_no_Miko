@@ -76,12 +76,13 @@ namespace basecross {
 	// ポリゴンの頂点位置を設定する関数 //
 	void ExpBar::SetVartices(float expLimit)
 	{
-		m_expBarWidth = m_DefaultExpBarWidth / expLimit; // 320.0fはExpBar全体の大きさに 30をexpLimitに
+		m_expBarWidth = m_DefaultExpBarWidth / expLimit; // 1exp当たりのバーの大きさを計算
 
-		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f);
+		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f); // 色を白(画像ファイルの色そのまま)に
 
-		float u = m_uvPosition / 10.0f;
+		float u = m_uvPosition / 10.0f; // uvの位置を調整
 
+		// 頂点データの設定
 		m_vertices = {
 			{Vec3(0.0f, 0.0f, 0.0f), white, Vec2(u, 0.0f)}, // 左上
 			{Vec3(m_expBarWidth, 0.0f, 0.0f), white, Vec2(u + 0.1f, 0.0f)}, // 右上
