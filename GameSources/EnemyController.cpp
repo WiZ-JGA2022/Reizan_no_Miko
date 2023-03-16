@@ -27,12 +27,14 @@ namespace basecross {
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime(); 
 
-		auto pos = m_transform->GetPosition();
-		pos += 1.0f * delta;
-		m_transform->SetPosition(pos);
+		//auto pos = m_transform->GetPosition();
+		//pos += 1.0f * delta;
 
-		//float rotY = atan2f(-m_playerPos.z, m_playerPos.x); 
-		//m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0));
+		//m_transform->SetPosition(1.0f, 0.0f, 1.0f);
+		//m_transform->SetPosition(pos);
+
+		float rotY = atan2f(-m_playerPos.z, m_playerPos.x); 
+		m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0));
 	}
 }
 //end basecross

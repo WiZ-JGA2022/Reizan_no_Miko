@@ -22,10 +22,10 @@ namespace basecross {
 		float m_enemySpped;
 
 	public:
-		EnemyController(const std::shared_ptr<Stage>& stage,std::shared_ptr<Player>& player) :
+		EnemyController(const std::shared_ptr<Stage>& stage, std::shared_ptr<Player>& player) :
 			GameObject(stage),
 			m_playerObj(player),
-			m_playerPos(0,0,0),
+			m_playerPos(0, 0, 0),
 			m_enemyHp(10),
 			m_enemyATK(1),
 			m_enemyATKSpeed(1),
