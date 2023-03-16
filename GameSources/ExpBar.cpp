@@ -31,13 +31,13 @@ namespace basecross {
 	// 更新処理 //
 	void ExpBar::OnUpdate()
 	{
-		SetVartices(1000.0f); // 引数をexpLimitにする
+		SetVartices(30.0f); // 引数をexpLimitにする
 
-		for (int i = 0; i < 1000; i++) // 繰り返す回数を取得したexpの数にする(int型にキャストする)
+		for (int i = 0; i < 30; i++) // 繰り返す回数を取得したexpの数にする(int型にキャストする)
 		{
 			auto barObj = ObjectFactory::Create<ExpBar>(GetStage()); // オブジェクトを生成するけどステージに追加しない
 			barObj->SetPosition(App::GetApp()->GetGameWidth() - m_expBarWidth * i, 0.0f); // 画面の左端から右端に向かってゲージを伸ばす
-			barObj->SetUvPosition(i, 1000.0f, 100); // 第二引数をexpLimitに、第三引数をexpLvにする
+			barObj->SetUvPosition(i, 30.0f, 3); // 第二引数をexpLimitに、第三引数をexpLvにする
 			m_bar.push_back(barObj); // オブジェクトを配列に追加
 		}
 	}
@@ -100,7 +100,7 @@ namespace basecross {
 		auto w = app->GetGameWidth();
 		auto h = app->GetGameHeight();
 
-		m_transform->SetPosition(Vec3(-pos.x + (w * 0.5f), -pos.y + h * 0.5f, pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
+		m_transform->SetPosition(Vec3(-pos.x + (w * 0.5f), -pos.y + h * 0.46f, pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
 	}
 
 }

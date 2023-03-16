@@ -14,6 +14,7 @@
 #include "Player.h"
 
 #include "ExpBar.h"
+#include "HpBar.h"
 
 
 
