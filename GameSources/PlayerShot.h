@@ -1,6 +1,6 @@
 /*!
-@file EnemyController.h
-@brief 敵など
+@file Character.h
+@brief キャラクターなど
 */
 
 #pragma once

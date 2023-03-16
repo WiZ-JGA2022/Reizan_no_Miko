@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "Project.h"
+#include <stdio.h>
 
 namespace basecross {
 
@@ -49,10 +50,13 @@ namespace basecross {
 			}
 		}	
 
+
 		// カメラに回り込みの取得
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 		pos += padLStick * 3.0f * delta;
+
+		transComp->SetPosition(pos);
 
 		if (padLStick.length() > 0.0f) // スティックの入力確認
 		{
@@ -60,5 +64,44 @@ namespace basecross {
 			float rotY = atan2f(-padLStick.z, padLStick.x); // 2次元ベクトルを角度(ラジアン)に変換する
 			transComp->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
+	}
+	void OnCollisionEnter(Collision collision)
+	{
+		// レベルアップイベント中は処理を停止する
+		if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+		{
+			return;
+		}
+		if (collision.gameObject.tag == "EnemyBullet")
+		{
+			getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
+		}
+
+	}
+
+	void OnCollisionStay(Collision collision)
+	{
+		// レベルアップイベント中は処理を停止する
+		if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+		{
+			return;
+		}
+		// 敵と当たったら
+		if (collision.gameObject.tag == "Enemy")
+		{
+			// 自分のHPが減っていく
+			getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
+		}
+
+	}
+
+	void PlayerSpeedUp(float level)
+	{
+
+	}
+
+	void DestroyPlayer()
+	{
+		remove(GameObject);
 	}
 }

@@ -19,10 +19,10 @@ namespace basecross {
 		auto device = app->GetInputDevice();
 		auto pad = device.GetControlerVec()[0];
 
-		Vec3 padRightStick(-pad.fThumbRX, 0.0f, pad.fThumbRY);
+		Vec3 padRStick(-pad.fThumbRX, 0.0f, pad.fThumbRY);
 
 		// スティックの傾きに応じて角度を更新する
-		m_angle += padRightStick.x * app->GetElapsedTime();
+		m_angle += padRStick.x * app->GetElapsedTime();
 
 		// 注視点の座標
 		Vec3 at = m_targetTrans ? m_targetTrans->GetPosition() : GetAt();
