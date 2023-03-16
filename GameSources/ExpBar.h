@@ -14,6 +14,8 @@ namespace basecross {
 		// ExpBarの初期サイズ
 		const float m_DefaultExpBarWidth;
 		const float m_DefaultExpBarHeight;
+		// 頂点の数
+		const int m_SquareVartex;
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
@@ -35,6 +37,7 @@ namespace basecross {
 			GameObject(stage),
 			m_DefaultExpBarWidth(320.0f),
 			m_DefaultExpBarHeight(32.0f),
+			m_SquareVartex(4),
 			m_uvPosition(0),
 			m_expBarWidth(0),
 			m_uvShiftDistance(0.1f)
@@ -51,15 +54,19 @@ namespace basecross {
 		// UVの場所を決める関数 //
 		void SetUvPosition(int number, float expLimit, int expLv);
 
+		// ポリゴンの頂点位置を設定する関数 //
+		void SetVartices(float expLimit);
+
 		// 2D座標指定でスプライトの位置を設定する関数 //
 		virtual void SetPosition(const Vec3& pos);
 
-		// 2D座標指定でスプライトの位置を設定する関数（Vec2バージョン）
+		// 2D座標指定でスプライトの位置を設定する関数（Vec2バージョン）//
 		virtual void SetPosition(const Vec2& pos)
 		{
 			SetPosition(Vec3(pos.x, pos.y, 0.0f));
 		}
 
+		// 2D座標指定でスプライトの位置を設定する関数（floatバージョン）//
 		void SetPosition(float x, float y)
 		{
 			SetPosition(Vec2(x, y));

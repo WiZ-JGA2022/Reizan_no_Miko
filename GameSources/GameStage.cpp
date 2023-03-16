@@ -26,11 +26,6 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	void GameStage::OnExpBarCreate()
-	{
-
-	}
-
 	void GameStage::OnCreate() {
 		try {
 			auto& app = App::GetApp();
@@ -44,7 +39,6 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
-			OnExpBarCreate();
 			AddGameObject<ExpBar>();
 
 		}
