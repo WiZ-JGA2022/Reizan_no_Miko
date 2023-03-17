@@ -14,6 +14,8 @@ namespace basecross {
 		// HpBarの初期サイズ
 		const float m_DefaultHpBarWidth;
 		const float m_DefaultHpBarHeight;
+		// 頂点の数
+		const int m_SquareVartex;
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
@@ -33,8 +35,9 @@ namespace basecross {
 	public:
 		HpBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
-			m_DefaultHpBarWidth(500.0f),
+			m_DefaultHpBarWidth(400.0f),
 			m_DefaultHpBarHeight(24.0f),
+			m_SquareVartex(4),
 			m_uvPosition(0),
 			m_HpBarWidth(0),
 			m_uvShiftDistance(0.1f)

@@ -55,7 +55,7 @@ namespace basecross {
 		m_uvPosition = number;
 
 		// 頂点データを更新（UV座標を指定の位置にずらす）
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < m_SquareVartex; i++)
 		{
 			if (i % 2 == 0)
 			{
@@ -97,7 +97,7 @@ namespace basecross {
 		auto w = app->GetGameWidth();
 		auto h = app->GetGameHeight();
 
-		m_transform->SetPosition(Vec3(-pos.x + (w * 0.5f), -pos.y + h * 0.5f, pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
+		m_transform->SetPosition(Vec3(-pos.x + (w * 0.5f), -pos.y + h * 0.49f, pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
 	}
 
 }

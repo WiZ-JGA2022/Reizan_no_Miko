@@ -35,7 +35,7 @@ namespace basecross {
 	public:
 		ExpBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
-			m_DefaultExpBarWidth(320.0f),
+			m_DefaultExpBarWidth(200.0f),
 			m_DefaultExpBarHeight(24.0f),
 			m_SquareVartex(4),
 			m_uvPosition(0),

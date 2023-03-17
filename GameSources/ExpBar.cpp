@@ -100,7 +100,7 @@ namespace basecross {
 		auto w = app->GetGameWidth();
 		auto h = app->GetGameHeight();
 
-		m_transform->SetPosition(Vec3(-pos.x + (w * 0.5f), -pos.y + h * 0.46f, pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
+		m_transform->SetPosition(Vec3(-pos.x + (w * 0.5f), -pos.y + h * 0.45f, pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
 	}
 
 }
