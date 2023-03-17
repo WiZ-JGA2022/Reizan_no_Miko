@@ -65,33 +65,33 @@ namespace basecross {
 			transComp->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
 	}
-	void OnCollisionEnter(Collision collision)
+	//void OnCollisionEnter(/*Collision collision*/)
+	//{
+		// レベルアップイベント中は処理を停止する
+		//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+		//{
+		//	return;
+		//}
+		//if (collision.gameObject.tag == "EnemyBullet")
+		//{
+		//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
+		//}
+
+	//}
+
+	void OnCollisionStay(/*Collision collision*/)
 	{
 		// レベルアップイベント中は処理を停止する
-		if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-		{
-			return;
-		}
-		if (collision.gameObject.tag == "EnemyBullet")
-		{
-			getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-		}
-
-	}
-
-	void OnCollisionStay(Collision collision)
-	{
-		// レベルアップイベント中は処理を停止する
-		if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-		{
-			return;
-		}
-		// 敵と当たったら
-		if (collision.gameObject.tag == "Enemy")
-		{
-			// 自分のHPが減っていく
-			getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-		}
+		//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+		//{
+		//	return;
+		//}
+		//// 敵と当たったら
+		//if (collision.gameObject.tag == "Enemy")
+		//{
+		//	// 自分のHPが減っていく
+		//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
+		//}
 
 	}
 
@@ -102,6 +102,6 @@ namespace basecross {
 
 	void DestroyPlayer()
 	{
-		remove(GameObject);
+		//remove(GameObject);
 	}
 }

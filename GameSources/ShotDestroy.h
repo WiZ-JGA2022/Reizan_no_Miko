@@ -7,11 +7,11 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class PlayerShot : public GameObject
+	class ShotDestroy : public GameObject
 	{
 
 	public:
-		PlayerShot(const std::shared_ptr<Stage>& stage) :
+		ShotDestroy(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage)
 		{
 		}

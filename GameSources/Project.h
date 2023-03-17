@@ -17,5 +17,6 @@
 #include "MainCamera.h"
 #include "PlayerShot.h"
 #include "PlayerStatusController.h"
+#include "ShotDestroy.h"
 
 
