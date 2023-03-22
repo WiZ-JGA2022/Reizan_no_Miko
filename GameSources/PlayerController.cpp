@@ -14,7 +14,6 @@ namespace basecross {
 		// Playerオブジェクトの初期設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetOwnShadowActive(true);
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(0.0f, 0.0f, 0.0f);

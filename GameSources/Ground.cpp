@@ -9,7 +9,14 @@
 namespace basecross {
 	void Ground::OnCreate()
 	{
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+
+		auto transComp = GetComponent<Transform>();
+		transComp->SetPosition(0.0f, -1.0f, 0.0f);
+		transComp->SetScale(10.0f, 1.0f, 10.0f);
 		
+
 
 	}
 
