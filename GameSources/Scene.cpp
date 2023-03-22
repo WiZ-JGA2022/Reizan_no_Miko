@@ -12,6 +12,25 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
+	
+	//!テクスチャの読み込み
+	void Scene::RoadTexture(const wstring& TextureName, const wstring& UseTextureName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+		wstring strTexture = dataDir + L"Texture\\" + TextureName;
+		App::GetApp()->RegisterTexture(UseTextureName, strTexture);
+	}
+
+	void Scene::CreateResourses()
+	{
+		RoadTexture(L"EXPBAR_BLACK", L"ExpBar(Black).png");
+		RoadTexture(L"EXPBAR_BLUE", L"ExpBar(Blue).png");
+		RoadTexture(L"HPBAR_GREEN", L"HpBar(Green).png");
+		RoadTexture(L"HPBAR_RED", L"HpBar(Red).png");
+
+	}
+
 	void Scene::OnCreate(){
 		try {
 			//クリアする色を設定
