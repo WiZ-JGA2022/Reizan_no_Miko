@@ -13,8 +13,12 @@
 #include "Character.h"
 #include "Player.h"
 
+
 #include "ExpBar.h"
 #include "HpBar.h"
 #include "RandomSelectLevelUp.h"
 #include "LevelUpSprites.h"
+#include "Item.h"
+#include "Field.h"
+
 

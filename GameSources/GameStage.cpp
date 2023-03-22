@@ -41,9 +41,12 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
+			// ExpバーとHpバーの作成
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
+			// 地面の作成
+			AddGameObject<Field>();
 		}
 		catch (...) {
 			throw;

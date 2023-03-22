@@ -40,6 +40,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
+      <Filter>Sources</Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
@@ -81,6 +83,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h" />
+      <Filter>Headers</Filter>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
