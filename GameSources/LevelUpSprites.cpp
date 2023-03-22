@@ -8,9 +8,9 @@
 
 namespace basecross
 {
-	constexpr float m_startScaleZ = 1.0f;//!大きさ
-	constexpr float m_startPosZ = 1.0f;	 //!奥行き
-	constexpr float m_helfSize = 0.5f;	 //!半分の大きさ
+	constexpr float m_startScaleZ = 1.0f;// 大きさ
+	constexpr float m_startPosZ = 1.0f;	 // 奥行き
+	constexpr float m_helfSize = 0.5f;	 // 半分の大きさ
 	//--------------------------------------------------------------------------------------
 	///	コントローラーボタンのスプライト
 	//--------------------------------------------------------------------------------------
@@ -23,9 +23,9 @@ namespace basecross
 	) :
 		GameObject(StagePtr),
 		m_TextureNum(TextureNum),
-		m_Trace(Trace),
-		m_StartScale(StartScale),
-		m_StartPos(StartPos),
+		m_Alpha(Trace),
+		m_DefaultScale(StartScale),
+		m_DefaultPos(StartPos),
 		m_TexNum(TexNum)
 	{}
 
@@ -78,15 +78,16 @@ namespace basecross
 		}
 		else
 		{
-
+			return 0;
 		}
-	}
-	//初期化
+	} // end ControllerNum
+
+	// 初期化
 	void LevelUpSprites::OnCreate()
 	{
 		float HelfSize = m_helfSize;
 
-		//!頂点配列(縦横5個ずつ表示)
+		// 頂点配列(縦横5個ずつ表示)
 		vector<VertexPositionColorTexture> vertices = {
 			{ VertexPositionColorTexture(Vec3(-HelfSize, HelfSize, 0), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(0.0f, 0.0f)) },
 			{ VertexPositionColorTexture(Vec3(HelfSize, HelfSize, 0), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(1.0f, 0.0f)) },
@@ -94,25 +95,26 @@ namespace basecross
 			{ VertexPositionColorTexture(Vec3(HelfSize,-HelfSize, 0), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(1.0f, 1.0f)) },
 		};
 
-		//!インデックス配列
+		// インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
-		SetAlphaActive(m_Trace);
+		SetAlphaActive(m_Alpha);
 		auto PtrTransform = GetComponent<Transform>();
-		PtrTransform->SetScale(m_StartScale.x, m_StartScale.y, m_startScaleZ);
+		PtrTransform->SetScale(m_DefaultScale.x, m_DefaultScale.y, m_startScaleZ);
 		PtrTransform->SetRotation(0, 0, 0);
-		PtrTransform->SetPosition(m_StartPos.x, m_StartPos.y, m_startPosZ);
+		PtrTransform->SetPosition(m_DefaultPos.x, m_DefaultPos.y, m_startPosZ);
 
 		std::wstring Key;
 		Key = ControllerNum(m_TextureNum);
 
-		//!頂点とインデックスを指定してスプライト作成
+		// 頂点とインデックスを指定してスプライト作成
 		auto PtrDraw = AddComponent<PCTSpriteDraw>(vertices, indices);
 		PtrDraw->SetSamplerState(SamplerState::LinearWrap);
 		PtrDraw->SetTextureResource(Key);
-		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_Alpha));
+		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
 		SetDrawActive(true);
-	}
+	} // end OnCreate
 
+	// 更新処理
 	void LevelUpSprites::OnUpdate() {
 		auto& app = App::GetApp();
 		auto stage = app->GetScene<Scene>()->GetActiveStage();	// ステージオブジェクトを取得する
@@ -122,14 +124,14 @@ namespace basecross
 
 		if (scene->GetTexNum() > m_TexNum) {
 			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_Alpha = 1.0f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_Alpha));
+			m_AlphaNum = 1.0f;
+			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
 		}
 		else
 		{
 			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_Alpha = 0.5f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_Alpha));
+			m_AlphaNum = 0.5f;
+			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
 
 		}
 
@@ -146,5 +148,5 @@ namespace basecross
 				}
 			}
 		}
-	}
+	} // end OnUpdate
 }

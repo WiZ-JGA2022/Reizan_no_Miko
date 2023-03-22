@@ -9,13 +9,13 @@
 namespace basecross {
 	class LevelUpSprites : public GameObject {
 	private:
-		bool m_Trace;         //!透明
-		Vec2 m_StartScale;    //!大きさ
-		Vec2 m_StartPos;      //!位置
-		int m_TextureNum;	  //!テクスチャ番号
-		wstring m_TextureKey; //!テクスチャ
+		bool m_Alpha;         // 透明フラグ
+		Vec2 m_DefaultScale;    // 大きさ
+		Vec2 m_DefaultPos;      // 位置
+		int m_TextureNum;	  // テクスチャ番号
+		wstring m_TextureKey; // テクスチャ
 		int m_TexNum;
-		float m_Alpha = 0.5f;
+		float m_AlphaNum = 0.5f;
 	public:
 		//--------------------------------------------------------------------------------------
 		/*!
