@@ -24,11 +24,9 @@ namespace basecross {
 		/**
 		* 強化できるステータス・強化できる武器をランダムに指定
 		*
-		* @param なし
-		*
-		* @return commandnum : 0x0000で割り当てられているpadのボタンの数字情報
+		* @param selectStatus 強化可能なステータス・武器の総数
 		*/
-		void RandomSelect();
+		void RandomSelect(int selectStatus);
 
 	public :
 		RandomSelectLevelUp(const shared_ptr<Stage>& StagePtr);

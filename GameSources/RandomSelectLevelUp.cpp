@@ -4,6 +4,8 @@
 */
 
 #include "stdafx.h"
+#include <random>
+#include "time.h"
 #include "Project.h"
 
 namespace basecross {
@@ -22,29 +24,16 @@ namespace basecross {
 
 	} // end OnCreate
 
-	void RandomSelectLevelUp::RandomSelect()
+	void RandomSelectLevelUp::RandomSelect(int selectStatus)
 	{
 		int i, j; // ループ用変数
 		int commandNum[m_PickUpStatusCount] = { 0 }; // 乱数格納用配列
+		srand((unsigned int)time(NULL));
 
 		for (i = 0; i < m_PickUpStatusCount; i++)
 		{
-			do {
-				int a = rand() % 4;
-				//0x0000の一桁目か四桁目を指定する
-				if (a <= 1)
-				{
-					a = 0;
-				}
-				else
-				{
-					a = 3;
-				}
-				//A～Ⅹボタン、上下左右ボタンに割り当てられている数字をランダムに設定
-				int sixteen = (int)std::pow(16, a);
-				int b = rand() % 4;
-				int two = (int)std::pow(2, b);
-				commandNum[i] = sixteen * two;
+			do { // 重複を解消
+				commandNum[i] =	rand() % selectStatus;
 				for (j = 0; j < i; j++)
 				{
 					if (commandNum[i] == commandNum[j])
@@ -61,7 +50,7 @@ namespace basecross {
 	void RandomSelectLevelUp::OnUpdate()
 	{
 		/* プレイヤーのステータスからexpの取得量を取得
-		* 取得したexpが一定数を超えた時にPickUpBottonを実行
+		* 取得したexpが一定数を超えた時にRandomSelectを実行
 		* 
 		*/
 	}
