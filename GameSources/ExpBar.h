@@ -1,6 +1,8 @@
 /* !
+* 
 @file ExpBar.h
 @brief 経験値を表示するバー
+*
 */
 
 #pragma once

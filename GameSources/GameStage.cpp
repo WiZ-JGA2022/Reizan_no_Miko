@@ -13,15 +13,19 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	void GameStage::CreateViewLight() {
 		const Vec3 eye(0.0f, 5.0f, -5.0f);
-		const Vec3 at(0.0f);
+		const Vec3 at(0.0f, 1.0f ,0.0f);
+
 		auto PtrView = CreateView<SingleView>();
+		
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<Camera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
+
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
+		
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 	}
@@ -57,6 +61,7 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
+
 			auto& app = App::GetApp();
 
 			auto mediaPath = app->GetDataDirWString();
@@ -71,6 +76,9 @@ namespace basecross {
 			CreatePlayer();
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
 
+			auto player = AddGameObject<PlayerController>();
+
+
 			//ビューとライトの作成
 			CreateViewLight();
 
@@ -80,6 +88,15 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
+
+			// メインカメラにプレイヤーをセットする
+			auto camera = GetView()->GetTargetCamera();
+			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
+			if (maincamera) // エラーチェック
+			{
+				maincamera->SetTarget(player);
+			}
+
 		}
 		catch (...) {
 			throw;

@@ -1,13 +1,12 @@
 /*!
-@file Character.h
-@brief キャラクターなど
+@file EnemyController.h
+@brief 敵など
 */
 
 #pragma once
 #include "stdafx.h"
 
-namespace basecross{
+namespace basecross {
 
 
 }
-//end basecross
