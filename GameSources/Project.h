@@ -18,5 +18,6 @@
 #include "PlayerShot.h"
 #include "PlayerStatusController.h"
 #include "ShotDestroy.h"
+#include "Ground.h"
 
 

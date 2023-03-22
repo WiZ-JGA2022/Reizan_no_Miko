@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
