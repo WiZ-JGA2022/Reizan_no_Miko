@@ -17,9 +17,9 @@ namespace basecross{
 	void Scene::RoadTexture(const wstring& TextureName, const wstring& UseTextureName)
 	{
 		wstring dataDir;
-		App::GetApp()->GetDataDirectory(dataDir);//!サンプルのためメディアディレクトリを取得
-		wstring strTexture = dataDir + L"Texture\\" + TextureName;//!テクスチャのパスの指定
-		App::GetApp()->RegisterTexture(UseTextureName, strTexture);//!テクスチャの読み込み
+		App::GetApp()->GetDataDirectory(dataDir);
+		wstring strTexture = dataDir + L"Texture\\" + TextureName;
+		App::GetApp()->RegisterTexture(UseTextureName, strTexture);
 	}
 
 	void Scene::CreateResourses()
