@@ -14,6 +14,11 @@ namespace basecross {
 	class GameStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
+		//追いかけるオブジェクトの作成
+		void CreateSeekObject();
+		//プレイヤーの作成
+		void CreatePlayer();
+
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}
