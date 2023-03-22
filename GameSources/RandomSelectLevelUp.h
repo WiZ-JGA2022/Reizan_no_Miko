@@ -18,25 +18,17 @@ namespace basecross {
 
 		bool m_CommandFlg = true;		//!
 		bool m_CreateStateFlg = false;	//!
-		int m_PlayCommandCount = 1;		//!
+		static const int m_PickUpStatusCount = 3;		//!
 		bool ControllerSprite = true;
 
 		/**
-		* A～Xボタン、上下左右ボタンに割り当てられている数字をランダムに設定
+		* 強化できるステータス・強化できる武器をランダムに指定
 		*
 		* @param なし
 		*
 		* @return commandnum : 0x0000で割り当てられているpadのボタンの数字情報
 		*/
-		int CommandNum();
-		/**
-		* コマンドの回数を指定
-		*
-		* @param なし
-		*
-		* @return commandnum : 0x0000で割り当てられているpadのボタンの数字情報
-		*/
-		void CommandCount(int maxC);
+		void RandomSelect();
 
 	public :
 		RandomSelectLevelUp(const shared_ptr<Stage>& StagePtr);
@@ -48,6 +40,7 @@ namespace basecross {
 		virtual ~RandomSelectLevelUp();
 
 		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 	};
 
 }
