@@ -13,6 +13,8 @@
 #include "Character.h"
 #include "Player.h"
 
+#include "EnemyController.h"
+
 
 #include "ExpBar.h"
 #include "HpBar.h"
