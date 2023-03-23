@@ -36,7 +36,6 @@ namespace basecross {
 		try {
 
 			auto player = AddGameObject<PlayerController>();
-			auto ground = AddGameObject<Ground>();
 
 
 			//ビューとライトの作成
