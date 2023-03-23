@@ -57,6 +57,7 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
@@ -115,6 +116,7 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h">
       <Filter>Headers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
