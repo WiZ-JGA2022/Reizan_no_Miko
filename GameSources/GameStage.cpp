@@ -62,16 +62,6 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 
-			auto& app = App::GetApp();
-
-			auto mediaPath = app->GetDataDirWString();
-			auto texturePath = mediaPath + L"Textures/";
-
-			app->RegisterTexture(L"EXPBAR_BLACK", texturePath + L"ExpBar(Black).png");
-			app->RegisterTexture(L"EXPBAR_BLUE", texturePath + L"ExpBar(Blue).png");
-			app->RegisterTexture(L"HPBAR_GREEN", texturePath + L"HpBar(Green).png");
-			app->RegisterTexture(L"HPBAR_RED", texturePath + L"HpBar(Red).png");
-
 			CreateSeekObject();
 			CreatePlayer();
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
