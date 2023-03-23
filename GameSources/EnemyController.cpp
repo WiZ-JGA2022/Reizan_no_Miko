@@ -88,7 +88,6 @@ namespace basecross {
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetTextureResource(L"TRACE_TX");
 		//“§–¾ˆ—‚ğ‚·‚é
 		SetAlphaActive(true);
 
