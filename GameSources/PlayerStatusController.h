@@ -39,24 +39,24 @@ namespace basecross {
 
         std::map<eStatusName, float> statusValue =
         {
-            {HP, 100},
-            {ATK, 1},
-            {DEF, 1},
-            {SPD, 1},
-            {HASTE, 1},
-            {RANGE, 1},
-            {PICKUP, 1},
+            {HP, 100.0f},
+            {ATK, 1.0f},
+            {DEF, 1.0f},
+            {SPD, 1.0f},
+            {HASTE, 1.0f},
+            {RANGE, 1.0f},
+            {PICKUP, 1.0f},
         };
 
         std::map<eStatusLevel, float> statusLevel =
         {
-            { HPLv, 0 },
-            { ATKLv, 0 },
-            { DEFLv, 0 },
-            { SPDLv, 0 },
-            { HASTELv, 0 },
-            { RANGELv, 0 },
-            { PICKUPLv, 0 },
+            {HPLv, 0.0f},
+            {ATKLv, 0.0f},
+            {DEFLv, 0.0f},
+            {SPDLv, 0.0f},
+            {HASTELv, 0.0f},
+            {RANGELv, 0.0f},
+            {PICKUPLv, 0.0f},
         };
 
     public:
@@ -64,9 +64,9 @@ namespace basecross {
             GameObject(stage),
             MAGNIFICATION(10),
             m_level(1),
-            m_expCount(0),
-            m_maxExp(10),
-            m_previousExp(10)
+            m_expCount(0.0f),
+            m_maxExp(10.0f),
+            m_previousExp(10.0f)
         {
         } 
         void OnCreate() override;
