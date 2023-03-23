@@ -67,9 +67,6 @@ namespace basecross {
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
 
 			auto player = AddGameObject<PlayerController>();
-			auto ground = AddGameObject<Ground>();
-
-
 
 			//ビューとライトの作成
 			CreateViewLight();

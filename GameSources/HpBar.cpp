@@ -35,7 +35,7 @@ namespace basecross {
 		for (int i = 0; i < 30; i++)
 		{
 			auto barObj = ObjectFactory::Create<HpBar>(GetStage()); // オブジェクトを生成するけどステージに追加しない
-			barObj->SetPosition(App::GetApp()->GetGameWidth() - m_HpBarWidth * i, 0.0f); // 画面の左端から右端に向かってゲージを伸ばす
+			barObj->SetPosition(App::GetApp()->GetGameWidth() - m_hpBarWidth * i, 0.0f); // 画面の左端から右端に向かってゲージを伸ばす
 			barObj->SetUvPosition(i, 30.0f, 3);
 			m_bar.push_back(barObj);
 		}
@@ -74,7 +74,7 @@ namespace basecross {
 	// ポリゴンの頂点位置を設定する関数 //
 	void HpBar::SetVartices(float HpLimit)
 	{
-		m_HpBarWidth = m_DefaultHpBarWidth / HpLimit; // 1exp当たりのバーの大きさを計算
+		m_hpBarWidth = m_DefaultHpBarWidth / HpLimit; // 1exp当たりのバーの大きさを計算
 
 		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f); // 色を白(画像ファイルの色そのまま)に
 
@@ -83,9 +83,9 @@ namespace basecross {
 		// 頂点データの設定
 		m_vertices = {
 			{Vec3(0.0f, 0.0f, 0.0f), white, Vec2(u, 0.0f)}, // 左上
-			{Vec3(m_HpBarWidth, 0.0f, 0.0f), white, Vec2(u + 0.1f, 0.0f)}, // 右上
+			{Vec3(m_hpBarWidth, 0.0f, 0.0f), white, Vec2(u + 0.1f, 0.0f)}, // 右上
 			{Vec3(0.0f,-m_DefaultHpBarHeight, 0.0f), white, Vec2(u, 1.0f)}, // 左下
-			{Vec3(m_HpBarWidth,-m_DefaultHpBarHeight, 0.0f), white, Vec2(u + 0.1f, 1.0f)}, // 右下
+			{Vec3(m_hpBarWidth,-m_DefaultHpBarHeight, 0.0f), white, Vec2(u + 0.1f, 1.0f)}, // 右下
 		};
 	}
 
