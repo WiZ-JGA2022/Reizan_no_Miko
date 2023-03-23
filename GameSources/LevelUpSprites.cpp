@@ -30,55 +30,55 @@ namespace basecross
 	{}
 
 	wstring LevelUpSprites::ControllerNum(int i) {
-		if (i == 0x0001)
+		if (i == 0)
 		{
-			m_TextureKey = L"ARROW_UP_TX";
+			m_TextureKey = L"HP_LEVELUP";
 			return m_TextureKey;
 		}
-		else if (i == 0x0002)
+		else if (i == 1)
 		{
-			m_TextureKey = L"ARROW_DOWN_TX";
-			return m_TextureKey;
-
-		}
-		else if (i == 0x0004)
-		{
-			m_TextureKey = L"ARROW_LEFT_TX";
+			m_TextureKey = L"ATK_LEVELUP";
 			return m_TextureKey;
 
 		}
-		else if (i == 0x0008)
+		else if (i == 2)
 		{
-			m_TextureKey = L"ARROW_RIGHT_TX";
+			m_TextureKey = L"DEF_LEVELUP";
 			return m_TextureKey;
 
 		}
-		else if (i == 0x1000)
+		else if (i == 3)
 		{
-			m_TextureKey = L"BUTTON_A_TX";
+			m_TextureKey = L"SPD_LEVELUP";
 			return m_TextureKey;
 
 		}
-		else if (i == 0x2000)
+		else if (i == 4)
 		{
-			m_TextureKey = L"BUTTON_B_TX";
+			m_TextureKey = L"HASTE_LEVELUP";
 			return m_TextureKey;
 
 		}
-		else if (i == 0x4000)
+		else if (i == 5)
 		{
-			m_TextureKey = L"BUTTON_X_TX";
+			m_TextureKey = L"PICKUP_LEVELUP";
 			return m_TextureKey;
 
 		}
-		else if (i == 0x8000)
+		else if (i == 6)
 		{
-			m_TextureKey = L"BUTTON_Y_TX";
+			m_TextureKey = L"WEPON_1_LEVELUP";
+			return m_TextureKey;
+
+		}
+		else if (i == 7)
+		{
+			m_TextureKey = L"WEPON_2_LEVELUP";
 			return m_TextureKey;
 		}
 		else
 		{
-			return 0;
+
 		}
 	} // end ControllerNum
 
