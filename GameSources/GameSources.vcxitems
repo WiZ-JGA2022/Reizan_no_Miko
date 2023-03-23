@@ -32,6 +32,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -55,6 +56,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp">
+      <Filter>Sources</Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
@@ -111,6 +114,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h">
+      <Filter>Headers</Filter>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -119,5 +124,41 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{8adc80d2-6726-427a-a03b-8276ff0f85c6}</UniqueIdentifier>
     </Filter>
+=======
+    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerShot.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Ground.cpp" />
+    
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerShot.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Ground.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
+>>>>>>> Player
   </ItemGroup>
 </Project>
