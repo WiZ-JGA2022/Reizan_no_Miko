@@ -116,7 +116,7 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h">
       <Filter>Headers</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
