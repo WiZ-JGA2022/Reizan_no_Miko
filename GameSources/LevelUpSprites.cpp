@@ -139,7 +139,7 @@ namespace basecross
 		for (auto& obj : objs)
 		{
 			// LevelUpButton‚Ö‚ÌƒLƒƒƒXƒg‚ðŽŽ‚Ý‚é
-			auto levelUpButton = dynamic_pointer_cast<RandomSelectLevelUp>(obj);
+			auto levelUpButton = dynamic_pointer_cast<RandomSelectLevelUpButton>(obj);
 			if (levelUpButton)
 			{
 				auto controllerKeyFlg = levelUpButton->GetControllerSprite();

@@ -78,7 +78,7 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
-			AddGameObject<RandomSelectLevelUp>();
+			AddGameObject<RandomSelectLevelUpButton>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
