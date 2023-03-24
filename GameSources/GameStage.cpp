@@ -78,6 +78,8 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
+			AddGameObject<RandomSelectLevelUp>();
+
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);

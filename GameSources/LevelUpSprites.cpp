@@ -139,11 +139,11 @@ namespace basecross
 		for (auto& obj : objs)
 		{
 			// StageBlocks‚Ö‚ÌƒLƒƒƒXƒg‚ðŽŽ‚Ý‚é
-			auto stageBlocks = dynamic_pointer_cast<RandomSelectLevelUp>(obj);
-			if (stageBlocks)
+			auto levelUpButton = dynamic_pointer_cast<RandomSelectLevelUp>(obj);
+			if (levelUpButton)
 			{
-				auto ControllerKeyFlg = stageBlocks->GetControllerSprite();
-				if (!ControllerKeyFlg) {
+				auto controllerKeyFlg = levelUpButton->GetControllerSprite();
+				if (!controllerKeyFlg) {
 					GetStage()->RemoveGameObject<LevelUpSprites>(GetThis<LevelUpSprites>());
 				}
 			}

@@ -21,13 +21,11 @@ namespace basecross {
 
 	void RandomSelectLevelUp::OnCreate()
 	{
-
 	} // end OnCreate
 
 	void RandomSelectLevelUp::RandomSelect(int selectStatus)
 	{
 		int i, j; // ループ用変数
-		int selectNum = selectStatus;
 		int commandNum[m_PickUpStatusCount] = { 0 }; // 乱数格納用配列
 		srand((unsigned int)time(NULL));
 
@@ -35,7 +33,7 @@ namespace basecross {
 		{
 			do { // 重複を解消
 				
-				commandNum[i] =	rand() % selectNum;
+				commandNum[i] =	rand() % selectStatus;
 				for (j = 0; j < i; j++)
 				{
 					if (commandNum[i] == commandNum[j])
@@ -63,7 +61,22 @@ namespace basecross {
 
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
 		{
+			ControllerSprite = true;
+
 			RandomSelect(8);
+		}
+
+		if (pad.wPressedButtons & 0x0001)
+		{
+			ControllerSprite = false;
+		}
+		if (pad.wPressedButtons & 0x0002)
+		{
+			ControllerSprite = false;
+		}
+		if (pad.wPressedButtons & 0x0008)
+		{
+			ControllerSprite = false;
 		}
 	}
 }
