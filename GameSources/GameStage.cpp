@@ -78,6 +78,7 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
+			// レベルアップイベントの作成
 			AddGameObject<RandomSelectLevelUpButton>();
 
 			// メインカメラにプレイヤーをセットする

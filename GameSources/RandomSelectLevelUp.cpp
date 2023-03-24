@@ -59,6 +59,7 @@ namespace basecross {
 		auto device = app->GetInputDevice(); // インプットデバイスオブジェクトを取得する
 		auto& pad = device.GetControlerVec()[0]; // １個目のコントローラーの状態を取得する
 
+		// テスト用にBボタンでレベルアップイベントを実行
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
 		{
 			ControllerSprite = true;
@@ -66,15 +67,15 @@ namespace basecross {
 			RandomSelect(8);
 		}
 
-		if (pad.wPressedButtons & 0x0001)
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
 		{
 			ControllerSprite = false;
 		}
-		if (pad.wPressedButtons & 0x0002)
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
 		{
 			ControllerSprite = false;
 		}
-		if (pad.wPressedButtons & 0x0008)
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
 		{
 			ControllerSprite = false;
 		}
