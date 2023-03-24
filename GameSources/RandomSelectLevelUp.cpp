@@ -1,5 +1,5 @@
 /*!
-@file RandomSelectLevelUp.cpp
+@file RandomSelectLevelUpButton.cpp
 @brief ランダムにレベルアップできる項目を出すクラスの実装
 */
 
@@ -10,20 +10,20 @@
 
 namespace basecross {
 
-	RandomSelectLevelUp::RandomSelectLevelUp(const shared_ptr<Stage>& StagePtr) :
+	RandomSelectLevelUpButton::RandomSelectLevelUpButton(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr)
 	{
 	} // end コンストラクタ
 
-	RandomSelectLevelUp::~RandomSelectLevelUp()
+	RandomSelectLevelUpButton::~RandomSelectLevelUpButton()
 	{
 	} // end デストラクタ
 
-	void RandomSelectLevelUp::OnCreate()
+	void RandomSelectLevelUpButton::OnCreate()
 	{
 	} // end OnCreate
 
-	void RandomSelectLevelUp::RandomSelect(int selectStatus)
+	void RandomSelectLevelUpButton::RandomSelect(int selectStatus)
 	{
 		int i, j; // ループ用変数
 		int commandNum[m_PickUpStatusCount] = { 0 }; // 乱数格納用配列
@@ -47,7 +47,7 @@ namespace basecross {
 		}
 	} // end RandomSelect
 
-	void RandomSelectLevelUp::OnUpdate()
+	void RandomSelectLevelUpButton::OnUpdate()
 	{
 		/* プレイヤーのステータスからexpの取得量を取得
 		* 取得したexpが一定数を超えた時にRandomSelectを実行

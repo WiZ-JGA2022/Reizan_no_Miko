@@ -135,10 +135,10 @@ namespace basecross
 
 		}
 
-
+		// 処理終了後に表示した画像を消す処理
 		for (auto& obj : objs)
 		{
-			// StageBlocksへのキャストを試みる
+			// LevelUpButtonへのキャストを試みる
 			auto levelUpButton = dynamic_pointer_cast<RandomSelectLevelUp>(obj);
 			if (levelUpButton)
 			{
