@@ -95,5 +95,10 @@ namespace basecross {
 		}
 	}
 
+	void GameStage::OnDraw()
+	{
+		Stage::OnDraw(); // 継承するはずだった親クラスの関数を呼び出す
+		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
+	}
 }
 //end basecross

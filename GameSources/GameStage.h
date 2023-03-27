@@ -26,6 +26,9 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate() override;
 
+		virtual void OnDraw() override; // デバッグ文字用に上書きする
+
+
 	};
 
 
