@@ -5,7 +5,6 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include <stdio.h>
 
 namespace basecross {
 
@@ -64,43 +63,71 @@ namespace basecross {
 			transComp->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
 	}
-	//void OnCollisionEnter(/*Collision collision*/)
+	void PlayerController::OnPushX() {
+		auto ptrTrans = GetComponent<Transform>();
+		Vec3 pos = ptrTrans->GetPosition();
+		pos.y += 0.3f;
+		Quat qt = ptrTrans->GetQuaternion();
+		Vec3 rot = qt.toRotVec();
+		float rotY = rot.y;
+		Vec3 velo(sin(rotY), 0.1f, cos(rotY));
+		velo.normalize();
+		velo *= 15.0f;
+		auto group = GetStage()->GetSharedObjectGroup(L"FireSphereGroup");
+		auto& vec = group->GetGroupVector();
+		for (auto& v : vec) {
+			auto shObj = v.lock();
+			if (shObj) {
+				if (!shObj->IsUpdateActive()) {
+					auto shFire = dynamic_pointer_cast<FireSphere>(shObj);
+					if (shFire) {
+						shFire->Reset(pos, velo);
+						return;
+					}
+				}
+			}
+		}
+		//空がなかったので新たに作成
+		GetStage()->AddGameObject<FireSphere>(pos, velo);
+	}
+
+	//void OnCollisionEnter(const CollisionPair& Pair)
 	//{
-		// レベルアップイベント中は処理を停止する
-		//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-		//{
-		//	return;
-		//}
-		//if (collision.gameObject.tag == "EnemyBullet")
-		//{
-		//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-		//}
+	//	// レベルアップイベント中は処理を停止する
+	//	//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+	//	//{
+	//	//	return;
+	//	//}
+	//	//if (collision.gameObject.tag == "EnemyBullet")
+	//	//{
+	//	//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
+	//	//}
 
 	//}
 
-	void OnCollisionStay(/*Collision collision*/)
-	{
-		// レベルアップイベント中は処理を停止する
-		//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-		//{
-		//	return;
-		//}
-		//// 敵と当たったら
-		//if (collision.gameObject.tag == "Enemy")
-		//{
-		//	// 自分のHPが減っていく
-		//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-		//}
+	//void 
+	//{
+	//	// レベルアップイベント中は処理を停止する
+	//	//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+	//	//{
+	//	//	return;
+	//	//}
+	//	//// 敵と当たったら
+	//	//if ()
+	//	//{
+	//	//	// 自分のHPが減っていく
+	//	// 
+	//	//}
 
-	}
+	//}
 
 	void PlayerSpeedUp(float level)
 	{
 
 	}
 
-	void DestroyPlayer()
+	void PlayerController::DestroyPlayer()
 	{
-		//remove(GameObject);
+		
 	}
 }

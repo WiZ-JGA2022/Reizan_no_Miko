@@ -35,25 +35,25 @@ namespace basecross {
 		m_maxExp = 10 * (m_level - 1) + m_previousExp;
 
 		// HPが0になったら
-		//if (status[0] < 0)
-		//{
+		if (status[0] < 0)
+		{
 			// プレイヤーを消す
-			//player.GetComponent<PlayerController>().DestroyPlayer();
-		//}
+			/*auto PlayerDei = GetComponent<PlayerController>(DestroyPlayer);*/
+			
+		}
 	}
 	void StatusLevelUpdate(int rndSelect)
 	{
 		// レベルを上げる
-		//statusLevel[]++;
-		// ステータス上昇値を反映する
+		//statusLevel[rndSelect]++;
+		//ステータス上昇値を反映する
 		//status[rndSelect] += MAGNIFICATION;
 		//player.GetComponent<PlayerController>().PlayerSpeedUp(status[3]);
-		//playerShooter.GetComponent<PlayerShot>().LevelUpShotDelay(status[4]);
-		//expItem.LevelUpPickUpArea(status[6]);
-		//if (rndSelect == 0)
-		//{
-		//	maxHp += MAGNIFICATION;
-		//}
+		//GetComponent<PlayerShot>(LevelUpShotDelay(status[4]));
+		if (rndSelect == 0)
+		{
+			//smaxHp += MAGNIFICATION;
+		}
 		// 経験値を0に戻す
 		//expItem.ResetExpCount();
 		//// レベルアップイベントの終了
@@ -68,7 +68,7 @@ namespace basecross {
 		float enemyATK = 1.0f;
 
 		// 敵の攻撃力分自分の体力を減らす
-		//status[0] -= enemyATK;
+		status[0] -= enemyATK;
 	} // end PlayerTakenDamage
 
 }

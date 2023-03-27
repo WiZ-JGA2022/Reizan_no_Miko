@@ -15,10 +15,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerShot.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
@@ -35,9 +32,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerShot.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
 </Project>
