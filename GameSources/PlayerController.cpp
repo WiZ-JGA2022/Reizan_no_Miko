@@ -7,6 +7,11 @@
 #include "Project.h"
 
 namespace basecross {
+	//--------------------------------------------------------------------------------------
+	//	class Player : public GameObject;
+	//	用途: プレイヤー
+	//--------------------------------------------------------------------------------------
+	//構築と破棄
 
 	void PlayerController::OnCreate() // UnityのStartメソッド(関数)のようなもの
 	{
@@ -14,8 +19,8 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(0.0f, 0.0f, 0.0f);
+		m_Trans = GetComponent<Transform>();
+		m_Trans->SetPosition(0.0f, 0.0f, 0.0f);
 	}
 
 	void PlayerController::OnUpdate()
@@ -62,34 +67,18 @@ namespace basecross {
 			float rotY = atan2f(-padLStick.z, padLStick.x); // 2次元ベクトルを角度(ラジアン)に変換する
 			transComp->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
-	}
-	void PlayerController::OnPushX() {
-		auto ptrTrans = GetComponent<Transform>();
-		Vec3 pos = ptrTrans->GetPosition();
-		pos.y += 0.3f;
-		Quat qt = ptrTrans->GetQuaternion();
-		Vec3 rot = qt.toRotVec();
-		float rotY = rot.y;
-		Vec3 velo(sin(rotY), 0.1f, cos(rotY));
-		velo.normalize();
-		velo *= 15.0f;
-		auto group = GetStage()->GetSharedObjectGroup(L"FireSphereGroup");
-		auto& vec = group->GetGroupVector();
-		for (auto& v : vec) {
-			auto shObj = v.lock();
-			if (shObj) {
-				if (!shObj->IsUpdateActive()) {
-					auto shFire = dynamic_pointer_cast<FireSphere>(shObj);
-					if (shFire) {
-						shFire->Reset(pos, velo);
-						return;
-					}
-				}
-			}
+
+		if (pad.wPressedButtons & BUTTON_SHOT)
+		{
+			GetStage()->AddGameObject<PlayerShot>(GetThis<PlayerController>());
 		}
-		//空がなかったので新たに作成
-		GetStage()->AddGameObject<FireSphere>(pos, velo);
 	}
+
+	Vec3 PlayerController::GetPosition() 
+	{
+		return m_Trans->GetPosition();
+	}
+
 
 	//void OnCollisionEnter(const CollisionPair& Pair)
 	//{

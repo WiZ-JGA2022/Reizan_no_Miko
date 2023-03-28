@@ -13,16 +13,6 @@ namespace basecross {
 	template<typename T>
 	struct InputHandler {
 		void PushHandle(const shared_ptr<T>& Obj) {
-			//キーボードの取得（優先）
-			auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-			if (KeyState.m_bPressedKeyTbl['X']) {
-				Obj->OnPushX();
-				return;
-			}
-			if (KeyState.m_bPressedKeyTbl[VK_SPACE]) {
-				Obj->OnPushA();
-				return;
-			}
 			//コントローラの取得
 			auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 			if (cntlVec[0].bConnected) {

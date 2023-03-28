@@ -32,12 +32,8 @@ namespace basecross {
 	void GameStage::CreatePlayer() {
 		//プレーヤーの作成
 		auto PlayerPtr = AddGameObject<PlayerController>();
-		//シェア配列にプレイヤーを追加
-		SetSharedGameObject(L"Player", PlayerPtr);
-		//砲弾グループの作成
-		CreateSharedObjectGroup(L"FireSphereGroup");
+	}		
 
-	}
 
 
 
@@ -47,8 +43,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			//プレーヤーの作成
-			CreatePlayer();
-
+			auto player = AddGameObject<PlayerController>();
+			AddGameObject<PlayerShot>(player);
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);

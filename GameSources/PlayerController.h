@@ -13,9 +13,9 @@ namespace basecross{
 		// プレイヤーの操作に使用するボタン
 		const WORD BUTTON_HOMING = XINPUT_GAMEPAD_LEFT_SHOULDER;
 		const WORD BUTTON_BARRIER = XINPUT_GAMEPAD_RIGHT_SHOULDER;
+		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 
-		//入力ハンドラー
-		InputHandler<PlayerController> m_InputHandler;
+		shared_ptr<Transform> m_Trans;
 
 	public:
 		PlayerController(const std::shared_ptr<Stage>& stage) :
@@ -26,10 +26,10 @@ namespace basecross{
 		void OnCreate() override; // オブジェクトの初期設定用の関数
 		void OnUpdate() override; // オブジェクトデータの更新
 		
-		//Xボタン
-		void OnPushX();
 		//void MovePlayer();
 		//virtual void OnCollisionEnter(const CollisionPair& Pair) override;
 		void DestroyPlayer();
+
+		Vec3 GetPosition();
 	};
 }
