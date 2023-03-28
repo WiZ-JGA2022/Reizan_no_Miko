@@ -43,7 +43,7 @@ namespace basecross {
 				}
 			} while (i != j);
 			m_CommandNums[i] = commandNum[i];
-			GetStage()->AddGameObject<LevelUpSprites>(m_CommandNums[i], true, Vec2(516.0f, 128.0f), Vec2(300.0f, 300.0f + -(i * 128.0f) + -(i * 20)), i);
+			GetStage()->AddGameObject<LevelUpSprites>(m_CommandNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
 		}
 	} // end RandomSelect
 
@@ -67,6 +67,7 @@ namespace basecross {
 			RandomSelect(8);
 		}
 
+		// 十字キーの上、右、下で選ぶ
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
 		{
 			ControllerSprite = false;
