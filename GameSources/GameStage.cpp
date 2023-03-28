@@ -29,22 +29,16 @@ namespace basecross {
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 	}
-	void GameStage::CreatePlayer() {
-		//プレーヤーの作成
-		auto PlayerPtr = AddGameObject<PlayerController>();
-	}		
-
-
-
 
 	void GameStage::OnCreate() {
 		try {
 
-			//ビューとライトの作成
+			//ビューとライトの作成 
 			CreateViewLight();
 			//プレーヤーの作成
 			auto player = AddGameObject<PlayerController>();
-			AddGameObject<PlayerShot>(player);
+			//AddGameObject<PlayerShot>(player);
+
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
