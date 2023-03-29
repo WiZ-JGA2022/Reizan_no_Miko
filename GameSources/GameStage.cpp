@@ -12,7 +12,7 @@ namespace basecross {
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
 	void GameStage::CreateViewLight() {
-		const Vec3 eye(0.0f, 5.0f, -5.0f);
+		const Vec3 eye(0.0f, 10.0f, -10.0f);
 		const Vec3 at(0.0f);
 		auto PtrView = CreateView<SingleView>();
 		//ビューのカメラの設定
@@ -26,6 +26,21 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+	//プレイヤーの作成
+	void GameStage::CreatePlayer() {
+		//プレーヤーの作成
+		auto PlayerPtr = AddGameObject<Player>(Vec3(0, 0.125f, 0));
+		//シェア配列にプレイヤーを追加
+		SetSharedGameObject(L"Player", PlayerPtr);
+
+	}
+	void GameStage::CreateItem() {
+
+		////Itemオブジェクトの追加
+		AddGameObject<Item>(Vec3(0.0f,0.0f,0.0f));
+
+	}
+
 
 
 	void GameStage::OnCreate() {
@@ -33,10 +48,16 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
-			auto obj = AddGameObject<GameObject>();
-			auto drawComp = obj->AddComponent<PNTStaticDraw>();
-			drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+			AddGameObject<Field>();
 
+			CreateItem();
+
+			//auto player = AddGameObject<Player>();
+			//プレーヤーの作成
+			CreatePlayer();
+
+
+			
 		}
 		catch (...) {
 			throw;
