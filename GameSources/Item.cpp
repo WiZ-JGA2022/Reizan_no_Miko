@@ -11,11 +11,11 @@ namespace basecross {
 	void Item::OnCreate()
 	{
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetScale(Vec3(0.5f, 0.5f, 0.5f));
-		Quat Qt;
-		Qt.identity();
-		ptrTrans->SetQuaternion(Qt);
-		ptrTrans->SetPosition(m_StartPos);
+		//ptrTrans->SetScale(Vec3(0.5f, 0.5f, 0.5f));
+		//Quat Qt;
+		//Qt.identity();
+		//ptrTrans->SetQuaternion(Qt);
+		//ptrTrans->SetPosition(m_StartPos);
 
 		//Itemのコンポーネント設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
@@ -24,19 +24,20 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		transComp->SetScale(Vec3(0.5f));//大きさ
 		transComp->SetPosition(1.0f, 0.0f, 0.0f);//位置
-		//衝突判定をつける
-		auto PtrCol = AddComponent<CollisionObb>();
-		//衝突判定はNoneにする
-		PtrCol->SetAfterCollision(AfterCollision::None);
 
-		//物理計算ボックス
-		PsBoxParam param(ptrTrans->GetWorldMatrix(), 1.0f, true, PsMotionType::MotionTypeActive);
-		auto PsPtr = AddComponent<RigidbodyBox>(param);
-		PsPtr->SetDrawActive(true);
+		////衝突判定をつける
+		//auto PtrCol = AddComponent<CollisionObb>();
+		////衝突判定はNoneにする
+		//PtrCol->SetAfterCollision(AfterCollision::None);
+
+		////物理計算ボックス
+		//PsBoxParam param(ptrTrans->GetWorldMatrix(), 1.0f, true, PsMotionType::MotionTypeActive);
+		//auto PsPtr = AddComponent<RigidbodyBox>(param);
+		//PsPtr->SetDrawActive(true);
 
 
-		//ステートマシンの構築
-		m_StateMachine.reset(new StateMachine<Item>(GetThis<Item>()));
+		////ステートマシンの構築
+		//m_StateMachine.reset(new StateMachine<Item>(GetThis<Item>()));
 
 	}
 
@@ -69,12 +70,12 @@ namespace basecross {
 
 	//}	
 	//更新
-	void Item::OnUpdate() 
-	{
-		//ステートマシンのUpdateを行う
-			//この中でステートの切り替えが行われる
-			m_StateMachine->Update();
-	}
+	//void Item::OnUpdate() 
+	//{
+	//	//ステートマシンのUpdateを行う
+	//		//この中でステートの切り替えが行われる
+	//		m_StateMachine->Update();
+	//}
 
 	//プレイヤーとの距離を得る
 	float Item::GetToPlayerLen() const {

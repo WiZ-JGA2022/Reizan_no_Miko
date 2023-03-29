@@ -48,7 +48,7 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate() override;
 		//更新
-		virtual void OnUpdate() override;
+		//virtual void OnUpdate() override;
 		//ステートマシンを得る
 		const unique_ptr<StateMachine<Item>>& GetStateMachine() {
 			return m_StateMachine;
