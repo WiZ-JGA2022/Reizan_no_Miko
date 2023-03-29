@@ -10,7 +10,8 @@
 namespace basecross {
 	class EnemyController : public GameObject {
 
-		std::shared_ptr<PlayerController> m_playerObj;
+		shared_ptr<PlayerController> m_playerObj;
+		shared_ptr<Transform> m_transform;
 
 		float m_forceX;
 		float m_forceZ;
@@ -25,8 +26,8 @@ namespace basecross {
 
 		};
 
-		void OnCreate()override;
-		void OnUpdate()override;
+		void OnCreate() override;
+		void OnUpdate() override;
 	};
 
 }

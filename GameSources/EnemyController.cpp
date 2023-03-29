@@ -13,24 +13,18 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 		drawComp->SetOwnShadowActive(true);
 
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(2.0f, 0.0f, 2.0f);
-
+		m_transform = GetComponent<Transform>();
+		m_transform->SetPosition(2.0f, 0.0f, 2.0f);
 
 	}
 
 	void EnemyController::OnUpdate()
 	{	
-		//auto playerObj = GetComponent<Player>;
-		//auto playerTrans = playerObj->GetComponent<Transform>();
-
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 
-		auto transComp = GetComponent<Transform>();
-		auto enemyPos = transComp->GetPosition();
-		auto playerTrans = m_playerObj->GetComponent<Transform>();
-		auto playerPos = playerTrans->GetPosition();
+		auto enemyPos = m_transform->GetPosition();
+		auto playerPos = m_playerObj->GetPosition();
 
 
 		if (playerPos.x == enemyPos.x) { m_forceX = 0; }
@@ -45,8 +39,8 @@ namespace basecross {
 		float rotationY = atan2f(playerPos.z, playerPos.x);
 		float enemyMoveX = enemyPos.x + m_forceX * delta;
 		float enemyMoveZ = enemyPos.z + m_forceZ * delta;
-		transComp->SetRotation(Vec3(0, rotationY + XM_PIDIV2, 0));
-		transComp->SetPosition(enemyMoveX, enemyPos.y, enemyMoveZ);
+		m_transform->SetRotation(Vec3(0, rotationY + XM_PIDIV2, 0));
+		m_transform->SetPosition(enemyMoveX, enemyPos.y, enemyMoveZ);
 
 	}
 

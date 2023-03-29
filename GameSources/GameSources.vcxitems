@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Field.h" />
@@ -24,7 +25,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Item.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerShot.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp" />
@@ -47,7 +48,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerShot.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />
