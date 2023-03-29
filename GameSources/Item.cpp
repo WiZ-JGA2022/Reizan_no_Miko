@@ -15,7 +15,7 @@ namespace basecross {
 		//Quat Qt;
 		//Qt.identity();
 		//ptrTrans->SetQuaternion(Qt);
-		//ptrTrans->SetPosition(m_StartPos);
+		//ptrTrans->SetPosition(m_startPos);
 
 		//Itemのコンポーネント設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
@@ -37,7 +37,7 @@ namespace basecross {
 
 
 		////ステートマシンの構築
-		//m_StateMachine.reset(new StateMachine<Item>(GetThis<Item>()));
+		//m_stateMachine.reset(new StateMachine<Item>(GetThis<Item>()));
 
 	}
 
@@ -74,7 +74,7 @@ namespace basecross {
 	//{
 	//	//ステートマシンのUpdateを行う
 	//		//この中でステートの切り替えが行われる
-	//		m_StateMachine->Update();
+	//		m_stateMachine->Update();
 	//}
 
 	//プレイヤーとの距離を得る
@@ -92,7 +92,7 @@ namespace basecross {
 		auto TargetPtr = GetStage()->GetSharedObject(L"Player");
 		auto TargetPos = TargetPtr->GetComponent<Transform>()->GetPosition();
 		auto Pos = GetComponent<Transform>()->GetPosition();
-		TargetPos.y = Pos.y = m_StartPos.y;
+		TargetPos.y = Pos.y = m_startPos.y;
 		bsm::Vec3 WorkForce;
 		WorkForce = Steering::Seek(Vec3(0), TargetPos,
 			Pos, 20.0f) * 1.0f;

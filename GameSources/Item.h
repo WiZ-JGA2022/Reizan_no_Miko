@@ -34,10 +34,10 @@ namespace basecross {
 		//	void OnCreate() override;
 		//	void OnUpdate() override;
 					//ステートマシーン
-		unique_ptr< StateMachine<Item> >  m_StateMachine;
-		Vec3 m_StartPos;
-		float m_TotalTime;
-		float m_HitAfterTime;
+		unique_ptr< StateMachine<Item> >  m_stateMachine;
+		Vec3 m_startPos;
+		float m_totalTime;
+		float m_hitAfterTime;
 	public:
 		//構築と破棄
 		Item(const shared_ptr<Stage>& StagePtr, const Vec3& StartPos) :
@@ -51,7 +51,7 @@ namespace basecross {
 		//virtual void OnUpdate() override;
 		//ステートマシンを得る
 		const unique_ptr<StateMachine<Item>>& GetStateMachine() {
-			return m_StateMachine;
+			return m_stateMachine;
 		}
 		//プレイヤーとの距離を得る
 		float GetToPlayerLen() const;

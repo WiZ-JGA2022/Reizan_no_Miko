@@ -15,7 +15,7 @@ namespace basecross{
 		const WORD BUTTON_BARRIER = XINPUT_GAMEPAD_RIGHT_SHOULDER;
 		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 
-		shared_ptr<Transform> m_Trans;
+		shared_ptr<Transform> m_transform;
 
 	public:
 		PlayerController(const std::shared_ptr<Stage>& stage) :

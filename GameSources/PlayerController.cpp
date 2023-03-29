@@ -19,8 +19,8 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		m_Trans = GetComponent<Transform>();
-		m_Trans->SetPosition(0.0f, 0.0f, 0.0f);
+		m_transform = GetComponent<Transform>();
+		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
 	}
 
 	void PlayerController::OnUpdate()
@@ -55,17 +55,16 @@ namespace basecross {
 
 
 		// カメラに回り込みの取得
-		auto transComp = GetComponent<Transform>();
-		auto pos = transComp->GetPosition();
+		auto pos = m_transform->GetPosition();
 		pos += padLStick * 3.0f * delta;
 
-		transComp->SetPosition(pos);
+		m_transform->SetPosition(pos);
 
 		if (padLStick.length() > 0.0f) // スティックの入力確認
 		{
 			// スティックの傾きに合わせてオブジェクトを回転させる
 			float rotY = atan2f(-padLStick.z, padLStick.x); // 2次元ベクトルを角度(ラジアン)に変換する
-			transComp->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
+			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
 
 		if (pad.wPressedButtons & BUTTON_SHOT)
@@ -76,7 +75,7 @@ namespace basecross {
 
 	Vec3 PlayerController::GetPosition() 
 	{
-		return m_Trans->GetPosition();
+		return m_transform->GetPosition();
 	}
 
 
