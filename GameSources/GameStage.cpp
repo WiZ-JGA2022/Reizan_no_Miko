@@ -42,22 +42,16 @@ namespace basecross {
 	void GameStage::CreatePlayer() {
 		auto player = AddGameObject<PlayerController>();
 		SetSharedGameObject(L"Player", player);
+		AddGameObject<EnemyController>(player);
+
 	}
 
 
 	void GameStage::OnCreate() {
 		try {
-
-			//AddGameObject<SeekObject>(Vec3(1,0,0));
-			auto player = AddGameObject<PlayerController>();
-			auto playerK = AddGameObject<Player>();
-			AddGameObject<EnemyController>(playerK);
-
-
 			//ビューとライトの作成
 			CreateViewLight();
 			//プレーヤーの作成
-			//AddGameObject<PlayerShot>(player);
 			CreatePlayer();
 
 			// 地面の作成
@@ -75,12 +69,7 @@ namespace basecross {
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
 
-			CreateItem();
-
-			//auto player = AddGameObject<Player>();
-
-
-			
+			CreateItem();			
 		}
 		catch (...) {
 			throw;

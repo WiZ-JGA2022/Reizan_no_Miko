@@ -5,17 +5,18 @@
 
 #pragma once
 #include "stdafx.h"
+#include "PlayerController.h"
 
 namespace basecross {
 	class EnemyController : public GameObject {
 
-		std::shared_ptr<Player> m_playerObj;
+		std::shared_ptr<PlayerController> m_playerObj;
 
 		float m_forceX;
 		float m_forceZ;
 
 	public:
-		EnemyController(const shared_ptr<Stage>& stage, std::shared_ptr<Player>& player) :
+		EnemyController(const shared_ptr<Stage>& stage, std::shared_ptr<PlayerController>& player) :
 			GameObject(stage),
 			m_playerObj(player),
 			m_forceX(1),
