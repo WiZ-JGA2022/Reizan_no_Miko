@@ -30,6 +30,7 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+
 	//追いかけるオブジェクトの作成
 	void GameStage::CreateSeekObject() {
 		//オブジェクトのグループを作成する
@@ -70,6 +71,9 @@ namespace basecross {
 
 			//ビューとライトの作成
 			CreateViewLight();
+			//プレーヤーの作成
+			auto player = AddGameObject<PlayerController>();
+			//AddGameObject<PlayerShot>(player);
 
 			// ExpバーとHpバーの作成
 			AddGameObject<ExpBar>();
@@ -84,6 +88,7 @@ namespace basecross {
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
+
 			if (maincamera) // エラーチェック
 			{
 				maincamera->SetTarget(player);

@@ -9,46 +9,66 @@
 
 namespace basecross {
 
-	float delayCount;
+    void PlayerShot::OnCreate()
+    {
+        auto drawComp = AddComponent<PNTStaticDraw>();
+        drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+        
+        // オーナーの向きをベクトルで取得しておく
+        auto ownerTrans = m_owner->GetComponent<Transform>();
+        m_forward = ownerTrans->GetForward(); // 前方向を示すベクトル
+    
+        // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
+        m_Transform = GetComponent<Transform>();
+        m_Transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
+        m_Transform->SetScale(Vec3(0.5f));
 
-    float delaySeconds = 2.0f;
-    float bulletSpeed = 10000.0f;
-    const float DESTROY_COUNT = 5.0f;
-
-
+    }
 
     void PlayerShot::OnUpdate()
     {
         auto& app = App::GetApp();
+        float delta = app->GetElapsedTime();
 
-        float delta = app->GetElapsedTime(); // 前フレームからの経過時間（60FPS）
+        auto pos = m_Transform->GetPosition();
+        pos += m_forward * m_speed * delta;
+        m_Transform->SetPosition(pos);
 
-        // レベルアップイベント中は処理を停止する
-        //if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-        //{
-        //    return;
-        //}
-
-        delayCount -= delta;
-
-        if (delayCount < 0)
+        
+        // 弾が遠くに行ったら消す
+        if (pos.length() > 50.0f)
         {
-            //GameObject Talisman = Instantiate(bulletPrefab, transform.position, player.transform.localRotation);
-            //Rigidbody shellRb = Talisman.GetComponent<Rigidbody>();
-
-            //// 弾速は自由に設定
-            //shellRb.AddForce(transform.forward * bulletSpeed);
-
-            //// 5秒後に砲弾を破壊する
-            //Destroy(Talisman, DESTROY_COUNT);
-
-            delayCount = delaySeconds;
+            GetStage()->RemoveGameObject<PlayerShot>(GetThis<PlayerShot>());
         }
-    } // end Update
 
-    void LevelUpShotDelay(float level)
+
+    }
+
+    void PlayerHomingShot::OnCreate()
     {
-        delaySeconds = delaySeconds - level / 100;
+        auto drawComp = AddComponent<PNTStaticDraw>();
+        drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+
+        // オーナーの向きをベクトルで取得しておく
+        auto ownerTrans = m_owner->GetComponent<Transform>();
+        m_forward = ownerTrans->GetForward(); // 前方向を示すベクトル
+
+        // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
+        m_Transform = GetComponent<Transform>();
+        m_Transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
+        m_Transform->SetScale(Vec3(0.5f));
+
+    }
+
+    void PlayerHomingShot::OnUpdate()
+    {
+        auto& app = App::GetApp();
+        float delta = app->GetElapsedTime();
+
+        auto pos = m_Transform->GetPosition();
+        pos += m_forward * m_speed * delta;
+        m_Transform->SetPosition(pos);
+
     }
 
 }

@@ -5,9 +5,13 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include <stdio.h>
 
 namespace basecross {
+	//--------------------------------------------------------------------------------------
+	//	class Player : public GameObject;
+	//	用途: プレイヤー
+	//--------------------------------------------------------------------------------------
+	//構築と破棄
 
 	void PlayerController::OnCreate() // UnityのStartメソッド(関数)のようなもの
 	{
@@ -15,8 +19,8 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(0.0f, 0.0f, 0.0f);
+		m_Trans = GetComponent<Transform>();
+		m_Trans->SetPosition(0.0f, 0.0f, 0.0f);
 	}
 
 	void PlayerController::OnUpdate()
@@ -63,44 +67,56 @@ namespace basecross {
 			float rotY = atan2f(-padLStick.z, padLStick.x); // 2次元ベクトルを角度(ラジアン)に変換する
 			transComp->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
+
+		if (pad.wPressedButtons & BUTTON_SHOT)
+		{
+			GetStage()->AddGameObject<PlayerShot>(GetThis<PlayerController>());
+		}
 	}
-	//void OnCollisionEnter(/*Collision collision*/)
+
+	Vec3 PlayerController::GetPosition() 
+	{
+		return m_Trans->GetPosition();
+	}
+
+
+	//void OnCollisionEnter(const CollisionPair& Pair)
 	//{
-		// レベルアップイベント中は処理を停止する
-		//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-		//{
-		//	return;
-		//}
-		//if (collision.gameObject.tag == "EnemyBullet")
-		//{
-		//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-		//}
+	//	// レベルアップイベント中は処理を停止する
+	//	//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+	//	//{
+	//	//	return;
+	//	//}
+	//	//if (collision.gameObject.tag == "EnemyBullet")
+	//	//{
+	//	//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
+	//	//}
 
 	//}
 
-	void OnCollisionStay(/*Collision collision*/)
-	{
-		// レベルアップイベント中は処理を停止する
-		//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-		//{
-		//	return;
-		//}
-		//// 敵と当たったら
-		//if (collision.gameObject.tag == "Enemy")
-		//{
-		//	// 自分のHPが減っていく
-		//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-		//}
+	//void 
+	//{
+	//	// レベルアップイベント中は処理を停止する
+	//	//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
+	//	//{
+	//	//	return;
+	//	//}
+	//	//// 敵と当たったら
+	//	//if ()
+	//	//{
+	//	//	// 自分のHPが減っていく
+	//	// 
+	//	//}
 
-	}
+	//}
 
 	void PlayerSpeedUp(float level)
 	{
 
 	}
 
-	void DestroyPlayer()
+	void PlayerController::DestroyPlayer()
 	{
-		//remove(GameObject);
+		
 	}
 }
