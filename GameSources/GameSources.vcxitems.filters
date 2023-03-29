@@ -64,6 +64,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
       <Filter>Sources\GameStage</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -128,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
       <Filter>Headers\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
+      <Filter>Headers\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
