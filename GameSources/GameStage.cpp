@@ -30,6 +30,21 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+	//プレイヤーの作成
+	void GameStage::CreatePlayer() {
+		//プレーヤーの作成
+		auto PlayerPtr = AddGameObject<Player>(Vec3(0, 0.125f, 0));
+		//シェア配列にプレイヤーを追加
+		SetSharedGameObject(L"Player", PlayerPtr);
+
+	}
+	void GameStage::CreateItem() {
+
+		////Itemオブジェクトの追加
+		AddGameObject<Item>(Vec3(0.0f,0.0f,0.0f));
+
+	}
+
 
 	//追いかけるオブジェクトの作成
 	void GameStage::CreateSeekObject() {
@@ -93,6 +108,14 @@ namespace basecross {
 				maincamera->SetTarget(player);
 			}
 
+			CreateItem();
+
+			//auto player = AddGameObject<Player>();
+			//プレーヤーの作成
+			CreatePlayer();
+
+
+			
 		}
 		catch (...) {
 			throw;

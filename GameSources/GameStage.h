@@ -24,6 +24,9 @@ namespace basecross {
 		//構築と破棄
 		GameStage() :Stage() {}
 		virtual ~GameStage() {}
+		//プレイヤーの作成
+		void CreatePlayer();
+		void CreateItem();
 		//初期化
 		virtual void OnCreate() override;
 
