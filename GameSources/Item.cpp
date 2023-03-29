@@ -82,7 +82,7 @@ namespace basecross {
 		auto Ptr = GetComponent<Transform>();
 		Vec3 Pos = Ptr->GetPosition();
 		auto PlayerPos
-			= GetStage()->GetSharedGameObject<Player>(L"Player")->GetComponent<Transform>()->GetPosition();
+			= GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>()->GetPosition();
 		return length(Pos - PlayerPos);
 	}
 	//プレイヤーを追いかける行動

@@ -11,7 +11,6 @@
 #include "Scene.h"
 #include "GameStage.h"
 #include "Character.h"
-#include "Player.h"
 
 #include "EnemyController.h"
 #include "ExpBar.h"
@@ -26,6 +25,5 @@
 #include "PlayerStatusController.h"
 #include "ShotDestroy.h"
 #include "GaugeSizeSetting.h"
-#include "EnemyController.h"
-
+#include "Enemy.h"
 
