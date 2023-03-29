@@ -67,20 +67,19 @@ namespace basecross {
 			CreatePlayer();
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
 
-			auto player = AddGameObject<PlayerController>();
-
 			//ビューとライトの作成
 			CreateViewLight();
 			//プレーヤーの作成
 			auto player = AddGameObject<PlayerController>();
 			//AddGameObject<PlayerShot>(player);
 
+			// 地面の作成
+			AddGameObject<Field>();
+
 			// ExpバーとHpバーの作成
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
-			// 地面の作成
-			AddGameObject<Field>();
 
 			// レベルアップイベントの作成
 			AddGameObject<RandomSelectLevelUpButton>();
