@@ -30,14 +30,6 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	//プレイヤーの作成
-	void GameStage::CreatePlayer() {
-		//プレーヤーの作成
-		auto PlayerPtr = AddGameObject<Player>(Vec3(0, 0.125f, 0));
-		//シェア配列にプレイヤーを追加
-		SetSharedGameObject(L"Player", PlayerPtr);
-
-	}
 	void GameStage::CreateItem() {
 
 		////Itemオブジェクトの追加
@@ -67,11 +59,8 @@ namespace basecross {
 
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
-		//プレーヤーの作成
-		auto ptrPlayer = AddGameObject<Player>();
-		//シェア配列にプレイヤーを追加
-		SetSharedGameObject(L"Player", ptrPlayer);
-		ptrPlayer->AddTag(L"Player");
+		auto player = AddGameObject<PlayerController>();
+		SetSharedGameObject(L"Player", player);
 	}
 
 
@@ -79,14 +68,13 @@ namespace basecross {
 		try {
 
 			CreateSeekObject();
-			CreatePlayer();
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
 
 			//ビューとライトの作成
 			CreateViewLight();
 			//プレーヤーの作成
-			auto player = AddGameObject<PlayerController>();
 			//AddGameObject<PlayerShot>(player);
+			CreatePlayer();
 
 			// 地面の作成
 			AddGameObject<Field>();
@@ -103,16 +91,9 @@ namespace basecross {
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
 
-			if (maincamera) // エラーチェック
-			{
-				maincamera->SetTarget(player);
-			}
-
 			CreateItem();
 
 			//auto player = AddGameObject<Player>();
-			//プレーヤーの作成
-			CreatePlayer();
 
 
 			
