@@ -15,15 +15,21 @@ namespace basecross {
 	class GameStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
+		// テスト用
+		void CreateItem();
 
+		// 敵の作成
+		void CreateEnemy();
+
+		// 主人公の作成
 		void CreatePlayer();
 
+		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}
 		virtual ~GameStage() {}
-		void CreateItem();
 		//初期化
 		virtual void OnCreate() override;
 

@@ -37,6 +37,10 @@ namespace basecross {
 
 	}
 
+	void GameStage::CreateEnemy() {
+		AddGameObject<Enemy>(m_player, Vec3(0), Vec3(0.0f, 0.0f, 5.0f));
+	}
+
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
 		m_player = AddGameObject<PlayerController>();
@@ -50,8 +54,8 @@ namespace basecross {
 			//プレーヤーの作成
 			CreatePlayer();
 			// 敵の作成
-			AddGameObject<EnemyController>(m_player);
-
+			//AddGameObject<EnemyController>(m_player);
+			CreateEnemy();
 
 			// 地面の作成
 			AddGameObject<Field>();

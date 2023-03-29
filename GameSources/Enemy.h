@@ -12,8 +12,7 @@ namespace basecross {
 
 		shared_ptr<PlayerController> m_player;
 		shared_ptr<Transform> m_transform;
-		shared_ptr<PNTStaticDraw> m_draw;
-		
+
 		Vec3 m_speed;
 		Vec3 m_position;
 
@@ -27,5 +26,7 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		virtual void MoveEnemy();
 	};
 }

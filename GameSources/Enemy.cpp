@@ -22,15 +22,20 @@ namespace basecross {
 
 	void Enemy::OnCreate()
 	{
-		m_draw = AddComponent<PNTStaticDraw>();
-		m_draw->SetMeshResource(L"DEFAULT_CUBE");
-		m_draw->SetOwnShadowActive(true);
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		drawComp->SetOwnShadowActive(true);
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 	}
 
 	void Enemy::OnUpdate()
+	{
+		MoveEnemy();
+	}
+
+	void Enemy::MoveEnemy()
 	{
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
