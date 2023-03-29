@@ -21,6 +21,7 @@ namespace basecross {
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
+
 	}
 
 	void PlayerController::OnUpdate()
@@ -76,6 +77,7 @@ namespace basecross {
 	Vec3 PlayerController::GetPosition() 
 	{
 		return m_transform->GetPosition();
+
 	}
 
 

@@ -5,6 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include <vector>
 
 namespace basecross {
     class PlayerStatusController : public GameObject
@@ -15,6 +16,7 @@ namespace basecross {
         float m_expCount;     // 経験値取得量
         float m_maxExp;      // 必要経験値
         float m_previousExp; // 前回必要経験値
+
 
         enum eStatusName
         {
@@ -57,6 +59,8 @@ namespace basecross {
             {PICKUPLv, 0.0f},
         };
 
+        float maxHp;
+
     public:
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :
             GameObject(stage),
@@ -64,11 +68,14 @@ namespace basecross {
             m_expLevel(1),
             m_expCount(0.0f),
             m_maxExp(10.0f),
-            m_previousExp(10.0f)
+            m_previousExp(10.0f),
+            maxHp(0.0f)
         {
         } 
-        void OnCreate() override;
-        inline void OnUpdate() override;
+        void OnStart();
+        void OnUpdate() override;
+        void StatusLevelUpdate();
+
     };
 
 }

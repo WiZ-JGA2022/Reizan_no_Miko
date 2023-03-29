@@ -5,14 +5,16 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include <map>
 
 namespace basecross {
-	std::map<std::string, float> status;
-	float maxHp;
 
-	void PlayerStatusController::OnCreate()
+	void PlayerStatusController::OnStart()
 	{
+
+		for (int i = 0;i < i; i++)
+		{
+
+		}
 	}
 
 	void PlayerStatusController::OnUpdate()
@@ -34,14 +36,12 @@ namespace basecross {
 		m_maxExp = 10 * (m_expLevel - 1) + m_previousExp;
 
 		// HPが0になったら
-		if (status[0] < 0)
-		{
-			// プレイヤーを消す
-			/*auto PlayerDei = GetComponent<PlayerController>(DestroyPlayer);*/
-			
-		}
+		//if (status[0] < 0)
+		//{
+		// 
+		//}
 	}
-	void StatusLevelUpdate(int rndSelect)
+	void PlayerStatusController::StatusLevelUpdate()
 	{
 		// レベルを上げる
 		//statusLevel[rndSelect]++;
@@ -49,10 +49,10 @@ namespace basecross {
 		//status[rndSelect] += MAGNIFICATION;
 		//player.GetComponent<PlayerController>().PlayerSpeedUp(status[3]);
 		//GetComponent<PlayerShot>(LevelUpShotDelay(status[4]));
-		if (rndSelect == 0)
-		{
-			//smaxHp += MAGNIFICATION;
-		}
+		//if (rndSelect == 0)
+		//{
+		//	//smaxHp += MAGNIFICATION;
+		//}
 		// 経験値を0に戻す
 		//expItem.ResetExpCount();
 		//// レベルアップイベントの終了
@@ -67,7 +67,7 @@ namespace basecross {
 		float enemyATK = 1.0f;
 
 		// 敵の攻撃力分自分の体力を減らす
-		status[0] -= enemyATK;
+		//status[0] -= enemyATK;
 	} // end PlayerTakenDamage
 
 }

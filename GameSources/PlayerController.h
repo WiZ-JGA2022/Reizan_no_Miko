@@ -17,6 +17,7 @@ namespace basecross{
 
 		shared_ptr<Transform> m_transform;
 
+
 	public:
 		PlayerController(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage)
