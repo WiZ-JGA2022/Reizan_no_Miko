@@ -51,7 +51,7 @@ namespace basecross {
 				padLStick.x = cos(stickRad);
 				padLStick.z = sin(stickRad);
 			}
-		}	
+		}
 
 
 		// ƒJƒƒ‰‚É‰ñ‚è‚İ‚Ìæ“¾

@@ -14,7 +14,7 @@ namespace basecross{
 		drawComp->SetOwnShadowActive(true);
 
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(Vec3(-2.0f));
+		transComp->SetPosition(Vec3(0.0f));
 
 	}
 

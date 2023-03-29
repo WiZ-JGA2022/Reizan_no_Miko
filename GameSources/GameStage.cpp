@@ -38,25 +38,6 @@ namespace basecross {
 	}
 
 
-	//追いかけるオブジェクトの作成
-	void GameStage::CreateSeekObject() {
-		//オブジェクトのグループを作成する
-		auto group = CreateSharedObjectGroup(L"SeekGroup");
-		//配列の初期化
-		vector<Vec3> vec = {
-			{ 0, 0.125f, 10.0f },
-			{ 10.0f, 0.125f, 0.0f },
-			{ -10.0f, 0.125f, 0.0f },
-			{ 0, 0.125f, -10.0f },
-		};
-
-		//配置オブジェクトの作成
-		for (size_t count = 0; count < vec.size(); count++) {
-			auto Ptr = AddGameObject<SeekObject>(vec[count]);
-		}
-
-	}
-
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
 		auto player = AddGameObject<PlayerController>();
@@ -67,8 +48,11 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 
-			CreateSeekObject();
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
+			auto player = AddGameObject<PlayerController>();
+			auto playerK = AddGameObject<Player>();
+			AddGameObject<EnemyController>(playerK);
+
 
 			//ビューとライトの作成
 			CreateViewLight();
