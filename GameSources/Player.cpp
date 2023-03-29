@@ -15,7 +15,7 @@ namespace basecross{
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(Vec3(0.0f));
-
+		AddTag(L"Player");
 	}
 
 }
