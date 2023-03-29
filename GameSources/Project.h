@@ -25,6 +25,6 @@
 #include "PlayerShot.h"
 #include "PlayerStatusController.h"
 #include "ShotDestroy.h"
-
+#include "GaugeSizeSetting.h"
 
 

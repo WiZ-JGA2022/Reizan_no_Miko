@@ -1,121 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerShot.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
+      <Filter>Sources\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
+      <Filter>Sources\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
+      <Filter>Sources\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
+      <Filter>Sources\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
+      <Filter>Sources\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
+      <Filter>Sources\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Sources\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
+      <Filter>Sources\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
+      <Filter>Sources\GameStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerShot.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerShot.h">
+      <Filter>Headers\Player</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
+      <Filter>Headers\UI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Headers\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
+      <Filter>Headers\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
+      <Filter>Headers\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Headers\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
+      <Filter>Headers\GameStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\GameStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
+      <Filter>Headers\GameStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +130,36 @@
     </Filter>
     <Filter Include="Sources">
       <UniqueIdentifier>{8adc80d2-6726-427a-a03b-8276ff0f85c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Player">
+      <UniqueIdentifier>{81fe2420-b64e-4cce-b42a-5aa64ec426cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Enemy">
+      <UniqueIdentifier>{f81d8292-a0f0-48a3-9b65-959af393bfd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI">
+      <UniqueIdentifier>{e46660a1-06ce-4c74-ab6e-c11094019a49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Other">
+      <UniqueIdentifier>{530f9f13-866c-44d3-9622-52f510eb1135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\GameStage">
+      <UniqueIdentifier>{bfcccac7-5b7e-4449-827d-1746fbfcc0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Player">
+      <UniqueIdentifier>{c6f5c889-66e3-40cc-8d7c-0ef22eb4e63b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI">
+      <UniqueIdentifier>{400dedee-4b75-4228-bd3b-4a4ec6c291af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Enemy">
+      <UniqueIdentifier>{b8ebea1d-f673-459e-9be7-0bdb6c91d5dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Other">
+      <UniqueIdentifier>{85af88f2-89fe-4c54-bc0e-64a00bcdb784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\GameStage">
+      <UniqueIdentifier>{3a3e89de-14c1-4a8d-b989-12770a06d3f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

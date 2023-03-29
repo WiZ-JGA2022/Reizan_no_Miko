@@ -67,9 +67,6 @@ namespace basecross {
 			//AddGameObject<SeekObject>(Vec3(1,0,0));
 
 			auto player = AddGameObject<PlayerController>();
-			auto ground = AddGameObject<Ground>();
-
-
 
 			//ビューとライトの作成
 			CreateViewLight();
@@ -80,6 +77,9 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
+
+			// レベルアップイベントの作成
+			AddGameObject<RandomSelectLevelUpButton>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
@@ -95,5 +95,10 @@ namespace basecross {
 		}
 	}
 
+	void GameStage::OnDraw()
+	{
+		Stage::OnDraw(); // 継承するはずだった親クラスの関数を呼び出す
+		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
+	}
 }
 //end basecross

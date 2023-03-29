@@ -1,5 +1,5 @@
 /*!
-@file RandomSelectLevelUp.cpp
+@file RandomSelectLevelUpButton.cpp
 @brief ランダムにレベルアップできる項目を出すクラスの実装
 */
 
@@ -10,24 +10,22 @@
 
 namespace basecross {
 
-	RandomSelectLevelUp::RandomSelectLevelUp(const shared_ptr<Stage>& StagePtr) :
+	RandomSelectLevelUpButton::RandomSelectLevelUpButton(const shared_ptr<Stage>& StagePtr) :
 		GameObject(StagePtr)
 	{
 	} // end コンストラクタ
 
-	RandomSelectLevelUp::~RandomSelectLevelUp()
+	RandomSelectLevelUpButton::~RandomSelectLevelUpButton()
 	{
 	} // end デストラクタ
 
-	void RandomSelectLevelUp::OnCreate()
+	void RandomSelectLevelUpButton::OnCreate()
 	{
-
 	} // end OnCreate
 
-	void RandomSelectLevelUp::RandomSelect(int selectStatus)
+	void RandomSelectLevelUpButton::RandomSelect(int selectStatus)
 	{
 		int i, j; // ループ用変数
-		int selectNum = selectStatus;
 		int commandNum[m_PickUpStatusCount] = { 0 }; // 乱数格納用配列
 		srand((unsigned int)time(NULL));
 
@@ -35,7 +33,7 @@ namespace basecross {
 		{
 			do { // 重複を解消
 				
-				commandNum[i] =	rand() % selectNum;
+				commandNum[i] =	rand() % selectStatus;
 				for (j = 0; j < i; j++)
 				{
 					if (commandNum[i] == commandNum[j])
@@ -45,11 +43,11 @@ namespace basecross {
 				}
 			} while (i != j);
 			m_CommandNums[i] = commandNum[i];
-			GetStage()->AddGameObject<LevelUpSprites>(m_CommandNums[i], true, Vec2(516.0f, 128.0f), Vec2(300.0f, 300.0f + -(i * 128.0f) + -(i * 20)), i);
+			GetStage()->AddGameObject<LevelUpSprites>(m_CommandNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
 		}
 	} // end RandomSelect
 
-	void RandomSelectLevelUp::OnUpdate()
+	void RandomSelectLevelUpButton::OnUpdate()
 	{
 		/* プレイヤーのステータスからexpの取得量を取得
 		* 取得したexpが一定数を超えた時にRandomSelectを実行
@@ -61,9 +59,26 @@ namespace basecross {
 		auto device = app->GetInputDevice(); // インプットデバイスオブジェクトを取得する
 		auto& pad = device.GetControlerVec()[0]; // １個目のコントローラーの状態を取得する
 
+		// テスト用にBボタンでレベルアップイベントを実行
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
 		{
+			ControllerSprite = true;
+
 			RandomSelect(8);
+		}
+
+		// 十字キーの上、右、下で選ぶ
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
+		{
+			ControllerSprite = false;
+		}
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
+		{
+			ControllerSprite = false;
+		}
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
+		{
+			ControllerSprite = false;
 		}
 	}
 }

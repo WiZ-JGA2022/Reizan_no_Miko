@@ -11,7 +11,7 @@ namespace basecross {
     {
         const int MAGNIFICATION;
 
-        int m_level;          // Level
+        int m_expLevel;          // Level
         float m_expCount;     // 経験値取得量
         float m_maxExp;      // 必要経験値
         float m_previousExp; // 前回必要経験値
@@ -37,8 +37,7 @@ namespace basecross {
             PICKUPLv,
         };
 
-        std::map<eStatusName, float> statusValue =
-        {
+        std::map<eStatusName, float> statusValue = {
             {HP, 100.0f},
             {ATK, 1.0f},
             {DEF, 1.0f},
@@ -48,8 +47,7 @@ namespace basecross {
             {PICKUP, 1.0f},
         };
 
-        std::map<eStatusLevel, float> statusLevel =
-        {
+        std::map<eStatusLevel, float> statusLevel = {
             {HPLv, 0.0f},
             {ATKLv, 0.0f},
             {DEFLv, 0.0f},
@@ -63,7 +61,7 @@ namespace basecross {
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :
             GameObject(stage),
             MAGNIFICATION(10),
-            m_level(1),
+            m_expLevel(1),
             m_expCount(0.0f),
             m_maxExp(10.0f),
             m_previousExp(10.0f)

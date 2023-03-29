@@ -1,5 +1,5 @@
 /*!
-@file RandomSelectLevelUp.h
+@file RandomSelectLevelUpButton.h
 @brief ランダムにレベルアップできる項目を出すクラス
 */
 
@@ -7,18 +7,20 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class RandomSelectLevelUp : public GameObject
+	class RandomSelectLevelUpButton : public GameObject
 	{
-		Vec3 m_Scale;					//!大きさ
-		Vec3 m_Rotation;				//!角度
-		Vec3 m_Position;				//!位置
+		Vec3 m_Scale;					// 大きさ
+		Vec3 m_Rotation;				// 角度
+		Vec3 m_Position;				// 位置
 
-		int m_CommandCount = 0;		//!コマンドの回数
-		vector<int> m_CommandNums;	//!ボタンのの数字を保存しておく用
+		// レベルアップ時に表示するボタンの数
+		static const int m_PickUpStatusCount = 3;
 
-		bool m_CommandFlg = true;		//!
-		bool m_CreateStateFlg = false;	//!
-		static const int m_PickUpStatusCount = 3;		//!
+		int m_CommandCount = 0;		// コマンドの回数
+		int m_CommandNums[m_PickUpStatusCount] = { 0 };	// ボタンのの数字を保存しておく用
+
+		bool m_CommandFlg = true;		
+		bool m_CreateStateFlg = false;	
 		bool ControllerSprite = true;
 
 		/**
@@ -29,13 +31,13 @@ namespace basecross {
 		void RandomSelect(int selectStatus);
 
 	public :
-		RandomSelectLevelUp(const shared_ptr<Stage>& StagePtr);
+		RandomSelectLevelUpButton(const shared_ptr<Stage>& StagePtr);
 
 		bool GetControllerSprite() {
 			return ControllerSprite;
 		}
 
-		virtual ~RandomSelectLevelUp();
+		virtual ~RandomSelectLevelUpButton();
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

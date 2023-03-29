@@ -13,7 +13,6 @@ namespace basecross {
 
 	void PlayerStatusController::OnCreate()
 	{
-
 	}
 
 	void PlayerStatusController::OnUpdate()
@@ -27,12 +26,12 @@ namespace basecross {
 		{
 			m_previousExp = m_maxExp;
 
-			m_level++;
+			m_expLevel++;
 			//levelUpPanel.GetComponent<LevelUpEvent>().PanelActivated();
 			m_expCount -= m_maxExp;
 		}
 		// 次回レベルアップまでに必要なEXP量を増やす
-		m_maxExp = 10 * (m_level - 1) + m_previousExp;
+		m_maxExp = 10 * (m_expLevel - 1) + m_previousExp;
 
 		// HPが0になったら
 		//if (status[0] < 0)

@@ -135,15 +135,15 @@ namespace basecross
 
 		}
 
-
+		// 処理終了後に表示した画像を消す処理
 		for (auto& obj : objs)
 		{
-			// StageBlocksへのキャストを試みる
-			auto stageBlocks = dynamic_pointer_cast<RandomSelectLevelUp>(obj);
-			if (stageBlocks)
+			// LevelUpButtonへのキャストを試みる
+			auto levelUpButton = dynamic_pointer_cast<RandomSelectLevelUpButton>(obj);
+			if (levelUpButton)
 			{
-				auto ControllerKeyFlg = stageBlocks->GetControllerSprite();
-				if (!ControllerKeyFlg) {
+				auto controllerKeyFlg = levelUpButton->GetControllerSprite();
+				if (!controllerKeyFlg) {
 					GetStage()->RemoveGameObject<LevelUpSprites>(GetThis<LevelUpSprites>());
 				}
 			}
