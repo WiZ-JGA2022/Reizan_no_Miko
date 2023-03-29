@@ -19,6 +19,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp">
       <Filter>Sources\Player</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp">
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
@@ -76,6 +79,9 @@
       <Filter>Headers\Player</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Item.h">
       <Filter>Headers\Player</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
