@@ -17,13 +17,14 @@ namespace basecross {
 		//ptrTrans->SetQuaternion(Qt);
 		//ptrTrans->SetPosition(m_startPos);
 
+
 		//Itemのコンポーネント設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 
 		auto transComp = GetComponent<Transform>();
-		transComp->SetScale(Vec3(0.5f));//大きさ
-		transComp->SetPosition(1.0f, 0.0f, 0.0f);//位置
+		transComp->SetScale(m_itemScale);//大きさ
+		transComp->SetPosition(0.0f, 0.0f, 0.0f);//位置
 
 		////衝突判定をつける
 		//auto PtrCol = AddComponent<CollisionObb>();
@@ -41,41 +42,49 @@ namespace basecross {
 
 	}
 
-	//void Item::OnUpdate()
-	//{		
-		//auto& app = App::GetApp();
+	Vec3 Item::GetTargetPos()const {
+		auto targetPtr = GetStage()->GetSharedObject(L"Player");
+		return targetPtr->GetComponent<Transform>()->GetPosition();
+	}
 
-		////デルタタイムを取得
-		//float delta = app->GetElapsedTime();
-
-		//auto transComp = GetComponent<Transform>();
-		//Vec3 Itempos = transComp->GetPosition();
-		//Itempos += m_MoveSpeed * m_dir * delta;
-		//transComp->SetPosition(Itempos);
-		
-
-		//プレイヤーが一定の距離内に来たらその方に移動する
-		//if ()
-		//{
-		//	
-
-		//}
-
-		////Itemがプレイヤーの近くに来たら消す
-		//if (Itempos.length() <1.0f && m_owner)//まだplayerの判定はできてないので1.0を入れている
-		//{
-		//	GetStage()->RemoveGameObject<Item>(GetThis<Item>());
-		//}
+	void Item::ApplyForce() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		m_itemMoveSpeed += m_itemForce * elapsedTime;
+		auto ptrTransform = GetComponent<Transform>();
+		auto pos = ptrTransform->GetPosition();
+		pos += m_itemMoveSpeed * elapsedTime;
+		ptrTransform->SetPosition(pos);
+	}
 
 
-	//}	
-	//更新
-	//void Item::OnUpdate() 
-	//{
-	//	//ステートマシンのUpdateを行う
-	//		//この中でステートの切り替えが行われる
-	//		m_stateMachine->Update();
-	//}
+
+	void Item::OnUpdate()
+	{		
+		m_itemForce = Vec3(0);
+		auto force = GetForce();
+		SetForce(force);
+
+	}	
+	IMPLEMENT_SINGLETON_INSTANCE(ItemNearState)
+
+		void ItemNearState::Enter(const shared_ptr<Item>& Obj) {
+	}
+
+	void ItemNearState::Execute(const shared_ptr<Item>& Obj) {
+		auto ptrArrive = Obj->GetBehavior<ArriveSteering>();
+		auto force = Obj->GetForce();
+		force = ptrArrive->Execute(force, Obj->GetVelocity(), Obj->GetTargetPos());
+		Obj->SetForce(force);
+		Obj->ApplyForce();
+		float f = bsm::length(Obj->GetComponent<Transform>()->GetPosition() - Obj->GetTargetPos());
+		if (f >= Obj->GetStateChangeSize()) {
+			Obj->GetStateMachine()->ChangeState(ItemNearState::Instance());
+		}
+	}
+
+	void ItemNearState::Exit(const shared_ptr<Item>& Obj) {
+	}
+
 
 	//プレイヤーとの距離を得る
 	float Item::GetToPlayerLen() const {
