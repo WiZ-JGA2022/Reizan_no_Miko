@@ -19,8 +19,8 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		m_Trans = GetComponent<Transform>();
-		m_Trans->SetPosition(0.0f, 0.0f, 0.0f);
+		m_trans = GetComponent<Transform>();
+		m_trans->SetPosition(0.0f, 0.0f, 0.0f);
 	}
 
 	void PlayerController::OnUpdate()
@@ -76,7 +76,7 @@ namespace basecross {
 
 	Vec3 PlayerController::GetPosition() 
 	{
-		return m_Trans->GetPosition();
+		return m_trans->GetPosition();
 	}
 
 
