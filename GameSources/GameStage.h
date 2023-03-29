@@ -5,6 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "PlayerController.h"
 
 namespace basecross {
 
@@ -16,6 +17,8 @@ namespace basecross {
 		void CreateViewLight();
 
 		void CreatePlayer();
+
+		shared_ptr<PlayerController> m_player;
 	public:
 		//\’z‚Æ”jŠü
 		GameStage() :Stage() {}

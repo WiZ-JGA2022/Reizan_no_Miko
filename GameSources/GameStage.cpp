@@ -32,24 +32,16 @@ namespace basecross {
 
 	void GameStage::CreateItem() {
 
-		////Itemオブジェクトの追加
+		//Itemオブジェクトの追加
 		AddGameObject<Item>(Vec3(0.0f,0.0f,0.0f));
 
 	}
 
-
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
-		auto player = AddGameObject<PlayerController>();
-		SetSharedGameObject(L"Player", player);
-		AddGameObject<EnemyController>(player);
-
-		// メインカメラにプレイヤーをセットする
-		auto camera = GetView()->GetTargetCamera();
-		auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
-		maincamera->SetTarget(player);
-	}
-
+		m_player = AddGameObject<PlayerController>();
+		SetSharedGameObject(L"Player", m_player);
+	} // end CreatePlayer
 
 	void GameStage::OnCreate() {
 		try {
@@ -57,6 +49,9 @@ namespace basecross {
 			CreateViewLight();
 			//プレーヤーの作成
 			CreatePlayer();
+			// 敵の作成
+			AddGameObject<EnemyController>(m_player);
+
 
 			// 地面の作成
 			AddGameObject<Field>();
@@ -67,6 +62,11 @@ namespace basecross {
 
 			// レベルアップイベントの作成
 			AddGameObject<RandomSelectLevelUpButton>();
+
+			// メインカメラにプレイヤーをセットする
+			auto camera = GetView()->GetTargetCamera();
+			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
+			maincamera->SetTarget(m_player);
 
 			// テスト用
 			CreateItem();			
