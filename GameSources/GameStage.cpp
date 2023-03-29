@@ -44,6 +44,10 @@ namespace basecross {
 		SetSharedGameObject(L"Player", player);
 		AddGameObject<EnemyController>(player);
 
+		// メインカメラにプレイヤーをセットする
+		auto camera = GetView()->GetTargetCamera();
+		auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
+		maincamera->SetTarget(player);
 	}
 
 
@@ -61,14 +65,10 @@ namespace basecross {
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
-
 			// レベルアップイベントの作成
 			AddGameObject<RandomSelectLevelUpButton>();
 
-			// メインカメラにプレイヤーをセットする
-			auto camera = GetView()->GetTargetCamera();
-			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
-
+			// テスト用
 			CreateItem();			
 		}
 		catch (...) {
