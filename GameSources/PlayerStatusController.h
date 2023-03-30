@@ -5,7 +5,6 @@
 
 #pragma once
 #include "stdafx.h"
-#include <vector>
 
 namespace basecross {
     class PlayerStatusController : public GameObject
@@ -59,7 +58,14 @@ namespace basecross {
             {PICKUPLv, 0.0f},
         };
 
+        // ループ用配列
+        eStatusName nameKeyList [7];
+        eStatusLevel levelKeyList [7];
+
+        // ステータス保存用
+        vector<float> status [7];
         float maxHp;
+
 
     public:
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :
@@ -72,7 +78,7 @@ namespace basecross {
             maxHp(0.0f)
         {
         } 
-        void OnStart();
+        void OnCreate() override;
         void OnUpdate() override;
         void StatusLevelUpdate();
 
