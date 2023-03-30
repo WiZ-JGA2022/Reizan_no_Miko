@@ -36,6 +36,7 @@ namespace basecross{
 		RoadTexture(L"PICKUP_LEVELUP", L"æ“¾”ÍˆÍUP.png");
 		RoadTexture(L"WEPON_1_LEVELUP", L"•Ší1.png");
 		RoadTexture(L"WEPON_2_LEVELUP", L"•Ší2.png");
+		RoadTexture(L"WALL_TX", L"wall.jpg");
 	}
 
 	void Scene::OnCreate(){

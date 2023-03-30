@@ -38,7 +38,8 @@ namespace basecross {
 	}
 
 	void GameStage::CreateEnemy() {
-		AddGameObject<Enemy>(m_player, Vec3(0), Vec3(0.0f, 0.0f, 5.0f));
+		CreateSharedObjectGroup(L"EnemyGroup");
+		AddGameObject<EnemyController>();
 	}
 
 	//ƒvƒŒƒCƒ„[‚Ìì¬

@@ -8,13 +8,10 @@
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& stage,
-		const shared_ptr<PlayerController>& player,
-		const Vec3& speed,
 		const Vec3& position
 	) :
 		GameObject(stage),
-		m_player(player),
-		m_speed(speed),
+		m_speed(0),
 		m_position(position)
 	{
 	}
@@ -22,12 +19,28 @@ namespace basecross {
 
 	void Enemy::OnCreate()
 	{
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetOwnShadowActive(true);
-
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
+
+		// ƒRƒŠƒWƒ‡ƒ“‚ð‚Â‚¯‚é
+		auto ptrColl = AddComponent<CollisionObb>();
+		ptrColl->SetDrawActive(true);
+		// Õ“Ë”»’è‚ÍAuto
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
+		ptrColl->SetSleepActive(true);
+
+		// ‰e‚ð‚Â‚¯‚é
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		drawComp->SetTextureResource(L"WALL_TX");
+		drawComp->SetOwnShadowActive(true);
+
+
+		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
+		group->IntoGroup(GetThis<GameObject>());
 	}
 
 	void Enemy::OnUpdate()
@@ -41,7 +54,9 @@ namespace basecross {
 		float delta = app->GetElapsedTime();
 
 		auto enemyPos = m_transform->GetPosition();
-		auto playerPos = m_player->GetPosition();
+		auto playerObj = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		auto playerTrans = playerObj->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition();
 
 		if (playerPos.x == enemyPos.x) { m_speed.x = 0; }
 		if (playerPos.x < enemyPos.x) { m_speed.x = -1; }
@@ -58,5 +73,10 @@ namespace basecross {
 		m_transform->SetRotation(Vec3(0, rotationY + XM_PIDIV2, 0));
 		m_transform->SetPosition(enemyMoveX, enemyPos.y, enemyMoveZ);
 
+	}
+
+	void Enemy::SetPosition(const Vec3& Emitter)
+	{
+		m_transform->ResetPosition(Emitter);
 	}
 }

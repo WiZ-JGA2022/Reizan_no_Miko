@@ -7,41 +7,43 @@
 #include "Project.h"
 
 namespace basecross {
+	EnemyController::EnemyController(const shared_ptr<Stage>& stage) :
+		GameObject(stage),
+		m_RandomRange(20),
+		m_position(Vec3(0.0f, 0.0f, 5.0f))
+	{
+	}
+	EnemyController::~EnemyController() {}
+
 	void EnemyController::OnCreate()
 	{
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetOwnShadowActive(true);
+		srand((unsigned int)time(NULL));
 
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(2.0f, 0.0f, 2.0f);
+		m_transform->SetPosition(m_position);
+
+		GetStage()->AddGameObject<Enemy>(m_position);
 
 	}
 
 	void EnemyController::OnUpdate()
 	{	
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
-
-		auto enemyPos = m_transform->GetPosition();
-		auto playerPos = m_playerObj->GetPosition();
-
-
-		if (playerPos.x == enemyPos.x) { m_forceX = 0; }
-		if (playerPos.x < enemyPos.x) { m_forceX = -1; }
-		if (playerPos.x > enemyPos.x) { m_forceX = +1; }
-
-		if (playerPos.z == enemyPos.z) { m_forceZ = 0; }
-		if (playerPos.z < enemyPos.z) { m_forceZ = -1; }
-		if (playerPos.z > enemyPos.z) { m_forceZ = +1; }
-
-
-		float rotationY = atan2f(playerPos.z, playerPos.x);
-		float enemyMoveX = enemyPos.x + m_forceX * delta;
-		float enemyMoveZ = enemyPos.z + m_forceZ * delta;
-		m_transform->SetRotation(Vec3(0, rotationY + XM_PIDIV2, 0));
-		m_transform->SetPosition(enemyMoveX, enemyPos.y, enemyMoveZ);
-
+		// このオブジェクトの位置を基準としたランダムな場所に出現させる
+		m_targetPos = Vec3(m_position.x + rand() % m_RandomRange, m_position.y + rand() % m_RandomRange, m_position.z);
+		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup"); // Targetグループの取得
+		auto& vec = group->GetGroupVector();
+		for (auto& v : vec) {
+			auto shObj = v.lock();
+			if (shObj) {
+				if (!shObj->IsUpdateActive()) {
+					auto target = dynamic_pointer_cast<Enemy>(shObj);
+					if (target) {
+						target->SetPosition(m_targetPos);
+						return;
+					}
+				}
+			}
+		}
 	}
 
 }
