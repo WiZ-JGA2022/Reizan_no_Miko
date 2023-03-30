@@ -44,6 +44,7 @@ namespace basecross {
 			} while (i != j);
 			m_CommandNums[i] = commandNum[i];
 			GetStage()->AddGameObject<LevelUpSprites>(m_CommandNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
+			GetStage()->AddGameObject<CrossKeySprites>(i, true, Vec2(64.0f, 64.0f), Vec2(40.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
 		}
 	} // end RandomSelect
 
