@@ -9,8 +9,11 @@
 namespace basecross {
 	EnemyController::EnemyController(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
-		m_RandomRange(20),
-		m_position(Vec3(0.0f, 0.0f, 5.0f))
+		m_RandomRange(5),
+		m_Distance(5),
+		m_DelayCount(120),
+		m_delayFlame(m_DelayCount),
+		m_position(Vec3(-3.0f, 0.0f, 5.0f))
 	{
 	}
 	EnemyController::~EnemyController() {}
@@ -23,13 +26,22 @@ namespace basecross {
 		m_transform->SetPosition(m_position);
 
 		GetStage()->AddGameObject<Enemy>(m_position);
-
 	}
 
 	void EnemyController::OnUpdate()
 	{	
+		m_delayFlame--;
+
+		auto playerObj = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		auto playerTrans = playerObj->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition();
+
 		// このオブジェクトの位置を基準としたランダムな場所に出現させる
-		m_targetPos = Vec3(m_position.x + rand() % m_RandomRange, m_position.y + rand() % m_RandomRange, m_position.z);
+		m_enemyPos = Vec3(
+			playerPos.x + m_Distance + rand() % m_RandomRange,
+			m_position.y, 
+			playerPos.z + m_Distance + rand() % m_RandomRange
+		);
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup"); // Targetグループの取得
 		auto& vec = group->GetGroupVector();
 		for (auto& v : vec) {
@@ -38,11 +50,17 @@ namespace basecross {
 				if (!shObj->IsUpdateActive()) {
 					auto target = dynamic_pointer_cast<Enemy>(shObj);
 					if (target) {
-						target->SetPosition(m_targetPos);
+						target->SetPosition(m_enemyPos);
 						return;
 					}
 				}
 			}
+		}
+
+		if (m_delayFlame <= 0)
+		{
+			GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			m_delayFlame = m_DelayCount;
 		}
 	}
 
