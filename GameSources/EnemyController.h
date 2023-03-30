@@ -15,6 +15,7 @@ namespace basecross {
 		const int m_DelayCount; 
 
 		int m_delayFlame;
+		int m_enemyCount;
 
 		Vec3 m_position; // このオブジェクトの位置情報
 		Vec3 m_enemyPos; // 敵の位置情報

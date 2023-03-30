@@ -48,20 +48,23 @@ namespace basecross {
 			auto shObj = v.lock();
 			if (shObj) {
 				if (!shObj->IsUpdateActive()) {
-					auto target = dynamic_pointer_cast<Enemy>(shObj);
-					if (target) {
-						target->SetPosition(m_enemyPos);
-						return;
-					}
+					GetStage()->AddGameObject<Enemy>(m_enemyPos);
+
+					return;
+					//auto target = dynamic_pointer_cast<Enemy>(shObj);
+					//if (target) {
+					//	target->SetPosition(m_enemyPos);
+					//	return;
+					//}
 				}
 			}
 		}
 
-		if (m_delayFlame <= 0)
-		{
-			GetStage()->AddGameObject<Enemy>(m_enemyPos);
-			m_delayFlame = m_DelayCount;
-		}
+		//if (m_delayFlame <= 0)
+		//{
+		//	GetStage()->AddGameObject<Enemy>(m_enemyPos);
+		//	m_delayFlame = m_DelayCount;
+		//}
 	}
 
 }

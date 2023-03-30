@@ -10,10 +10,15 @@
 namespace basecross {
 	class Enemy : public GameObject {
 
-		shared_ptr<Transform> m_transform;
-
-		Vec3 m_speed;
 		Vec3 m_position;
+		std::vector<Vec3> m_points; // 線形補間の始点と終点
+		Vec3 m_start; // 始点
+		Vec3 m_end; // 終点
+
+		int m_currentPointIndex; // 現在の移動ライン番号
+		float m_speed; // 移動の速さ
+
+		shared_ptr<Transform> m_transform;
 
 	public:
 		Enemy(const shared_ptr<Stage>& stage, 
