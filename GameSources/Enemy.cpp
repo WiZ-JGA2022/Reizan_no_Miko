@@ -48,6 +48,19 @@ namespace basecross {
 		MoveEnemy();
 	}
 
+	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
+	{
+		// 弾にあたったら(テスト用にplayerにしてる)
+		if (Other->FindTag(L"Player"))
+		{
+			// 処理を停止し、見えなくする
+			SetUpdateActive(false);
+			SetDrawActive(false);
+			return;
+		}
+
+	} // end OnCollisionEnter
+
 	void Enemy::MoveEnemy()
 	{
 		auto& app = App::GetApp();
@@ -78,5 +91,8 @@ namespace basecross {
 	void Enemy::SetPosition(const Vec3& Emitter)
 	{
 		m_transform->ResetPosition(Emitter);
+
+		SetUpdateActive(true);
+		SetDrawActive(true);
 	}
 }

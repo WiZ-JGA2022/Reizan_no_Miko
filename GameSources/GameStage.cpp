@@ -46,6 +46,7 @@ namespace basecross {
 	void GameStage::CreatePlayer() {
 		m_player = AddGameObject<PlayerController>();
 		SetSharedGameObject(L"Player", m_player);
+		m_player->AddTag(L"Player");
 	} // end CreatePlayer
 
 	void GameStage::OnCreate() {

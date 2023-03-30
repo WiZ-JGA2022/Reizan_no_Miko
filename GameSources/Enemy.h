@@ -24,6 +24,9 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		// Õ“Ë‰“šˆ—
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+
 		virtual void MoveEnemy();
 		void SetPosition(const Vec3& Emitter);
 	};
