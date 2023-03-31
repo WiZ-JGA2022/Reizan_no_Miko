@@ -36,6 +36,10 @@ namespace basecross{
 		RoadTexture(L"PICKUP_LEVELUP", L"取得範囲UP.png");
 		RoadTexture(L"WEPON_1_LEVELUP", L"武器1.png");
 		RoadTexture(L"WEPON_2_LEVELUP", L"武器2.png");
+		RoadTexture(L"CROSSKEY_UP", L"十字キーの上.png");
+		RoadTexture(L"CROSSKEY_RIGHT", L"十字キーの右.png");
+		RoadTexture(L"CROSSKEY_DOWN", L"十字キーの下.png");
+
 	}
 
 	void Scene::OnCreate(){

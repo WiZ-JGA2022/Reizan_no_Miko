@@ -26,4 +26,5 @@
 #include "ShotDestroy.h"
 #include "GaugeSizeSetting.h"
 #include "Enemy.h"
+#include "CrossKey.h"
 
