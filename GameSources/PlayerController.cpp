@@ -15,12 +15,24 @@ namespace basecross {
 
 	void PlayerController::OnCreate() // UnityのStartメソッド(関数)のようなもの
 	{
+		m_transform = GetComponent<Transform>();
+		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
+
+		// コリジョンをつける
+		auto ptrColl = AddComponent<CollisionObb>();
+		ptrColl->SetDrawActive(true);
+		// 衝突判定はAuto
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
+		ptrColl->SetSleepActive(true);
+
+		// 影をつける
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+
 		// Playerオブジェクトの初期設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
 
 	}
 
@@ -73,13 +85,6 @@ namespace basecross {
 			GetStage()->AddGameObject<PlayerShot>(GetThis<PlayerController>());
 		}
 	}
-
-	Vec3 PlayerController::GetPosition() 
-	{
-		return m_transform->GetPosition();
-
-	}
-
 
 	//void OnCollisionEnter(const CollisionPair& Pair)
 	//{

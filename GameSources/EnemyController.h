@@ -10,21 +10,21 @@
 namespace basecross {
 	class EnemyController : public GameObject {
 
-		shared_ptr<PlayerController> m_playerObj;
-		shared_ptr<Transform> m_transform;
+		const int m_RandomRange; // 乱数の最大範囲
+		const int m_Distance; // この変数に設定した数値分Playerと離れる
+		const int m_DelayCount; // 敵の生成遅延
 
-		float m_forceX;
-		float m_forceZ;
+		int m_delayFlame; // 
+		int m_enemyCount; // 敵の数
+
+		Vec3 m_position; // このオブジェクトの位置情報
+		Vec3 m_enemyPos; // 敵の位置情報
+
+		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 	public:
-		EnemyController(const shared_ptr<Stage>& stage, std::shared_ptr<PlayerController>& player) :
-			GameObject(stage),
-			m_playerObj(player),
-			m_forceX(1),
-			m_forceZ(1)
-		{
-
-		};
+		EnemyController(const shared_ptr<Stage>& stage);
+		~EnemyController();
 
 		void OnCreate() override;
 		void OnUpdate() override;

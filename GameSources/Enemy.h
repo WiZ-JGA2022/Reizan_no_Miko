@@ -9,17 +9,18 @@
 
 namespace basecross {
 	class Enemy : public GameObject {
+		
+		Vec3 m_position; // 初期位置
+		Vec3 m_direction; // プレイヤーへの方向
 
-		shared_ptr<PlayerController> m_player;
-		shared_ptr<Transform> m_transform;
+		float m_speed; // 移動速度
 
-		Vec3 m_speed;
-		Vec3 m_position;
+		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 	public:
+		Enemy(const shared_ptr<Stage>& stage);
+
 		Enemy(const shared_ptr<Stage>& stage, 
-			const shared_ptr<PlayerController>& player,
-			const Vec3& speed,
 			const Vec3& position
 		);
 		~Enemy();
@@ -27,6 +28,10 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
+		// 衝突応答処理
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+
 		virtual void MoveEnemy();
+		void SetPosition(const Vec3& Emitter);
 	};
 }

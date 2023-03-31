@@ -23,6 +23,7 @@ namespace basecross{
 			GameObject(stage)
 		{
 		}
+		~PlayerController() {}
 
 		void OnCreate() override; // オブジェクトの初期設定用の関数
 		void OnUpdate() override; // オブジェクトデータの更新
@@ -30,7 +31,5 @@ namespace basecross{
 		//void MovePlayer();
 		//virtual void OnCollisionEnter(const CollisionPair& Pair) override;
 		void DestroyPlayer();
-
-		Vec3 GetPosition();
 	};
 }

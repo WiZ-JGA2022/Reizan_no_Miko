@@ -40,6 +40,8 @@ namespace basecross{
 		RoadTexture(L"CROSSKEY_RIGHT", L"十字キーの右.png");
 		RoadTexture(L"CROSSKEY_DOWN", L"十字キーの下.png");
 
+		// テスト用
+		RoadTexture(L"WALL_TX", L"wall.jpg");
 	}
 
 	void Scene::OnCreate(){

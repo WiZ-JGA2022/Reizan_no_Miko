@@ -7,41 +7,49 @@
 #include "Project.h"
 
 namespace basecross {
+	EnemyController::EnemyController(const shared_ptr<Stage>& stage) :
+		GameObject(stage),
+		m_RandomRange(5),
+		m_Distance(5),
+		m_DelayCount(120),
+		m_delayFlame(m_DelayCount),
+		m_enemyCount(0),
+		m_position(Vec3(-3.0f, 0.0f, 5.0f))
+	{
+	}
+	EnemyController::~EnemyController() {}
+
 	void EnemyController::OnCreate()
 	{
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetOwnShadowActive(true);
+		srand((unsigned int)time(NULL));
 
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(2.0f, 0.0f, 2.0f);
+		m_transform->SetPosition(m_position);
 
+		GetStage()->AddGameObject<Enemy>(m_position);
 	}
 
 	void EnemyController::OnUpdate()
 	{	
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
+		m_delayFlame--;
 
-		auto enemyPos = m_transform->GetPosition();
-		auto playerPos = m_playerObj->GetPosition();
+		auto playerObj = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		auto playerTrans = playerObj->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition();
 
-
-		if (playerPos.x == enemyPos.x) { m_forceX = 0; }
-		if (playerPos.x < enemyPos.x) { m_forceX = -1; }
-		if (playerPos.x > enemyPos.x) { m_forceX = +1; }
-
-		if (playerPos.z == enemyPos.z) { m_forceZ = 0; }
-		if (playerPos.z < enemyPos.z) { m_forceZ = -1; }
-		if (playerPos.z > enemyPos.z) { m_forceZ = +1; }
+		// このオブジェクトの位置を基準としたランダムな場所に出現させる
+		m_enemyPos = Vec3(
+			playerPos.x + m_Distance + rand() % m_RandomRange,
+			m_position.y, 
+			playerPos.z + m_Distance + rand() % m_RandomRange
+		);
 
 
-		float rotationY = atan2f(playerPos.z, playerPos.x);
-		float enemyMoveX = enemyPos.x + m_forceX * delta;
-		float enemyMoveZ = enemyPos.z + m_forceZ * delta;
-		m_transform->SetRotation(Vec3(0, rotationY + XM_PIDIV2, 0));
-		m_transform->SetPosition(enemyMoveX, enemyPos.y, enemyMoveZ);
-
+		if (m_delayFlame <= 0)
+		{
+			GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			m_delayFlame = m_DelayCount;
+		}
 	}
 
 }
