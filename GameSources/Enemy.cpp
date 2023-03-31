@@ -5,7 +5,6 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include "Utility.h"
 
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& stage) :
