@@ -13,6 +13,7 @@ namespace basecross {
 		m_Distance(5),
 		m_DelayCount(120),
 		m_delayFlame(m_DelayCount),
+		m_enemyCount(0),
 		m_position(Vec3(-3.0f, 0.0f, 5.0f))
 	{
 	}
@@ -42,29 +43,13 @@ namespace basecross {
 			m_position.y, 
 			playerPos.z + m_Distance + rand() % m_RandomRange
 		);
-		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup"); // TargetƒOƒ‹[ƒv‚ÌŽæ“¾
-		auto& vec = group->GetGroupVector();
-		for (auto& v : vec) {
-			auto shObj = v.lock();
-			if (shObj) {
-				if (!shObj->IsUpdateActive()) {
-					GetStage()->AddGameObject<Enemy>(m_enemyPos);
 
-					return;
-					//auto target = dynamic_pointer_cast<Enemy>(shObj);
-					//if (target) {
-					//	target->SetPosition(m_enemyPos);
-					//	return;
-					//}
-				}
-			}
+
+		if (m_delayFlame <= 0)
+		{
+			GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			m_delayFlame = m_DelayCount;
 		}
-
-		//if (m_delayFlame <= 0)
-		//{
-		//	GetStage()->AddGameObject<Enemy>(m_enemyPos);
-		//	m_delayFlame = m_DelayCount;
-		//}
 	}
 
 }
