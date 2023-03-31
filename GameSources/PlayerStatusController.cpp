@@ -8,13 +8,17 @@
 
 namespace basecross {
 
-	void PlayerStatusController::OnStart()
+
+	void PlayerStatusController::OnCreate()
 	{
 
-		for (int i = 0;i < i; i++)
-		{
+		//for (int i = 0; i < nameKeyList; i++)
+		//{
+		//	status->size();
+		//	status[i] = statusValue[nameKeyList[i]] + (statusLevel[levelKeyList[i]] * MAGNIFICATION);
 
-		}
+		//}
+		maxHp = statusValue[nameKeyList[0]] + (statusLevel[levelKeyList[0]] * MAGNIFICATION);
 	}
 
 	void PlayerStatusController::OnUpdate()
@@ -35,19 +39,22 @@ namespace basecross {
 		// 次回レベルアップまでに必要なEXP量を増やす
 		m_maxExp = 10 * (m_expLevel - 1) + m_previousExp;
 
-		// HPが0になったら
+		// //HPが0になったら
 		//if (status[0] < 0)
 		//{
-		// 
+		//	GetStage()->RemoveGameObject<PlayerShot>(GetThis<PlayerShot>());
+		//	GetStage()->RemoveGameObject<PlayerController>(GetThis<PlayerController>());
+
 		//}
 	}
 	void PlayerStatusController::StatusLevelUpdate()
 	{
+		int rndSelect;
 		// レベルを上げる
 		//statusLevel[rndSelect]++;
 		//ステータス上昇値を反映する
 		//status[rndSelect] += MAGNIFICATION;
-		//player.GetComponent<PlayerController>().PlayerSpeedUp(status[3]);
+		//auto player = GetComponent<PlayerController>()->PlayerSpeedUp(status[3]);
 		//GetComponent<PlayerShot>(LevelUpShotDelay(status[4]));
 		//if (rndSelect == 0)
 		//{
