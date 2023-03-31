@@ -54,33 +54,33 @@ namespace basecross {
 		* 取得したexpが一定数を超えた時にRandomSelectを実行
 		*/
 
-		// テスト用 //
+	}
+
+	void RandomSelectLevelUpButton::LevelUpEvent()
+	{
+		m_ControllerSprite = true;
+
+		RandomSelect(8);
+
 		auto& app = App::GetApp();
 		// ゲームパッドを使用する
 		auto device = app->GetInputDevice(); // インプットデバイスオブジェクトを取得する
 		auto& pad = device.GetControlerVec()[0]; // １個目のコントローラーの状態を取得する
 
-		// テスト用にBボタンでレベルアップイベントを実行
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
-		{
-			ControllerSprite = true;
-
-			RandomSelect(8);
-		}
-
 		// 十字キーの上、右、下で選ぶ
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
 		{
-			ControllerSprite = false;
+			m_ControllerSprite = false;
 		}
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
 		{
-			ControllerSprite = false;
+			m_ControllerSprite = false;
 		}
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
 		{
-			ControllerSprite = false;
+			m_ControllerSprite = false;
 		}
+
 	}
 }
 //end basecross

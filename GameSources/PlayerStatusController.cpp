@@ -11,14 +11,13 @@ namespace basecross {
 
 	void PlayerStatusController::OnCreate()
 	{
+		for (int i = 0; i < statusName.size(); i++)
+		{
+			status.emplace_back(0);
+			status[i] = statusValue[statusName[i]] + (statusLevel[statusName[i]] * MAGNIFICATION);
 
-		//for (int i = 0; i < nameKeyList; i++)
-		//{
-		//	status->size();
-		//	status[i] = statusValue[nameKeyList[i]] + (statusLevel[levelKeyList[i]] * MAGNIFICATION);
-
-		//}
-		maxHp = statusValue[nameKeyList[0]] + (statusLevel[levelKeyList[0]] * MAGNIFICATION);
+		}
+		maxHp = statusValue[statusName[0]] + (statusLevel[statusName[0]] * MAGNIFICATION);
 	}
 
 	void PlayerStatusController::OnUpdate()
@@ -27,13 +26,16 @@ namespace basecross {
 		//{
 		//	return;
 		//}
-		//expCount = expItem.GetExpCount();
+		//expCount = expItem.GetExpCount(); // 現在経験値を取得
+
+		// 経験値取得量と必要経験値が同じ場合(レベルアップ処理)
 		if (m_expCount >= m_maxExp)
 		{
 			m_previousExp = m_maxExp;
 
 			m_expLevel++;
-			//levelUpPanel.GetComponent<LevelUpEvent>().PanelActivated();
+			auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+			levelUpEvent->LevelUpEvent();
 			m_expCount -= m_maxExp;
 		}
 		// 次回レベルアップまでに必要なEXP量を増やす
@@ -47,18 +49,17 @@ namespace basecross {
 
 		//}
 	}
-	void PlayerStatusController::StatusLevelUpdate()
+	void PlayerStatusController::StatusLevelUpdate(int selectStatusNum)
 	{
-		int rndSelect;
 		// レベルを上げる
-		//statusLevel[rndSelect]++;
+		statusLevel[statusName[selectStatusNum]]++;
 		//ステータス上昇値を反映する
-		//status[rndSelect] += MAGNIFICATION;
+		status[selectStatusNum] += MAGNIFICATION;
 		//auto player = GetComponent<PlayerController>()->PlayerSpeedUp(status[3]);
 		//GetComponent<PlayerShot>(LevelUpShotDelay(status[4]));
-		//if (rndSelect == 0)
+		//if (selectStatusNum == 0)
 		//{
-		//	//smaxHp += MAGNIFICATION;
+		//	//maxHp += MAGNIFICATION;
 		//}
 		// 経験値を0に戻す
 		//expItem.ResetExpCount();

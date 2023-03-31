@@ -21,7 +21,7 @@ namespace basecross {
 
 		bool m_CommandFlg = true;		
 		bool m_CreateStateFlg = false;	
-		bool ControllerSprite = true;
+		bool m_ControllerSprite = true;
 
 		/**
 		* 強化できるステータス・強化できる武器をランダムに指定
@@ -34,13 +34,15 @@ namespace basecross {
 		RandomSelectLevelUpButton(const shared_ptr<Stage>& StagePtr);
 
 		bool GetControllerSprite() {
-			return ControllerSprite;
+			return m_ControllerSprite;
 		}
 
 		virtual ~RandomSelectLevelUpButton();
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		void LevelUpEvent();
 	};
 
 }
