@@ -12,10 +12,10 @@ namespace basecross {
 
 		const int m_RandomRange; // 乱数の最大範囲
 		const int m_Distance; // この変数に設定した数値分Playerと離れる
-		const int m_DelayCount; 
+		const int m_DelayCount; // 敵の生成遅延
 
-		int m_delayFlame;
-		int m_enemyCount;
+		int m_delayFlame; // 
+		int m_enemyCount; // 敵の数
 
 		Vec3 m_position; // このオブジェクトの位置情報
 		Vec3 m_enemyPos; // 敵の位置情報
