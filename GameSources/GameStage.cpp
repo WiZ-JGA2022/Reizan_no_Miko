@@ -30,21 +30,14 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	void GameStage::CreateItem() {
-
-		////Itemオブジェクトの追加
-		AddGameObject<Item>(Vec3(0.0f,0.0f,0.0f));
-
-	}
-
-
 	//プレイヤーの作成
 	void GameStage::CreatePlayer() {
 		auto player = AddGameObject<PlayerController>();
 		SetSharedGameObject(L"Player", player);
 		AddGameObject<EnemyController>(player);
-
+		AddGameObject<Item>(player);
 	}
+
 
 
 	void GameStage::OnCreate() {
@@ -53,6 +46,9 @@ namespace basecross {
 			CreateViewLight();
 			//プレーヤーの作成
 			CreatePlayer();
+			//アイテムの作成
+			//CreateItem();
+			//AddGameObject<Item>();
 
 			// 地面の作成
 			AddGameObject<Field>();
@@ -69,7 +65,6 @@ namespace basecross {
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
 
-			CreateItem();			
 		}
 		catch (...) {
 			throw;
