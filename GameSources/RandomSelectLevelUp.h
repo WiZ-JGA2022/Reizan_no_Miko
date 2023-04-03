@@ -9,19 +9,12 @@
 namespace basecross {
 	class RandomSelectLevelUpButton : public GameObject
 	{
-		Vec3 m_Scale;					// 大きさ
-		Vec3 m_Rotation;				// 角度
-		Vec3 m_Position;				// 位置
-
 		// レベルアップ時に表示するボタンの数
 		static const int m_PickUpStatusCount = 3;
 
-		int m_CommandCount = 0;		// コマンドの回数
-		int m_CommandNums[m_PickUpStatusCount] = { 0 };	// ボタンのの数字を保存しておく用
+		int m_spriteNums[m_PickUpStatusCount] = { 0 };	// ボタンの数字を保存しておく用
 
-		bool m_CommandFlg = true;		
-		bool m_CreateStateFlg = false;	
-		bool m_ControllerSprite = true;
+		bool m_isActiveSprite = true;
 
 		/**
 		* 強化できるステータス・強化できる武器をランダムに指定
@@ -34,7 +27,7 @@ namespace basecross {
 		RandomSelectLevelUpButton(const shared_ptr<Stage>& StagePtr);
 
 		bool GetControllerSprite() {
-			return m_ControllerSprite;
+			return m_isActiveSprite;
 		}
 
 		virtual ~RandomSelectLevelUpButton();

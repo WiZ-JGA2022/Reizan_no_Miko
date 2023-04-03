@@ -42,8 +42,8 @@ namespace basecross {
 					}
 				}
 			} while (i != j);
-			m_CommandNums[i] = commandNum[i];
-			GetStage()->AddGameObject<LevelUpSprites>(m_CommandNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
+			m_spriteNums[i] = commandNum[i];
+			GetStage()->AddGameObject<LevelUpSprites>(m_spriteNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
 			GetStage()->AddGameObject<CrossKeySprites>(i, true, Vec2(64.0f, 64.0f), Vec2(40.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
 		}
 	} // end RandomSelect
@@ -58,7 +58,7 @@ namespace basecross {
 
 	void RandomSelectLevelUpButton::LevelUpEvent()
 	{
-		m_ControllerSprite = true;
+		m_isActiveSprite = true;
 
 		RandomSelect(8);
 
@@ -70,15 +70,15 @@ namespace basecross {
 		// 十字キーの上、右、下で選ぶ
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
 		{
-			m_ControllerSprite = false;
-		}
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
-		{
-			m_ControllerSprite = false;
+			m_isActiveSprite = false;
 		}
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
 		{
-			m_ControllerSprite = false;
+			m_isActiveSprite = false;
+		}
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
+		{
+			m_isActiveSprite = false;
 		}
 
 	}
