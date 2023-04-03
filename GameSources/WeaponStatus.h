@@ -25,7 +25,7 @@ namespace basecross {
             RANGELv,
         };
 
-        std::map<eStatusName, float> statusValue =
+        std::map<eStatusName, float> m_statusValue =
         {
             {ATK, 1},
             {SPD, 1},
@@ -33,7 +33,7 @@ namespace basecross {
             {RANGE, 1},
         };
 
-        std::map<eStatusLevel, float> statusLevel =
+        std::map<eStatusLevel, float> m_statusLevel =
         {
             { ATKLv, 0 },
             { SPDLv, 0 },
@@ -69,7 +69,7 @@ namespace basecross {
             RANGELv,
         };
 
-        std::map<eStatusName, float> statusValue =
+        std::map<eStatusName, float> m_statusValue =
         {
             {ATK, 1},
             {SPD, 1},
@@ -77,7 +77,7 @@ namespace basecross {
             {RANGE, 1},
         };
 
-        std::map<eStatusLevel, float> statusLevel =
+        std::map<eStatusLevel, float> m_statusLevel =
         {
             { ATKLv, 0 },
             { SPDLv, 0 },
@@ -112,7 +112,7 @@ namespace basecross {
             RANGELv,
         };
 
-        std::map<eStatusName, float> statusValue =
+        std::map<eStatusName, float> m_statusValue =
         {
             {ATK, 1},
             {SPD, 1},
@@ -120,7 +120,7 @@ namespace basecross {
             {RANGE, 1},
         };
 
-        std::map<eStatusLevel, float> statusLevel =
+        std::map<eStatusLevel, float> m_statusLevel =
         {
             { ATKLv, 0 },
             { SPDLv, 0 },

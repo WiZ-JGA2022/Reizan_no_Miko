@@ -79,7 +79,7 @@ namespace basecross {
 			//}
 			//else
 			//{
-			//	m_vertices[i].textureCoordinate.x = m_uvPosition / gaugeSizeLimit + (m_uvShiftDistance / statusLevel);
+			//	m_vertices[i].textureCoordinate.x = m_uvPosition / gaugeSizeLimit + (m_uvShiftDistance / m_statusLevel);
 			//}
 		}
 
