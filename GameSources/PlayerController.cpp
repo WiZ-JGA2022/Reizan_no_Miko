@@ -66,10 +66,9 @@ namespace basecross {
 			}
 		}
 
-
-		// カメラに回り込みの取得
+		// 移動処理
 		auto pos = m_transform->GetPosition();
-		pos += padLStick * 3.0f * delta;
+		pos += padLStick * m_speed * delta;
 
 		m_transform->SetPosition(pos);
 
@@ -99,27 +98,6 @@ namespace basecross {
 	//	//}
 
 	//}
-
-	//void 
-	//{
-	//	// レベルアップイベント中は処理を停止する
-	//	//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-	//	//{
-	//	//	return;
-	//	//}
-	//	//// 敵と当たったら
-	//	//if ()
-	//	//{
-	//	//	// 自分のHPが減っていく
-	//	// 
-	//	//}
-
-	//}
-
-	void PlayerSpeedUp(float level)
-	{
-
-	}
 
 	void PlayerController::DestroyPlayer()
 	{
