@@ -9,14 +9,15 @@
 namespace basecross {
     class PlayerStatusController : public GameObject
     {
-        const int MAGNIFICATION;
+        const int m_BaseRisingValue; // ステータスの基礎上昇量
 
-        int m_expLevel;          // Level
-        float m_expCount;     // 経験値取得量
-        float m_maxExp;      // 必要経験値
-        float m_previousExp; // 前回必要経験値
+        int m_expLevel;         // 経験値レベル
+        float m_expCount;       // 経験値取得量
+        float m_maxExp;         // 必要経験値
+        float m_previousExp;    // 前回必要経験値
         
-        std::map<int, wstring> statusName = {
+        // ステータス名
+        std::map<int, wstring> m_statusName = {
             {0, L"HP"},
             {1, L"ATK"},
             {2, L"DEF"},
@@ -25,16 +26,18 @@ namespace basecross {
             {5, L"PICKUP"}
         };
 
-        std::map<wstring, float> statusValue = {
-            {L"HP", 100.0f},
-            {L"ATK", 1.0f},
+        // ステータス値
+        std::map<wstring, float> m_statusValue = {
+            {L"HP", 50.0f},
+            {L"ATK", 20.0f},
             {L"DEF", 1.0f},
-            {L"SPD", 1.0f},
+            {L"SPD", 3.0f},
             {L"HASTE", 1.0f},
-            {L"PICKUP", 1.0f}
+            {L"PICKUP", 100.0f}
         };
 
-        std::map<wstring, int> statusLevel = {
+        // ステータスレベル
+        std::map<wstring, int> m_statusLevel = {
             {L"HP", 0},
             {L"ATK", 0},
             {L"DEF", 0},
@@ -43,24 +46,24 @@ namespace basecross {
             {L"PICKUP", 0}
         };
 
-        // ステータス保存用
-        vector<float> status;
-        float maxHp;
-
+        vector<float> m_statusRisingValue; // ステータス上昇量
 
     public:
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :
             GameObject(stage),
-            MAGNIFICATION(10),
+            m_BaseRisingValue(10),
             m_expLevel(1),
             m_expCount(0.0f),
             m_maxExp(10.0f),
-            m_previousExp(10.0f),
-            maxHp(0.0f)
+            m_previousExp(10.0f)
         {
         } 
         void OnCreate() override;
         void OnUpdate() override;
+
+        float GetStatusValue(wstring m_statusName);
+
+        void PlayerDamageProcess();
 
         void StatusLevelUpdate(int selectStatusNum);
 
