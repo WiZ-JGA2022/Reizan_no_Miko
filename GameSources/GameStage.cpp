@@ -37,9 +37,17 @@ namespace basecross {
 
 	}
 
+	// 敵の作成
 	void GameStage::CreateEnemy() {
 		CreateSharedObjectGroup(L"EnemyGroup");
 		AddGameObject<EnemyController>();
+	}
+
+	// レベルアップイベントの作成
+	void GameStage::CreateLevelUpEvent() {
+		auto levelUpEvent = AddGameObject<RandomSelectLevelUpButton>();
+
+		SetSharedGameObject(L"LevelUpEvent", levelUpEvent);
 	}
 
 	//プレイヤーの作成
@@ -56,8 +64,10 @@ namespace basecross {
 			//プレーヤーの作成
 			CreatePlayer();
 			// 敵の作成
-			//AddGameObject<EnemyController>(m_player);
 			CreateEnemy();
+
+			// レベルアップイベントの作成
+			CreateLevelUpEvent();
 
 			// 地面の作成
 			AddGameObject<Field>();
@@ -66,8 +76,6 @@ namespace basecross {
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
-			// レベルアップイベントの作成
-			AddGameObject<RandomSelectLevelUpButton>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();

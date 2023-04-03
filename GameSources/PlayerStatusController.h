@@ -9,78 +9,63 @@
 namespace basecross {
     class PlayerStatusController : public GameObject
     {
-        const int MAGNIFICATION;
+        const int m_BaseRisingValue; // ステータスの基礎上昇量
 
-        int m_expLevel;          // Level
-        float m_expCount;     // 経験値取得量
-        float m_maxExp;      // 必要経験値
-        float m_previousExp; // 前回必要経験値
-
-
-        enum eStatusName
-        {
-            HP,//体力
-            ATK,//攻撃力
-            DEF,//防御力
-            SPD,//移動速度
-            HASTE,//攻撃速度
-            RANGE,//攻撃範囲
-            PICKUP,//収集範囲
-        };
-        enum eStatusLevel
-        {
-            HPLv,
-            ATKLv,
-            DEFLv,
-            SPDLv,
-            HASTELv,
-            RANGELv,
-            PICKUPLv,
+        int m_expLevel;         // 経験値レベル
+        float m_expCount;       // 経験値取得量
+        float m_maxExp;         // 必要経験値
+        float m_previousExp;    // 前回必要経験値
+        
+        // ステータス名
+        std::map<int, wstring> m_statusName = {
+            {0, L"HP"},
+            {1, L"ATK"},
+            {2, L"DEF"},
+            {3, L"SPD"},
+            {4, L"HASTE"},
+            {5, L"PICKUP"}
         };
 
-        std::map<eStatusName, float> statusValue = {
-            {HP, 100.0f},
-            {ATK, 1.0f},
-            {DEF, 1.0f},
-            {SPD, 1.0f},
-            {HASTE, 1.0f},
-            {RANGE, 1.0f},
-            {PICKUP, 1.0f},
+        // ステータス値
+        std::map<wstring, float> m_statusValue = {
+            {L"HP", 50.0f},
+            {L"ATK", 20.0f},
+            {L"DEF", 1.0f},
+            {L"SPD", 3.0f},
+            {L"HASTE", 1.0f},
+            {L"PICKUP", 100.0f}
         };
 
-        std::map<eStatusLevel, float> statusLevel = {
-            {HPLv, 0.0f},
-            {ATKLv, 0.0f},
-            {DEFLv, 0.0f},
-            {SPDLv, 0.0f},
-            {HASTELv, 0.0f},
-            {RANGELv, 0.0f},
-            {PICKUPLv, 0.0f},
+        // ステータスレベル
+        std::map<wstring, int> m_statusLevel = {
+            {L"HP", 0},
+            {L"ATK", 0},
+            {L"DEF", 0},
+            {L"SPD", 0},
+            {L"HASTE", 0},
+            {L"PICKUP", 0}
         };
 
-        // ループ用配列
-        eStatusName nameKeyList [7];
-        eStatusLevel levelKeyList [7];
-
-        // ステータス保存用
-        vector<float> status [7];
-        float maxHp;
-
+        vector<float> m_statusRisingValue; // ステータス上昇量
 
     public:
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :
             GameObject(stage),
-            MAGNIFICATION(10),
+            m_BaseRisingValue(10),
             m_expLevel(1),
             m_expCount(0.0f),
             m_maxExp(10.0f),
-            m_previousExp(10.0f),
-            maxHp(0.0f)
+            m_previousExp(10.0f)
         {
         } 
         void OnCreate() override;
         void OnUpdate() override;
-        void StatusLevelUpdate();
+
+        float GetStatusValue(wstring m_statusName);
+
+        void PlayerDamageProcess();
+
+        void StatusLevelUpdate(int selectStatusNum);
 
     };
 

@@ -21,6 +21,9 @@ namespace basecross {
 		// 敵の作成
 		void CreateEnemy();
 
+		// レベルアップイベントの作成
+		void CreateLevelUpEvent();
+
 		// 主人公の作成
 		void CreatePlayer();
 
