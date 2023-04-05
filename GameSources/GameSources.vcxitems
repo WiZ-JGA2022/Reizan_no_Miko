@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Field.h" />
@@ -41,6 +42,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp" />
