@@ -14,6 +14,8 @@ namespace basecross {
 		m_DelayCount(120),
 		m_delayFlame(m_DelayCount),
 		m_enemyCount(0),
+		m_sign_x(1),
+		m_sign_z(1),
 		m_position(Vec3(-3.0f, 0.0f, 5.0f))
 	{
 	}
@@ -37,11 +39,17 @@ namespace basecross {
 		auto playerTrans = playerObj->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition();
 
+		//敵の位置の符号を決定する(+,-座標を判定)
+		int rnd_x = rand() % 2;
+		int rnd_z = rand() % 2;
+		if (rnd_x > 0) { m_sign_x = 1; } else { m_sign_x = -1; }
+		if (rnd_z > 0) { m_sign_z = 1; } else { m_sign_z = -1; }
+
 		// このオブジェクトの位置を基準としたランダムな場所に出現させる
 		m_enemyPos = Vec3(
-			playerPos.x + m_Distance + rand() % m_RandomRange,
+			(playerPos.x + m_Distance + rand() % m_RandomRange) * m_sign_x,
 			m_position.y, 
-			playerPos.z + m_Distance + rand() % m_RandomRange
+			(playerPos.z + m_Distance + rand() % m_RandomRange) * m_sign_z
 		);
 
 
