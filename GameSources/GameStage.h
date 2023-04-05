@@ -15,8 +15,6 @@ namespace basecross {
 	class GameStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
-		// テスト用
-		void CreateItem();
 
 		// 敵の作成
 		void CreateEnemy();

@@ -14,7 +14,7 @@ namespace basecross {
 
 		int m_spriteNums[m_PickUpStatusCount] = { 0 };	// ボタンの数字を保存しておく用
 
-		bool m_isActiveSprite = true;
+		bool m_isActiveSprite = false;
 
 		/**
 		* 強化できるステータス・強化できる武器をランダムに指定
