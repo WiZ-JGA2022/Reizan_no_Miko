@@ -15,6 +15,9 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		transComp->SetScale(m_itemScale);
 		transComp->SetPosition(m_itemPosition);
+
+		auto ItemColl = AddComponent<CollisionSphere>();
+
 	}
 
 	void Item::OnUpdate() {
@@ -26,6 +29,14 @@ namespace basecross {
 
 		auto playerTrans = m_player->GetComponent<Transform>();
 		auto Playerpos = playerTrans->GetPosition();
+
+		////一定の範囲にプレイヤーが入ったらその方向に移動する
+		//auto ItemAreapos = m_inArea;
+		//bool IteminArea(false)
+		//	if (Playerpos.x > ItemAreapos)
+		//	{
+
+		//	}
 
 		if (Playerpos.x == Itempos.x) { m_attractX = 0; }
 		if (Playerpos.x < Itempos.x) { m_attractX = -1; }
@@ -41,7 +52,7 @@ namespace basecross {
 		transComp->SetRotation(Vec3(0, ItemrotationY + XM_PIDIV2, 0));
 		transComp->SetPosition(ItemattractX, Itempos.y, ItemattractZ);
 
-		////Itemがプレイヤーの近くに来たら消す
+		//Itemがプレイヤーの近くに来たら消す
 		if (Itempos.length() <Playerpos.x)//まだplayerの判定はできてないので1.0を入れている
 		{
 			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
@@ -50,6 +61,7 @@ namespace basecross {
 		{
 			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
 		}
+
 	}
 
 }

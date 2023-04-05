@@ -34,6 +34,7 @@ namespace basecross {
 	void GameStage::CreateEnemy() {
 		CreateSharedObjectGroup(L"EnemyGroup");
 		AddGameObject<EnemyController>();
+		//AddGameObject<Item>();
 	}
 
 	// レベルアップイベントの作成
