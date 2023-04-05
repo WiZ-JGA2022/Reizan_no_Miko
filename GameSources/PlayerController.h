@@ -19,7 +19,6 @@ namespace basecross{
 
 		shared_ptr<Transform> m_transform;
 
-
 	public:
 		PlayerController(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
@@ -32,7 +31,8 @@ namespace basecross{
 		void OnUpdate() override; // オブジェクトデータの更新
 		
 		//void MovePlayer();
-		//virtual void OnCollisionEnter(const CollisionPair& Pair) override;
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 		void DestroyPlayer();
 	};
 }
