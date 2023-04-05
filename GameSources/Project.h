@@ -27,4 +27,5 @@
 #include "GaugeSizeSetting.h"
 #include "Enemy.h"
 #include "CrossKey.h"
+#include "EnemyBullet.h"
 

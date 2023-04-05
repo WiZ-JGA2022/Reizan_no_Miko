@@ -39,7 +39,7 @@ namespace basecross {
 		auto playerTrans = playerObj->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition();
 
-		//“G‚ÌˆÊ’u‚Ì•„†‚ðŒˆ’è‚·‚é(+,-À•W‚ð”»’è)
+		//“G‚ÌˆÊ’u‚Ì•„†‚ðŒˆ’è‚·‚é(+,-À•W‚ðŒˆ’è)
 		int rnd_x = rand() % 2;
 		int rnd_z = rand() % 2;
 		if (rnd_x > 0) { m_sign_x = 1; } else { m_sign_x = -1; }
@@ -56,8 +56,10 @@ namespace basecross {
 		if (m_delayFlame <= 0)
 		{
 			GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			GetStage()->AddGameObject<EnemyBullet>();
 			m_delayFlame = m_DelayCount;
 		}
+
 	}
 
 }
