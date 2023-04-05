@@ -10,11 +10,14 @@ namespace basecross {
     class PlayerStatusController : public GameObject
     {
         const int m_BaseRisingValue; // ステータスの基礎上昇量
+        const int m_DelayCount;
 
         int m_expLevel;         // 経験値レベル
         float m_expCount;       // 経験値取得量
         float m_maxExp;         // 必要経験値
         float m_previousExp;    // 前回必要経験値
+        
+        int m_delayFlame;
         
         // ステータス名
         std::map<int, wstring> m_statusName = {
@@ -52,10 +55,12 @@ namespace basecross {
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :
             GameObject(stage),
             m_BaseRisingValue(10),
+            m_DelayCount(60),
             m_expLevel(1),
             m_expCount(0.0f),
             m_maxExp(10.0f),
-            m_previousExp(10.0f)
+            m_previousExp(10.0f),
+            m_delayFlame(m_DelayCount)
         {
         } 
         void OnCreate() override;

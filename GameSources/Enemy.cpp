@@ -45,6 +45,7 @@ namespace basecross {
 		drawComp->SetTextureResource(L"WALL_TX");
 		drawComp->SetOwnShadowActive(true);
 
+		AddTag(L"Enemy");
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
@@ -54,6 +55,12 @@ namespace basecross {
 
 	void Enemy::OnUpdate()
 	{
+		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		if (levelUpEvent->GetControllerSprite())
+		{
+			return;
+		}
+
 		MoveEnemy();
 	}
 

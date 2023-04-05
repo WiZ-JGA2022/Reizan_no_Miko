@@ -12,12 +12,15 @@ namespace basecross {
 
 	class HpBar : public GameObject
 	{
+		float m_maxHP;
+
 		// HPƒo[‚Ìî•ñ‚ğ“ü‚ê‚é•Ï”
 		shared_ptr<GaugeSizeSettings> m_bar;
 
 	public:
 		HpBar(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage)
+			GameObject(stage),
+			m_maxHP(0)
 		{
 		}
 

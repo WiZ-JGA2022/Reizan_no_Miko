@@ -38,6 +38,18 @@ namespace basecross {
 
 	void PlayerController::OnUpdate()
 	{
+		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		levelUpEvent->LevelUpEvent();
+		if (levelUpEvent->GetControllerSprite())
+		{
+			return;
+		}
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		if (playerStatus->GetStatusValue(L"HP") <= 0)
+		{
+			SetUpdateActive(false);
+			SetDrawActive(false);
+		}
 		// Playerの移動処理
 		auto& app = App::GetApp();
 
@@ -68,7 +80,7 @@ namespace basecross {
 
 		// 移動処理
 		auto pos = m_transform->GetPosition();
-		pos += padLStick * m_speed * delta;
+		pos += padLStick * playerStatus->GetStatusValue(L"SPD") * delta;
 
 		m_transform->SetPosition(pos);
 
@@ -85,19 +97,21 @@ namespace basecross {
 		}
 	}
 
-	//void OnCollisionEnter(const CollisionPair& Pair)
-	//{
-	//	// レベルアップイベント中は処理を停止する
-	//	//if (levelUpEvent.GetComponent<LevelUpEvent>().GetActiveOrUnActive())
-	//	//{
-	//	//	return;
-	//	//}
-	//	//if (collision.gameObject.tag == "EnemyBullet")
-	//	//{
-	//	//	getStatus.GetComponent<PlayerStatusController>().PlayerTakenDamage();
-	//	//}
+	void PlayerController::OnCollisionExcute(shared_ptr<GameObject>& other)
+	{
+		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		if (levelUpEvent->GetControllerSprite())
+		{
+			return;
+		}
 
-	//}
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		if (other->FindTag(L"Enemy"))
+		{
+			playerStatus->PlayerDamageProcess();
+		}
+
+	}
 
 	void PlayerController::DestroyPlayer()
 	{

@@ -31,6 +31,11 @@ namespace basecross {
 
 	void EnemyController::OnUpdate()
 	{	
+		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		if (levelUpEvent->GetControllerSprite())
+		{
+			return;
+		}
 		m_delayFlame--;
 
 		auto playerObj = GetStage()->GetSharedGameObject<PlayerController>(L"Player");

@@ -33,7 +33,7 @@ namespace basecross {
 	// 敵の作成
 	void GameStage::CreateEnemy() {
 		CreateSharedObjectGroup(L"EnemyGroup");
-		AddGameObject<EnemyController>();
+	 	auto enemy = AddGameObject<EnemyController>();
 	}
 
 	// レベルアップイベントの作成
@@ -48,7 +48,8 @@ namespace basecross {
 		m_player = AddGameObject<PlayerController>();
 		SetSharedGameObject(L"Player", m_player);
 		m_player->AddTag(L"Player");
-		AddGameObject<Item>(m_player);
+		auto statusController = AddGameObject<PlayerStatusController>();
+		SetSharedGameObject(L"PlayerStatus", statusController);
 	} // end CreatePlayer	
 
 
@@ -64,6 +65,8 @@ namespace basecross {
 
 			// レベルアップイベントの作成
 			CreateLevelUpEvent();
+
+			AddGameObject<Item>(m_player);
 
 			// 地面の作成
 			AddGameObject<Field>();
