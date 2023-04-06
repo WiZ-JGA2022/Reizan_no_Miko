@@ -28,7 +28,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerShot.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
@@ -53,7 +53,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerShot.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />

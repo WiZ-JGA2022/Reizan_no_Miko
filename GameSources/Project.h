@@ -21,7 +21,7 @@
 #include "Field.h"
 #include "PlayerController.h"
 #include "MainCamera.h"
-#include "PlayerShot.h"
+#include "PlayerBullet.h"
 #include "PlayerStatusController.h"
 #include "ShotDestroy.h"
 #include "GaugeSizeSetting.h"
