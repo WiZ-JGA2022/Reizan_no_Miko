@@ -30,7 +30,7 @@ namespace basecross {
 		//注視点からの相対座標(回り込みの角度と注視点からの距離で算出する)
 		auto relaivePos = Vec3(
 			cos(m_angle) * m_distance,
-			4.0f,
+			20.0f,
 			sin(m_angle) * m_distance);
 
 		Vec3 eye = at + relaivePos;
