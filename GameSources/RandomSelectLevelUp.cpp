@@ -48,16 +48,6 @@ namespace basecross {
 		}
 	} // end RandomSelect
 
-	void RandomSelectLevelUpButton::OnUpdate()
-	{
-		/* プレイヤーのステータスからexpの取得量を取得
-		* 取得したexpが一定数を超えた時にRandomSelectを実行
-		*/
-
-		LevelUpEvent();
-
-	}
-
 	void RandomSelectLevelUpButton::LevelUpEvent()
 	{
 		auto& app = App::GetApp();

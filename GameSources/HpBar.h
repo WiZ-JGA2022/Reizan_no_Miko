@@ -12,6 +12,7 @@ namespace basecross {
 
 	class HpBar : public GameObject
 	{
+		// 最大HP
 		float m_maxHP;
 
 		// HPバーの情報を入れる変数
@@ -24,11 +25,11 @@ namespace basecross {
 		{
 		}
 
-		// 初期化 //
+		// 初期化
 		void OnCreate() override;
-		// 更新処理 //
+		// 更新処理
 		void OnUpdate() override;
-		// 描画処理 //
+		// 描画処理
 		void OnDraw() override;
 	};
 }

@@ -9,7 +9,6 @@
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
-		m_speed(1.0f),
 		m_position(0)
 	{
 	}
@@ -18,7 +17,6 @@ namespace basecross {
 		const Vec3& position
 	) :
 		GameObject(stage),
-		m_speed(1.0f),
 		m_position(position)
 	{
 	}
@@ -31,8 +29,7 @@ namespace basecross {
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetDrawActive(true);
-		// 衝突判定はAuto
+		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetSleepActive(true);
 
@@ -45,20 +42,35 @@ namespace basecross {
 		drawComp->SetTextureResource(L"WALL_TX");
 		drawComp->SetOwnShadowActive(true);
 
-		AddTag(L"Enemy");
+		auto enemyController = GetStage()->GetSharedGameObject<EnemyController>(L"EnemyController");
+
+		AddTag(L"Enemy"/*enemyController->GetEnemyNumber()*/); 
+		// 直前に設定された文字のNULL文字以降を指定する数字を+演算子で足すと空判定になる
+		// Enemyだと5以降の数字を+で足すと空判定になる?(E:0 n:1 e:2 m:3 y:4 \0:5)
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
 
-
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		playerStatus->SetEnemyATK(m_statusValue[L"ATK"]);
 	}
 
 	void Enemy::OnUpdate()
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		// レベルアップイベントがONになったら
 		if (levelUpEvent->GetControllerSprite())
 		{
+			// 処理を停止する
 			return;
+		}
+
+		// HPが0になったら
+		if (m_statusValue[L"HP"] <= 0)
+		{
+			// 処理を停止し、見えなくする
+			SetUpdateActive(false);
+			SetDrawActive(false);
 		}
 
 		MoveEnemy();
@@ -66,12 +78,11 @@ namespace basecross {
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
 	{
-		// 弾にあたったら(テスト用でplayer)
-		if (Other->FindTag(L"Player"))
+		// 弾にあたったら
+		if (Other->FindTag(L"PlayerBullet"))
 		{
-			// 処理を停止し、見えなくする
-			//SetUpdateActive(false);
-			//SetDrawActive(false);
+			// ダメージを受ける
+			EnemyDamageProcess();
 			return;
 		}
 
@@ -98,19 +109,23 @@ namespace basecross {
 		m_direction *= normalizeMagnification;
 		// ここまで
 
-		pos += m_direction * m_speed * delta;	// 移動の計算
+		pos += m_direction * m_statusValue[L"SPD"] * delta;	// 移動の計算
 		float rotationY = atan2f(-(playerPos.z - pos.z), playerPos.x - pos.x); // 回転の計算
 
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
 	}
 
-	void Enemy::SetPosition(const Vec3& Emitter)
+	void Enemy::EnemyDamageProcess()
 	{
-		//m_transform->ResetPosition(Emitter);
-		GetStage()->RemoveGameObject<Enemy>(NULL);
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		float damage = playerStatus->GetStatusValue(L"ATK") - (playerStatus->GetStatusValue(L"ATK") * (m_statusValue[L"DEF"] - 1.0f));
 
-		SetUpdateActive(true);
-		SetDrawActive(true);
+		m_statusValue[L"HP"] -= damage;
+	}
+
+	float Enemy::GetEnemyStatus(wstring statusKey)
+	{
+		return m_statusValue[statusKey];
 	}
 }

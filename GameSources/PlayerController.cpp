@@ -8,22 +8,21 @@
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-	//	class Player : public GameObject;
+	//	class PlayerController : public GameObject;
 	//	用途: プレイヤー
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
 
-	void PlayerController::OnCreate() // UnityのStartメソッド(関数)のようなもの
+	void PlayerController::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetDrawActive(true);
 		// 衝突判定はAuto
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
-		ptrColl->SetSleepActive(true);
+		ptrColl->SetSleepActive(false);
 
 		// 影をつける
 		auto shadowPtr = AddComponent<Shadowmap>();
@@ -32,8 +31,6 @@ namespace basecross {
 		// Playerオブジェクトの初期設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-
-
 	}
 
 	void PlayerController::OnUpdate()
@@ -50,6 +47,9 @@ namespace basecross {
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
+		
+		m_recastFlame -= 0.1f;
+
 		// Playerの移動処理
 		auto& app = App::GetApp();
 
@@ -91,9 +91,10 @@ namespace basecross {
 			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
 
-		if (pad.wPressedButtons & BUTTON_SHOT)
+		if (m_recastFlame <= 0)
 		{
-			GetStage()->AddGameObject<PlayerShot>(GetThis<PlayerController>());
+			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
+			m_recastFlame = m_RecastCount - (m_RecastCount * (playerStatus->GetStatusValue(L"HASTE") - 1.0f));
 		}
 	}
 
@@ -109,12 +110,8 @@ namespace basecross {
 		if (other->FindTag(L"Enemy"))
 		{
 			playerStatus->PlayerDamageProcess();
+			return;
 		}
 
-	}
-
-	void PlayerController::DestroyPlayer()
-	{
-		
 	}
 }

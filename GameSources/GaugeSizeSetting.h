@@ -47,7 +47,7 @@ namespace basecross {
 			m_isHp(isHp)
 		{
 		}
-		// 初期化 //
+		// 初期化 
 		void OnCreate() override;
 
 		/**
@@ -96,7 +96,7 @@ namespace basecross {
 		/**
 		* ゲージの横幅を取得する関数
 		*
-		* @return m_gaugeWidth
+		* @return ゲージの横幅
 		*/
 		float GetGaugeSize()
 		{

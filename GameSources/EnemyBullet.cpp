@@ -27,6 +27,12 @@ namespace basecross {
 
     void EnemyBullet::OnUpdate()
     {
+        auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+        if (levelUpEvent->GetControllerSprite())
+        {
+            return;
+        }
+
         auto& app = App::GetApp();
         float delta = app->GetElapsedTime();
 
