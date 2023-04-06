@@ -13,7 +13,7 @@ namespace basecross {
 		m_Distance(5),
 		m_DelayCount(120),
 		m_delayFlame(m_DelayCount),
-		m_enemyCount(0),
+		m_enemyNum(0),
 		m_sign_x(1),
 		m_sign_z(1),
 		m_position(Vec3(-3.0f, 0.0f, 5.0f))
@@ -27,8 +27,6 @@ namespace basecross {
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
-
-		GetStage()->AddGameObject<Enemy>(m_position);
 	}
 
 	void EnemyController::OnUpdate()
@@ -61,10 +59,23 @@ namespace basecross {
 		if (m_delayFlame <= 0)
 		{
 			GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			m_enemyNum++;
 			//GetStage()->AddGameObject<EnemyBullet>();
 			m_delayFlame = m_DelayCount;
 		}
 
+		wstringstream wss;
+		wss << L"m_enemyNum : " <<
+			m_enemyNum << endl;
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto dstr = scene->GetDebugString();
+		scene->SetDebugString(dstr + wss.str());
+	}
+
+	int EnemyController::GetEnemyNumber()
+	{
+		return m_enemyNum;
 	}
 
 }
