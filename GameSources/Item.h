@@ -17,6 +17,8 @@ namespace basecross {
 		Vec3 m_itemScale;
 		float m_attractX;
 		float m_attractZ;
+		//float m_inArea;
+
 
 	public:
 		Item(const shared_ptr<Stage>& stagePtr,const std::shared_ptr<PlayerController>& playerPtr) :
@@ -26,6 +28,7 @@ namespace basecross {
 			m_itemScale(0.5f,0.5f,0.5f),
 			m_attractX(1.0f),
 			m_attractZ(1.0f)
+			//m_inArea(10.0f)
 		{
 		};
 
