@@ -15,18 +15,10 @@ namespace basecross {
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
-		// ステータス名
-		std::map<int, wstring> m_statusName = {
-			{0, L"HP"},
-			{1, L"ATK"},
-			{2, L"DEF"},
-			{3, L"SPD"},
-		};
-
 		// ステータス値
 		std::map<wstring, float> m_statusValue = {
 			{L"HP", 10.0f},
-			{L"ATK", 1.0f},
+			{L"ATK", 10.0f},
 			{L"DEF", 1.0f},
 			{L"SPD", 1.0f},
 		};
@@ -45,9 +37,23 @@ namespace basecross {
 		// 衝突応答処理
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
 
+		/**
+		* 敵の移動処理
+		*/
 		void MoveEnemy();
 
+		/**
+		* 敵が受けるダメージの計算
+		*/
 		void EnemyDamageProcess();
+
+		/**
+		* 任意の敵のステータスを取得する関数
+		* 
+		* @param statusKey 取得したいステータスの名前
+		* 
+		* @return 指定したステータスの値
+		*/
 		float GetEnemyStatus(wstring statusKey);
 	};
 }

@@ -33,8 +33,10 @@ namespace basecross {
 		virtual ~RandomSelectLevelUpButton();
 
 		virtual void OnCreate() override;
-		virtual void OnUpdate() override;
 
+		/**
+		* レベルアップ時に呼ばれる関数
+		*/
 		void LevelUpEvent();
 	};
 

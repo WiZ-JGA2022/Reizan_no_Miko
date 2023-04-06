@@ -10,14 +10,15 @@ namespace basecross {
     class PlayerStatusController : public GameObject
     {
         const int m_BaseRisingValue; // ステータスの基礎上昇量
-        const int m_DelayCount;
+        const int m_DelayCount; // ダメージを受ける間隔
 
         int m_expLevel;         // 経験値レベル
         float m_expCount;       // 経験値取得量
         float m_maxExp;         // 必要経験値
         float m_previousExp;    // 前回必要経験値
+        float m_enemyATK; // 敵の攻撃力
         
-        int m_delayFlame;
+        int m_delayFlame; // ダメージを受ける間隔
         
         // ステータス名
         std::map<int, wstring> m_statusName = {
@@ -29,14 +30,23 @@ namespace basecross {
             {5, L"PICKUP"}
         };
 
+        // ステータス値の初期値
+        const float m_DefaultStatusValue[6] = {
+            50.0f,
+            10.0f,
+            1.0f,
+            3.0f,
+            1.0f,
+            100.0f
+        };
         // ステータス値
         std::map<wstring, float> m_statusValue = {
-            {L"HP", 50.0f},
-            {L"ATK", 10.0f},
-            {L"DEF", 1.0f},
-            {L"SPD", 3.0f},
-            {L"HASTE", 1.0f},
-            {L"PICKUP", 100.0f}
+            {L"HP", m_DefaultStatusValue[0]},
+            {L"ATK", m_DefaultStatusValue[1]},
+            {L"DEF", m_DefaultStatusValue[2]},
+            {L"SPD", m_DefaultStatusValue[3]},
+            {L"HASTE", m_DefaultStatusValue[4]},
+            {L"PICKUP", m_DefaultStatusValue[5]}
         };
 
         // ステータスレベル
@@ -50,29 +60,38 @@ namespace basecross {
         };
 
         vector<float> m_statusRisingValue; // ステータス上昇量
-        vector<float> m_enemyATK; // 敵の攻撃力
 
     public:
-        PlayerStatusController(const std::shared_ptr<Stage>& stage) :
-            GameObject(stage),
-            m_BaseRisingValue(10),
-            m_DelayCount(60),
-            m_expLevel(1),
-            m_expCount(0.0f),
-            m_maxExp(10.0f),
-            m_previousExp(10.0f),
-            m_delayFlame(m_DelayCount)
-        {
-        } 
+        PlayerStatusController(const std::shared_ptr<Stage>& stage);
+        ~PlayerStatusController();
         void OnCreate() override;
         void OnUpdate() override;
 
-        float GetStatusValue(wstring m_statusName);
+        /**
+        * ステータスの値を取得する関数
+        * 
+        * @param statusKey 取得するステータスの名前
+        * 
+        * @return 指定したステータスの値
+        */
+        float GetStatusValue(wstring statusKey);
 
+        /**
+        * プレイヤーが受けたダメージを計算する関数
+        */
         void PlayerDamageProcess();
 
+        /**
+        * ステータスを強化する関数
+        * 
+        * @param selectStatusNum 強化するステータス番号
+        */
         void StatusLevelUpdate(int selectStatusNum);
 
+        /**
+        * 敵の攻撃力を設定する関数
+        */
+        void SetEnemyATK(float ATK);
     };
 
 }

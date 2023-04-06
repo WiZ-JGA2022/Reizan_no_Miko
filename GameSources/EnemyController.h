@@ -32,6 +32,11 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
+		/**
+		* “G‚Ì¯•Ê”Ô†‚ğæ“¾‚·‚éŠÖ”
+		* 
+		* @return “G‚Ì¯•Ê”Ô†
+		*/
 		int GetEnemyNumber();
 	};
 
