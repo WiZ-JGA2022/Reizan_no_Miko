@@ -17,6 +17,7 @@ namespace basecross {
 		transComp->SetPosition(m_itemPosition);
 
 		auto ItemColl = AddComponent<CollisionSphere>();
+		ItemColl->SetAfterCollision(AfterCollision::None);
 
 	}
 
