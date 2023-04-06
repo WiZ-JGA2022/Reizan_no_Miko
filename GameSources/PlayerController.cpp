@@ -8,22 +8,21 @@
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-	//	class Player : public GameObject;
+	//	class PlayerController : public GameObject;
 	//	用途: プレイヤー
 	//--------------------------------------------------------------------------------------
 	//構築と破棄
 
-	void PlayerController::OnCreate() // UnityのStartメソッド(関数)のようなもの
+	void PlayerController::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetDrawActive(true);
 		// 衝突判定はAuto
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
-		ptrColl->SetSleepActive(true);
+		ptrColl->SetSleepActive(false);
 
 		// 影をつける
 		auto shadowPtr = AddComponent<Shadowmap>();
@@ -32,8 +31,6 @@ namespace basecross {
 		// Playerオブジェクトの初期設定
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-
-
 	}
 
 	void PlayerController::OnUpdate()
@@ -116,10 +113,5 @@ namespace basecross {
 			return;
 		}
 
-	}
-
-	void PlayerController::DestroyPlayer()
-	{
-		
 	}
 }
