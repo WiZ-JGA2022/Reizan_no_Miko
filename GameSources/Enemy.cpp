@@ -9,7 +9,6 @@
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
-		m_speed(1.0f),
 		m_position(0)
 	{
 	}
@@ -18,7 +17,6 @@ namespace basecross {
 		const Vec3& position
 	) :
 		GameObject(stage),
-		m_speed(1.0f),
 		m_position(position)
 	{
 	}
@@ -31,7 +29,6 @@ namespace basecross {
 
 		// ƒRƒŠƒWƒ‡ƒ“‚ð‚Â‚¯‚é
 		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetDrawActive(true);
 		// Õ“Ë”»’è‚ÍAuto
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetSleepActive(true);
@@ -45,12 +42,14 @@ namespace basecross {
 		drawComp->SetTextureResource(L"WALL_TX");
 		drawComp->SetOwnShadowActive(true);
 
-		AddTag(L"Enemy");
+		auto enemyController = GetStage()->GetSharedGameObject<EnemyController>(L"EnemyController");
+
+		AddTag(L"Enemy"/*enemyController->GetEnemyNumber()*/); 
+		// ’¼‘O‚ÉÝ’è‚³‚ê‚½•¶Žš‚ÌNULL•¶ŽšˆÈ~‚ðŽw’è‚·‚é”Žš‚ð+‰‰ŽZŽq‚Å‘«‚·‚Æ‹ó”»’è‚É‚È‚é
+		// Enemy‚¾‚Æ5ˆÈ~‚Ì”Žš‚ð+‚Å‘«‚·‚Æ‹ó”»’è‚É‚È‚é(E:0 n:1 e:2 m:3 y:4 \0:5)
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
-
-
 	}
 
 	void Enemy::OnUpdate()
@@ -61,17 +60,23 @@ namespace basecross {
 			return;
 		}
 
+		if (m_statusValue[L"HP"] <= 0)
+		{
+			// ˆ—‚ð’âŽ~‚µAŒ©‚¦‚È‚­‚·‚é
+			SetUpdateActive(false);
+			SetDrawActive(false);
+		}
+
 		MoveEnemy();
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
 	{
-		// ’e‚É‚ ‚½‚Á‚½‚ç(ƒeƒXƒg—p‚Åplayer)
-		if (Other->FindTag(L"Player"))
+		// ’e‚É‚ ‚½‚Á‚½‚ç
+		if (Other->FindTag(L"PlayerBullet"))
 		{
-			// ˆ—‚ð’âŽ~‚µAŒ©‚¦‚È‚­‚·‚é
-			//SetUpdateActive(false);
-			//SetDrawActive(false);
+			// ƒ_ƒ[ƒW‚ðŽó‚¯‚é
+			EnemyDamageProcess();
 			return;
 		}
 
@@ -98,19 +103,23 @@ namespace basecross {
 		m_direction *= normalizeMagnification;
 		// ‚±‚±‚Ü‚Å
 
-		pos += m_direction * m_speed * delta;	// ˆÚ“®‚ÌŒvŽZ
+		pos += m_direction * m_statusValue[L"SPD"] * delta;	// ˆÚ“®‚ÌŒvŽZ
 		float rotationY = atan2f(-(playerPos.z - pos.z), playerPos.x - pos.x); // ‰ñ“]‚ÌŒvŽZ
 
 		m_transform->SetPosition(pos); // ˆÚ“®ˆ—
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // ‰ñ“]ˆ—
 	}
 
-	void Enemy::SetPosition(const Vec3& Emitter)
+	void Enemy::EnemyDamageProcess()
 	{
-		//m_transform->ResetPosition(Emitter);
-		GetStage()->RemoveGameObject<Enemy>(NULL);
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		float damage = playerStatus->GetStatusValue(L"ATK") - (playerStatus->GetStatusValue(L"ATK") * (m_statusValue[L"DEF"] - 1.0f));
 
-		SetUpdateActive(true);
-		SetDrawActive(true);
+		m_statusValue[L"HP"] -= damage;
+	}
+
+	float Enemy::GetEnemyStatus(wstring statusKey)
+	{
+		return m_statusValue[statusKey];
 	}
 }
