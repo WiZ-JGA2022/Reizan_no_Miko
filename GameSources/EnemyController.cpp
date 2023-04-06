@@ -31,8 +31,9 @@ namespace basecross {
 
 	void EnemyController::OnUpdate()
 	{	
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetControllerSprite())
+		if (levelUpEvent->GetControllerSprite() || !player->GetDrawActive())
 		{
 			return;
 		}
@@ -63,14 +64,6 @@ namespace basecross {
 			//GetStage()->AddGameObject<EnemyBullet>();
 			m_delayFlame = m_DelayCount;
 		}
-
-		wstringstream wss;
-		wss << L"m_enemyNum : " <<
-			m_enemyNum << endl;
-		auto& app = App::GetApp();
-		auto scene = app->GetScene<Scene>();
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
 	}
 
 	int EnemyController::GetEnemyNumber()
