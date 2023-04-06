@@ -32,7 +32,7 @@ namespace basecross {
         // ステータス値
         std::map<wstring, float> m_statusValue = {
             {L"HP", 50.0f},
-            {L"ATK", 20.0f},
+            {L"ATK", 10.0f},
             {L"DEF", 1.0f},
             {L"SPD", 3.0f},
             {L"HASTE", 1.0f},
@@ -50,6 +50,7 @@ namespace basecross {
         };
 
         vector<float> m_statusRisingValue; // ステータス上昇量
+        vector<float> m_enemyATK; // 敵の攻撃力
 
     public:
         PlayerStatusController(const std::shared_ptr<Stage>& stage) :

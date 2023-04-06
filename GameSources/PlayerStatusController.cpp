@@ -67,8 +67,6 @@ namespace basecross {
 		}
 		// 経験値を0に戻す
 		//expItem.ResetExpCount();
-		// レベルアップイベントの終了
-		//levelUpPanel.GetComponent<LevelUpEvent>().PanelUnActivated();
 
 	} // end StatusLevelUpdate
 
@@ -80,10 +78,22 @@ namespace basecross {
 	// 敵から受けるダメージの処理
 	void PlayerStatusController::PlayerDamageProcess()
 	{
-		// マジックナンバーの部分を後々敵の攻撃力に変更する
-		float enemyATK = 1.0f;
+		auto enemy = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
+		auto& vec = enemy->GetGroupVector();
+		for (auto& v : vec) {
+			auto shObj = v.lock();
+			if (shObj) {
+				if (shObj->IsUpdateActive()) {
+					auto shEnemy = dynamic_pointer_cast<Enemy>(shObj);
+					if (shEnemy) {
+						m_enemyATK.emplace_back(shEnemy->GetEnemyStatus(L"ATK"));
+					}
+				}
+			}
+		}
+
 		// 防御力の軽減を追加したダメージ量の計算
-		float damage = enemyATK - (enemyATK * (m_statusValue[L"DEF"] - 1));
+		float damage = m_enemyATK[0] - (m_enemyATK[0] * (m_statusValue[L"DEF"] - 1.0f));
 		if (m_delayFlame <= 0)
 		{
 			// ダメージ分自分の体力を減らす
