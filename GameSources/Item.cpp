@@ -14,9 +14,20 @@ namespace basecross {
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetScale(m_itemScale);
-		transComp->SetPosition(m_itemPosition);
 
 		auto ItemColl = AddComponent<CollisionSphere>();
+
+		//Enemyが消えたら出現
+		//auto EnemyOut = m_enemydis;
+		
+		transComp->SetPosition(m_itemPosition);
+
+		//if (EnemyOut&&)
+		//{
+		//	//GetStage()->AddGameObject<Item>(m_itemPosition);
+		//	//GetStage()->AddGameObject<Item>(GetThis<EnemyController>());
+		//}
+
 
 	}
 
@@ -27,6 +38,7 @@ namespace basecross {
 			return;
 		}
 
+
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 
@@ -36,12 +48,12 @@ namespace basecross {
 		auto playerTrans = m_player->GetComponent<Transform>();
 		auto Playerpos = playerTrans->GetPosition();
 
-		////一定の範囲にプレイヤーが入ったらその方向に移動する
+		//一定の範囲にプレイヤーが入ったらその方向に移動する
 		//auto ItemAreapos = m_inArea;
 		//bool IteminArea(false)
-		//	if (Playerpos.x > ItemAreapos)
+		//	if (Playerpos > ItemAreapos && IteminArea)
 		//	{
-
+		//		
 		//	}
 
 		if (Playerpos.x == Itempos.x) { m_attractX = 0; }
@@ -58,8 +70,14 @@ namespace basecross {
 		transComp->SetRotation(Vec3(0, ItemrotationY + XM_PIDIV2, 0));
 		transComp->SetPosition(ItemattractX, Itempos.y, ItemattractZ);
 
-		//Itemがプレイヤーの近くに来たら消す
-		if (Itempos.length() <Playerpos.x)//まだplayerの判定はできてないので1.0を入れている
+		////Itemがプレイヤーに触ってたら消す
+		//if ()
+		//{
+		//	delete ~Item();
+		//	/*return ;*/
+		//} 
+		
+		if (Itempos.length() < Playerpos.x)//まだplayerの判定はできてないので1.0を入れている
 		{
 			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
 		}

@@ -17,21 +17,26 @@ namespace basecross {
 		Vec3 m_itemScale;
 		float m_attractX;
 		float m_attractZ;
-		//float m_inArea;
-
+		float m_inArea;
+		bool m_enemydis;
 
 	public:
 		Item(const shared_ptr<Stage>& stagePtr,const std::shared_ptr<PlayerController>& playerPtr) :
 			GameObject(stagePtr),
 			m_player(playerPtr),
-			m_itemPosition(1.0f, 0.0f, 1.0f),
+			//m_itemPosition(1.0f, 0.0f, 1.0f),
 			m_itemScale(0.5f,0.5f,0.5f),
 			m_attractX(1.0f),
-			m_attractZ(1.0f)
-			//m_inArea(10.0f)
+			m_attractZ(1.0f),
+			m_inArea(10.0f),
+			m_enemydis(false)
 		{
 		};
 
+	public:
+		//Item(){}
+		//~Item(){}
+		
 		void OnCreate() override;
 		void OnUpdate() override;
 		
