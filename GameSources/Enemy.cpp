@@ -29,7 +29,7 @@ namespace basecross {
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionObb>();
-		// 衝突判定はAuto
+		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetSleepActive(true);
 
@@ -50,16 +50,22 @@ namespace basecross {
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
+
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		playerStatus->SetEnemyATK(m_statusValue[L"ATK"]);
 	}
 
 	void Enemy::OnUpdate()
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		// レベルアップイベントがONになったら
 		if (levelUpEvent->GetControllerSprite())
 		{
+			// 処理を停止する
 			return;
 		}
 
+		// HPが0になったら
 		if (m_statusValue[L"HP"] <= 0)
 		{
 			// 処理を停止し、見えなくする

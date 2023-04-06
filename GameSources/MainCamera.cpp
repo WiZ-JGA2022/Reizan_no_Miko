@@ -13,7 +13,6 @@ namespace basecross {
 
 	void MainCamera::OnUpdate()
 	{
-		//wstringstream wss;
 
 		auto& app = App::GetApp();
 		auto device = app->GetInputDevice();
