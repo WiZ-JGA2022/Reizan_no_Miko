@@ -50,6 +50,9 @@ namespace basecross {
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
+		
+		m_recastFlame -= 0.1f;
+
 		// Playerの移動処理
 		auto& app = App::GetApp();
 
@@ -91,9 +94,10 @@ namespace basecross {
 			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
 		}
 
-		if (pad.wPressedButtons & BUTTON_SHOT)
+		if (m_recastFlame <= 0)
 		{
-			GetStage()->AddGameObject<PlayerShot>(GetThis<PlayerController>());
+			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
+			m_recastFlame = m_RecastCount - (m_RecastCount * (playerStatus->GetStatusValue(L"HASTE") - 1.0f));
 		}
 	}
 
@@ -109,6 +113,7 @@ namespace basecross {
 		if (other->FindTag(L"Enemy"))
 		{
 			playerStatus->PlayerDamageProcess();
+			return;
 		}
 
 	}

@@ -15,12 +15,16 @@ namespace basecross{
 		const WORD BUTTON_BARRIER = XINPUT_GAMEPAD_RIGHT_SHOULDER;
 		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 		
+		const float m_RecastCount;
+		float m_recastFlame;
 
 		shared_ptr<Transform> m_transform;
 
 	public:
 		PlayerController(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage)
+			GameObject(stage),
+			m_RecastCount(9.0f),
+			m_recastFlame(m_RecastCount)
 		{
 		}
 		~PlayerController() {}
