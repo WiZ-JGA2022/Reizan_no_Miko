@@ -20,7 +20,7 @@ namespace basecross {
 
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
         m_Transform = GetComponent<Transform>();
-        m_Transform->SetPosition(ownerTrans->GetPosition()); 
+        m_Transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f);
         m_Transform->SetScale(Vec3(0.5f));
 
     }
@@ -35,8 +35,5 @@ namespace basecross {
         m_Transform->SetPosition(pos);
 
     }
-
-
-
 }
 //end basecross

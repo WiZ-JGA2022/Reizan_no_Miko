@@ -17,8 +17,9 @@ namespace basecross {
 		// 弾を発射したオブジェクトへのポインタ
 		std::shared_ptr<Enemy> m_owner;
 	public:
-		EnemyBullet(const std::shared_ptr<Stage>& stage) :
+		EnemyBullet(const std::shared_ptr<Stage>& stage, const std::shared_ptr<Enemy>& owner) :
 			GameObject(stage),
+			m_owner(owner),
 			m_speed(5.0f),
 			m_forward(Vec3(0))
 

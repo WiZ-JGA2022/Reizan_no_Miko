@@ -60,8 +60,9 @@ namespace basecross {
 
 		if (m_delayFlame <= 0)
 		{
-			GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			auto enemy = GetStage()->AddGameObject<Enemy>(m_enemyPos);
 			//GetStage()->AddGameObject<EnemyBullet>();
+			GetStage()->AddGameObject<EnemyBullet>(enemy);
 			m_delayFlame = m_DelayCount;
 		}
 
