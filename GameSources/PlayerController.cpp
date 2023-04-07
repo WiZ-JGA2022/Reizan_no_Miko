@@ -45,8 +45,8 @@ namespace basecross {
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
-		
 		m_recastFlame -= 0.1f;
+		
 		PlayerMoveProcess();
 
 		if (m_recastFlame <= 0)

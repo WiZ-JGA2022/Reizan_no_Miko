@@ -110,7 +110,7 @@ namespace basecross {
 		// ‚±‚±‚Ü‚Å
 
 		pos += m_direction * m_statusValue[L"SPD"] * delta;	// ˆÚ“®‚ÌŒvZ
-		float rotationY = atan2f(-(playerPos.z - pos.z), playerPos.x - pos.x); // ‰ñ“]‚ÌŒvZ
+		float rotationY = atan2f(-m_direction.z, m_direction.x); // ‰ñ“]‚ÌŒvZ
 
 		m_transform->SetPosition(pos); // ˆÚ“®ˆ—
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // ‰ñ“]ˆ—
