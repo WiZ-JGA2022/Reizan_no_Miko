@@ -12,22 +12,23 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 
-		auto transComp = GetComponent<Transform>();
-		transComp->SetScale(m_itemScale);
+		m_transform = GetComponent<Transform>();
+		m_transform->SetScale(m_itemScale);
+		m_transform->SetPosition(m_itemPosition);
 
-		auto ItemColl = AddComponent<CollisionSphere>();
+		auto ItemColl = AddComponent<CollisionObb>();
+		ItemColl->SetAfterCollision(AfterCollision::None);
 
-		//Enemyが消えたら出現
-		//auto EnemyOut = m_enemydis;
-		
-		transComp->SetPosition(m_itemPosition);
-
-		//if (EnemyOut&&)
+		//Enemyが消えたら生成
+		auto EnemyOut = m_enemydis;
+		auto EnemyDieout = GetStage()->GetSharedGameObject<Enemy>(L"Enemy");
+			 
+		//if (EnemyOut && EnemyDieout < PlayerBullet)
 		//{
-		//	//GetStage()->AddGameObject<Item>(m_itemPosition);
-		//	//GetStage()->AddGameObject<Item>(GetThis<EnemyController>());
+		//	
+		//	GetStage()->AddGameObject<Item>(GetThis<EnemyController>());
+		//	return;
 		//}
-
 
 	}
 
@@ -38,55 +39,49 @@ namespace basecross {
 			return;
 		}
 
-
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 
-		auto transComp = GetComponent<Transform>();
-		auto Itempos = transComp->GetPosition();
+		auto pos = m_transform->GetPosition();
+		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
-		auto playerTrans = m_player->GetComponent<Transform>();
-		auto Playerpos = playerTrans->GetPosition();
+		m_direction = playerPos - pos; // プレイヤーへの方向を計算
 
-		//一定の範囲にプレイヤーが入ったらその方向に移動する
-		//auto ItemAreapos = m_inArea;
-		//bool IteminArea(false)
-		//	if (Playerpos > ItemAreapos && IteminArea)
-		//	{
-		//		
-		//	}
+		//playerが一定の範囲に入ったら動く（条件式
 
-		if (Playerpos.x == Itempos.x) { m_attractX = 0; }
-		if (Playerpos.x < Itempos.x) { m_attractX = -1; }
-		if (Playerpos.x > Itempos.x) { m_attractX = +1; }
 
-		if (Playerpos.z == Itempos.z) { m_attractZ = 0; }
-		if (Playerpos.z < Itempos.z) { m_attractZ = -1; }
-		if (Playerpos.z > Itempos.z) { m_attractZ = +1; }
+		// ベクトルの正規化処理
+		float normalizeMagnification = 1 / sqrt(
+			m_direction.x * m_direction.x +
+			m_direction.y * m_direction.y +
+			m_direction.z * m_direction.z);
+		m_direction *= normalizeMagnification;
+		// ここまで
 
-		float ItemrotationY = atan2f(Playerpos.z, Playerpos.x);
-		float ItemattractX = Itempos.x + m_attractX * delta;
-		float ItemattractZ = Itempos.z + m_attractZ * delta;
-		transComp->SetRotation(Vec3(0, ItemrotationY + XM_PIDIV2, 0));
-		transComp->SetPosition(ItemattractX, Itempos.y, ItemattractZ);
+		pos += m_direction * m_itemspeed * delta;	// 移動の計算
+		float rotationY = atan2f(-(playerPos.z - pos.z), playerPos.x - pos.x); // 回転の計算
+
+		m_transform->SetPosition(pos); // 移動処理
+		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
+
+
+		//auto transComp = GetComponent<Transform>();
 
 		////Itemがプレイヤーに触ってたら消す
 		//if ()
 		//{
 		//	delete ~Item();
 		//	/*return ;*/
-		//} 
-		
-		if (Itempos.length() < Playerpos.x)//まだplayerの判定はできてないので1.0を入れている
-		{
-			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
-		}
-		if (Itempos.length() < Playerpos.z)//まだplayerの判定はできてないので1.0を入れている
-		{
-			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
-		}
-
+		//} 		
 	}
 
+	void Item::OnCollisionEnter(shared_ptr<GameObject>& other)
+	{
+		if (other->FindTag(L"Player"))
+		{
+			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
+		}
+	}
 }
 //end basecross
