@@ -22,6 +22,42 @@ namespace basecross{
 		App::GetApp()->RegisterTexture(UseTextureName, strTexture);
 	}
 
+	// サウンドの読み込み
+	void Scene::RoadSound(const wstring& soundDataName, const wstring& soundName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+		wstring strMusic = dataDir + L"Sound\\" + soundDataName;
+		App::GetApp()->RegisterWav(soundName, strMusic);
+	}
+
+	// 静的なモデルの読み込み
+	void Scene::RoadStaticModelMesh(const wstring& staticModelbmfName, const wstring& staticModelMeshName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+
+		App::GetApp()->RegisterResource(
+			staticModelMeshName,
+			MeshResource::CreateStaticModelMesh(dataDir, L"MayaModels\\" + staticModelbmfName + L".bmf")
+		);
+	}
+
+	// ボーンモデルの読み込み
+	void Scene::RoadBoneModel(const wstring& BoneModelbmfName, const wstring& BoneModelMeshName, const wstring& BomeModelMeshTangentName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+
+		App::GetApp()->RegisterResource(BoneModelMeshName,
+			MeshResource::CreateBoneModelMesh(dataDir, L"MayaModels\\" + BoneModelbmfName + L".bmf"));
+
+		App::GetApp()->RegisterResource(BomeModelMeshTangentName,
+			MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"MayaModels\\" + BoneModelbmfName + L".bmf")
+		);
+
+	}
+
 	void Scene::CreateResourses()
 	{
 		RoadTexture(L"EXPBAR_BLACK", L"ExpBar(Black).png");
