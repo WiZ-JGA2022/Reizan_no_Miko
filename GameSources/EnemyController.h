@@ -40,6 +40,5 @@ namespace basecross {
 		*/
 		int GetEnemyNumber();
 	};
-
 }
 //end basecross
