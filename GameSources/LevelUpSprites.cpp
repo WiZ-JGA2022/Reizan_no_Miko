@@ -14,67 +14,67 @@ namespace basecross
 	//--------------------------------------------------------------------------------------
 	///	コントローラーボタンのスプライト
 	//--------------------------------------------------------------------------------------
-	LevelUpSprites::LevelUpSprites(const shared_ptr<Stage>& StagePtr,
-		const int& TextureNum,
-		bool Trace,
-		const Vec2& StartScale,
-		const Vec2& StartPos,
-		const int& TexNum
+	LevelUpSprites::LevelUpSprites(const shared_ptr<Stage>& stagePtr,
+		const int& textureNum,
+		bool trace,
+		const Vec2& startScale,
+		const Vec2& startPos,
+		const int& texNum
 	) :
-		GameObject(StagePtr),
-		m_TextureNum(TextureNum),
-		m_Alpha(Trace),
-		m_DefaultScale(StartScale),
-		m_DefaultPos(StartPos),
-		m_TexNum(TexNum)
+		GameObject(stagePtr),
+		m_textureNum(textureNum),
+		m_alpha(trace),
+		m_defaultScale(startScale),
+		m_defaultPos(startPos),
+		m_texNum(texNum)
 	{}
 
 	wstring LevelUpSprites::ControllerNum(int i) {
 		if (i == 0)
 		{
-			m_TextureKey = L"HP_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"HP_LEVELUP";
+			return m_textureKey;
 		}
 		else if (i == 1)
 		{
-			m_TextureKey = L"ATK_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"ATK_LEVELUP";
+			return m_textureKey;
 
 		}
 		else if (i == 2)
 		{
-			m_TextureKey = L"DEF_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"DEF_LEVELUP";
+			return m_textureKey;
 
 		}
 		else if (i == 3)
 		{
-			m_TextureKey = L"SPD_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"SPD_LEVELUP";
+			return m_textureKey;
 
 		}
 		else if (i == 4)
 		{
-			m_TextureKey = L"HASTE_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"HASTE_LEVELUP";
+			return m_textureKey;
 
 		}
 		else if (i == 5)
 		{
-			m_TextureKey = L"PICKUP_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"PICKUP_LEVELUP";
+			return m_textureKey;
 
 		}
 		else if (i == 6)
 		{
-			m_TextureKey = L"WEPON_1_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"WEPON_1_LEVELUP";
+			return m_textureKey;
 
 		}
 		else if (i == 7)
 		{
-			m_TextureKey = L"WEPON_2_LEVELUP";
-			return m_TextureKey;
+			m_textureKey = L"WEPON_2_LEVELUP";
+			return m_textureKey;
 		}
 		else
 		{
@@ -87,7 +87,7 @@ namespace basecross
 	{
 		float HelfSize = m_helfSize;
 
-		// 頂点配列(縦横5個ずつ表示)
+		// 頂点配列
 		vector<VertexPositionColorTexture> vertices = {
 			{ VertexPositionColorTexture(Vec3(-HelfSize, HelfSize, 0), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(0.0f, 0.0f)) },
 			{ VertexPositionColorTexture(Vec3(HelfSize, HelfSize, 0), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(1.0f, 0.0f)) },
@@ -97,20 +97,20 @@ namespace basecross
 
 		// インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
-		SetAlphaActive(m_Alpha);
+		SetAlphaActive(m_alpha);
 		auto PtrTransform = GetComponent<Transform>();
-		PtrTransform->SetScale(m_DefaultScale.x, m_DefaultScale.y, m_startScaleZ);
+		PtrTransform->SetScale(m_defaultScale.x, m_defaultScale.y, m_startScaleZ);
 		PtrTransform->SetRotation(0, 0, 0);
-		PtrTransform->SetPosition(m_DefaultPos.x, m_DefaultPos.y, m_startPosZ);
+		PtrTransform->SetPosition(m_defaultPos.x, m_defaultPos.y, m_startPosZ);
 
 		std::wstring Key;
-		Key = ControllerNum(m_TextureNum);
+		Key = ControllerNum(m_textureNum);
 
 		// 頂点とインデックスを指定してスプライト作成
 		auto PtrDraw = AddComponent<PCTSpriteDraw>(vertices, indices);
 		PtrDraw->SetSamplerState(SamplerState::LinearWrap);
 		PtrDraw->SetTextureResource(Key);
-		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
+		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
 		SetDrawActive(true);
 	} // end OnCreate
 
@@ -120,20 +120,6 @@ namespace basecross
 		auto stage = app->GetScene<Scene>()->GetActiveStage();	// ステージオブジェクトを取得する
 		auto objs = stage->GetGameObjectVec();					// ステージに追加されているすべてのオブジェクト
 		auto scene = App::GetApp()->GetScene<Scene>();
-
-
-		if (scene->GetTexNum() > m_TexNum) {
-			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_AlphaNum = 1.0f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
-		}
-		else
-		{
-			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_AlphaNum = 0.5f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
-
-		}
 
 		// 処理終了後に表示した画像を消す処理
 		for (auto& obj : objs)

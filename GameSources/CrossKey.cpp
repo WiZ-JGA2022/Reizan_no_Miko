@@ -22,29 +22,29 @@ namespace basecross
 		const int& TexNum
 	) :
 		GameObject(StagePtr),
-		m_TextureNum(TextureNum),
-		m_Alpha(Trace),
-		m_DefaultScale(StartScale),
-		m_DefaultPos(StartPos),
-		m_TexNum(TexNum)
+		m_textureNum(TextureNum),
+		m_alpha(Trace),
+		m_defaultScale(StartScale),
+		m_defaultPos(StartPos),
+		m_texNum(TexNum)
 	{}
 
 	wstring CrossKeySprites::ControllerNum(int i) {
 		if (i == 0)
 		{
-			m_TextureKey = L"CROSSKEY_UP";
-			return m_TextureKey;
+			m_textureKey = L"CROSSKEY_UP";
+			return m_textureKey;
 		}
 		else if (i == 1)
 		{
-			m_TextureKey = L"CROSSKEY_RIGHT";
-			return m_TextureKey;
+			m_textureKey = L"CROSSKEY_RIGHT";
+			return m_textureKey;
 
 		}
 		else if (i == 2)
 		{
-			m_TextureKey = L"CROSSKEY_DOWN";
-			return m_TextureKey;
+			m_textureKey = L"CROSSKEY_DOWN";
+			return m_textureKey;
 		}
 		else
 		{
@@ -68,20 +68,20 @@ namespace basecross
 
 		// インデックス配列
 		vector<uint16_t> indices = { 0, 1, 2, 1, 3, 2 };
-		SetAlphaActive(m_Alpha);
+		SetAlphaActive(m_alpha);
 		auto PtrTransform = GetComponent<Transform>();
-		PtrTransform->SetScale(m_DefaultScale.x, m_DefaultScale.y, m_startScaleZ);
+		PtrTransform->SetScale(m_defaultScale.x, m_defaultScale.y, m_startScaleZ);
 		PtrTransform->SetRotation(0, 0, 0);
-		PtrTransform->SetPosition(m_DefaultPos.x, m_DefaultPos.y, m_startPosZ);
+		PtrTransform->SetPosition(m_defaultPos.x, m_defaultPos.y, m_startPosZ);
 
 		std::wstring Key;
-		Key = ControllerNum(m_TextureNum);
+		Key = ControllerNum(m_textureNum);
 
 		// 頂点とインデックスを指定してスプライト作成
 		auto PtrDraw = AddComponent<PCTSpriteDraw>(vertices, indices);
 		PtrDraw->SetSamplerState(SamplerState::LinearWrap);
 		PtrDraw->SetTextureResource(Key);
-		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
+		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
 		SetDrawActive(true);
 
 	} // end OnCreate
@@ -94,16 +94,16 @@ namespace basecross
 		auto scene = App::GetApp()->GetScene<Scene>();
 
 
-		if (scene->GetTexNum() > m_TexNum) {
+		if (scene->GetTexNum() > m_texNum) {
 			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_AlphaNum = 1.0f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
+			m_alphaNum = 1.0f;
+			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
 		}
 		else
 		{
 			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_AlphaNum = 0.5f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_AlphaNum));
+			m_alphaNum = 0.5f;
+			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
 
 		}
 
