@@ -77,6 +77,8 @@ namespace basecross {
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
+			AddGameObject<SpurtLava>();
+
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();

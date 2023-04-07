@@ -70,6 +70,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GimmicController.cpp">
+      <Filter>Sources\Gimmic</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp">
+      <Filter>Sources\Gimmic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -141,6 +147,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GimmicController.h">
+      <Filter>Headers\Gimmic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h">
+      <Filter>Headers\Gimmic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -178,6 +190,12 @@
     </Filter>
     <Filter Include="Sources\GameStage">
       <UniqueIdentifier>{3a3e89de-14c1-4a8d-b989-12770a06d3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Gimmic">
+      <UniqueIdentifier>{3e9c517f-f9f7-46cc-a077-2faf54a6a3f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Gimmic">
+      <UniqueIdentifier>{755823e3-53fb-4116-a505-e14082370c00}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
