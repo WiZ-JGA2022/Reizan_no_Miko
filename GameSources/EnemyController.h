@@ -17,7 +17,8 @@ namespace basecross {
 		int m_delayFlame; // 遅延		
 		int m_enemyNum; // 識別番号
 
-		int m_sign_x;//敵の位置の符号
+		//敵の位置の符号
+		int m_sign_x; 
 		int m_sign_z;
 
 		Vec3 m_position; // このオブジェクトの位置情報
