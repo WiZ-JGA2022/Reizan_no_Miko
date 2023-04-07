@@ -14,20 +14,20 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	
 	// テクスチャの読み込み
-	void Scene::RoadTexture(const wstring& UseTextureName, const wstring& TextureName)
+	void Scene::RoadTexture(const wstring& UseTextureName, const wstring& TextureDataName)
 	{
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
-		wstring strTexture = dataDir + L"Textures\\" + TextureName;
+		wstring strTexture = dataDir + L"Textures\\" + TextureDataName;
 		App::GetApp()->RegisterTexture(UseTextureName, strTexture);
 	}
 
 	// サウンドの読み込み
-	void Scene::RoadSound(const wstring& soundDataName, const wstring& soundName)
+	void Scene::RoadSound(const wstring& soundName, const wstring& soundDataName)
 	{
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
-		wstring strMusic = dataDir + L"Sound\\" + soundDataName;
+		wstring strMusic = dataDir + L"Sounds\\" + soundDataName;
 		App::GetApp()->RegisterWav(soundName, strMusic);
 	}
 
@@ -44,16 +44,16 @@ namespace basecross{
 	}
 
 	// ボーンモデルの読み込み
-	void Scene::RoadBoneModel(const wstring& BoneModelbmfName, const wstring& BoneModelMeshName, const wstring& BomeModelMeshTangentName)
+	void Scene::RoadBoneModel(const wstring& boneModelbmfName, const wstring& boneModelMeshName, const wstring& boneModelMeshTangentName)
 	{
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
 
-		App::GetApp()->RegisterResource(BoneModelMeshName,
-			MeshResource::CreateBoneModelMesh(dataDir, L"MayaModels\\" + BoneModelbmfName + L".bmf"));
+		App::GetApp()->RegisterResource(boneModelMeshName,
+			MeshResource::CreateBoneModelMesh(dataDir, L"MayaModels\\" + boneModelbmfName + L".bmf"));
 
-		App::GetApp()->RegisterResource(BomeModelMeshTangentName,
-			MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"MayaModels\\" + BoneModelbmfName + L".bmf")
+		App::GetApp()->RegisterResource(boneModelMeshTangentName,
+			MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"MayaModels\\" + boneModelbmfName + L".bmf")
 		);
 
 	}

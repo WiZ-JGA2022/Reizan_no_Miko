@@ -21,33 +21,38 @@ namespace basecross{
 		//--------------------------------------------------------------------------------------
 		void CreateResourses();
 
-		//--------------------------------------------------------------------------------------
 		/**
-		@brief テクスチャの読み込み
+		* テクスチャの読み込み
+		*
+		* @param UseTextureName basecross内で使用するテクスチャ名
+		* @param TextureDataName テクスチャデータ(png, jpg)の名前
 		*/
-		//--------------------------------------------------------------------------------------
-		void RoadTexture(const wstring& TextureName, const wstring& UseTextureName);
+		void RoadTexture(const wstring& UseTextureName, const wstring& TextureDataName);
 
-		//--------------------------------------------------------------------------------------
 		/**
-		@brief サウンドの読み込み
+		* サウンドの読み込み
+		*
+		* @param soundName basecross内で使用するサウンド名
+		* @param soundDataName サウンドデータ(wav)の名前
 		*/
-		//--------------------------------------------------------------------------------------
-		void RoadSound(const wstring& soundDataName, const wstring& soundName);
+		void RoadSound(const wstring& soundName, const wstring& soundDataName);
 
-		//--------------------------------------------------------------------------------------
 		/**
-		@brief 静的なモデルの読み込み
+		* 静的なモデルの読み込み
+		*
+		* @param staticModelMeshName basecross内で使用するモデル名
+		* @param staticModelbmfName モデルのbmfファイル名
 		*/
-		//--------------------------------------------------------------------------------------
-		void RoadStaticModelMesh(const wstring& staticModelbmfName, const wstring& staticModelMeshName);
+		void RoadStaticModelMesh(const wstring& staticModelMeshName, const wstring& staticModelbmfName);
 
-		//--------------------------------------------------------------------------------------
 		/**
-		@brief ボーンモデルの読み込み
+		* ボーンモデルの読み込み
+		*
+		* @param boneModelMeshName basecross内で使用するモデル名
+		* @param boneModelMeshTangentName basecross内で使用するモデル名(タンジェント付き)
+		* @param boneModelbmfName モデルのbmfファイル名
 		*/
-		//--------------------------------------------------------------------------------------
-		void RoadBoneModel(const wstring& BoneModelbmfName, const wstring& BoneModelMeshName, const wstring& BomeModelMeshTangentName);
+		void RoadBoneModel(const wstring& boneModelbmfName, const wstring& boneModelMeshName, const wstring& boneModelMeshTangentName);
 
 		//--------------------------------------------------------------------------------------
 		/**
