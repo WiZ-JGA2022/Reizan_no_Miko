@@ -45,7 +45,6 @@ namespace basecross {
         auto pos = m_Transform->GetPosition();
         pos += m_forward * m_speed * delta;
         m_Transform->SetPosition(pos);
-
         
         // ’e‚ª‰“‚­‚És‚Á‚½‚çÁ‚·
         if (pos.length() > 50.0f)
