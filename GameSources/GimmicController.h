@@ -1,5 +1,5 @@
 /*!
-@file GimmicController.h
+@file GimmickController.h
 @brief ギミックを出すクラス
 */
 
@@ -7,10 +7,15 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class GimmicController : public GameObject {
+	class GimmickController : public GameObject {
+		
+		Vec3 m_position;
+
+		shared_ptr<Transform> m_transform;
+
 	public :
-		GimmicController(const shared_ptr<Stage>& stage);
-		~GimmicController();
+		GimmickController(const shared_ptr<Stage>& stage);
+		~GimmickController();
 
 		void OnCreate() override;
 		void OnUpdate() override;
