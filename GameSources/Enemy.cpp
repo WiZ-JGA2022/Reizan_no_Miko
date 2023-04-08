@@ -11,6 +11,8 @@ namespace basecross {
 		GameObject(stage),
 		m_DamageDelayCount(60),
 		m_damageDelayFlame(m_DamageDelayCount),
+		m_ShotRecastCount(300),
+		m_shotRecastFlame(m_ShotRecastCount),
 		m_position(0)
 	{
 	}
@@ -21,6 +23,8 @@ namespace basecross {
 		GameObject(stage),
 		m_DamageDelayCount(60),
 		m_damageDelayFlame(m_DamageDelayCount),
+		m_ShotRecastCount(300),
+		m_shotRecastFlame(m_ShotRecastCount),
 		m_position(position)
 	{
 	}
@@ -45,8 +49,6 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 		drawComp->SetTextureResource(L"WALL_TX");
 		drawComp->SetOwnShadowActive(true);
-
-		auto enemyController = GetStage()->GetSharedGameObject<EnemyController>(L"EnemyController");
 
 		AddTag(L"Enemy"); 
 
@@ -73,8 +75,15 @@ namespace basecross {
 			SetDrawActive(false);
 		}
 		m_damageDelayFlame--;
+		m_shotRecastFlame--;
 
 		MoveEnemy();
+
+		if (m_shotRecastFlame <= 0)
+		{
+			ShotBullet();
+			m_shotRecastFlame = m_ShotRecastCount;
+		}
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
@@ -133,6 +142,11 @@ namespace basecross {
 
 		m_transform->SetPosition(pos); // ˆÚ“®ˆ—
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // ‰ñ“]ˆ—
+	}
+
+	void Enemy::ShotBullet()
+	{
+		GetStage()->AddGameObject<EnemyBullet>(m_transform->GetPosition(), m_statusValue[L"ATK"]);
 	}
 
 	void Enemy::EnemyDamageProcess()

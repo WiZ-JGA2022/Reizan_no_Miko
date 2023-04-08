@@ -9,32 +9,30 @@
 namespace basecross {
 	class EnemyBullet : public GameObject
 	{
-		std::shared_ptr<Transform> m_transform;
+		float m_speed; // 速度
+		float m_damage;
 
-		float m_speed;
-		Vec3 m_forward;
-
+		Vec3 m_position; // 自身の位置
+		Vec3 m_scale; // 大きさ
 		Vec3 m_direction; // プレイヤーへの方向
-		Vec3 m_position;
-		Vec3 m_moveLock;
 
-		// 弾を発射したオブジェクトへのポインタ
-		std::shared_ptr<Enemy> m_owner;
+		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 	public:
-		EnemyBullet(const std::shared_ptr<Stage>& stage, const std::shared_ptr<Enemy>& owner) :
+		EnemyBullet(const shared_ptr<Stage>& stage, const Vec3& position, const float& damage) :
 			GameObject(stage),
-			m_owner(owner),
-			m_speed(5.0f),
-			m_forward(Vec3(0)),
-			m_position(Vec3(0))
-
+			m_speed(3.0f),
+			m_damage(damage),
+			m_position(position),
+			m_scale(Vec3(0.5f))
 		{
 		}
 
 		void OnCreate() override;
 		void OnUpdate() override; // オブジェクトデータの更新
 
-		virtual Vec3 MoveEnemyBullet();
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& other);
+
+		void MoveEnemyBullet();
 	};
 
 
