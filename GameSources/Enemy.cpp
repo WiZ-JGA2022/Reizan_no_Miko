@@ -48,9 +48,7 @@ namespace basecross {
 
 		auto enemyController = GetStage()->GetSharedGameObject<EnemyController>(L"EnemyController");
 
-		AddTag(L"Enemy"/*enemyController->GetEnemyNumber()*/); 
-		// ’¼‘O‚ÉÝ’è‚³‚ê‚½•¶Žš‚ÌNULL•¶ŽšˆÈ~‚ðŽw’è‚·‚é”Žš‚ð+‰‰ŽZŽq‚Å‘«‚·‚Æ‹ó”»’è‚É‚È‚é
-		// Enemy‚¾‚Æ5ˆÈ~‚Ì”Žš‚ð+‚Å‘«‚·‚Æ‹ó”»’è‚É‚È‚é?(E:0 n:1 e:2 m:3 y:4 \0:5)
+		AddTag(L"Enemy"); 
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
