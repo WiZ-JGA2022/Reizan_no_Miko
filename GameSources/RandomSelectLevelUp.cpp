@@ -15,9 +15,8 @@ namespace basecross {
 	{
 	} // end コンストラクタ
 
-	RandomSelectLevelUpButton::~RandomSelectLevelUpButton()
-	{
-	} // end デストラクタ
+	RandomSelectLevelUpButton::~RandomSelectLevelUpButton() {} 
+	// end デストラクタ
 
 	void RandomSelectLevelUpButton::OnCreate()
 	{
@@ -50,33 +49,8 @@ namespace basecross {
 
 	void RandomSelectLevelUpButton::LevelUpEvent()
 	{
-		auto& app = App::GetApp();
-		// ゲームパッドを使用する
-		auto device = app->GetInputDevice(); // インプットデバイスオブジェクトを取得する
-		auto& pad = device.GetControlerVec()[0]; // １個目のコントローラーの状態を取得する
-
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
-		{
-			m_isActiveSprite = true;
-			RandomSelect(6);
-		}
-		// 十字キーの上、右、下で選ぶ
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
-		{
-			GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus")->StatusLevelUpdate(m_spriteNums[0]);
-			m_isActiveSprite = false;
-		}
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
-		{
-			GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus")->StatusLevelUpdate(m_spriteNums[1]);
-			m_isActiveSprite = false;
-		}
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
-		{
-			GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus")->StatusLevelUpdate(m_spriteNums[2]);
-			m_isActiveSprite = false;
-		}
-
+		m_isActiveSprite = true;
+		RandomSelect(6);		
 	}
 }
 //end basecross
