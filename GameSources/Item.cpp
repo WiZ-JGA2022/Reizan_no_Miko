@@ -19,6 +19,17 @@ namespace basecross {
 		auto ItemColl = AddComponent<CollisionObb>();
 		ItemColl->SetAfterCollision(AfterCollision::None);
 
+		//Enemy‚ªÁ‚¦‚½‚ç¶¬
+		auto EnemyOut = m_enemydis;
+		auto EnemyDieout = GetStage()->GetSharedGameObject<Enemy>(L"Enemy");
+			 
+		//if (EnemyOut && EnemyDieout < PlayerBullet)
+		//{
+		//	
+		//	GetStage()->AddGameObject<Item>(GetThis<EnemyController>());
+		//	return;
+		//}
+
 	}
 
 	void Item::OnUpdate() {
@@ -47,19 +58,13 @@ namespace basecross {
 		m_direction *= normalizeMagnification;
 		// ‚±‚±‚Ü‚Å
 
-		pos += m_direction * m_speed * delta;	// ˆÚ“®‚ÌŒvZ
+		pos += m_direction * m_itemspeed * delta;	// ˆÚ“®‚ÌŒvZ
 		float rotationY = atan2f(-m_direction.z, m_direction.x); // ‰ñ“]‚ÌŒvZ
 
 		m_transform->SetPosition(pos); // ˆÚ“®ˆ—
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // ‰ñ“]ˆ—
 
-		////ˆê’è‚Ì”ÍˆÍ‚ÉƒvƒŒƒCƒ„[‚ª“ü‚Á‚½‚ç‚»‚Ì•ûŒü‚ÉˆÚ“®‚·‚é
-		//auto ItemAreapos = m_inArea;
-		//bool IteminArea(false)
-		//	if (Playerpos.x > ItemAreapos)
-		//	{
-
-		//	}
+		//player‚ªˆê’è‚Ì”ÍˆÍ‚É“ü‚Á‚½‚ç“®‚­iğŒ®
 	}
 
 	void Item::OnCollisionEnter(shared_ptr<GameObject>& other)
@@ -69,6 +74,5 @@ namespace basecross {
 			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
 		}
 	}
-
 }
 //end basecross

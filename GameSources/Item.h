@@ -10,33 +10,38 @@
 namespace basecross {
 	class Item : public GameObject
 	{
+		std::shared_ptr<PlayerController> m_player;
+		shared_ptr<Transform>m_transform; 
+
 		Vec3 m_itemPosition;
 		Vec3 m_itemScale;
-		Vec3 m_direction;
+		Vec3 m_direction; // ƒvƒŒƒCƒ„[‚Ö‚Ì•ûŒü
 
-		float m_speed;
 		float m_attractX;
 		float m_attractZ;
-		//float m_inArea;
-
-		shared_ptr<Transform> m_transform;
+		float m_itemspeed;
+		float m_inArea;
+		bool m_enemydis;
 
 	public:
-		Item(const shared_ptr<Stage>& stagePtr) :
+		Item(const shared_ptr<Stage>& stagePtr, std::shared_ptr<PlayerController>& playerPtr) :
 			GameObject(stagePtr),
-			m_itemPosition(1.0f, 0.0f, 1.0f),
+			m_player(playerPtr),
 			m_itemScale(0.5f,0.5f,0.5f),
-			m_speed(1.0f),
+			m_itemPosition(3.0f,0.0f,3.0f),
+			m_itemspeed(1.0f),
 			m_attractX(1.0f),
-			m_attractZ(1.0f)
-			//m_inArea(10.0f)
+			m_attractZ(1.0f),
+			m_inArea(10.0f),
+			m_enemydis(false)
 		{
 		};
-
+		
 		void OnCreate() override;
 		void OnUpdate() override;
 		
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 	};
+
 
 }//end basecross
