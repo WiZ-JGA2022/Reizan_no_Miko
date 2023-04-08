@@ -68,7 +68,7 @@ namespace basecross {
 			// レベルアップイベントの作成
 			CreateLevelUpEvent();
 
-			AddGameObject<Item>(m_player);
+			AddGameObject<Item>();
 
 			// 地面の作成
 			AddGameObject<Field>();
@@ -76,6 +76,8 @@ namespace basecross {
 			// ExpバーとHpバーの作成
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
+
+			AddGameObject<SpurtLava>();
 
 
 			// メインカメラにプレイヤーをセットする

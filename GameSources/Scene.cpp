@@ -14,12 +14,48 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	
 	// テクスチャの読み込み
-	void Scene::RoadTexture(const wstring& UseTextureName, const wstring& TextureName)
+	void Scene::RoadTexture(const wstring& UseTextureName, const wstring& TextureDataName)
 	{
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
-		wstring strTexture = dataDir + L"Textures\\" + TextureName;
+		wstring strTexture = dataDir + L"Textures\\" + TextureDataName;
 		App::GetApp()->RegisterTexture(UseTextureName, strTexture);
+	}
+
+	// サウンドの読み込み
+	void Scene::RoadSound(const wstring& soundName, const wstring& soundDataName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+		wstring strMusic = dataDir + L"Sounds\\" + soundDataName;
+		App::GetApp()->RegisterWav(soundName, strMusic);
+	}
+
+	// 静的なモデルの読み込み
+	void Scene::RoadStaticModelMesh(const wstring& staticModelbmfName, const wstring& staticModelMeshName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+
+		App::GetApp()->RegisterResource(
+			staticModelMeshName,
+			MeshResource::CreateStaticModelMesh(dataDir, L"MayaModels\\" + staticModelbmfName + L".bmf")
+		);
+	}
+
+	// ボーンモデルの読み込み
+	void Scene::RoadBoneModel(const wstring& boneModelbmfName, const wstring& boneModelMeshName, const wstring& boneModelMeshTangentName)
+	{
+		wstring dataDir;
+		App::GetApp()->GetDataDirectory(dataDir);
+
+		App::GetApp()->RegisterResource(boneModelMeshName,
+			MeshResource::CreateBoneModelMesh(dataDir, L"MayaModels\\" + boneModelbmfName + L".bmf"));
+
+		App::GetApp()->RegisterResource(boneModelMeshTangentName,
+			MeshResource::CreateBoneModelMeshWithTangent(dataDir, L"MayaModels\\" + boneModelbmfName + L".bmf")
+		);
+
 	}
 
 	void Scene::CreateResourses()

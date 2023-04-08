@@ -33,5 +33,10 @@ namespace basecross{
 		void OnUpdate() override; // オブジェクトデータの更新
 		
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
+
+		/**
+		* プレイヤーの移動処理
+		*/
+		void PlayerMoveProcess();
 	};
 }
