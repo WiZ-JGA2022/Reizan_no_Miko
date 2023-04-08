@@ -32,8 +32,6 @@ namespace basecross{
 		void OnCreate() override; // オブジェクトの初期設定用の関数
 		void OnUpdate() override; // オブジェクトデータの更新
 		
-		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
-
 		/**
 		* プレイヤーの移動処理
 		*/
