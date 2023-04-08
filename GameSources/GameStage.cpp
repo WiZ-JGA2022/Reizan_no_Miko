@@ -62,9 +62,6 @@ namespace basecross {
 			CreateViewLight();
 			//プレーヤーの作成
 			CreatePlayer();
-			// 敵の作成
-			CreateEnemy();
-
 			// レベルアップイベントの作成
 			CreateLevelUpEvent();
 
@@ -74,6 +71,9 @@ namespace basecross {
 			// ExpバーとHpバーの作成
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
+
+			// 敵の作成
+			CreateEnemy();
 
 			AddGameObject<SpurtLava>(Vec3(5.0f, 0.0f, 5.0f), Vec3(5.0f, 5.0f, 5.0f));
 
