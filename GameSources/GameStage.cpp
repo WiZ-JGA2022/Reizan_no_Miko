@@ -68,8 +68,6 @@ namespace basecross {
 			// レベルアップイベントの作成
 			CreateLevelUpEvent();
 
-			AddGameObject<Item>();
-
 			// 地面の作成
 			AddGameObject<Field>();
 
@@ -77,7 +75,7 @@ namespace basecross {
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
-			AddGameObject<SpurtLava>();
+			AddGameObject<SpurtLava>(Vec3(5.0f, 0.0f, 5.0f), Vec3(5.0f, 5.0f, 5.0f));
 
 
 			// メインカメラにプレイヤーをセットする
@@ -92,7 +90,7 @@ namespace basecross {
 
 	void GameStage::OnDraw()
 	{
-		Stage::OnDraw(); // 継承するはずだった親クラスの関数を呼び出す
+		Stage::OnDraw();
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 }
