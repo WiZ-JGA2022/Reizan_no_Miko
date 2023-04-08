@@ -75,8 +75,7 @@ namespace basecross {
 			// 敵の作成
 			CreateEnemy();
 
-			AddGameObject<SpurtLava>(Vec3(5.0f, 0.0f, 5.0f), Vec3(5.0f, 5.0f, 5.0f));
-
+			AddGameObject<GimmickController>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
