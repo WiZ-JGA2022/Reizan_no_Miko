@@ -77,6 +77,8 @@ namespace basecross {
         */
         float GetStatusValue(wstring statusKey);
 
+        int GetMaxExp();
+
         /**
         * プレイヤーに与えるダメージを計算する関数
         * 

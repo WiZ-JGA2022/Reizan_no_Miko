@@ -12,7 +12,7 @@ namespace basecross {
 		GameObject(stage),
 		m_BaseRisingValue(10),
 		m_DamageDelayCount(60),
-		m_maxExp(10),
+		m_maxExp(5),
 		m_beforeMaxExp(m_maxExp),
 		m_damageDelayFlame(m_DamageDelayCount)
 	{
@@ -132,6 +132,11 @@ namespace basecross {
 	float PlayerStatusController::GetStatusValue(wstring statusKey)
 	{
 		return m_statusValue[statusKey];
+	}
+
+	int PlayerStatusController::GetMaxExp()
+	{
+		return m_maxExp;
 	}
 
 	void PlayerStatusController::ExpValueUpdate(int expValue)
