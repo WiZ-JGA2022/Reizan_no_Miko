@@ -76,15 +76,6 @@ namespace basecross {
 				levelUpEvent->SetEventActive(false);
 			}
 		}
-
-		wstringstream wss;
-		wss << L"exp : " <<
-			m_statusValue[L"EXP"] << endl;
-		auto& app = App::GetApp();
-		auto scene = app->GetScene<Scene>();
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
-
 	}
 
 	void PlayerStatusController::StatusLevelUpdate(int selectStatusNum)

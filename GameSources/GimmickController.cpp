@@ -8,7 +8,8 @@
 
 namespace basecross {
 	GimmickController::GimmickController(const shared_ptr<Stage>& stage) :
-		GameObject(stage)
+		GameObject(stage),
+		m_controllerPosition(0)
 	{
 	}
 	GimmickController::~GimmickController() {}
@@ -21,7 +22,7 @@ namespace basecross {
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(playerTrans->GetPosition());
 
-		for (int i = 0; i < m_GimmickPosition->length(); i++)
+		for (int i = 0; i < 10; i++)
 		{
 			GetStage()->AddGameObject<SpurtLava>(m_GimmickPosition[i], m_GimmickScale);
 		}
