@@ -9,6 +9,10 @@
 namespace basecross {
 	Enemy::Enemy(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
+		m_DamageDelayCount(60),
+		m_damageDelayFlame(m_DamageDelayCount),
+		m_ShotRecastCount(300),
+		m_shotRecastFlame(m_ShotRecastCount),
 		m_position(0)
 	{
 	}
@@ -17,6 +21,10 @@ namespace basecross {
 		const Vec3& position
 	) :
 		GameObject(stage),
+		m_DamageDelayCount(60),
+		m_damageDelayFlame(m_DamageDelayCount),
+		m_ShotRecastCount(300),
+		m_shotRecastFlame(m_ShotRecastCount),
 		m_position(position)
 	{
 	}
@@ -42,38 +50,40 @@ namespace basecross {
 		drawComp->SetTextureResource(L"WALL_TX");
 		drawComp->SetOwnShadowActive(true);
 
-		auto enemyController = GetStage()->GetSharedGameObject<EnemyController>(L"EnemyController");
-
-		AddTag(L"Enemy"/*enemyController->GetEnemyNumber()*/); 
-		// 直前に設定された文字のNULL文字以降を指定する数字を+演算子で足すと空判定になる
-		// Enemyだと5以降の数字を+で足すと空判定になる?(E:0 n:1 e:2 m:3 y:4 \0:5)
+		AddTag(L"Enemy"); 
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
-
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		playerStatus->SetEnemyATK(m_statusValue[L"ATK"]);
 	}
 
 	void Enemy::OnUpdate()
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		// レベルアップイベントがONになったら
-		if (levelUpEvent->GetControllerSprite())
+		if (levelUpEvent->GetEventActive())
 		{
 			// 処理を停止する
 			return;
 		}
-
 		// HPが0になったら
 		if (m_statusValue[L"HP"] <= 0)
 		{
+			// expを落とす
+			GetStage()->AddGameObject<Item>(m_transform->GetPosition());
 			// 処理を停止し、見えなくする
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
+		m_damageDelayFlame--;
+		m_shotRecastFlame--;
 
 		MoveEnemy();
+
+		if (m_shotRecastFlame <= 0)
+		{
+			ShotBullet();
+			m_shotRecastFlame = m_ShotRecastCount;
+		}
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
@@ -87,6 +97,24 @@ namespace basecross {
 		}
 
 	} // end OnCollisionEnter
+
+	void Enemy::OnCollisionExcute(shared_ptr<GameObject>& other)
+	{
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		// プレイヤーにあたったら
+		if (other->FindTag(L"Player"))
+		{
+			if (m_damageDelayFlame <= 0)
+			{
+				// ダメージを与える
+				playerStatus->PlayerDamageProcess(m_statusValue[L"ATK"]);
+				m_damageDelayFlame = m_DamageDelayCount;
+				return;
+			}
+		}
+
+	} // end OnCollisionEnter
+
 
 	void Enemy::MoveEnemy()
 	{
@@ -114,6 +142,11 @@ namespace basecross {
 
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
+	}
+
+	void Enemy::ShotBullet()
+	{
+		GetStage()->AddGameObject<EnemyBullet>(m_transform->GetPosition(), m_statusValue[L"ATK"]);
 	}
 
 	void Enemy::EnemyDamageProcess()

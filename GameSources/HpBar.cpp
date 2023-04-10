@@ -12,7 +12,7 @@ namespace basecross {
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
-		m_bar = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, true); // オブジェクトを生成するけどステージに追加しない
+		m_bar = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, true);
 		m_bar->UpdateGaugeSize(playerStatus->GetStatusValue(L"HP"), playerStatus->GetStatusValue(L"HP"));
 		m_bar->SetPosition(App::GetApp()->GetGameWidth(), 0.0f, 0.49f); // 画面の左端から右端に向かってゲージを伸ばす
 	}
@@ -20,7 +20,7 @@ namespace basecross {
 	void HpBar::OnUpdate()
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetControllerSprite())
+		if (levelUpEvent->GetEventActive())
 		{
 			return;
 		}

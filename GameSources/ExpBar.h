@@ -13,12 +13,15 @@ namespace basecross {
 	
 	class ExpBar : public GameObject
 	{
+		int m_maxExp; // 最大経験値
+
 		// EXPバーの情報を入れる変数
 		shared_ptr<GaugeSizeSettings> m_bar;
 
 	public:
 		ExpBar(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage)
+			GameObject(stage),
+			m_maxExp(0)
 		{
 		}
 

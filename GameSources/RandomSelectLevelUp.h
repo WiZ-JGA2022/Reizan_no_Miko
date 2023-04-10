@@ -25,12 +25,7 @@ namespace basecross {
 
 	public :
 		RandomSelectLevelUpButton(const shared_ptr<Stage>& StagePtr);
-
-		bool GetControllerSprite() {
-			return m_isActiveSprite;
-		}
-
-		virtual ~RandomSelectLevelUpButton();
+		~RandomSelectLevelUpButton();
 
 		virtual void OnCreate() override;
 
@@ -38,7 +33,21 @@ namespace basecross {
 		* レベルアップ時に呼ばれる関数
 		*/
 		void LevelUpEvent();
-	};
 
+		bool GetEventActive() 
+		{
+			return m_isActiveSprite;
+		}
+
+		void SetEventActive(bool active)
+		{
+			m_isActiveSprite = active;
+		}
+
+		int GetSpriteNums(int index)
+		{
+			return m_spriteNums[index];
+		}
+	};
 }
 //end basecross

@@ -34,7 +34,7 @@ namespace basecross {
     void PlayerBullet::OnUpdate()
     {
         auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-        if (levelUpEvent->GetControllerSprite())
+        if (levelUpEvent->GetEventActive())
         {
             return;
         }

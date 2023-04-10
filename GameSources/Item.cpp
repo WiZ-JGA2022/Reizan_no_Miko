@@ -13,32 +13,36 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 
 		m_transform = GetComponent<Transform>();
-		m_transform->SetScale(m_itemScale);
-		m_transform->SetPosition(m_itemPosition);
+		m_transform->SetScale(m_scale);
+		m_transform->SetPosition(m_position);
 
 		auto ItemColl = AddComponent<CollisionObb>();
 		ItemColl->SetAfterCollision(AfterCollision::None);
-
-		//Enemyが消えたら生成
-		auto EnemyOut = m_enemydis;
-		auto EnemyDieout = GetStage()->GetSharedGameObject<Enemy>(L"Enemy");
-			 
-		//if (EnemyOut && EnemyDieout < PlayerBullet)
-		//{
-		//	
-		//	GetStage()->AddGameObject<Item>(GetThis<EnemyController>());
-		//	return;
-		//}
 
 	}
 
 	void Item::OnUpdate() {
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetControllerSprite())
+		if (levelUpEvent->GetEventActive())
 		{
 			return;
 		}
 
+		MoveExp();
+	}
+
+	void Item::OnCollisionEnter(shared_ptr<GameObject>& other)
+	{
+		if (other->FindTag(L"Player"))
+		{
+			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+			playerStatus->ExpValueUpdate(m_expValue);
+			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
+		}
+	}
+
+	void Item::MoveExp()
+	{
 		// デルタタイムの取得
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
@@ -48,7 +52,17 @@ namespace basecross {
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
-		m_direction = playerPos - pos; // プレイヤーへの方向を計算
+		m_direction = playerPos - pos; // プレイヤーとの距離を計算
+
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		m_pickupRange = playerStatus->GetStatusValue(L"PICKUP");
+
+		// プレイヤーの取得範囲内にいなければ
+		if (m_direction.length() > m_pickupRange)
+		{
+			// 動かない
+			return;
+		}
 
 		// ベクトルの正規化処理
 		float normalizeMagnification = 1 / sqrt(
@@ -58,21 +72,12 @@ namespace basecross {
 		m_direction *= normalizeMagnification;
 		// ここまで
 
-		pos += m_direction * m_itemspeed * delta;	// 移動の計算
+		pos += m_direction * m_speed * delta;	// 移動の計算
 		float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
 
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
 
-		//playerが一定の範囲に入ったら動く（条件式
-	}
-
-	void Item::OnCollisionEnter(shared_ptr<GameObject>& other)
-	{
-		if (other->FindTag(L"Player"))
-		{
-			GetStage()->RemoveGameObject<Item>(GetThis<Item>());
-		}
 	}
 }
 //end basecross

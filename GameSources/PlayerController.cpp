@@ -34,8 +34,7 @@ namespace basecross {
 	void PlayerController::OnUpdate()
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		levelUpEvent->LevelUpEvent();
-		if (levelUpEvent->GetControllerSprite())
+		if (levelUpEvent->GetEventActive())
 		{
 			return;
 		}
@@ -56,22 +55,6 @@ namespace basecross {
 		}
 	}
 
-	void PlayerController::OnCollisionExcute(shared_ptr<GameObject>& other)
-	{
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetControllerSprite())
-		{
-			return;
-		}
-
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		if (other->FindTag(L"Enemy"))
-		{
-			playerStatus->PlayerDamageProcess();
-			return;
-		}
-	}
-
 	void PlayerController::PlayerMoveProcess()
 	{
 		auto& app = App::GetApp();
@@ -80,23 +63,7 @@ namespace basecross {
 		auto& pad = device.GetControlerVec()[0];
 
 		Vec3 padLStick(pad.fThumbLX, 0.0f, pad.fThumbLY);
-
-		if (padLStick.length() > 0.0f)
-		{
-			float stickRad = atan2(padLStick.z, padLStick.x);
-
-			// カメラの回り込みを取得
-			auto camera = GetStage()->GetView()->GetTargetCamera();
-			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
-			if (mainCamera)
-			{
-				float cameraAngle = mainCamera->GetAngle();
-
-				stickRad += cameraAngle + XM_PIDIV2;
-				padLStick.x = cos(stickRad);
-				padLStick.z = sin(stickRad);
-			}
-		}
+		Vec3 padRStick(pad.fThumbRX, 0.0f, pad.fThumbRY);
 
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
@@ -106,11 +73,10 @@ namespace basecross {
 
 		m_transform->SetPosition(pos);
 
-		if (padLStick.length() > 0.0f) // スティックの入力確認
+		if (padRStick.length() > 0.0f) 
 		{
-			// スティックの傾きに合わせてオブジェクトを回転させる
-			float rotY = atan2f(-padLStick.z, padLStick.x); // 2次元ベクトルを角度(ラジアン)に変換する
-			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // Y軸中心の回転（キャラクターをゼロ度方向に向かせるために90度多く回転させる）
+			float rotY = atan2f(-padRStick.z, padRStick.x); 
+			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // 回転処理
 		}
 	}
 }

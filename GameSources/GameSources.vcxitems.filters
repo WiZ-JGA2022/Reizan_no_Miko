@@ -70,7 +70,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GimmicController.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)GimmickController.cpp">
       <Filter>Sources\Gimmic</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp">
@@ -147,7 +147,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GimmicController.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)GimmickController.h">
       <Filter>Headers\Gimmic</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h">

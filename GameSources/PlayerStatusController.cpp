@@ -1,6 +1,6 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file PlayerStatusController.cpp
+@brief プレイヤーのステータスを管理するクラスの実装
 */
 
 #include "stdafx.h"
@@ -11,19 +11,17 @@ namespace basecross {
 	PlayerStatusController::PlayerStatusController(const std::shared_ptr<Stage>& stage) :
 		GameObject(stage),
 		m_BaseRisingValue(10),
-		m_DelayCount(60),
-		m_expLevel(1),
-		m_expCount(0.0f),
-		m_maxExp(10.0f),
-		m_previousExp(10.0f),
-		m_enemyATK(0),
-		m_delayFlame(m_DelayCount)
+		m_DamageDelayCount(60),
+		m_maxExp(5),
+		m_beforeMaxExp(m_maxExp),
+		m_damageDelayFlame(m_DamageDelayCount)
 	{
 	}
 	PlayerStatusController::~PlayerStatusController() {}
 
 	void PlayerStatusController::OnCreate()
 	{
+		// ステータス上昇値の初期化
 		for (int i = 0; i < m_statusName.size(); i++)
 		{
 			m_statusRisingValue.emplace_back(0);
@@ -33,45 +31,53 @@ namespace basecross {
 	void PlayerStatusController::OnUpdate()
 	{
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		// プレイヤーが居なかったら
 		if (!player->GetDrawActive())
 		{
+			// 処理を停止する
 			return;
 		}
 
-		m_delayFlame--;
-
-		// 経験値取得量と必要経験値が同じ場合(レベルアップ処理)
-		if (m_expCount >= m_maxExp)
+		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+		// 経験値取得量が必要経験値を超えたとき
+		if (m_statusValue[L"EXP"] >= m_maxExp)
 		{
-			m_previousExp = m_maxExp;
-
-			m_expLevel++;
-			auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+			// 経験値レベルを上げる
+			m_statusLevel[L"EXP"]++;
+			// レベルアップイベントの実行
 			levelUpEvent->LevelUpEvent();
-			m_expCount -= m_maxExp;
+			// EXPを0に戻す
+			m_statusValue[L"EXP"] = 0;
+			// 次回レベルアップまでに必要なEXP量を増やす
+			m_maxExp = m_BaseRisingValue * m_statusLevel[L"EXP"];
 		}
-		// 次回レベルアップまでに必要なEXP量を増やす
-		m_maxExp = m_BaseRisingValue * (m_expLevel - 1) + m_previousExp;
 
-		//wstringstream wss;
-		//wss << L"HP : " <<
-		//	m_statusValue[L"HP"] << "\n"
-		//	<< L"ATK : " <<
-		//	m_statusValue[L"ATK"] << "\n"
-		//	<< L"DEF : " <<
-		//	m_statusValue[L"DEF"] << "\n"
-		//	<< L"SPD : " <<
-		//	m_statusValue[L"SPD"] << "\n"
-		//	<< L"HASTE : " <<
-		//	m_statusValue[L"HASTE"] << "\n"
-		//	<< L"PICKUP : " <<
-		//	m_statusValue[L"PICKUP"] << endl;
-		//auto& app = App::GetApp();
-		//auto scene = app->GetScene<Scene>();
-		//auto dstr = scene->GetDebugString();
-		//scene->SetDebugString(dstr + wss.str());
+		// レベルアップイベントがアクティブなら
+		if (levelUpEvent->GetEventActive())
+		{
+			auto& app = App::GetApp();
+			auto device = app->GetInputDevice(); 
+			auto& pad = device.GetControlerVec()[0]; 
 
+			// 十字キーの上、右、下で選ぶ
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
+			{
+				StatusLevelUpdate(levelUpEvent->GetSpriteNums(0));
+				levelUpEvent->SetEventActive(false);
+			}
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
+			{
+				StatusLevelUpdate(levelUpEvent->GetSpriteNums(1));
+				levelUpEvent->SetEventActive(false);
+			}
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
+			{
+				StatusLevelUpdate(levelUpEvent->GetSpriteNums(2));
+				levelUpEvent->SetEventActive(false);
+			}
+		}
 	}
+
 	void PlayerStatusController::StatusLevelUpdate(int selectStatusNum)
 	{
 		// レベルを上げる
@@ -103,31 +109,29 @@ namespace basecross {
 		default :
 			break;
 		}
-		// 経験値を0に戻す
-		//expItem.ResetExpCount();
-
 	} // end StatusLevelUpdate
+
+	// 敵から受けるダメージの処理
+	void PlayerStatusController::PlayerDamageProcess(float damage)
+	{
+		// 防御力の軽減を追加したダメージ量の計算
+		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
+		// ダメージ分自分の体力を減らす
+		m_statusValue[L"HP"] -= totalDamage;
+	} // end PlayerTakenDamage
 
 	float PlayerStatusController::GetStatusValue(wstring statusKey)
 	{
 		return m_statusValue[statusKey];
 	}
 
-	// 敵から受けるダメージの処理
-	void PlayerStatusController::PlayerDamageProcess()
-	{		
-		// 防御力の軽減を追加したダメージ量の計算
-		float damage = m_enemyATK - (m_enemyATK * (m_statusValue[L"DEF"] - 1.0f));
-		if (m_delayFlame <= 0)
-		{
-			// ダメージ分自分の体力を減らす
-			m_statusValue[L"HP"] -= damage;
-			m_delayFlame = m_DelayCount;
-		}
-	} // end PlayerTakenDamage
-
-	void PlayerStatusController::SetEnemyATK(float ATK)
+	int PlayerStatusController::GetMaxExp()
 	{
-		m_enemyATK = ATK;
+		return m_maxExp;
+	}
+
+	void PlayerStatusController::ExpValueUpdate(int expValue)
+	{
+		m_statusValue[L"EXP"] += expValue;
 	}
 }

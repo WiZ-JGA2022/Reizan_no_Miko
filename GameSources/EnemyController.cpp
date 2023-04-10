@@ -33,7 +33,7 @@ namespace basecross {
 	{	
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetControllerSprite() || !player->GetDrawActive())
+		if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
 		{
 			return;
 		}

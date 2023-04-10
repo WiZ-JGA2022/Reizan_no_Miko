@@ -5,35 +5,29 @@
 
 #pragma once
 #include "stdafx.h"
-#include "PlayerController.h"
 
 namespace basecross {
 	class Item : public GameObject
 	{
-		std::shared_ptr<PlayerController> m_player;
-		shared_ptr<Transform>m_transform; 
+		float m_pickupRange; // プレイヤーの取得範囲
 
-		Vec3 m_itemPosition;
-		Vec3 m_itemScale;
+		float m_speed; // 移動速度
+		int m_expValue; // 経験値量
+
+		Vec3 m_scale; // 大きさ
+		Vec3 m_position; // 位置
 		Vec3 m_direction; // プレイヤーへの方向
 
-		float m_attractX;
-		float m_attractZ;
-		float m_itemspeed;
-		float m_inArea;
-		bool m_enemydis;
+		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 	public:
-		Item(const shared_ptr<Stage>& stagePtr, std::shared_ptr<PlayerController>& playerPtr) :
+		Item(const shared_ptr<Stage>& stagePtr, const Vec3& position) :
 			GameObject(stagePtr),
-			m_player(playerPtr),
-			m_itemScale(0.5f,0.5f,0.5f),
-			m_itemPosition(3.0f,0.0f,3.0f),
-			m_itemspeed(1.0f),
-			m_attractX(1.0f),
-			m_attractZ(1.0f),
-			m_inArea(10.0f),
-			m_enemydis(false)
+			m_pickupRange(0),
+			m_expValue(1),
+			m_scale(0.5f,0.5f,0.5f),
+			m_position(position),
+			m_speed(5.0f)
 		{
 		};
 		
@@ -41,6 +35,9 @@ namespace basecross {
 		void OnUpdate() override;
 		
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+
+		// Expの移動処理
+		void MoveExp();
 	};
 
 

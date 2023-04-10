@@ -1,6 +1,6 @@
 /*!
-@file EnemyController.h
-@brief 敵など
+@file PlayerStatusController.h
+@brief プレイヤーのステータスを管理するクラス
 */
 
 #pragma once
@@ -10,15 +10,12 @@ namespace basecross {
     class PlayerStatusController : public GameObject
     {
         const int m_BaseRisingValue; // ステータスの基礎上昇量
-        const int m_DelayCount; // ダメージを受ける間隔
+        const int m_DamageDelayCount; // ダメージを受ける間隔
 
-        int m_expLevel;         // 経験値レベル
-        float m_expCount;       // 経験値取得量
-        float m_maxExp;         // 必要経験値
-        float m_previousExp;    // 前回必要経験値
-        float m_enemyATK; // 敵の攻撃力
-        
-        int m_delayFlame; // ダメージを受ける間隔
+        int m_maxExp; // 必要経験値
+        int m_beforeMaxExp; // 前回必要経験値
+                
+        int m_damageDelayFlame; // ダメージを受ける間隔
         
         // ステータス名
         std::map<int, wstring> m_statusName = {
@@ -27,17 +24,19 @@ namespace basecross {
             {2, L"DEF"},
             {3, L"SPD"},
             {4, L"HASTE"},
-            {5, L"PICKUP"}
+            {5, L"PICKUP"},
+            {6, L"EXP"}
         };
 
         // ステータス値の初期値
-        const float m_DefaultStatusValue[6] = {
+        const float m_DefaultStatusValue[7] = {
             50.0f,
             10.0f,
             1.0f,
             3.0f,
             1.0f,
-            100.0f
+            3.0f,
+            0.0f
         };
         // ステータス値
         std::map<wstring, float> m_statusValue = {
@@ -46,7 +45,8 @@ namespace basecross {
             {L"DEF", m_DefaultStatusValue[2]},
             {L"SPD", m_DefaultStatusValue[3]},
             {L"HASTE", m_DefaultStatusValue[4]},
-            {L"PICKUP", m_DefaultStatusValue[5]}
+            {L"PICKUP", m_DefaultStatusValue[5]},
+            {L"EXP", m_DefaultStatusValue[6]}
         };
 
         // ステータスレベル
@@ -56,7 +56,8 @@ namespace basecross {
             {L"DEF", 0},
             {L"SPD", 0},
             {L"HASTE", 0},
-            {L"PICKUP", 0}
+            {L"PICKUP", 0},
+            {L"EXP", 0}
         };
 
         vector<float> m_statusRisingValue; // ステータス上昇量
@@ -76,10 +77,14 @@ namespace basecross {
         */
         float GetStatusValue(wstring statusKey);
 
+        int GetMaxExp();
+
         /**
-        * プレイヤーが受けたダメージを計算する関数
+        * プレイヤーに与えるダメージを計算する関数
+        * 
+        * @param damage 与えるダメージ量
         */
-        void PlayerDamageProcess();
+        void PlayerDamageProcess(float damage);
 
         /**
         * ステータスを強化する関数
@@ -89,9 +94,11 @@ namespace basecross {
         void StatusLevelUpdate(int selectStatusNum);
 
         /**
-        * 敵の攻撃力を設定する関数
+        * 指定した数だけEXPを増やす関数
+        *
+        * @param expValue 増やすEXPの数
         */
-        void SetEnemyATK(float ATK);
+        void ExpValueUpdate(int expValue);
     };
 
 }

@@ -64,11 +64,8 @@ namespace basecross {
 			CreatePlayer();
 			// 敵の作成
 			CreateEnemy();
-
 			// レベルアップイベントの作成
 			CreateLevelUpEvent();
-
-			AddGameObject<Item>();
 
 			// 地面の作成
 			AddGameObject<Field>();
@@ -77,8 +74,8 @@ namespace basecross {
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
-			AddGameObject<SpurtLava>();
 
+			AddGameObject<GimmickController>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
@@ -92,7 +89,7 @@ namespace basecross {
 
 	void GameStage::OnDraw()
 	{
-		Stage::OnDraw(); // 継承するはずだった親クラスの関数を呼び出す
+		Stage::OnDraw();
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 }

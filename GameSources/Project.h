@@ -28,5 +28,6 @@
 #include "Enemy.h"
 #include "CrossKey.h"
 #include "EnemyBullet.h"
-#include "GimmicController.h"
+#include "GimmickController.h"
 #include "SpurtLava.h"
+#include "NumberUI.h"

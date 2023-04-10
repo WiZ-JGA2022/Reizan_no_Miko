@@ -10,6 +10,14 @@
 namespace basecross {
 	class Enemy : public GameObject {
 		
+		// ダメージを与える間隔
+		const int m_DamageDelayCount;
+		int m_damageDelayFlame;
+
+		// 弾を撃つ間隔
+		const int m_ShotRecastCount;
+		int m_shotRecastFlame;
+
 		Vec3 m_position; // 初期位置
 		Vec3 m_direction; // プレイヤーへの方向
 
@@ -36,11 +44,18 @@ namespace basecross {
 
 		// 衝突応答処理
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+		
+		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 
 		/**
 		* 敵の移動処理
 		*/
 		void MoveEnemy();
+
+		/**
+		* 弾の発射処理
+		*/
+		void ShotBullet();
 
 		/**
 		* 敵が受けるダメージの計算

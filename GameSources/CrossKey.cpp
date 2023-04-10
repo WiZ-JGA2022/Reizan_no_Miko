@@ -114,7 +114,7 @@ namespace basecross
 			auto levelUpButton = dynamic_pointer_cast<RandomSelectLevelUpButton>(obj);
 			if (levelUpButton)
 			{
-				auto controllerKeyFlg = levelUpButton->GetControllerSprite();
+				auto controllerKeyFlg = levelUpButton->GetEventActive();
 				if (!controllerKeyFlg) {
 					GetStage()->RemoveGameObject<CrossKeySprites>(GetThis<CrossKeySprites>());
 				}
