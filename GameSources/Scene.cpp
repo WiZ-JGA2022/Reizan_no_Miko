@@ -60,6 +60,9 @@ namespace basecross{
 
 	void Scene::CreateResourses()
 	{
+		// テスト用
+		RoadTexture(L"WALL_TX", L"wall.jpg");
+
 		RoadTexture(L"EXPBAR_BLACK", L"ExpBar(Black).png");
 		RoadTexture(L"EXPBAR_BLUE", L"ExpBar(Blue).png");
 		RoadTexture(L"HPBAR_GREEN", L"HpBar(Green).png");
@@ -75,9 +78,10 @@ namespace basecross{
 		RoadTexture(L"CROSSKEY_UP", L"十字キーの上.png");
 		RoadTexture(L"CROSSKEY_RIGHT", L"十字キーの右.png");
 		RoadTexture(L"CROSSKEY_DOWN", L"十字キーの下.png");
+		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
+		RoadTexture(L"EXP_NUMBER", L"ExpNumber.png");
+		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
 
-		// テスト用
-		RoadTexture(L"WALL_TX", L"wall.jpg");
 	}
 
 	void Scene::OnCreate(){
