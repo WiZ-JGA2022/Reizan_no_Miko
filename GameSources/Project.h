@@ -30,4 +30,5 @@
 #include "EnemyBullet.h"
 #include "GimmickController.h"
 #include "SpurtLava.h"
+#include "HpNumber.h"
 #include "NumberUI.h"
