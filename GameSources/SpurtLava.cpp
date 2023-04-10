@@ -11,8 +11,16 @@ namespace basecross {
 		GameObject(stage),
 		m_damageDelayFlame(0),
 		m_damageValue(1.0f),
-		m_scale(0),
+		m_scale(Vec3(5.0f, 5.0f, 5.0f)),
 		m_position(0)
+	{
+	}
+	SpurtLava::SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position) :
+		GameObject(stage),
+		m_damageDelayFlame(0),
+		m_damageValue(1.0f),
+		m_scale(Vec3(5.0f, 5.0f, 5.0f)),
+		m_position(position)
 	{
 	}
 	SpurtLava::SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :

@@ -22,6 +22,7 @@ namespace basecross {
 
 	public:
 		SpurtLava(const shared_ptr<Stage>& stage);
+		SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position);
 		SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale);
 		~SpurtLava();
 
