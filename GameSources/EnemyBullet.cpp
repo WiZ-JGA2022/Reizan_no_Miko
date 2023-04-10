@@ -39,6 +39,12 @@ namespace basecross {
         m_position += m_direction * m_speed * delta; // ˆÚ“®‚ÌŒvŽZ
 
         m_transform->SetPosition(m_position); // ˆÚ“®ˆ—
+
+        auto playerPosition = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>()->GetPosition();
+        if (playerPosition.length() - m_position.length() > 10.0f || -10.0f > playerPosition.length() - m_position.length())
+        {
+            GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
+        }
     }
 
     void EnemyBullet::OnCollisionEnter(shared_ptr<GameObject>& other)
@@ -47,6 +53,7 @@ namespace basecross {
         {
             auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
             playerStatus->PlayerDamageProcess(m_damage);
+            GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
         }
     }
 
