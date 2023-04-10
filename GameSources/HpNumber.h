@@ -5,7 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
-//#include "NumberUI.h"
+#include "NumberUI.h"
 
 namespace basecross {
 	class HpNumber : public GameObject {
@@ -16,16 +16,16 @@ namespace basecross {
 
 		float m_maxHp;
 
-		//vector<shared_ptr<NumberUI>> m_numbers;
+		vector<shared_ptr<NumberUI>> m_numbers;
 
 	public :
 		HpNumber(const shared_ptr<Stage>& stage);
 		~HpNumber();
 
 		void OnCreate() override;
-		//void OnUpdate() override;
-		//void OnDraw() override;
+		void OnUpdate() override;
+		void OnDraw() override;
 
-		//void UpdateValue(float Hp, bool isMax);
+		void UpdateValue(int maxHp, float currentHp);
 	};
 }

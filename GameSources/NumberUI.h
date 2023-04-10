@@ -39,8 +39,8 @@ namespace basecross {
 		
 		void SetNumber(int number);
 
-		void SetPosition(const Vec3& pos);
-		void SetPosition(const Vec2& pos);
-		void SetPosition(float x, float y);
+		void SetPosition(const Vec3& pos, float h);
+		void SetPosition(const Vec2& pos, float h);
+		void SetPosition(float x, float y, float h);
 	};
 }

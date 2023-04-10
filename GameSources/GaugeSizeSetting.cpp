@@ -72,29 +72,11 @@ namespace basecross {
 					m_vertices[i].position.x = gaugeSizeDiff * currentGaugeSize;
 				}				
 			}
-
-			//if (i % 2 == 0)
-			//{
-			//	m_vertices[i].textureCoordinate.x = m_uvPosition / gaugeSizeLimit;
-			//}
-			//else
-			//{
-			//	m_vertices[i].textureCoordinate.x = m_uvPosition / gaugeSizeLimit + (m_uvShiftDistance / m_statusLevel);
-			//}
 		}
 
 		// 更新されたデータを元にポリゴンを作り直す
 		m_draw->UpdateVertices(m_vertices);
-	
-
-		// デバッグ用文字列 //
-		//auto& app = App::GetApp();
-		//wstringstream wss;
-		//auto scene = app->GetScene<Scene>();
-		//auto dstr = scene->GetDebugString();
-		//scene->SetDebugString(dstr + wss.str());
-		// ここまで //
-	}
+		}
 
 	void GaugeSizeSettings::SetPosition(const Vec3& pos, float h)
 	{

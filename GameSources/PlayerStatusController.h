@@ -12,6 +12,7 @@ namespace basecross {
         const int m_BaseRisingValue; // ステータスの基礎上昇量
         const int m_DamageDelayCount; // ダメージを受ける間隔
 
+        int m_maxHp;
         int m_maxExp; // 必要経験値
         int m_beforeMaxExp; // 前回必要経験値
                 
@@ -77,6 +78,7 @@ namespace basecross {
         */
         float GetStatusValue(wstring statusKey);
 
+        int GetMaxHp();
         int GetMaxExp();
 
         /**

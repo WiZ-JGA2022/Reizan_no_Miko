@@ -26,12 +26,7 @@ namespace basecross {
 		}
 
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-
-		if (m_maxHP < playerStatus->GetStatusValue(L"HP"))
-		{
-			m_maxHP = playerStatus->GetStatusValue(L"HP");
-		}
-		m_bar->UpdateGaugeSize(m_maxHP, playerStatus->GetStatusValue(L"HP"));
+		m_bar->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
 	}
 
 	void HpBar::OnDraw()

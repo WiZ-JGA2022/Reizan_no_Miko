@@ -28,6 +28,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
@@ -57,6 +60,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
       <Filter>Sources\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp">
+      <Filter>Sources\UI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
       <Filter>Sources\GameStage</Filter>
@@ -105,6 +111,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
@@ -125,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
       <Filter>Headers\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h">
+      <Filter>Headers\UI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
       <Filter>Headers\GameStage</Filter>

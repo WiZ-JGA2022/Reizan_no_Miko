@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "Project.h"
+#include "test.h"
 
 namespace basecross {
 
@@ -74,8 +75,9 @@ namespace basecross {
 			AddGameObject<ExpBar>();
 			AddGameObject<HpBar>();
 
-
 			AddGameObject<GimmickController>();
+
+			AddGameObject<HpNumber>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();

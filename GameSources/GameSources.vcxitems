@@ -25,9 +25,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GimmickController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Item.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
@@ -52,9 +54,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GimmickController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />

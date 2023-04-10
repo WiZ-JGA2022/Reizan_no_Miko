@@ -57,25 +57,25 @@ namespace basecross {
 		m_draw->UpdateVertices(m_vertices);
 	}
 
-	void NumberUI::SetPosition(const Vec3& pos)
+	void NumberUI::SetPosition(const Vec3& pos, float h)
 	{
 		auto& app = App::GetApp();
 
 		// ‰æ–Ê‚Ì•‚Æ‚‚³‚ðŽæ“¾‚·‚é
-		auto w = app->GetGameWidth();
-		auto h = app->GetGameHeight();
+		auto width = app->GetGameWidth();
+		auto height = app->GetGameHeight();
 
-		m_transform->SetPosition(Vec3(pos.x - (w * 0.5f), -pos.y + h * 0.5f, pos.z));
+		m_transform->SetPosition(Vec3(pos.x - (width * 0.5f), -pos.y + height * h, pos.z));
 	}
 
-	void NumberUI::SetPosition(const Vec2& pos)
+	void NumberUI::SetPosition(const Vec2& pos, float h)
 	{
-		SetPosition(Vec3(pos.x, pos.y, 0.0f));
+		SetPosition(Vec3(pos.x, pos.y, 0.0f), h);
 	}
 
-	void NumberUI::SetPosition(float x, float y)
+	void NumberUI::SetPosition(float x, float y, float h)
 	{
-		SetPosition(Vec2(x, y));
+		SetPosition(Vec2(x, y), h);
 	}
 
 }
