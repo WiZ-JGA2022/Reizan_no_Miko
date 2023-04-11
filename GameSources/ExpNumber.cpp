@@ -46,12 +46,12 @@ namespace basecross {
 		int place = 1;
 		for (auto& numberObj : m_numbers)
 		{
-			int currentNumber = (int)currentExp * 10000 / place % 10; // 4桁目以降に表示
 			int maxNumber = maxExp / place % 10; // 1桁目から表示
+			int currentNumber = (int)currentExp * 10000 / place % 10; // 5桁目以降に表示
 			int srash = 10;
 			if (place == 1000)
 			{
-				numberObj->SetNumber(srash); // 3桁目にスラッシュを表示
+				numberObj->SetNumber(srash); // 4桁目にスラッシュを表示
 			}
 			else
 			{

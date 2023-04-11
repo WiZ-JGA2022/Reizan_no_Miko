@@ -10,16 +10,17 @@
 namespace basecross {
 	class TimeNumber : public GameObject {
 
+		// ‘å‚«‚³
 		const Vec2 m_Size = Vec2(24.0f, 48.0f);
 
 		int m_place; // Œ…”
 
-		float m_totalTime;
+		float m_totalTime; // §ŒÀŠÔ
 		int m_minutes; // •ª
 		float m_seconds; // •b
-		float m_oldSeconds;
+		float m_oldSeconds; // ’¼‘O‚ÌŠÔ
 
-
+		// ”š
 		vector<shared_ptr<NumberUI>> m_numbers;
 
 	public:
