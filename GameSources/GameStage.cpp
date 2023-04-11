@@ -78,6 +78,7 @@ namespace basecross {
 			AddGameObject<GimmickController>();
 
 			AddGameObject<HpNumber>();
+			AddGameObject<ExpNumber>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();

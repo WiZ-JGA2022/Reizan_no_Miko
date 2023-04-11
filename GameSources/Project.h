@@ -31,4 +31,5 @@
 #include "GimmickController.h"
 #include "SpurtLava.h"
 #include "HpNumber.h"
+#include "ExpNumber.h"
 #include "NumberUI.h"
