@@ -79,6 +79,7 @@ namespace basecross {
 
 			AddGameObject<HpNumber>();
 			AddGameObject<ExpNumber>();
+			AddGameObject<TimeNumber>();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();

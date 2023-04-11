@@ -32,4 +32,5 @@
 #include "SpurtLava.h"
 #include "HpNumber.h"
 #include "ExpNumber.h"
+#include "TimeNumber.h"
 #include "NumberUI.h"

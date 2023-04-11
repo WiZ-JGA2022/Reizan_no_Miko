@@ -22,19 +22,13 @@ namespace basecross {
 		for (int i = 0; i < m_place; i++)
 		{
 			auto numberObj = ObjectFactory::Create<NumberUI>(GetStage(), m_Size, L"EXP_NUMBER"); // オブジェクトを生成するけどステージに追加しない
-			numberObj->SetPosition(Vec2(480.0f - m_Size.x * i, 0.0f), 0.46f); // 画面の右端から、スコアのすべての桁が収まる位置に調整する
+			numberObj->SetPosition(Vec2(480.0f - m_Size.x * i, 0.0f), 0.46f); 
 			m_numbers.push_back(numberObj);
 		}
 	}
 
 	void ExpNumber::OnUpdate()
 	{
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive())
-		{
-			return;
-		}
-
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		UpdateValue(playerStatus->GetMaxExp(), playerStatus->GetStatusValue(L"EXP"));
 	}

@@ -85,6 +85,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp">
+      <Filter>Sources\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -169,6 +172,9 @@
       <Filter>Headers\Gimmic</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h">
+      <Filter>Headers\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
   </ItemGroup>
