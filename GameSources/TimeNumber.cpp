@@ -24,8 +24,8 @@ namespace basecross {
 
 		for (int i = 0; i < m_place; i++)
 		{
-			auto numberObj = ObjectFactory::Create<NumberUI>(GetStage(), m_Size, L"TIME_NUMBER"); // オブジェクトを生成するけどステージに追加しない
-			numberObj->SetPosition(Vec2(680.0f - m_Size.x * i, 0.0f), 0.47f);
+			auto numberObj = ObjectFactory::Create<NumberUI>(GetStage(), m_NumberSize, L"TIME_NUMBER"); // オブジェクトを生成するけどステージに追加しない
+			numberObj->SetPosition(Vec2(680.0f - m_NumberSize.x * i, 0.0f), 0.47f);
 			m_numbers.push_back(numberObj);
 		}
 	}

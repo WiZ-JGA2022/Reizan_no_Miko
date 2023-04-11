@@ -33,4 +33,5 @@
 #include "HpNumber.h"
 #include "ExpNumber.h"
 #include "TimeNumber.h"
+#include "TimeChara.h"
 #include "NumberUI.h"

@@ -88,6 +88,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp">
       <Filter>Sources\UI\NumberUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp">
+      <Filter>Sources\UI\NumberUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -175,6 +178,9 @@
       <Filter>Headers\UI\NumberUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h">
+      <Filter>Headers\UI\NumberUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h">
       <Filter>Headers\UI\NumberUI</Filter>
     </ClInclude>
   </ItemGroup>

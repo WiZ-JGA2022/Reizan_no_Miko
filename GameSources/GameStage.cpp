@@ -66,7 +66,8 @@ namespace basecross {
 
 		// c‚èŠÔ‚Ì•\¦UI‚ğì¬
 		AddGameObject<TimeNumber>();
-	}
+		AddGameObject<TimeChara>();
+	} // end CreateUI
 
 
 	void GameStage::OnCreate() {

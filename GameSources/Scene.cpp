@@ -81,6 +81,7 @@ namespace basecross{
 		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
 		RoadTexture(L"EXP_NUMBER", L"ExpNumber.png");
 		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
+		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
 
 	}
 
