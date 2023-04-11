@@ -1,6 +1,6 @@
 /**
 @file TimeNumber.h
-@brief Œ»İEXP‚ÆÅ‘åEXP‚ğ”š‚Å•\¦‚·‚éUI
+@brief §ŒÀŠÔUI
 */
 
 #pragma once

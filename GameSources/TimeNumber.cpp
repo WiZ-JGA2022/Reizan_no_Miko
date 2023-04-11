@@ -1,6 +1,6 @@
 /**
-@file ExpNumber.cpp
-@brief Œ»İEXP‚ÆÅ‘åEXP‚ğ”š‚Å•\¦‚·‚éUI‚ÌÀ‘•
+@file TimeNumber.cpp
+@brief §ŒÀŠÔUI‚ÌÀ‘•
 */
 
 #include "stdafx.h"
@@ -41,6 +41,7 @@ namespace basecross {
 			return;
 		}
 
+		// ŠÔ‚ÌXV
 		auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();
 
@@ -54,6 +55,7 @@ namespace basecross {
 			UpdateValue(m_minutes, m_seconds);
 		}
 		m_oldSeconds = m_seconds;
+
 		// ŠÔØ‚ê‚É‚È‚Á‚½‚ç
 		if (m_totalTime <= 1)
 		{
