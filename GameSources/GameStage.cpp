@@ -5,7 +5,6 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include "test.h"
 
 namespace basecross {
 
@@ -55,6 +54,19 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerStatus", statusController);
 	} // end CreatePlayer	
 
+	void GameStage::CreateUI()
+	{
+		// ExpバーとHpバーの作成
+		AddGameObject<HpBar>();
+		AddGameObject<ExpBar>();
+
+		// HpとExpの数字表記を作成
+		AddGameObject<HpNumber>();
+		AddGameObject<ExpNumber>();
+
+		// 残り時間の表示UIを作成
+		AddGameObject<TimeNumber>();
+	}
 
 
 	void GameStage::OnCreate() {
@@ -71,15 +83,10 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
-			// ExpバーとHpバーの作成
-			AddGameObject<ExpBar>();
-			AddGameObject<HpBar>();
-
 			AddGameObject<GimmickController>();
 
-			AddGameObject<HpNumber>();
-			AddGameObject<ExpNumber>();
-			AddGameObject<TimeNumber>();
+			// UIの作成
+			CreateUI();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();

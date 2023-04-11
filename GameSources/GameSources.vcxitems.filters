@@ -19,24 +19,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp">
       <Filter>Sources\Player</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
@@ -61,17 +43,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
       <Filter>Sources\GameStage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
       <Filter>Sources\GameStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>Sources\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
-      <Filter>Sources\UI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp">
       <Filter>Sources\Enemy</Filter>
@@ -82,11 +58,35 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp">
       <Filter>Sources\Gimmic</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
+      <Filter>Sources\UI\LevelUpUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
+      <Filter>Sources\UI\LevelUpUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
+      <Filter>Sources\UI\LevelUpUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
+      <Filter>Sources\UI\GaugeUI</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp">
-      <Filter>Sources\UI</Filter>
+      <Filter>Sources\UI\NumberUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
+      <Filter>Sources\UI\GaugeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp">
+      <Filter>Sources\UI\GaugeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp">
+      <Filter>Sources\UI\NumberUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp">
+      <Filter>Sources\UI\NumberUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp">
-      <Filter>Sources\UI</Filter>
+      <Filter>Sources\UI\NumberUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,24 +108,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
       <Filter>Headers\Other</Filter>
     </ClInclude>
@@ -140,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
       <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h">
-      <Filter>Headers\UI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
       <Filter>Headers\GameStage</Filter>
@@ -159,9 +138,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
-      <Filter>Headers\UI</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
@@ -171,11 +147,35 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h">
       <Filter>Headers\Gimmic</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
+      <Filter>Headers\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
+      <Filter>Headers\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h">
+      <Filter>Headers\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
+      <Filter>Headers\UI\GaugeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
+      <Filter>Headers\UI\GaugeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h">
+      <Filter>Headers\UI\GaugeUI</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h">
-      <Filter>Headers\UI</Filter>
+      <Filter>Headers\UI\NumberUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h">
+      <Filter>Headers\UI\NumberUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h">
+      <Filter>Headers\UI\NumberUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h">
-      <Filter>Headers\UI</Filter>
+      <Filter>Headers\UI\NumberUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +220,24 @@
     </Filter>
     <Filter Include="Sources\Gimmic">
       <UniqueIdentifier>{755823e3-53fb-4116-a505-e14082370c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\GaugeUI">
+      <UniqueIdentifier>{2100b7b5-ecfb-4970-9e22-2ec49a56ee63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\NumberUI">
+      <UniqueIdentifier>{282411ad-2cdc-4459-b318-892a9eca7393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\LevelUpUI">
+      <UniqueIdentifier>{92cd76eb-2892-48e8-b219-411b698ce43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\LevelUpUI">
+      <UniqueIdentifier>{caf1415e-0dd8-4e92-a3f3-433fdd664aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\GaugeUI">
+      <UniqueIdentifier>{c0fab8c2-c6c6-44a6-906d-e6502420f4ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\NumberUI">
+      <UniqueIdentifier>{c56de922-2163-434e-a5ac-3a2fa1280ae0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

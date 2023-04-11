@@ -49,7 +49,7 @@ namespace basecross {
 		};
 	}
 
-	void GaugeSizeSettings::UpdateGaugeSize(float gaugeSizeLimit, float currentGaugeSize)
+	void GaugeSizeSettings::UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize)
 	{
 		float gaugeSizeDiff = m_DefaultGaugeWidth / gaugeSizeLimit;
 

@@ -9,13 +9,13 @@
 namespace basecross {
 	class NumberUI : public GameObject {
 		// 大きさ
-		const int m_SpriteWidth;
-		const int m_SpriteHeight;
+		const float m_SpriteWidth;
+		const float m_SpriteHeight;
 		// 色
 		const Col4 m_SpriteColor;
 		// スプライトの数とずらすUV座標
 		const float m_SpriteNumber = 11.0f;
-		const float m_SpriteUvPosition = 0.093f;
+		const float m_SpriteUvPosition = 0.09f;
 
 		// 表示される数字を表す値
 		int m_number;

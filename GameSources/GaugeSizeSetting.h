@@ -56,7 +56,7 @@ namespace basecross {
 		* @param gaugeSizeLimit HPまたはEXPの上限
 		* @param currentGaugeSize 現在のHPまたはEXPの数
 		*/
-		void UpdateGaugeSize(float gaugeSizeLimit, float currentGaugeSize);
+		void UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize);
 
 		/**
 		* ゲージの頂点データを設定する関数

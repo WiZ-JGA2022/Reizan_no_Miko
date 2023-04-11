@@ -25,6 +25,9 @@ namespace basecross {
 		// 主人公の作成
 		void CreatePlayer();
 
+		// UIの作成
+		void CreateUI();
+
 		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
 	public:
