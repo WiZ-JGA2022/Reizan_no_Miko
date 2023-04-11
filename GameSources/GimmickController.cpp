@@ -57,4 +57,13 @@ namespace basecross {
 			GetStage()->AddGameObject<SpurtLava>(m_gimmickPosition[i], m_GimmickScale);
 		}
 	}
+
+	int GimmickController::GetDamageFlame()
+	{
+		return m_GimmickDamageDelayFlame;
+	}
+	int GimmickController::GetDamageDelay()
+	{
+		return m_gimmickDamageDelay;
+	}
 }

@@ -84,6 +84,8 @@ namespace basecross{
 		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
 		RoadTexture(L"GROUND", L"ground.jpg");
 		RoadTexture(L"EVENT_BACK_GROUND", L"EventBackGround.png");
+		RoadTexture(L"ATTACK_ANNOUNCE_CIRCLE", L"AttackAnnouncementCircle.png");
+		RoadTexture(L"ATTACK_ANNOUNCE_LINE", L"AttackAnnouncementLine.png");
 
 	}
 

@@ -94,6 +94,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
       <Filter>Sources\UI\LevelUpUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp">
+      <Filter>Sources\Gimmic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h">
       <Filter>Headers\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h">
+      <Filter>Headers\Gimmic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

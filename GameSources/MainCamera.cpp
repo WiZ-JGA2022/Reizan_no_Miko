@@ -17,7 +17,7 @@ namespace basecross {
 		Vec3 at = m_targetTrans ? m_targetTrans->GetPosition() : GetAt();
 
 		//注視点からの相対座標(回り込みの角度と注視点からの距離で算出する)
-		auto relaivePos = Vec3(0.0f, 20.0f, -5.0f);
+		auto relaivePos = Vec3(0.0f, 7.0f, -15.0f);
 
 		Vec3 eye = at + relaivePos;
 		SetEye(eye);

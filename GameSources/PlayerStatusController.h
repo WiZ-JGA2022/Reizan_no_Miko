@@ -32,7 +32,7 @@ namespace basecross {
         // ステータス値の初期値
         const float m_DefaultStatusValue[7] = {
             50.0f,
-            10.0f,
+            5.0f,
             1.0f,
             3.0f,
             1.0f,

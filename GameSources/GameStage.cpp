@@ -86,8 +86,10 @@ namespace basecross {
 			AddGameObject<Field>();
 
 			// ƒMƒ~ƒbƒN‚Ìì¬
-			AddGameObject<GimmickController>();
+			auto gimmick = AddGameObject<GimmickController>();
+			SetSharedGameObject(L"GimmickController", gimmick);
 
+			//AddGameObject<AttackAnnounceLine>(Vec3(0));
 			// UI‚Ìì¬
 			CreateUI();
 

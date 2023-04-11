@@ -36,7 +36,7 @@ namespace basecross {
 			Vec3(5.0f, 5.0f, 5.0f)
 		};
 
-		const int m_GimmickCreateDelaySeconds = 570;
+		const int m_GimmickCreateDelaySeconds = 590;
 		const int m_GimmickDamageDelayFlame = 180;
 
 		int m_gimmickDamageDelay;
@@ -53,5 +53,8 @@ namespace basecross {
 		void OnUpdate() override;
 
 		void CreateSpurtLava();
+		int GetDamageFlame();
+		int GetDamageDelay();
+
 	};
 }
