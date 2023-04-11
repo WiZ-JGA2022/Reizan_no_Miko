@@ -33,8 +33,11 @@ namespace basecross {
 	void TimeNumber::OnUpdate()
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive())
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		// レベルアップイベント実行中またはプレイヤーが居ないとき
+		if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
 		{
+			// 処理を停止する
 			return;
 		}
 
@@ -43,14 +46,22 @@ namespace basecross {
 
 		m_totalTime -= delta;
 
-		m_minutes = (int)m_totalTime / 60;
-		m_seconds = m_totalTime - m_minutes * 60;
+		m_minutes = (int)m_totalTime / m_OneMinite;
+		m_seconds = m_totalTime - m_minutes * m_OneMinite;
 
 		if ((int)m_seconds != (int)m_oldSeconds)
 		{
 			UpdateValue(m_minutes, m_seconds);
 		}
 		m_oldSeconds = m_seconds;
+		// 時間切れになったら
+		if (m_totalTime <= 1)
+		{
+			// プレイヤーと時間の処理を停止する
+			player->SetUpdateActive(false);
+			player->SetDrawActive(false);
+			return;
+		}
 	}
 
 	void TimeNumber::OnDraw()
@@ -71,7 +82,7 @@ namespace basecross {
 			int coron = 10;
 			if (place == 100)
 			{
-				numberObj->SetNumber(coron); // 3桁目にスラッシュを表示
+				numberObj->SetNumber(coron); // 3桁目にコロンを表示
 			}
 			else
 			{
@@ -80,5 +91,10 @@ namespace basecross {
 
 			place *= 10; // 桁をずらす
 		}
+	}
+
+	float TimeNumber::GetTimeLeft()
+	{
+		return m_totalTime;
 	}
 }

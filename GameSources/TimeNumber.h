@@ -12,6 +12,7 @@ namespace basecross {
 
 		// ‘å‚«‚³
 		const Vec2 m_NumberSize = Vec2(24.0f, 48.0f);
+		const int m_OneMinite = 60;
 
 		int m_place; // Œ…”
 
@@ -32,5 +33,6 @@ namespace basecross {
 		void OnDraw() override;
 
 		void UpdateValue(int minites, float seconds);
+		float GetTimeLeft();
 	};
 }

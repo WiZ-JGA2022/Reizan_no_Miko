@@ -34,8 +34,11 @@ namespace basecross {
     void PlayerBullet::OnUpdate()
     {
         auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-        if (levelUpEvent->GetEventActive())
+        auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+        // レベルアップイベント実行中またはプレイヤーが居ないとき
+        if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
         {
+            // 処理を停止する
             return;
         }
 

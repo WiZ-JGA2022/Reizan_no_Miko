@@ -28,6 +28,13 @@ namespace basecross {
     void EnemyBullet::OnUpdate()
     {
         auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
+        auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+        // ƒvƒŒƒCƒ„[‚ª‹‚È‚©‚Á‚½‚ç
+        if (!player->GetDrawActive())
+        {
+            // ˆ—‚ð’âŽ~‚·‚é
+            return;
+        }
         if (levelUpEvent->GetEventActive())
         {
             return;

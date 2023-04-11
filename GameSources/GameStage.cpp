@@ -65,8 +65,9 @@ namespace basecross {
 		AddGameObject<ExpNumber>();
 
 		// 残り時間の表示UIを作成
-		AddGameObject<TimeNumber>();
+		auto time = AddGameObject<TimeNumber>();
 		AddGameObject<TimeChara>();
+		SetSharedGameObject(L"Time", time);
 	} // end CreateUI
 
 
@@ -84,6 +85,7 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
+			// テスト用
 			AddGameObject<GimmickController>();
 
 			// UIの作成

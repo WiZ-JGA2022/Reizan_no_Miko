@@ -50,7 +50,7 @@ namespace basecross {
 			// EXPを0に戻す
 			m_statusValue[L"EXP"] = 0;
 			// 次回レベルアップまでに必要なEXP量を増やす
-			m_maxExp = m_BaseRisingValue * m_statusLevel[L"EXP"];
+			m_maxExp = (m_BaseRisingValue / 2) * (m_statusLevel[L"EXP"] + 1);
 		}
 
 		// レベルアップイベントがアクティブなら
