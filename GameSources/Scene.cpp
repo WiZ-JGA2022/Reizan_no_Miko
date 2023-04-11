@@ -75,13 +75,15 @@ namespace basecross{
 		RoadTexture(L"PICKUP_LEVELUP", L"取得範囲UP.png");
 		RoadTexture(L"WEPON_1_LEVELUP", L"武器1.png");
 		RoadTexture(L"WEPON_2_LEVELUP", L"武器2.png");
-		RoadTexture(L"CROSSKEY_UP", L"十字キーの上.png");
-		RoadTexture(L"CROSSKEY_RIGHT", L"十字キーの右.png");
-		RoadTexture(L"CROSSKEY_DOWN", L"十字キーの下.png");
+		RoadTexture(L"CROSSKEY_UP", L"CrossKey_Up.png");
+		RoadTexture(L"CROSSKEY_RIGHT", L"CrossKey_Right.png");
+		RoadTexture(L"CROSSKEY_DOWN", L"CrossKey_Down.png");
 		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
 		RoadTexture(L"EXP_NUMBER", L"ExpNumber.png");
 		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
 		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
+		RoadTexture(L"GROUND", L"ground.jpg");
+		RoadTexture(L"EVENT_BACK_GROUND", L"EventBackGround.png");
 
 	}
 

@@ -85,7 +85,7 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
-			// テスト用
+			// ギミックの作成
 			AddGameObject<GimmickController>();
 
 			// UIの作成

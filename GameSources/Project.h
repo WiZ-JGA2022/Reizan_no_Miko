@@ -35,3 +35,4 @@
 #include "TimeNumber.h"
 #include "TimeChara.h"
 #include "NumberUI.h"
+#include "EventBackGround.h"

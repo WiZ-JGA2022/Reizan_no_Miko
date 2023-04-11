@@ -91,6 +91,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp">
       <Filter>Sources\UI\NumberUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
+      <Filter>Sources\UI\LevelUpUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h">
       <Filter>Headers\UI\NumberUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h">
+      <Filter>Headers\UI\LevelUpUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
