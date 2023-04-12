@@ -64,7 +64,6 @@ namespace basecross {
 		auto& pad = device.GetControlerVec()[0];
 
 		Vec3 padLStick(pad.fThumbLX, 0.0f, pad.fThumbLY);
-		Vec3 padRStick(pad.fThumbRX, 0.0f, pad.fThumbRY);
 
 		if (padLStick.length() > 0.0f)
 		{
@@ -78,10 +77,7 @@ namespace basecross {
 			pos += padLStick * playerStatus->GetStatusValue(L"SPD") * delta;
 
 			m_transform->SetPosition(pos);
-		}
-		if (padRStick.length() > 0.0f) 
-		{
-			float rotY = atan2f(-padRStick.z, padRStick.x); 
+			float rotY = atan2f(-padLStick.z, padLStick.x);
 			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // ‰ñ“]ˆ—
 		}
 	}

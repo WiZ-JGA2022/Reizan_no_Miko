@@ -13,13 +13,30 @@ namespace basecross {
 
 	void MainCamera::OnUpdate()
 	{
+		auto& app = App::GetApp();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
+
+		Vec3 padRStick(-pad.fThumbRX, 0.0f, pad.fThumbRY);
+
+		m_angle += padRStick.x * app->GetElapsedTime();
+		
+
 		// 注視点の座標
 		Vec3 at = m_targetTrans ? m_targetTrans->GetPosition() : GetAt();
 
-		//注視点からの相対座標(回り込みの角度と注視点からの距離で算出する)
-		auto relaivePos = Vec3(0.0f, 7.0f, -15.0f);
+		m_atPos += padRStick.z * app->GetElapsedTime();
 
-		Vec3 eye = at + relaivePos;
+		auto relativePos = Vec3(
+			cos(m_angle) * -m_distance,
+			7.0f,
+			sin(m_angle) * -m_distance
+		);
+
+		////注視点からの相対座標(回り込みの角度と注視点からの距離で算出する)
+		//auto relaivePos = Vec3(0.0f, 7.0f, -15.0f);
+
+		Vec3 eye = at + relativePos;
 		SetEye(eye);
 		SetAt(at);
 	}
