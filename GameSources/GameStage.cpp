@@ -181,18 +181,31 @@ namespace basecross {
 	} // end CreateViewLight
 
 	//スプライトの作成
-	void ResultStage::CreateTitleSprite() {
+	void ResultStage::CreateResultSprite() {
 		//AddGameObject<TitleSprite>(L"MESSAGE_TX", false,
 		Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f);
 
-	} // end CreateTitleSprite
+	} // end CreateResultSprite
+
+	void ResultStage::PlayBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"GAMEOVER_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+
+	void ResultStage::OnDestroy()
+	{
+		//BGMのストップ
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
 
 	//初期化
 	void ResultStage::OnCreate() {
 		CreateViewLight();
 		//スプライトの作成
-		CreateTitleSprite();
-
+		CreateResultSprite();
+		PlayBGM();
 	} // end OnCreate
 
 	//更新

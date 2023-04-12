@@ -87,6 +87,18 @@ namespace basecross{
 		RoadTexture(L"ATTACK_ANNOUNCE_CIRCLE", L"AttackAnnouncementCircle.png");
 		RoadTexture(L"ATTACK_ANNOUNCE_LINE", L"AttackAnnouncementLine.png");
 
+		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
+		RoadSound(L"EXP_SE", L"ExpSE.wav");
+		RoadSound(L"FALLROCK_SE", L"FallingRockSE.wav");
+		RoadSound(L"GAMECLEAR_SE", L"GameClearSE.wav");
+		RoadSound(L"GAMEOVER_SE", L"GameOverSE.wav");
+		RoadSound(L"LEVELUP_SE", L"LevelUp2SE.wav");
+		RoadSound(L"PLAYERRUN_SE", L"PlayerRunSE.wav");
+		RoadSound(L"PLAYERWALK_SE", L"PlayerWalkSE.wav");
+		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
+		RoadSound(L"SELECT_SE", L"Select2SE.wav");
+		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
+
 	}
 
 	void Scene::OnCreate(){
