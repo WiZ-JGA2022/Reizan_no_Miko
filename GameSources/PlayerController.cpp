@@ -51,6 +51,7 @@ namespace basecross {
 		if (m_recastFlame <= 0)
 		{
 			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
+
 			m_recastFlame = m_RecastCount - (m_RecastCount * (playerStatus->GetStatusValue(L"HASTE") - 1.0f));
 		}
 	}

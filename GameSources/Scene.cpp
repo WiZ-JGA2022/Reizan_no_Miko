@@ -75,12 +75,29 @@ namespace basecross{
 		RoadTexture(L"PICKUP_LEVELUP", L"取得範囲UP.png");
 		RoadTexture(L"WEPON_1_LEVELUP", L"武器1.png");
 		RoadTexture(L"WEPON_2_LEVELUP", L"武器2.png");
-		RoadTexture(L"CROSSKEY_UP", L"十字キーの上.png");
-		RoadTexture(L"CROSSKEY_RIGHT", L"十字キーの右.png");
-		RoadTexture(L"CROSSKEY_DOWN", L"十字キーの下.png");
+		RoadTexture(L"CROSSKEY_UP", L"CrossKey_Up.png");
+		RoadTexture(L"CROSSKEY_RIGHT", L"CrossKey_Right.png");
+		RoadTexture(L"CROSSKEY_DOWN", L"CrossKey_Down.png");
 		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
 		RoadTexture(L"EXP_NUMBER", L"ExpNumber.png");
 		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
+		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
+		RoadTexture(L"GROUND", L"ground.jpg");
+		RoadTexture(L"EVENT_BACK_GROUND", L"EventBackGround.png");
+		RoadTexture(L"ATTACK_ANNOUNCE_CIRCLE", L"AttackAnnouncementCircle.png");
+		RoadTexture(L"ATTACK_ANNOUNCE_LINE", L"AttackAnnouncementLine.png");
+
+		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
+		RoadSound(L"EXP_SE", L"ExpSE.wav");
+		RoadSound(L"FALLROCK_SE", L"FallingRockSE.wav");
+		RoadSound(L"GAMECLEAR_SE", L"GameClearSE.wav");
+		RoadSound(L"GAMEOVER_SE", L"GameOverSE.wav");
+		RoadSound(L"LEVELUP_SE", L"LevelUp2SE.wav");
+		RoadSound(L"PLAYERRUN_SE", L"PlayerRunSE.wav");
+		RoadSound(L"PLAYERWALK_SE", L"PlayerWalkSE.wav");
+		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
+		RoadSound(L"SELECT_SE", L"Select2SE.wav");
+		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
 
 	}
 
@@ -94,7 +111,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
 		}
 		catch (...) {
 			throw;
@@ -108,6 +125,14 @@ namespace basecross{
 		if (event->m_MsgStr == L"ToGameStage") {
 			//最初のアクティブステージの設定
 			ResetActiveStage<GameStage>();
+		}
+		else if (event->m_MsgStr == L"ToTitleStage") {
+			//最初のアクティブステージの設定
+			ResetActiveStage<TitleStage>();
+		}
+		else if (event->m_MsgStr == L"ToResultStage") {
+			//最初のアクティブステージの設定
+			ResetActiveStage<ResultStage>();
 		}
 
 		// デバッグ用文字列オブジェクトに対する設定

@@ -9,8 +9,8 @@
 namespace basecross {
 	class NumberUI : public GameObject {
 		// 大きさ
-		const int m_SpriteWidth;
-		const int m_SpriteHeight;
+		const float m_SpriteWidth;
+		const float m_SpriteHeight;
 		// 色
 		const Col4 m_SpriteColor;
 		// スプライトの数とずらすUV座標
@@ -39,8 +39,8 @@ namespace basecross {
 		
 		void SetNumber(int number);
 
-		void SetPosition(const Vec3& pos);
-		void SetPosition(const Vec2& pos);
-		void SetPosition(float x, float y);
+		void SetPosition(const Vec3& pos, float h);
+		void SetPosition(const Vec2& pos, float h);
+		void SetPosition(float x, float y, float h);
 	};
 }

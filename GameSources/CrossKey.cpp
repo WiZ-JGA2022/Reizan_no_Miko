@@ -81,7 +81,7 @@ namespace basecross
 		auto PtrDraw = AddComponent<PCTSpriteDraw>(vertices, indices);
 		PtrDraw->SetSamplerState(SamplerState::LinearWrap);
 		PtrDraw->SetTextureResource(Key);
-		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
+		PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 		SetDrawActive(true);
 
 	} // end OnCreate
@@ -91,21 +91,6 @@ namespace basecross
 		auto& app = App::GetApp();
 		auto stage = app->GetScene<Scene>()->GetActiveStage();	// ステージオブジェクトを取得する
 		auto objs = stage->GetGameObjectVec();					// ステージに追加されているすべてのオブジェクト
-		auto scene = App::GetApp()->GetScene<Scene>();
-
-
-		if (scene->GetTexNum() > m_texNum) {
-			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_alphaNum = 1.0f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
-		}
-		else
-		{
-			auto PtrDraw = AddComponent<PCTSpriteDraw>();
-			m_alphaNum = 0.5f;
-			PtrDraw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, m_alphaNum));
-
-		}
 
 		// 処理終了後に表示した画像を消す処理
 		for (auto& obj : objs)

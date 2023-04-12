@@ -14,20 +14,25 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Field.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GimmickController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Item.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
@@ -38,23 +43,30 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GimmickController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />
@@ -64,6 +76,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>

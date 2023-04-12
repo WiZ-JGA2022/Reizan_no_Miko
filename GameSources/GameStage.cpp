@@ -54,6 +54,21 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerStatus", statusController);
 	} // end CreatePlayer	
 
+	void GameStage::CreateUI()
+	{
+		// ExpバーとHpバーの作成
+		AddGameObject<HpBar>();
+		AddGameObject<ExpBar>();
+
+		// HpとExpの数字表記を作成
+		AddGameObject<HpNumber>();
+		AddGameObject<ExpNumber>();
+
+		// 残り時間の表示UIを作成
+		auto time = AddGameObject<TimeNumber>();
+		AddGameObject<TimeChara>();
+		SetSharedGameObject(L"Time", time);
+	} // end CreateUI
 
 
 	void GameStage::OnCreate() {
@@ -70,12 +85,12 @@ namespace basecross {
 			// 地面の作成
 			AddGameObject<Field>();
 
-			// ExpバーとHpバーの作成
-			AddGameObject<ExpBar>();
-			AddGameObject<HpBar>();
+			// ギミックの作成
+			auto gimmick = AddGameObject<GimmickController>();
+			SetSharedGameObject(L"GimmickController", gimmick);
 
-
-			AddGameObject<GimmickController>();
+			// UIの作成
+			CreateUI();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
@@ -87,10 +102,123 @@ namespace basecross {
 		}
 	}
 
+	//更新
+	void GameStage::OnUpdate() {
+		auto player = GetSharedGameObject<PlayerController>(L"Player");
+		if (!player->GetDrawActive())
+		{
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
+		}
+	} // end OnUpdate
+
 	void GameStage::OnDraw()
 	{
 		Stage::OnDraw();
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
+
+	//--------------------------------------------------------------------------------------
+	//	タイトルステージクラス
+	//--------------------------------------------------------------------------------------
+	void TitleStage::CreateViewLight() {
+		auto PtrView = CreateView<SingleView>();
+		//ビューのカメラの設定
+		auto PtrCamera = ObjectFactory::Create<Camera>();
+		PtrView->SetCamera(PtrCamera);
+		PtrCamera->SetEye(Vec3(0.0f, 2.0f, -3.0f));
+		PtrCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		//マルチライトの作成
+		auto PtrMultiLight = CreateLight<MultiLight>();
+		//デフォルトのライティングを指定
+		PtrMultiLight->SetDefaultLighting();
+
+	} // end CreateViewLight
+
+	//スプライトの作成
+	void TitleStage::CreateTitleSprite() {
+		//AddGameObject<TitleSprite>(L"MESSAGE_TX", false,
+		Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f);
+
+	} // end CreateTitleSprite
+
+	//初期化
+	void TitleStage::OnCreate() {
+		CreateViewLight();
+		//スプライトの作成
+		CreateTitleSprite();
+
+	} // end OnCreate
+
+	//更新
+	void TitleStage::OnUpdate() {
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<TitleStage>());
+
+	} // end OnUpdate
+
+	//Bボタン
+	void TitleStage::OnPushB() {
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+
+	} // end OnPushB
+
+
+	//--------------------------------------------------------------------------------------
+	//	リザルトステージクラス
+	//--------------------------------------------------------------------------------------
+	void ResultStage::CreateViewLight() {
+		auto PtrView = CreateView<SingleView>();
+		//ビューのカメラの設定
+		auto PtrCamera = ObjectFactory::Create<Camera>();
+		PtrView->SetCamera(PtrCamera);
+		PtrCamera->SetEye(Vec3(0.0f, 2.0f, -3.0f));
+		PtrCamera->SetAt(Vec3(0.0f, 0.0f, 0.0f));
+		//マルチライトの作成
+		auto PtrMultiLight = CreateLight<MultiLight>();
+		//デフォルトのライティングを指定
+		PtrMultiLight->SetDefaultLighting();
+
+	} // end CreateViewLight
+
+	//スプライトの作成
+	void ResultStage::CreateResultSprite() {
+		//AddGameObject<TitleSprite>(L"MESSAGE_TX", false,
+		Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f);
+
+	} // end CreateResultSprite
+
+	void ResultStage::PlayBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"GAMEOVER_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+
+	void ResultStage::OnDestroy()
+	{
+		//BGMのストップ
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
+
+	//初期化
+	void ResultStage::OnCreate() {
+		CreateViewLight();
+		//スプライトの作成
+		CreateResultSprite();
+		PlayBGM();
+	} // end OnCreate
+
+	//更新
+	void ResultStage::OnUpdate() {
+		//コントローラチェックして入力があればコマンド呼び出し
+		m_InputHandler.PushHandle(GetThis<ResultStage>());
+
+	} // end OnUpdate
+
+	//Bボタン
+	void ResultStage::OnPushB() {
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
+
+	} // end OnPushB
 }
 //end basecross

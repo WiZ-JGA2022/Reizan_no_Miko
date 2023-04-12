@@ -15,15 +15,14 @@ namespace basecross {
 	class GameStage : public Stage {
 		//ビューの作成
 		void CreateViewLight();
-
 		// 敵の作成
 		void CreateEnemy();
-
 		// レベルアップイベントの作成
 		void CreateLevelUpEvent();
-
 		// 主人公の作成
 		void CreatePlayer();
+		// UIの作成
+		void CreateUI();
 
 		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
@@ -33,12 +32,70 @@ namespace basecross {
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 
 		virtual void OnDraw() override; // デバッグ文字用に上書きする
+	};
 
+	//--------------------------------------------------------------------------------------
+	//	タイトルステージクラス
+	//--------------------------------------------------------------------------------------
+	class TitleStage : public Stage {
+		//ビューの作成
+		void CreateViewLight();
+		//スプライトの作成
+		void CreateTitleSprite();
+		//入力ハンドラー
+		InputHandler2<TitleStage> m_InputHandler;
+	public:
+		//構築と破棄
+		TitleStage() :Stage() {}
+		virtual ~TitleStage() {}
+		//初期化
+		virtual void OnCreate()override;
+		//更新
+		virtual void OnUpdate()override;
+		//Aボタン
+		void OnPushA() {
+			//何もしない
+		}
+		//Bボタン
+		void OnPushB();
 
 	};
 
+	//--------------------------------------------------------------------------------------
+	//	リザルトステージクラス
+	//--------------------------------------------------------------------------------------
+	class ResultStage : public Stage {
+		shared_ptr<SoundItem> m_BGM;
+		//ビューの作成
+		void CreateViewLight();
+		//スプライトの作成
+		void CreateResultSprite();
+		//BGMの再生
+		void PlayBGM();
+
+		//入力ハンドラー
+		InputHandler2<ResultStage> m_InputHandler;
+	public:
+		//構築と破棄
+		ResultStage() :Stage() {}
+		virtual ~ResultStage() {}
+		//初期化
+		virtual void OnCreate()override;
+		//更新
+		virtual void OnUpdate()override;
+
+		virtual void OnDestroy() override;
+		//Aボタン
+		void OnPushA() {
+			//何もしない
+		}
+		//Bボタン
+		void OnPushB();
+
+	};
 
 }
 //end basecross

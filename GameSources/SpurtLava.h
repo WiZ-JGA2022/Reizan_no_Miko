@@ -11,7 +11,9 @@ namespace basecross {
 
 		// ダメージを与える間隔
 		const int m_DamageDelayCount = 20;
+		const int m_RemoveDelayCount = 300;
 		int m_damageDelayFlame;
+		int m_removeDelayFlame;
 
 		float m_damageValue; // ダメージ量
 
@@ -21,8 +23,6 @@ namespace basecross {
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 	public:
-		SpurtLava(const shared_ptr<Stage>& stage);
-		SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position);
 		SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale);
 		~SpurtLava();
 
@@ -30,7 +30,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		// 衝突応答処理
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
-
 	};
 }

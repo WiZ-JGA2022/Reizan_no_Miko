@@ -11,6 +11,7 @@ namespace basecross {
 	{
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		drawComp->SetTextureResource(L"GROUND");
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(0.0f, -1.0f, 0.0f);

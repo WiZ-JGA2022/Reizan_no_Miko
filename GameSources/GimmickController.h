@@ -9,6 +9,14 @@
 namespace basecross {
 	class GimmickController : public GameObject {
 		
+		enum class GimmickState
+		{
+			UnActive,
+			Active,
+			DamageDelay
+		};
+		enum GimmickState m_isState = GimmickState::UnActive;
+
 		// ギミックを生成する位置
 		const Vec3 m_GimmickPosition[10] = {
 			Vec3(0.0f, 0.0f, 0.0f),
@@ -28,7 +36,12 @@ namespace basecross {
 			Vec3(5.0f, 5.0f, 5.0f)
 		};
 
-		Vec3 m_controllerPosition;
+		const int m_GimmickCreateDelaySeconds = 590;
+		const int m_GimmickDamageDelayFlame = 180;
+
+		int m_gimmickDamageDelay;
+
+		Vec3 m_gimmickPosition[10] = { Vec3(0)};
 
 		shared_ptr<Transform> m_transform;
 
@@ -38,5 +51,10 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
+
+		void CreateSpurtLava();
+		int GetDamageFlame();
+		int GetDamageDelay();
+
 	};
 }

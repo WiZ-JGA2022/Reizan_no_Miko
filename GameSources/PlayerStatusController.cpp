@@ -12,6 +12,7 @@ namespace basecross {
 		GameObject(stage),
 		m_BaseRisingValue(10),
 		m_DamageDelayCount(60),
+		m_maxHp(50),
 		m_maxExp(5),
 		m_beforeMaxExp(m_maxExp),
 		m_damageDelayFlame(m_DamageDelayCount)
@@ -49,7 +50,7 @@ namespace basecross {
 			// EXPを0に戻す
 			m_statusValue[L"EXP"] = 0;
 			// 次回レベルアップまでに必要なEXP量を増やす
-			m_maxExp = m_BaseRisingValue * m_statusLevel[L"EXP"];
+			m_maxExp = (m_BaseRisingValue / 2) * (m_statusLevel[L"EXP"] + 1);
 		}
 
 		// レベルアップイベントがアクティブなら
@@ -88,6 +89,7 @@ namespace basecross {
 		case 0 : // HP
 			// 上昇値は10(固定値)
 			m_statusValue[m_statusName[selectStatusNum]] += m_BaseRisingValue; // 上昇量の反映
+			m_maxHp += m_BaseRisingValue;
 			break;
 		case 1 : // ATK
 		case 3 : // SPD
@@ -123,6 +125,11 @@ namespace basecross {
 	float PlayerStatusController::GetStatusValue(wstring statusKey)
 	{
 		return m_statusValue[statusKey];
+	}
+
+	int PlayerStatusController::GetMaxHp()
+	{
+		return m_maxHp;
 	}
 
 	int PlayerStatusController::GetMaxExp()

@@ -27,7 +27,7 @@ namespace basecross {
 		int i, j; // ループ用変数
 		int spriteNums[m_PickUpStatusCount] = { 0 }; // 乱数格納用配列
 		srand((unsigned int)time(NULL));
-
+		GetStage()->AddGameObject<EventBackGround>();
 		for (i = 0; i < m_PickUpStatusCount; i++)
 		{
 			do { // 重複を解消
@@ -42,8 +42,8 @@ namespace basecross {
 				}
 			} while (i != j);
 			m_spriteNums[i] = spriteNums[i];
-			GetStage()->AddGameObject<LevelUpSprites>(m_spriteNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
-			GetStage()->AddGameObject<CrossKeySprites>(i, true, Vec2(64.0f, 64.0f), Vec2(40.0f, 300.0f + -(i * 192.0f) + -(i * 20)), i);
+			GetStage()->AddGameObject<LevelUpSprites>(m_spriteNums[i], true, Vec2(516.0f, 192.0f), Vec2(250.0f, 200.0f + -(i * 192.0f) + -(i * 20)), i);
+			GetStage()->AddGameObject<CrossKeySprites>(i, true, Vec2(64.0f, 64.0f), Vec2(40.0f, 200.0f + -(i * 192.0f) + -(i * 20)), i);
 		}
 	} // end RandomSelect
 
