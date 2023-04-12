@@ -95,6 +95,11 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
+			AddGameObject<WallA>();
+			AddGameObject<WallB>();
+			AddGameObject<WallC>();
+			AddGameObject<BoxA>();
+			AddGameObject<BoxB>();
 
 			// ギミックの作成
 			auto gimmick = AddGameObject<GimmickController>();

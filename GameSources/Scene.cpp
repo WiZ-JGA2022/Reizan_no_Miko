@@ -89,7 +89,6 @@ namespace basecross{
 		RoadTexture(L"TITLE", L"Title.png");
 		RoadTexture(L"RESULT", L"Result.png");
 
-
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");
 		RoadSound(L"TITLE_BGM", L"TitleBGM.wav");
@@ -104,7 +103,6 @@ namespace basecross{
 		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
 		RoadSound(L"SELECT_SE", L"Select2SE.wav");
 		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
-
 	}
 
 	void Scene::OnCreate(){
