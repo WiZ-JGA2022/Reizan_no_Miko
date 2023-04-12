@@ -97,6 +97,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp">
       <Filter>Sources\Gimmic</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -195,6 +201,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h">
       <Filter>Headers\Gimmic</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResultSprite.h">
+      <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
+      <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -256,6 +268,12 @@
     </Filter>
     <Filter Include="Headers\UI\NumberUI">
       <UniqueIdentifier>{c56de922-2163-434e-a5ac-3a2fa1280ae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\SceneUI">
+      <UniqueIdentifier>{b425edaf-6845-4e90-8737-8a06bb298632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\SceneUI">
+      <UniqueIdentifier>{5da95573-fbc5-4fb2-be7d-586bb3ad6e2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

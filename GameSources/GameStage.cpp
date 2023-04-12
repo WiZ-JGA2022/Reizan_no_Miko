@@ -35,7 +35,6 @@ namespace basecross {
 		CreateSharedObjectGroup(L"EnemyGroup");
 		auto enemyController = AddGameObject<EnemyController>();
 		SetSharedGameObject(L"EnemyController", enemyController);
-		//AddGameObject<Item>();
 	}
 
 	// レベルアップイベントの作成
@@ -70,6 +69,18 @@ namespace basecross {
 		SetSharedGameObject(L"Time", time);
 	} // end CreateUI
 
+	void GameStage::PlayBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+
+	void GameStage::OnDestroy()
+	{
+		//BGMのストップ
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
 
 	void GameStage::OnCreate() {
 		try {
@@ -91,6 +102,7 @@ namespace basecross {
 
 			// UIの作成
 			CreateUI();
+			PlayBGM();
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
@@ -136,16 +148,29 @@ namespace basecross {
 
 	//スプライトの作成
 	void TitleStage::CreateTitleSprite() {
-		//AddGameObject<TitleSprite>(L"MESSAGE_TX", false,
-		Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f);
-
+		AddGameObject<TitleSprite>();
 	} // end CreateTitleSprite
+
+	void TitleStage::PlayBGM()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		m_BGM = XAPtr->Start(L"TITLE_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+	}
+
+	void TitleStage::OnDestroy()
+	{
+		//BGMのストップ
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Stop(m_BGM);
+	}
 
 	//初期化
 	void TitleStage::OnCreate() {
 		CreateViewLight();
 		//スプライトの作成
 		CreateTitleSprite();
+
+		PlayBGM();
 
 	} // end OnCreate
 
@@ -182,15 +207,13 @@ namespace basecross {
 
 	//スプライトの作成
 	void ResultStage::CreateResultSprite() {
-		//AddGameObject<TitleSprite>(L"MESSAGE_TX", false,
-		Vec2(256.0f, 64.0f), Vec2(0.0f, 100.0f);
-
+		AddGameObject<ResultSprite>();
 	} // end CreateResultSprite
 
 	void ResultStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GAMEOVER_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"GAMECLEAR_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void ResultStage::OnDestroy()

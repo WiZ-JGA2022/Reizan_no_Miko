@@ -24,9 +24,6 @@ namespace basecross {
 
         AddTag(L"PlayerBullet");
     
-        auto XAPtr = App::GetApp()->GetXAudio2Manager();
-        XAPtr->Start(L"GAMECLEAR_BGM", 1, 0.1f);
-
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
         m_Transform = GetComponent<Transform>();
         m_Transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす

@@ -63,16 +63,25 @@ namespace basecross {
 			// 十字キーの上、右、下で選ぶ
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
 			{
+				auto XAPtr = App::GetApp()->GetXAudio2Manager();
+				XAPtr->Start(L"SELECT_SE", 0, 0.1f);
+
 				StatusLevelUpdate(levelUpEvent->GetSpriteNums(0));
 				levelUpEvent->SetEventActive(false);
 			}
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
 			{
+				auto XAPtr = App::GetApp()->GetXAudio2Manager();
+				XAPtr->Start(L"SELECT_SE", 0, 0.1f);
+
 				StatusLevelUpdate(levelUpEvent->GetSpriteNums(1));
 				levelUpEvent->SetEventActive(false);
 			}
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
 			{
+				auto XAPtr = App::GetApp()->GetXAudio2Manager();
+				XAPtr->Start(L"SELECT_SE", 0, 0.1f);
+
 				StatusLevelUpdate(levelUpEvent->GetSpriteNums(2));
 				levelUpEvent->SetEventActive(false);
 			}
@@ -120,6 +129,8 @@ namespace basecross {
 		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
 		// ダメージ分自分の体力を減らす
 		m_statusValue[L"HP"] -= totalDamage;
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Start(L"PLAYERDAMAGE_SE", 0, 0.1f);
 	} // end PlayerTakenDamage
 
 	float PlayerStatusController::GetStatusValue(wstring statusKey)

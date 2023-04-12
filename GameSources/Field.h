@@ -16,8 +16,8 @@ namespace basecross {
 		}
 
 		void OnCreate();
+		void OnUpdate();
 	};
-
 }
 //end basecross
 
