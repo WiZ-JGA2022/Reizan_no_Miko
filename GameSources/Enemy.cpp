@@ -92,6 +92,9 @@ namespace basecross {
 		// ’e‚É‚ ‚½‚Á‚½‚ç
 		if (Other->FindTag(L"PlayerBullet"))
 		{
+			auto XAPtr = App::GetApp()->GetXAudio2Manager();
+			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.1f);
+
 			// ƒ_ƒ[ƒW‚ğó‚¯‚é
 			EnemyDamageProcess();
 			return;

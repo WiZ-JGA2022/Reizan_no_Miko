@@ -18,7 +18,6 @@ namespace basecross {
 
 		auto ItemColl = AddComponent<CollisionObb>();
 		ItemColl->SetAfterCollision(AfterCollision::None);
-
 	}
 
 	void Item::OnUpdate() {
@@ -35,6 +34,9 @@ namespace basecross {
 	{
 		if (other->FindTag(L"Player"))
 		{
+			auto XAPtr = App::GetApp()->GetXAudio2Manager();
+			XAPtr->Start(L"EXP_SE", 0, 0.1f);
+
 			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 			playerStatus->ExpValueUpdate(m_expValue);
 			GetStage()->RemoveGameObject<Item>(GetThis<Item>());

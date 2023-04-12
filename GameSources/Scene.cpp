@@ -86,8 +86,14 @@ namespace basecross{
 		RoadTexture(L"EVENT_BACK_GROUND", L"EventBackGround.png");
 		RoadTexture(L"ATTACK_ANNOUNCE_CIRCLE", L"AttackAnnouncementCircle.png");
 		RoadTexture(L"ATTACK_ANNOUNCE_LINE", L"AttackAnnouncementLine.png");
+		RoadTexture(L"TITLE", L"Title.png");
+		RoadTexture(L"RESULT", L"Result.png");
+
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
+		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");
+		RoadSound(L"TITLE_BGM", L"TitleBGM.wav");
+		RoadSound(L"MAINGAME_BGM", L"INGameBGM.wav");
 		RoadSound(L"EXP_SE", L"ExpSE.wav");
 		RoadSound(L"FALLROCK_SE", L"FallingRockSE.wav");
 		RoadSound(L"GAMECLEAR_SE", L"GameClearSE.wav");

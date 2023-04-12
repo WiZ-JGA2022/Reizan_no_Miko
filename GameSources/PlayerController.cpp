@@ -60,20 +60,25 @@ namespace basecross {
 	{
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
-		auto device = app->GetInputDevice(); 
+		auto device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];
 
 		Vec3 padLStick(pad.fThumbLX, 0.0f, pad.fThumbLY);
 		Vec3 padRStick(pad.fThumbRX, 0.0f, pad.fThumbRY);
 
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		if (padLStick.length() > 0.0f)
+		{
+			auto XAPtr = App::GetApp()->GetXAudio2Manager();
+			//XAPtr->Start(L"PLAYERRUN_SE", 1, 0.1f);
+		
+			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
-		// ˆÚ“®ˆ—
-		auto pos = m_transform->GetPosition();
-		pos += padLStick * playerStatus->GetStatusValue(L"SPD") * delta;
+			// ˆÚ“®ˆ—
+			auto pos = m_transform->GetPosition();
+			pos += padLStick * playerStatus->GetStatusValue(L"SPD") * delta;
 
-		m_transform->SetPosition(pos);
-
+			m_transform->SetPosition(pos);
+		}
 		if (padRStick.length() > 0.0f) 
 		{
 			float rotY = atan2f(-padRStick.z, padRStick.x); 

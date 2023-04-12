@@ -13,6 +13,7 @@ namespace basecross {
 	//	ゲームステージクラス
 	//--------------------------------------------------------------------------------------
 	class GameStage : public Stage {
+		shared_ptr<SoundItem> m_BGM;
 		//ビューの作成
 		void CreateViewLight();
 		// 敵の作成
@@ -23,6 +24,8 @@ namespace basecross {
 		void CreatePlayer();
 		// UIの作成
 		void CreateUI();
+		//BGMの再生
+		void PlayBGM();
 
 		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
@@ -33,6 +36,7 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+		virtual void OnDestroy() override;
 
 		virtual void OnDraw() override; // デバッグ文字用に上書きする
 	};
@@ -41,10 +45,13 @@ namespace basecross {
 	//	タイトルステージクラス
 	//--------------------------------------------------------------------------------------
 	class TitleStage : public Stage {
+		shared_ptr<SoundItem> m_BGM;
 		//ビューの作成
 		void CreateViewLight();
 		//スプライトの作成
 		void CreateTitleSprite();
+		//BGMの再生
+		void PlayBGM();
 		//入力ハンドラー
 		InputHandler2<TitleStage> m_InputHandler;
 	public:
@@ -55,6 +62,7 @@ namespace basecross {
 		virtual void OnCreate()override;
 		//更新
 		virtual void OnUpdate()override;
+		virtual void OnDestroy() override;
 		//Aボタン
 		void OnPushA() {
 			//何もしない

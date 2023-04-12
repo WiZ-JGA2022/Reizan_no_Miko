@@ -37,3 +37,5 @@
 #include "NumberUI.h"
 #include "EventBackGround.h"
 #include "AttackAnnounce.h"
+#include "TitleSprite.h"
+#include "ResultSprite.h"

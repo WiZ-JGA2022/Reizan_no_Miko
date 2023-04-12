@@ -50,6 +50,8 @@ namespace basecross {
 	void RandomSelectLevelUpButton::LevelUpEvent()
 	{
 		m_isActiveSprite = true;
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Start(L"LEVELUP_SE", 0, 0.1f);
 		RandomSelect(6);		
 	}
 }
