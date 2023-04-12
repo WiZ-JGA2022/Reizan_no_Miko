@@ -95,14 +95,6 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
-			auto wallA = AddGameObject<WallA>();
-			SetSharedGameObject(L"WALL_A", wallA);
-			auto wallB = AddGameObject<WallB>();
-			SetSharedGameObject(L"WALL_B", wallB);
-			auto wallC = AddGameObject<WallC>();
-			SetSharedGameObject(L"WALL_C", wallC);
-			AddGameObject<BoxA>();
-			AddGameObject<BoxB>();
 
 			// ギミックの作成
 			auto gimmick = AddGameObject<GimmickController>();

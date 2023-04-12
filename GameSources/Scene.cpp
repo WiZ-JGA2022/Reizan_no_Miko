@@ -103,6 +103,8 @@ namespace basecross{
 		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
 		RoadSound(L"SELECT_SE", L"Select2SE.wav");
 		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
+
+		RoadStaticModelMesh(L"stage", L"STAGE");
 	}
 
 	void Scene::OnCreate(){
