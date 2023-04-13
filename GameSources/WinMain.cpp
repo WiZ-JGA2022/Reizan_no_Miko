@@ -61,8 +61,8 @@ HWND InitInstance(HINSTANCE hInstance, int nCmdShow, bool isFullScreen, int iCli
 						// 画面全体の幅と高さを取得
 						//もし画面全体の解像度で処理する場合は以下を有効に
 						//メモリを圧迫するので動作速度注意！
-						//        iClientWidth = GetSystemMetrics(SM_CXSCREEN);
-						//        iClientHeight = GetSystemMetrics(SM_CYSCREEN);
+		iClientWidth = GetSystemMetrics(SM_CXSCREEN);
+		iClientHeight = GetSystemMetrics(SM_CYSCREEN);
 		hWnd = CreateWindow(
 			pClassName,			// 登録されているクラス名
 			pWndTitle,			// ウインドウ名
@@ -71,8 +71,8 @@ HWND InitInstance(HINSTANCE hInstance, int nCmdShow, bool isFullScreen, int iCli
 			0,					// ウインドウの縦方向の位置
 			iClientWidth,		// フルスクリーンウインドウの幅
 			iClientHeight,		// フルスクリーンウインドウの高さ
-			nullptr,				// 親ウインドウのハンドル（なし）
-			nullptr,				// メニューや子ウインドウのハンドル
+			nullptr,			// 親ウインドウのハンドル（なし）
+			nullptr,			// メニューや子ウインドウのハンドル
 			hInstance,			// アプリケーションインスタンスのハンドル
 			nullptr				// ウインドウの作成データ
 		);
@@ -239,6 +239,9 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	if (wstrcmd == L"/f" || wstrcmd == L"/F") {
 		isFullScreen = true;     // フラグをtrueに設定
 	}
+
+	// ウィンドウ上でマウスカーソルを見えないようにする
+	ShowCursor(false);
 
 	MyRegisterClass(hInstance);
 	// アプリケーションの初期化を実行します:
