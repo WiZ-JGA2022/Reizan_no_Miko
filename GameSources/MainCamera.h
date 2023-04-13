@@ -9,6 +9,8 @@
 namespace basecross {
 	class MainCamera : public Camera
 	{
+		Vec3 m_defaultPos;
+
 		float m_angle;
 		
 		float m_atPos;

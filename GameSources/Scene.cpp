@@ -104,7 +104,8 @@ namespace basecross{
 		RoadSound(L"SELECT_SE", L"Select2SE.wav");
 		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
 
-		RoadStaticModelMesh(L"stage", L"STAGE");
+		RoadStaticModelMesh(L"atage3", L"STAGE");
+		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
 	}
 
 	void Scene::OnCreate(){
@@ -141,13 +142,13 @@ namespace basecross{
 			ResetActiveStage<ResultStage>();
 		}
 
-		// デバッグ用文字列オブジェクトに対する設定
-		auto dss = GetDebugStringSprite();
-		dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
-		dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
-		dss->SetTextBlockWidth(400.0f);
-		dss->SetTextBlockHeight(200.0f);
+		//// デバッグ用文字列オブジェクトに対する設定
+		//auto dss = GetDebugStringSprite();
+		//dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
+		//dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		//dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
+		//dss->SetTextBlockWidth(400.0f);
+		//dss->SetTextBlockHeight(200.0f);
 	}
 
 }

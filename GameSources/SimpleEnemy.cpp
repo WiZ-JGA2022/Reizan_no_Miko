@@ -56,12 +56,6 @@ namespace basecross {
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 
-		//m_position = m_transform->GetPosition();
-
-		//if (m_position.x - m_points[m_currentPointIndex].x <= m_direction[m_currentPointIndex].x || m_position.z - m_points[m_currentPointIndex].z <= m_direction[m_currentPointIndex].z)
-		//{
-		//	m_currentPointIndex++;
-		//}
 		// ベクトルの正規化処理
 		float normalizeMagnification = 1 / sqrt(
 			m_direction[m_currentPointIndex].x * m_direction[m_currentPointIndex].x +
@@ -74,7 +68,7 @@ namespace basecross {
 		float rotationY = atan2f(-m_direction[m_currentPointIndex].z, m_direction[m_currentPointIndex].x); // 回転の計算
 
 		m_transform->SetRotation(0.0f, rotationY, 0.0f);
-		m_transform->SetPosition(m_position); // 新しい座標で更新する
+		m_transform->SetPosition(m_position); 
 		
 		for (int i = 0; i < 1; i++)
 		{

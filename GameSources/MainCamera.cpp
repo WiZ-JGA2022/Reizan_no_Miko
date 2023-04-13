@@ -9,6 +9,11 @@
 namespace basecross {
 	void MainCamera::OnCreate() 
 	{
+		m_defaultPos = Vec3(
+			cos(m_angle) * -m_distance,
+			7.0f,
+			sin(m_angle) * -m_distance
+		);
 	}
 
 	void MainCamera::OnUpdate()
@@ -29,7 +34,7 @@ namespace basecross {
 
 		auto relativePos = Vec3(
 			cos(m_angle) * -m_distance,
-			7.0f,
+			5.0f,
 			sin(m_angle) * -m_distance
 		);
 
@@ -37,6 +42,11 @@ namespace basecross {
 		//auto relaivePos = Vec3(0.0f, 7.0f, -15.0f);
 
 		Vec3 eye = at + relativePos;
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER || pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
+		{
+			eye = at + m_defaultPos;
+			m_angle = XMConvertToRadians(270.0f);
+		}
 		SetEye(eye);
 		SetAt(at);
 	}

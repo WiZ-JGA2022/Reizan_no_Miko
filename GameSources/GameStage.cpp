@@ -95,6 +95,8 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
+			AddGameObject<Field2>(Vec3(10.0f, 3.5f, 10.0f));
+			//AddGameObject<SpurtLava>(Vec3(0), Vec3(5.0f, 5.0f, 5.0f));
 
 			// ギミックの作成
 			//auto gimmick = AddGameObject<GimmickController>();
