@@ -39,3 +39,4 @@
 #include "AttackAnnounce.h"
 #include "TitleSprite.h"
 #include "ResultSprite.h"
+#include "SimpleEnemy.h"

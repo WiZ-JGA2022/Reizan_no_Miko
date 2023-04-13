@@ -5,7 +5,6 @@
 
 #pragma once
 #include "stdafx.h"
-#include "PlayerController.h"
 
 namespace basecross {
 	class Enemy : public GameObject {

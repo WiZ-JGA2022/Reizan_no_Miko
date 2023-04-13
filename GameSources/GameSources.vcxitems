@@ -43,10 +43,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +80,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp" />
