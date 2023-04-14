@@ -6,7 +6,6 @@
 #pragma once
 #include "stdafx.h"
 #include "Project.h"
-#include "Utility.h"
 
 namespace basecross {
 	SimpleEnemy::SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position) :
