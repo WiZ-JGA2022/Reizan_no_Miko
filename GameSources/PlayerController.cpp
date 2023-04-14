@@ -48,7 +48,7 @@ namespace basecross {
 		
 		PlayerMoveProcess();
 
-		if (m_recastFlame <= 0)
+		if (m_recastFlame <= 0 && m_condition == PlayerCondition::Play)
 		{
 			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
 

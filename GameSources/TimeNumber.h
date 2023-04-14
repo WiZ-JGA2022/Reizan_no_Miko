@@ -25,7 +25,7 @@ namespace basecross {
 		vector<shared_ptr<NumberUI>> m_numbers;
 
 	public:
-		TimeNumber(const shared_ptr<Stage>& stage);
+		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime);
 		~TimeNumber();
 
 		void OnCreate() override;

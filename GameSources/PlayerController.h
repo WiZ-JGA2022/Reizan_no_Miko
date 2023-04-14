@@ -10,6 +10,13 @@ namespace basecross{
 
 	class PlayerController : public GameObject
 	{
+		enum class PlayerCondition {
+			Standby,
+			Play
+		};
+
+		PlayerCondition m_condition = PlayerCondition::Standby;
+
 		// プレイヤーの操作に使用するボタン
 		const WORD BUTTON_HOMING = XINPUT_GAMEPAD_LEFT_SHOULDER;
 		const WORD BUTTON_BARRIER = XINPUT_GAMEPAD_RIGHT_SHOULDER;
@@ -18,12 +25,14 @@ namespace basecross{
 		const float m_RecastCount;
 		float m_recastFlame;
 
+
 		shared_ptr<Transform> m_transform;
 
 	public:
-		PlayerController(const std::shared_ptr<Stage>& stage) :
+		PlayerController(const std::shared_ptr<Stage>& stage, const int condition) :
 			GameObject(stage),
 			m_RecastCount(9.0f),
+			m_condition((PlayerCondition)condition),
 			m_recastFlame(m_RecastCount)
 		{
 		}
@@ -36,5 +45,10 @@ namespace basecross{
 		* プレイヤーの移動処理
 		*/
 		void PlayerMoveProcess();
+
+		int GetCondition()
+		{
+			return (int)m_condition;
+		}
 	};
 }

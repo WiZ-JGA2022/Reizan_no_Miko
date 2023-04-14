@@ -134,6 +134,10 @@ namespace basecross{
 			//最初のアクティブステージの設定
 			ResetActiveStage<GameStage>();
 		}
+		else if (event->m_MsgStr == L"ToStandbyStage") {
+			//最初のアクティブステージの設定
+			ResetActiveStage<StandbyStage>();
+		}
 		else if (event->m_MsgStr == L"ToTitleStage") {
 			//最初のアクティブステージの設定
 			ResetActiveStage<TitleStage>();
