@@ -34,6 +34,7 @@ namespace basecross {
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
+		m_transform->SetScale(Vec3(0.1f, 0.1f, 0.1f));
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionObb>();
@@ -41,14 +42,23 @@ namespace basecross {
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetSleepActive(true);
 
-		// 影をつける
-		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(L"ONI");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetTextureResource(L"WALL_TX");
-		drawComp->SetOwnShadowActive(true);
+		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
+		drawComp->SetFogEnabled(false);
+		drawComp->SetMeshResource(L"ONI");
+		drawComp->SetMeshToTransformMatrix(spanMat);
 
 		AddTag(L"Enemy"); 
 

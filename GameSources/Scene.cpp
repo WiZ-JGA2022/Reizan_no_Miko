@@ -109,6 +109,8 @@ namespace basecross{
 		RoadStaticModelMesh(L"atage3", L"STAGE");
 		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
 		RoadStaticModelMesh(L"Holl2", L"ARCH");
+		RoadStaticModelMesh(L"oni", L"ONI");
+
 	}
 
 	void Scene::OnCreate(){
