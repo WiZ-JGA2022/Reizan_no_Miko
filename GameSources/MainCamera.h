@@ -9,7 +9,7 @@
 namespace basecross {
 	class MainCamera : public Camera
 	{
-		Vec3 m_defaultPos;
+		const float m_DefaultAngle = XMConvertToRadians(270.0f);
 
 		float m_angle;
 		
@@ -21,7 +21,7 @@ namespace basecross {
 
 	public:
 		MainCamera() :
-			m_angle(XMConvertToRadians(270.0f)),
+			m_angle(m_DefaultAngle),
 			m_atPos(0),
 			m_distance(-15.0f)
 		{

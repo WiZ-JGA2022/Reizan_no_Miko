@@ -33,7 +33,7 @@ namespace basecross {
 			{L"HP", 10.0f},
 			{L"ATK", 10.0f},
 			{L"DEF", 1.0f},
-			{L"SPD", 1.0f}
+			{L"SPD", 3.0f}
 		};
 
 	public :

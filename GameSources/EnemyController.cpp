@@ -11,7 +11,7 @@ namespace basecross {
 		GameObject(stage),
 		m_RandomRange(5),
 		m_Distance(5),
-		m_DelayCount(120),
+		m_DelayCount(600),
 		m_delayFlame(m_DelayCount),
 		m_enemyNum(0),
 		m_sign_x(1),
