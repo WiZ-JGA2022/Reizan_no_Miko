@@ -66,6 +66,9 @@ namespace basecross {
 		// 残り時間の表示UIを作成
 		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds);
 		AddGameObject<TimeChara>();
+
+		AddGameObject<GameSprite>();
+
 		SetSharedGameObject(L"Time", time);
 	} // end CreateUI
 
@@ -183,6 +186,8 @@ namespace basecross {
 		// 残り時間の表示UIを作成
 		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds);
 		AddGameObject<TimeChara>();
+
+		AddGameObject<StandbySprite>();
 		SetSharedGameObject(L"Time", time);
 	} // end CreateUI
 

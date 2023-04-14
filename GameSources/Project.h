@@ -40,3 +40,5 @@
 #include "TitleSprite.h"
 #include "ResultSprite.h"
 #include "SimpleEnemy.h"
+#include "StandbySprite.h"
+#include "GameSprite.h"
