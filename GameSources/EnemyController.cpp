@@ -11,7 +11,7 @@ namespace basecross {
 		GameObject(stage),
 		m_RandomRange(5),
 		m_Distance(5),
-		m_DelayCount(120),
+		m_DelayCount(600),
 		m_delayFlame(m_DelayCount),
 		m_enemyNum(0),
 		m_sign_x(1),
@@ -50,16 +50,16 @@ namespace basecross {
 		if (rnd_z > 0) { m_sign_z = 1; } else { m_sign_z = -1; }
 
 		// このオブジェクトの位置を基準としたランダムな場所に出現させる
-		m_enemyPos = Vec3(
-			(playerPos.x + m_Distance + rand() % m_RandomRange) * m_sign_x,
-			m_position.y, 
-			(playerPos.z + m_Distance + rand() % m_RandomRange) * m_sign_z
-		);
+		//m_enemyPos = Vec3(
+		//	(playerPos.x + m_Distance + rand() % m_RandomRange) * m_sign_x,
+		//	m_position.y, 
+		//	(playerPos.z + m_Distance + rand() % m_RandomRange) * m_sign_z
+		//);
 
 
 		if (m_delayFlame <= 0)
 		{
-			auto enemy = GetStage()->AddGameObject<Enemy>(m_enemyPos);
+			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(Vec3(20.0f, 0.0f, 40.0f));
 			//GetStage()->AddGameObject<EnemyBullet>();
 			//GetStage()->AddGameObject<EnemyBullet>(enemy);
 			m_delayFlame = m_DelayCount;

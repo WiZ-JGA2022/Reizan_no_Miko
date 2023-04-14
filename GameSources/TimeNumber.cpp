@@ -7,10 +7,10 @@
 #include "Project.h"
 
 namespace basecross {
-	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage) :
+	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime) :
 		GameObject(stage),
 		m_place(5),
-		m_totalTime(600.0f),
+		m_totalTime(totalTime),
 		m_minutes(0),
 		m_seconds(0),
 		m_oldSeconds(0)
@@ -57,7 +57,7 @@ namespace basecross {
 		m_oldSeconds = m_seconds;
 
 		// éûä‘êÿÇÍÇ…Ç»Ç¡ÇΩÇÁ
-		if (m_totalTime <= 1)
+		if (m_totalTime <= 1 && player->GetCondition() == 1)
 		{
 			// ÉvÉåÉCÉÑÅ[Ç∆éûä‘ÇÃèàóùÇí‚é~Ç∑ÇÈ
 			player->SetUpdateActive(false);

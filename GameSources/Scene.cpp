@@ -88,6 +88,8 @@ namespace basecross{
 		RoadTexture(L"ATTACK_ANNOUNCE_LINE", L"AttackAnnouncementLine.png");
 		RoadTexture(L"TITLE", L"Title.png");
 		RoadTexture(L"RESULT", L"Result.png");
+		RoadTexture(L"GAME_SPRITE", L"EnemyActive.png");
+		RoadTexture(L"STANDBY_PHASE", L"Standby.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");
@@ -104,7 +106,9 @@ namespace basecross{
 		RoadSound(L"SELECT_SE", L"Select2SE.wav");
 		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
 
-		RoadStaticModelMesh(L"stage", L"STAGE");
+		RoadStaticModelMesh(L"atage3", L"STAGE");
+		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
+		RoadStaticModelMesh(L"Holl2", L"ARCH");
 	}
 
 	void Scene::OnCreate(){
@@ -132,6 +136,10 @@ namespace basecross{
 			//最初のアクティブステージの設定
 			ResetActiveStage<GameStage>();
 		}
+		else if (event->m_MsgStr == L"ToStandbyStage") {
+			//最初のアクティブステージの設定
+			ResetActiveStage<StandbyStage>();
+		}
 		else if (event->m_MsgStr == L"ToTitleStage") {
 			//最初のアクティブステージの設定
 			ResetActiveStage<TitleStage>();
@@ -141,13 +149,13 @@ namespace basecross{
 			ResetActiveStage<ResultStage>();
 		}
 
-		// デバッグ用文字列オブジェクトに対する設定
-		auto dss = GetDebugStringSprite();
-		dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
-		dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
-		dss->SetTextBlockWidth(400.0f);
-		dss->SetTextBlockHeight(200.0f);
+		//// デバッグ用文字列オブジェクトに対する設定
+		//auto dss = GetDebugStringSprite();
+		//dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
+		//dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		//dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
+		//dss->SetTextBlockWidth(400.0f);
+		//dss->SetTextBlockHeight(200.0f);
 	}
 
 }

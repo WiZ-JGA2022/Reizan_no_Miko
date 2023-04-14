@@ -9,6 +9,8 @@
 namespace basecross {
 	class MainCamera : public Camera
 	{
+		const float m_DefaultAngle = XMConvertToRadians(270.0f);
+
 		float m_angle;
 		
 		float m_atPos;
@@ -19,7 +21,7 @@ namespace basecross {
 
 	public:
 		MainCamera() :
-			m_angle(XMConvertToRadians(270.0f)),
+			m_angle(m_DefaultAngle),
 			m_atPos(0),
 			m_distance(-15.0f)
 		{
@@ -30,6 +32,11 @@ namespace basecross {
 		void SetTarget(const std::shared_ptr<GameObject>& target)
 		{
 			m_targetTrans = target->GetComponent<Transform>();
+		}
+
+		float GetAngle() const
+		{
+			return m_angle;
 		}
 
 		float GetDistance()

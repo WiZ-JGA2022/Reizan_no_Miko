@@ -103,6 +103,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleEnemy.cpp">
+      <Filter>Sources\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StandbySprite.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -205,6 +214,18 @@
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
+      <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h">
+      <Filter>Headers\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h">
+      <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>

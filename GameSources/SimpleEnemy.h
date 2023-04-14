@@ -1,24 +1,34 @@
 /*!
-@file Enemy.h
-@brief 敵全体の親クラス
+@file SimpleEnemy.h
+@brief 単純な動きの敵
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class Enemy : public GameObject {
+	class SimpleEnemy : public Enemy {
+
+		Vec3 m_position;
+
+		Vec3 m_direction[3] = {
+			Vec3(0.0f, 0.0f, -40.0f),
+			Vec3(-40.0f, 0.0f, 0.0f),
+			Vec3(20.0f, 0.0f, -30.0f)
+		};
+
+		Vec3 m_points[4] = {
+			Vec3(20.0f, 0.0f, 40.0f),
+			Vec3(20.0f, 0.0f, 20.0f),
+			Vec3(-20.0f, 0.0f, 20.0f),
+			Vec3(0.0f, 0.0f, -10.0f)
+		};
 		
+		int m_currentPointIndex;
+
 		// ダメージを与える間隔
 		const int m_DamageDelayCount;
 		int m_damageDelayFlame;
-
-		// 弾を撃つ間隔
-		const int m_ShotRecastCount;
-		int m_shotRecastFlame;
-
-		Vec3 m_position; // 初期位置
-		Vec3 m_direction; // プレイヤーへの方向
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
@@ -27,34 +37,25 @@ namespace basecross {
 			{L"HP", 10.0f},
 			{L"ATK", 10.0f},
 			{L"DEF", 1.0f},
-			{L"SPD", 1.0f},
+			{L"SPD", 3.0f}
 		};
 
-	public:
-		Enemy(const shared_ptr<Stage>& stage);
+	public :
+		SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position);
+		~SimpleEnemy();
 
-		Enemy(const shared_ptr<Stage>& stage, 
-			const Vec3& position
-		);
-		~Enemy();
-
-		virtual void OnCreate() override;
-		virtual void OnUpdate() override;
+		void OnCreate() override;
+		void OnUpdate() override;
 
 		// 衝突応答処理
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
-		
+
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 
 		/**
 		* 敵の移動処理
 		*/
-		virtual void MoveEnemy();
-
-		/**
-		* 弾の発射処理
-		*/
-		void ShotBullet();
+		void MoveEnemy() override;
 
 		/**
 		* 敵が受けるダメージの計算
@@ -63,11 +64,12 @@ namespace basecross {
 
 		/**
 		* 任意の敵のステータスを取得する関数
-		* 
+		*
 		* @param statusKey 取得したいステータスの名前
-		* 
+		*
 		* @return 指定したステータスの値
 		*/
 		float GetEnemyStatus(wstring statusKey);
+
 	};
 }
