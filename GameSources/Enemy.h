@@ -49,7 +49,7 @@ namespace basecross {
 		/**
 		* “G‚ÌˆÚ“®ˆ—
 		*/
-		void MoveEnemy();
+		virtual void MoveEnemy();
 
 		/**
 		* ’e‚Ì”­Ëˆ—

@@ -69,6 +69,18 @@ namespace basecross {
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			//XAPtr->Start(L"PLAYERRUN_SE", 1, 0.1f);
+
+			float stickRad = atan2(padLStick.z, padLStick.x);
+			auto camera = GetStage()->GetView()->GetTargetCamera();
+			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+			if (mainCamera)
+			{
+				float cameraAngle = mainCamera->GetAngle();
+
+				stickRad += cameraAngle + XM_PIDIV2;
+				padLStick.x = cos(stickRad);
+				padLStick.z = sin(stickRad);
+			}
 		
 			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 

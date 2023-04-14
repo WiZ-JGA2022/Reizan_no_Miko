@@ -26,6 +26,10 @@ namespace basecross {
 		
 		int m_currentPointIndex;
 
+		// ダメージを与える間隔
+		const int m_DamageDelayCount;
+		int m_damageDelayFlame;
+
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 		// ステータス値
@@ -42,6 +46,30 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
+
+		// 衝突応答処理
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+
+		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
+
+		/**
+		* 敵の移動処理
+		*/
+		void MoveEnemy() override;
+
+		/**
+		* 敵が受けるダメージの計算
+		*/
+		void EnemyDamageProcess();
+
+		/**
+		* 任意の敵のステータスを取得する関数
+		*
+		* @param statusKey 取得したいステータスの名前
+		*
+		* @return 指定したステータスの値
+		*/
+		float GetEnemyStatus(wstring statusKey);
 
 	};
 }

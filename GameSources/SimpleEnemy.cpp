@@ -11,6 +11,8 @@
 namespace basecross {
 	SimpleEnemy::SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
+		m_DamageDelayCount(60),
+		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
 		m_currentPointIndex(0)
 	{
@@ -47,7 +49,44 @@ namespace basecross {
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
+		m_damageDelayFlame--;
+		MoveEnemy();
+	}
 
+	void SimpleEnemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
+	{
+		// 弾にあたったら
+		if (Other->FindTag(L"PlayerBullet"))
+		{
+			auto XAPtr = App::GetApp()->GetXAudio2Manager();
+			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.1f);
+
+			// ダメージを受ける
+			EnemyDamageProcess();
+			return;
+		}
+
+	} // end OnCollisionEnter
+
+	void SimpleEnemy::OnCollisionExcute(shared_ptr<GameObject>& other)
+	{
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		// プレイヤーにあたったら
+		if (other->FindTag(L"Player"))
+		{
+			if (m_damageDelayFlame <= 0)
+			{
+				// ダメージを与える
+				playerStatus->PlayerDamageProcess(m_statusValue[L"ATK"]);
+				m_damageDelayFlame = m_DamageDelayCount;
+				return;
+			}
+		}
+
+	} // end OnCollisionEnter
+
+	void SimpleEnemy::MoveEnemy()
+	{
 		if (3 < m_currentPointIndex)
 		{
 			return;
@@ -68,8 +107,8 @@ namespace basecross {
 		float rotationY = atan2f(-m_direction[m_currentPointIndex].z, m_direction[m_currentPointIndex].x); // 回転の計算
 
 		m_transform->SetRotation(0.0f, rotationY, 0.0f);
-		m_transform->SetPosition(m_position); 
-		
+		m_transform->SetPosition(m_position);
+
 		for (int i = 0; i < 1; i++)
 		{
 			if (m_currentPointIndex == 0)
@@ -87,7 +126,18 @@ namespace basecross {
 				break;
 			}
 		}
+	}
 
+	void SimpleEnemy::EnemyDamageProcess()
+	{
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		float damage = playerStatus->GetStatusValue(L"ATK") - (playerStatus->GetStatusValue(L"ATK") * (m_statusValue[L"DEF"] - 1.0f));
 
+		m_statusValue[L"HP"] -= damage;
+	}
+
+	float SimpleEnemy::GetEnemyStatus(wstring statusKey)
+	{
+		return m_statusValue[statusKey];
 	}
 }

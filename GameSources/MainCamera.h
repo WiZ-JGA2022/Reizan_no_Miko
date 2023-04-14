@@ -34,6 +34,11 @@ namespace basecross {
 			m_targetTrans = target->GetComponent<Transform>();
 		}
 
+		float GetAngle() const
+		{
+			return m_angle;
+		}
+
 		float GetDistance()
 		{
 			return m_distance;
