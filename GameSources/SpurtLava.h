@@ -33,4 +33,26 @@ namespace basecross {
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 	};
+
+	class SpikeTrap : public GameObject {
+
+		float m_damageValue; // ダメージ量
+
+		Vec3 m_scale; // 大きさ
+		Vec3 m_position; // 位置情報
+
+		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
+
+	public:
+		SpikeTrap(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale);
+		~SpikeTrap();
+
+		void OnCreate() override;
+		void OnUpdate() override;
+
+		// 衝突応答処理
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+
+		float GetDamage();
+	};
 }

@@ -23,15 +23,16 @@ namespace basecross{
 		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 		
 		const float m_RecastCount;
+
+		int m_trapCount;
 		float m_recastFlame;
 
-
 		shared_ptr<Transform> m_transform;
-
 	public:
 		PlayerController(const std::shared_ptr<Stage>& stage, const int condition) :
 			GameObject(stage),
 			m_RecastCount(9.0f),
+			m_trapCount(0),
 			m_condition((PlayerCondition)condition),
 			m_recastFlame(m_RecastCount)
 		{
@@ -49,6 +50,10 @@ namespace basecross{
 		int GetCondition()
 		{
 			return (int)m_condition;
+		}
+		void SetCondition(int conditionIndex)
+		{
+			m_condition = (PlayerCondition)conditionIndex;
 		}
 	};
 }

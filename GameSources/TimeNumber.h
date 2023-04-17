@@ -21,11 +21,12 @@ namespace basecross {
 		float m_seconds; // •b
 		float m_oldSeconds; // ’¼‘O‚ÌŠÔ
 
+		bool m_isPlay;
 		// ”š
 		vector<shared_ptr<NumberUI>> m_numbers;
 
 	public:
-		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime);
+		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay);
 		~TimeNumber();
 
 		void OnCreate() override;

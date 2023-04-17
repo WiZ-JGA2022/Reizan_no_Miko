@@ -90,6 +90,9 @@ namespace basecross{
 		RoadTexture(L"RESULT", L"Result.png");
 		RoadTexture(L"GAME_SPRITE", L"EnemyActive.png");
 		RoadTexture(L"STANDBY_PHASE", L"Standby.png");
+		RoadTexture(L"STONE", L"Stone.png");
+		RoadTexture(L"SPIKE", L"Spike.png");
+		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");
@@ -105,11 +108,15 @@ namespace basecross{
 		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
 		RoadSound(L"SELECT_SE", L"Select2SE.wav");
 		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
+		RoadSound(L"STONEDAMAGE_SE", L"StoneDamageSE.wav");
+		RoadSound(L"SPIKE_SE", L"SpikeSE.wav");
+		RoadSound(L"SPIKEDAMAGE_SE", L"SpikeDamageSE.wav");
 
 		RoadStaticModelMesh(L"atage3", L"STAGE");
 		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
 		RoadStaticModelMesh(L"Holl2", L"ARCH");
-		RoadStaticModelMesh(L"oni", L"ONI");
+		RoadStaticModelMesh(L"oni (1)", L"ONI");
+		RoadStaticModelMesh(L"Enemy", L"HITOTUME");
 
 	}
 
@@ -138,13 +145,13 @@ namespace basecross{
 			//最初のアクティブステージの設定
 			ResetActiveStage<GameStage>();
 		}
-		else if (event->m_MsgStr == L"ToStandbyStage") {
-			//最初のアクティブステージの設定
-			ResetActiveStage<StandbyStage>();
-		}
 		else if (event->m_MsgStr == L"ToTitleStage") {
 			//最初のアクティブステージの設定
 			ResetActiveStage<TitleStage>();
+		}
+		else if (event->m_MsgStr == L"ToClearStage") {
+			//最初のアクティブステージの設定
+			ResetActiveStage<ClearStage>();
 		}
 		else if (event->m_MsgStr == L"ToResultStage") {
 			//最初のアクティブステージの設定

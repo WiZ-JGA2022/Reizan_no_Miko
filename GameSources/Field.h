@@ -15,8 +15,8 @@ namespace basecross {
 		{
 		}
 
-		void OnCreate();
-		void OnUpdate();
+		void OnCreate() override;
+		void OnUpdate() override;
 	};
 	class Field2 : public GameObject
 	{
@@ -29,8 +29,25 @@ namespace basecross {
 		{
 		}
 
-		void OnCreate();
-		void OnUpdate();
+		void OnCreate() override;
+		void OnUpdate() override;
+	};
+
+	class KeyStone : public GameObject
+	{
+		float m_hp;
+
+	public:
+		KeyStone(const std::shared_ptr<Stage>& stage) :
+			GameObject(stage),
+			m_hp(100.0f)
+		{
+		}
+
+		void OnCreate() override;
+		void OnUpdate() override;
+
+		void DamageProcess();
 	};
 }
 //end basecross

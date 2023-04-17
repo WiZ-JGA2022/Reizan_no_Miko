@@ -69,4 +69,52 @@ namespace basecross {
 			}
 		}
 	}
+
+	// スパイクトラップクラス
+	SpikeTrap::SpikeTrap(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :
+		GameObject(stage),
+		m_damageValue(5.0f),
+		m_scale(scale),
+		m_position(position)
+	{
+	}
+	SpikeTrap::~SpikeTrap() {}
+
+	void SpikeTrap::OnCreate()
+	{
+		m_transform = GetComponent<Transform>();
+		m_transform->SetScale(m_scale);
+		m_transform->SetPosition(m_position);
+
+		auto ptrDraw = AddComponent<PNTStaticDraw>();
+		ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
+		ptrDraw->SetTextureResource(L"SPIKE");
+
+		// コリジョンをつける
+		auto ptrColl = AddComponent<CollisionObb>();
+		// 衝突判定はNone
+		ptrColl->SetAfterCollision(AfterCollision::None);
+		ptrColl->SetSleepActive(false);
+
+		AddTag(L"SpikeTrap");
+
+		SetAlphaActive(true);
+	}
+
+	void SpikeTrap::OnUpdate()
+	{
+	}
+
+	void SpikeTrap::OnCollisionEnter(shared_ptr<GameObject>& other)
+	{
+		if (other->FindTag(L"Enemy"))
+		{
+			GetStage()->RemoveGameObject<SpikeTrap>(GetThis<SpikeTrap>());
+		}
+	}
+
+	float SpikeTrap::GetDamage()
+	{
+		return m_damageValue;
+	}
 }

@@ -41,6 +41,7 @@ namespace basecross {
 	void Field::OnUpdate()
 	{
 	}
+
 	void Field2::OnCreate()
 	{
 		auto collComp = AddComponent<CollisionObb>();
@@ -74,6 +75,41 @@ namespace basecross {
 
 	void Field2::OnUpdate()
 	{
+	}
+
+	void KeyStone::OnCreate()
+	{
+		auto collComp = AddComponent<CollisionObb>();
+		// Õ“Ë”»’è‚ÍAuto
+		collComp->SetAfterCollision(AfterCollision::Auto);
+		collComp->SetSleepActive(false);
+
+		auto transComp = GetComponent<Transform>();
+		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
+		transComp->SetRotation(0.0f, 0.0f, 0.0f);
+		transComp->SetScale(5.0f, 5.0f, 5.0f);
+
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+		drawComp->SetTextureResource(L"STONE");
+
+	}
+
+	void KeyStone::OnUpdate()
+	{
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		if (m_hp <= 0)
+		{
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
+		}
+	}
+
+	void KeyStone::DamageProcess()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Start(L"STONEDAMAGE_SE", 0, 0.5f);
+
+		m_hp -= 10.0f;
 	}
 }
 //end basecross

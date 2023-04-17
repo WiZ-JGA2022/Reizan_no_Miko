@@ -12,7 +12,7 @@ namespace basecross {
 		m_RandomRange(5),
 		m_Distance(5),
 		m_DelayCount(600),
-		m_delayFlame(m_DelayCount),
+		m_delayFlame(0),
 		m_enemyNum(0),
 		m_sign_x(1),
 		m_sign_z(1),
@@ -33,7 +33,7 @@ namespace basecross {
 	{	
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
+		if (levelUpEvent->GetEventActive() || !player->GetDrawActive() || player->GetCondition() == 0)
 		{
 			return;
 		}

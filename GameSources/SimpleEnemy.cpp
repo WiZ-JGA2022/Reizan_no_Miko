@@ -54,15 +54,25 @@ namespace basecross {
 
 	void SimpleEnemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
 	{
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		// 弾にあたったら
 		if (Other->FindTag(L"PlayerBullet"))
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.1f);
 
-			// ダメージを受ける
-			EnemyDamageProcess();
-			return;
+			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
+			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
+		}
+
+		// 罠にあたったら
+		if (Other->FindTag(L"SpikeTrap"))
+		{
+			auto XAPtr = App::GetApp()->GetXAudio2Manager();
+			XAPtr->Start(L"SPIKEDAMAGE_SE", 0, 0.3f);
+
+			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
+			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
 		}
 
 	} // end OnCollisionEnter
@@ -88,6 +98,13 @@ namespace basecross {
 	{
 		if (3 < m_currentPointIndex)
 		{
+			auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
+			if (m_damageDelayFlame <= 0)
+			{
+				stone->DamageProcess();
+				m_damageDelayFlame = m_DamageDelayCount;
+			}
+			m_transform->SetRotation(Vec3(0.0f, 0.0f, 0.0f));
 			return;
 		}
 
@@ -127,12 +144,12 @@ namespace basecross {
 		}
 	}
 
-	void SimpleEnemy::EnemyDamageProcess()
+	void SimpleEnemy::EnemyDamageProcess(float damage)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		float damage = playerStatus->GetStatusValue(L"ATK") - (playerStatus->GetStatusValue(L"ATK") * (m_statusValue[L"DEF"] - 1.0f));
+		float totalDamage = playerStatus->GetStatusValue(L"ATK") - (playerStatus->GetStatusValue(L"ATK") * (m_statusValue[L"DEF"] - 1.0f));
 
-		m_statusValue[L"HP"] -= damage;
+		m_statusValue[L"HP"] -= totalDamage;
 	}
 
 	float SimpleEnemy::GetEnemyStatus(wstring statusKey)

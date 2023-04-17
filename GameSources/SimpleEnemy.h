@@ -60,7 +60,7 @@ namespace basecross {
 		/**
 		* 敵が受けるダメージの計算
 		*/
-		void EnemyDamageProcess();
+		void EnemyDamageProcess(float damage);
 
 		/**
 		* 任意の敵のステータスを取得する関数
