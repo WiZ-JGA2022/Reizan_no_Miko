@@ -187,6 +187,8 @@ namespace basecross {
 		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds);
 		AddGameObject<TimeChara>();
 
+		m_trap = AddGameObject<TrapSprite>();
+
 		AddGameObject<StandbySprite>();
 		SetSharedGameObject(L"Time", time);
 	} // end CreateUI
@@ -242,6 +244,7 @@ namespace basecross {
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
+
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 		}
 	} // end OnUpdate

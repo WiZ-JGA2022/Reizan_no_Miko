@@ -6,6 +6,7 @@
 #pragma once
 #include "stdafx.h"
 #include "PlayerController.h"
+#include "TrapUI.h"
 
 namespace basecross {
 
@@ -31,6 +32,7 @@ namespace basecross {
 
 		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
+		shared_ptr<TrapSprite> m_trap;
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}

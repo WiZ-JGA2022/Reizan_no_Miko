@@ -42,3 +42,4 @@
 #include "SimpleEnemy.h"
 #include "StandbySprite.h"
 #include "GameSprite.h"
+#include "TrapUI.h"
