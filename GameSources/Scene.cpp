@@ -60,9 +60,6 @@ namespace basecross{
 
 	void Scene::CreateResourses()
 	{
-		// テスト用
-		RoadTexture(L"WALL_TX", L"wall.jpg");
-
 		RoadTexture(L"EXPBAR_BLACK", L"ExpBar(Black).png");
 		RoadTexture(L"EXPBAR_BLUE", L"ExpBar(Blue).png");
 		RoadTexture(L"HPBAR_GREEN", L"HpBar(Green).png");
@@ -115,9 +112,10 @@ namespace basecross{
 		RoadStaticModelMesh(L"atage3", L"STAGE");
 		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
 		RoadStaticModelMesh(L"Holl2", L"ARCH");
-		RoadStaticModelMesh(L"oni (1)", L"ONI");
+		RoadStaticModelMesh(L"oni", L"ONI");
 		RoadStaticModelMesh(L"M_enemy", L"HITOTUME");
 
+		RoadBoneModel(L"Miko_w", L"MIKO", L"MIKO_TAN");
 	}
 
 	void Scene::OnCreate(){

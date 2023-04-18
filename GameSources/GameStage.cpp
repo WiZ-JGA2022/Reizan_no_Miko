@@ -104,8 +104,6 @@ namespace basecross {
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 
-			//AddGameObject<SpurtLava>(Vec3(0), Vec3(5.0f, 5.0f, 5.0f));
-
 			// ÉMÉ~ÉbÉNÇÃçÏê¨
 			//auto gimmick = AddGameObject<GimmickController>();
 			//SetSharedGameObject(L"GimmickController", gimmick);

@@ -39,7 +39,7 @@ namespace basecross {
 		ptrColl->SetDrawActive(false);
 
 		m_removeDelayFlame--;
-		if (m_removeDelayFlame % 50 == 0)
+		if (m_removeDelayFlame % m_DamageDelayFlame == 0)
 		{
 			ptrColl->SetUpdateActive(true);
 			ptrColl->SetDrawActive(true);
@@ -50,33 +50,6 @@ namespace basecross {
 		}
 	}
 
-	//void SpurtLava::OnCollisionEnter(shared_ptr<GameObject>& other)
-	//{
-	//	if (other->FindTag(L"Enemy"))
-	//	{
-	//		if (m_damageDelayFlame <= 0)
-	//		{
-	//			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-	//			playerStatus->PlayerDamageProcess(m_damageValue);
-	//			m_damageDelayFlame = m_DamageDelayCount;
-	//			return;
-	//		}
-	//	}
-	//}
-
-	//void SpurtLava::OnCollisionExcute(shared_ptr<GameObject>& other)
-	//{
-	//	if (other->FindTag(L"Enemy"))
-	//	{
-	//		if (m_damageDelayFlame <= 0)
-	//		{
-	//			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-	//			playerStatus->PlayerDamageProcess(m_damageValue);
-	//			m_damageDelayFlame = m_DamageDelayCount;
-	//			return;
-	//		}
-	//	}
-	//}
 
 	// スパイクトラップクラス
 	SpikeTrap::SpikeTrap(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :

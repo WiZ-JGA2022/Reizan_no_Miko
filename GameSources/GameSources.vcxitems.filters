@@ -219,9 +219,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h">
-      <Filter>Headers\Other</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>

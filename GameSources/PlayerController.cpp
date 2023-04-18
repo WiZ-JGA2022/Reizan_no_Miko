@@ -35,13 +35,21 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"HITOTUME");
+		ptrShadow->SetMeshResource(L"MIKO");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
-		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(L"HITOTUME");
-		drawComp->SetMeshToTransformMatrix(spanMat);
+		//描画コンポーネントの設定
+		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
+		ptrDraw->SetFogEnabled(true);
+		//描画するメッシュを設定
+		ptrDraw->SetMeshResource(L"MIKO");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+
+		ptrDraw->AddAnimation(L"Miko_w", 0, 100, true, 20.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Miko_w");
+
+		//透明処理
+		SetAlphaActive(true);
 	}
 
 	void PlayerController::OnUpdate()
@@ -75,7 +83,7 @@ namespace basecross {
 		
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
 		{
-			if (m_condition == PlayerCondition::Standby && m_trapCount < 1)
+			if (m_condition == PlayerCondition::Standby && m_trapCount < m_TrapLimitCount)
 			{
 				auto XAPtr = App::GetApp()->GetXAudio2Manager();
 				XAPtr->Start(L"SPIKE_SE", 0, 0.3f);

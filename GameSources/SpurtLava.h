@@ -10,6 +10,7 @@ namespace basecross {
 	class SpurtLava : public GameObject {
 
 		// ƒ_ƒ[ƒW‚ğ—^‚¦‚éŠÔŠu
+		const int m_DamageDelayFlame = 50;
 		const int m_RemoveDelayCount = 300;
 		int m_removeDelayFlame;
 
@@ -24,10 +25,6 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
-
-		//// Õ“Ë‰“šˆ—
-		//virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
-		//virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 	};
 
 	class SpikeTrap : public GameObject {

@@ -50,7 +50,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
