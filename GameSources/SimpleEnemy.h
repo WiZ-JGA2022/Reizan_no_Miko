@@ -10,18 +10,27 @@ namespace basecross {
 	class SimpleEnemy : public Enemy {
 
 		Vec3 m_position;
+		Vec3 m_directionPos;
+		Vec3 m_randomDirection;
+		Vec3 m_randomPosition;
+		Vec3 m_tagetPosition;
+
+		//Vec3 m_direction[3];
+		//Vec3 m_points[4];
 
 		Vec3 m_direction[3] = {
 			Vec3(0.0f, 0.0f, -40.0f),
 			Vec3(-40.0f, 0.0f, 0.0f),
-			Vec3(20.0f, 0.0f, -30.0f)
+			Vec3(m_randomDirection)
+			//Vec3(20.0f, 0.0f, -30.0f)
 		};
 
 		Vec3 m_points[4] = {
 			Vec3(20.0f, 0.0f, 40.0f),
 			Vec3(20.0f, 0.0f, 20.0f),
 			Vec3(-20.0f, 0.0f, 20.0f),
-			Vec3(0.0f, 0.0f, -10.0f)
+			Vec3(m_tagetPosition)
+			//Vec3(0.0f, 0.0f, -10.0f)
 		};
 		
 		int m_currentPointIndex;
@@ -35,7 +44,7 @@ namespace basecross {
 		// ステータス値
 		std::map<wstring, float> m_statusValue = {
 			{L"HP", 10.0f},
-			{L"ATK", 10.0f},
+			{L"ATK", 1.0f},
 			{L"DEF", 1.0f},
 			{L"SPD", 3.0f}
 		};
