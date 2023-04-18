@@ -7,6 +7,9 @@
 #include "stdafx.h"
 
 namespace basecross {
+	/**
+	溶岩が吹き出すタイプの罠
+	*/
 	class SpurtLava : public GameObject {
 
 		// ダメージを与える間隔
@@ -27,9 +30,10 @@ namespace basecross {
 		void OnUpdate() override;
 	};
 
+	/**
+	踏むと刺さる棘を設置する罠
+	*/
 	class SpikeTrap : public GameObject {
-
-		float m_damageValue; // ダメージ量
 
 		Vec3 m_scale; // 大きさ
 		Vec3 m_position; // 位置情報
@@ -45,7 +49,5 @@ namespace basecross {
 
 		// 衝突応答処理
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
-
-		float GetDamage();
 	};
 }

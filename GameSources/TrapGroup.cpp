@@ -1,6 +1,6 @@
 /*!
-@file SpurtLava.cpp
-@brief 噴出する溶岩の実装
+@file TrapGroup.cpp
+@brief 罠の実装
 */
 
 #include "stdafx.h"
@@ -51,10 +51,8 @@ namespace basecross {
 	}
 
 
-	// スパイクトラップクラス
 	SpikeTrap::SpikeTrap(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :
 		GameObject(stage),
-		m_damageValue(5.0f),
 		m_scale(scale),
 		m_position(position)
 	{
@@ -92,10 +90,5 @@ namespace basecross {
 		{
 			GetStage()->RemoveGameObject<SpikeTrap>(GetThis<SpikeTrap>());
 		}
-	}
-
-	float SpikeTrap::GetDamage()
-	{
-		return m_damageValue;
 	}
 }

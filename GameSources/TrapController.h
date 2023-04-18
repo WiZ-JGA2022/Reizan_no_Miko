@@ -1,24 +1,24 @@
 /*!
-@file GimmickController.h
-@brief ギミックを出すクラス
+@file TrapController.h
+@brief 罠を管理するクラス
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class GimmickController : public GameObject {
+	class TrapController : public GameObject {
 		
-		enum class GimmickState
+		enum class TrapState
 		{
-			UnActive,
-			Active,
-			DamageDelay
+			Wait,		// 待機
+			Active,		// 実行
+			DamageDelay	// 実行遅延
 		};
-		enum GimmickState m_isState = GimmickState::UnActive;
+		enum TrapState m_isState = TrapState::Wait;
 
 		// ギミックを生成する位置
-		const Vec3 m_GimmickPosition[10] = {
+		const Vec3 m_TrapPosition[10] = {
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(5.0f, 0.0f, 8.0f),
 			Vec3(6.0f, 0.0f, -16.0f),
@@ -36,18 +36,18 @@ namespace basecross {
 			Vec3(5.0f, 5.0f, 5.0f)
 		};
 
-		const int m_GimmickCreateDelaySeconds = 590;
-		const int m_GimmickDamageDelayFlame = 180;
+		const int m_TrapCreateDelaySeconds = 590;
+		const int m_TrapDamageDelayFlame = 180;
 
-		int m_gimmickDamageDelay;
+		int m_trapDamageDelay;
 
-		Vec3 m_gimmickPosition[10] = { Vec3(0)};
+		Vec3 m_trapPosition[10] = { Vec3(0)};
 
 		shared_ptr<Transform> m_transform;
 
 	public :
-		GimmickController(const shared_ptr<Stage>& stage);
-		~GimmickController();
+		TrapController(const shared_ptr<Stage>& stage);
+		~TrapController();
 
 		void OnCreate() override;
 		void OnUpdate() override;
