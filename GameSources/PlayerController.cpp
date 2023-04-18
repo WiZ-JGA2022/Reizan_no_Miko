@@ -15,11 +15,12 @@ namespace basecross {
 	void PlayerController::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
-		m_transform->SetScale(0.2f, 0.2f, 0.2f);
+		m_transform->SetPosition(0.0f, 0.4f, 0.0f);
+		m_transform->SetScale(1.0f, 1.0f, 1.0f);
 
 		// ƒRƒŠƒWƒ‡ƒ“‚ð‚Â‚¯‚é
-		auto ptrColl = AddComponent<CollisionObb>();
+		auto ptrColl = AddComponent<CollisionCapsule>();
+		ptrColl->SetDrawActive(true);
 		// Õ“Ë”»’è‚ÍAuto
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(false);

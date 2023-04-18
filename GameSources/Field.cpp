@@ -1,5 +1,5 @@
 /*!
-@file Ground.cpp
+@file Field.cpp
 @brief 地面を表すクラスの実装
 */
 
@@ -79,9 +79,9 @@ namespace basecross {
 
 	void KeyStone::OnCreate()
 	{
-		auto collComp = AddComponent<CollisionObb>();
+		auto collComp = AddComponent<CollisionSphere>();
 		// 衝突判定はAuto
-		collComp->SetAfterCollision(AfterCollision::Auto);
+		collComp->SetAfterCollision(AfterCollision::None);
 		collComp->SetSleepActive(false);
 
 		auto transComp = GetComponent<Transform>();

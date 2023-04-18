@@ -9,9 +9,7 @@
 namespace basecross {
 	SpurtLava::SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :
 		GameObject(stage),
-		m_damageDelayFlame(0),
 		m_removeDelayFlame(m_RemoveDelayCount),
-		m_damageValue(1.0f),
 		m_scale(scale),
 		m_position(position)
 	{
@@ -25,50 +23,60 @@ namespace basecross {
 		m_transform->SetPosition(m_position);
 
 		// コリジョンをつける
-		auto ptrColl = AddComponent<CollisionSphere>();
-		ptrColl->SetDrawActive(true);
+		auto ptrColl = AddComponent<CollisionObb>();
+		ptrColl->SetUpdateActive(false);
 		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetSleepActive(false);
+
+		AddTag(L"SpurtLava");
 	}
 
 	void SpurtLava::OnUpdate()
 	{
-		m_damageDelayFlame--;
+		auto ptrColl = GetComponent<CollisionObb>();
+		ptrColl->SetUpdateActive(false);
+		ptrColl->SetDrawActive(false);
+
 		m_removeDelayFlame--;
+		if (m_removeDelayFlame % 50 == 0)
+		{
+			ptrColl->SetUpdateActive(true);
+			ptrColl->SetDrawActive(true);
+		}
 		if (m_removeDelayFlame <= 0)
 		{
 			GetStage()->RemoveGameObject<SpurtLava>(GetThis<SpurtLava>());
 		}
 	}
 
-	void SpurtLava::OnCollisionEnter(shared_ptr<GameObject>& other)
-	{
-		if (other->FindTag(L"Player"))
-		{
-			if (m_damageDelayFlame <= 0)
-			{
-				auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-				playerStatus->PlayerDamageProcess(m_damageValue);
-				m_damageDelayFlame = m_DamageDelayCount;
-				return;
-			}
-		}
-	}
+	//void SpurtLava::OnCollisionEnter(shared_ptr<GameObject>& other)
+	//{
+	//	if (other->FindTag(L"Enemy"))
+	//	{
+	//		if (m_damageDelayFlame <= 0)
+	//		{
+	//			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+	//			playerStatus->PlayerDamageProcess(m_damageValue);
+	//			m_damageDelayFlame = m_DamageDelayCount;
+	//			return;
+	//		}
+	//	}
+	//}
 
-	void SpurtLava::OnCollisionExcute(shared_ptr<GameObject>& other)
-	{
-		if (other->FindTag(L"Player"))
-		{
-			if (m_damageDelayFlame <= 0)
-			{
-				auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-				playerStatus->PlayerDamageProcess(m_damageValue);
-				m_damageDelayFlame = m_DamageDelayCount;
-				return;
-			}
-		}
-	}
+	//void SpurtLava::OnCollisionExcute(shared_ptr<GameObject>& other)
+	//{
+	//	if (other->FindTag(L"Enemy"))
+	//	{
+	//		if (m_damageDelayFlame <= 0)
+	//		{
+	//			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+	//			playerStatus->PlayerDamageProcess(m_damageValue);
+	//			m_damageDelayFlame = m_DamageDelayCount;
+	//			return;
+	//		}
+	//	}
+	//}
 
 	// スパイクトラップクラス
 	SpikeTrap::SpikeTrap(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :

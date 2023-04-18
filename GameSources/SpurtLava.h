@@ -10,12 +10,8 @@ namespace basecross {
 	class SpurtLava : public GameObject {
 
 		// ダメージを与える間隔
-		const int m_DamageDelayCount = 20;
 		const int m_RemoveDelayCount = 300;
-		int m_damageDelayFlame;
 		int m_removeDelayFlame;
-
-		float m_damageValue; // ダメージ量
 
 		Vec3 m_scale; // 大きさ
 		Vec3 m_position; // 位置情報
@@ -29,9 +25,9 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		// 衝突応答処理
-		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
-		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
+		//// 衝突応答処理
+		//virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+		//virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 	};
 
 	class SpikeTrap : public GameObject {
