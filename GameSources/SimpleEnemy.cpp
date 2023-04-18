@@ -13,16 +13,7 @@ namespace basecross {
 		m_DamageDelayCount(60),
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
-		m_currentPointIndex(0),	
-		m_directionPos(m_randomDirection),
-		m_tagetPosition(m_randomPosition)
-		//m_direction{Vec3(0.0f, 0.0f, -40.0f),
-		//			Vec3(-40.0f, 0.0f, 0.0f),
-		//			Vec3(m_randomDirection)},
-		//m_points{Vec3(20.0f, 0.0f, 40.0f),
-		//		Vec3(20.0f, 0.0f, 20.0f),
-		//		Vec3(-20.0f, 0.0f, 20.0f),
-		//		Vec3(m_tagetPosition)}	
+		m_currentPointIndex(0)
 		{
 		}
 	SimpleEnemy::~SimpleEnemy() {}
@@ -38,16 +29,17 @@ namespace basecross {
 		m_transform->SetPosition(m_position);
 
 		int rnd = rand() % 10;
-		Vec3 m_randPos(0.0f, 0.0f, -rnd);
+		Vec3 m_randomPosition(0.0f, 0.0f, -rnd);
 
-		float direction_x = m_points[2].x - m_direction[1].x;
-		float direction_y = m_points[2].z - m_direction[1].z;
+		float direction_x = m_direction[1].x - m_points[2].x;
+		float direction_y = m_direction[1].z - m_points[2].z;
 
-		Vec3 m_randDir(direction_x, 0.0f,direction_y);
-
-		m_randomDirection = m_randDir;
-		m_randomPosition = m_randPos;
+		Vec3 m_randomDirection(-direction_x+20.0f, 0.0f,direction_y);
+		//Vec3 m_randomDirection(30, 0.0f,-30);
 		
+		m_direction[2] = m_randomDirection;
+		m_points[3] = m_randomPosition;
+
 	}
 
 	void SimpleEnemy::OnUpdate()
