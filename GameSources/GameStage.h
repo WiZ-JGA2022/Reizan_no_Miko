@@ -32,7 +32,6 @@ namespace basecross {
 
 		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
-		shared_ptr<TrapSprite> m_trap;
 	public:
 		//構築と破棄
 		GameStage() :Stage() {}
@@ -65,6 +64,8 @@ namespace basecross {
 
 		// プレイヤーコンポーネント
 		shared_ptr<PlayerController> m_player;
+		shared_ptr<TrapSprite> m_trap;
+
 	public:
 		//構築と破棄
 		StandbyStage() :Stage() {}

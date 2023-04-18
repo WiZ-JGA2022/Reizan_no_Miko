@@ -242,10 +242,11 @@ namespace basecross {
 	//çXêV
 	void StandbyStage::OnUpdate() {
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
+
 		if (time->GetTimeLeft() <= 0.0f)
 		{
-
 			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
+			//RemoveGameObejct<TrapSprite>(m_trap);
 		}
 	} // end OnUpdate
 
