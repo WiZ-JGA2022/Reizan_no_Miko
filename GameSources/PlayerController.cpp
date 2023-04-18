@@ -109,7 +109,7 @@ namespace basecross {
 				padLStick.x = cos(stickRad);
 				padLStick.z = sin(stickRad);
 			}
-		
+
 			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
 			// ˆÚ“®ˆ—
