@@ -1,69 +1,63 @@
 /*!
-@file GimmickController.cpp
-@brief ギミックを出すクラスの実装
+@file TrapController.cpp
+@brief 罠を管理するクラスの実装
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	GimmickController::GimmickController(const shared_ptr<Stage>& stage) :
+	TrapController::TrapController(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
-		m_gimmickDamageDelay(m_GimmickDamageDelayFlame)
+		m_trapDamageDelay(m_TrapDamageDelayFlame)
 	{
 	}
-	GimmickController::~GimmickController() {}
+	TrapController::~TrapController() {}
 
-	void GimmickController::OnCreate()
+	void TrapController::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(Vec3(0));
 	}
 
-	void GimmickController::OnUpdate()
+	void TrapController::OnUpdate()
 	{
-		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
-		auto playerTrans = player->GetComponent<Transform>();
-		auto time = GetStage()->GetSharedGameObject<TimeNumber>(L"Time");
+		auto& app = App::GetApp();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
 
-		if ((int)time->GetTimeLeft() == m_GimmickCreateDelaySeconds)
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
 		{
-			m_isState = GimmickState::DamageDelay;
-			for (int i = 0; i < 10; i++)
+			m_isState = TrapState::ActiveDelay;
+		}
+		if (m_isState == TrapState::ActiveDelay)
+		{
+			m_trapDamageDelay--;
+			if (m_trapDamageDelay <= 0)
 			{
-				m_gimmickPosition[i] = playerTrans->GetPosition() + m_GimmickPosition[i];
+				m_isState = TrapState::Active;
+				m_trapDamageDelay = m_TrapDamageDelayFlame;
 			}
 		}
-		if (m_isState == GimmickState::DamageDelay)
-		{
-			m_gimmickDamageDelay--;
-			if (m_gimmickDamageDelay <= 0)
-			{
-				m_isState = GimmickState::Active;
-				m_gimmickDamageDelay = m_GimmickDamageDelayFlame;
-			}
-		}
-		if (m_isState == GimmickState::Active)
+		if (m_isState == TrapState::Active)
 		{
 			CreateSpurtLava();
-			m_isState = GimmickState::UnActive;
+			m_isState = TrapState::Wait;
+			GetStage()->RemoveGameObject<TrapController>(GetThis<TrapController>());
 		}
 	}
 
-	void GimmickController::CreateSpurtLava()
+	void TrapController::CreateSpurtLava()
 	{
-		for (int i = 0; i < 10; i++)
-		{
-			GetStage()->AddGameObject<SpurtLava>(m_gimmickPosition[i], m_GimmickScale);
-		}
+		GetStage()->AddGameObject<SpurtLava>(m_transform->GetPosition(), Vec3(20.0f, 4.0f, 1.0f));
 	}
 
-	int GimmickController::GetDamageFlame()
+	int TrapController::GetDamageFlame()
 	{
-		return m_GimmickDamageDelayFlame;
+		return m_TrapDamageDelayFlame;
 	}
-	int GimmickController::GetDamageDelay()
+	int TrapController::GetDamageDelay()
 	{
-		return m_gimmickDamageDelay;
+		return m_trapDamageDelay;
 	}
 }
