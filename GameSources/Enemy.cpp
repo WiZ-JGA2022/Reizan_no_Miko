@@ -34,10 +34,11 @@ namespace basecross {
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
-		m_transform->SetScale(Vec3(0.3f, 0.3f, 0.3f));
+		m_transform->SetScale(Vec3(3.0f, 3.0f, 3.0f));
 
 		// ƒRƒŠƒWƒ‡ƒ“‚ð‚Â‚¯‚é
 		auto ptrColl = AddComponent<CollisionCapsule>();
+		ptrColl->SetDrawActive(true);
 		// Õ“Ë”»’è‚ÍNone
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(true);
