@@ -17,19 +17,33 @@ namespace basecross {
 		};
 
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
-		if (m_isHp)
-		{
-			m_draw->SetTextureResource(L"HPBAR_GREEN");
-		}
-		else
-		{
-			m_draw->SetTextureResource(L"EXPBAR_BLUE");
-		}
 
 		m_transform = GetComponent<Transform>();
 
 		// “§‰ßˆ—‚ð—LŒø‚É‚·‚é
 		SetAlphaActive(true);
+		if (m_isHp)
+		{
+			if (m_isBlack)
+			{
+				m_draw->SetTextureResource(L"HPBAR_RED");
+			}
+			else
+			{
+				m_draw->SetTextureResource(L"HPBAR_GREEN");
+			}
+		}
+		else
+		{
+			if (m_isBlack)
+			{
+				m_draw->SetTextureResource(L"EXPBAR_BLACK");
+			}
+			else
+			{
+				m_draw->SetTextureResource(L"EXPBAR_BLUE");
+			}
+		}
 	}
 
 	void GaugeSizeSettings::SetVartices()

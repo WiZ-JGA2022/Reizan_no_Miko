@@ -113,7 +113,7 @@
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +229,7 @@
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

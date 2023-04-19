@@ -16,7 +16,7 @@ namespace basecross {
 		int m_maxExp; // 最大経験値
 
 		// EXPバーの情報を入れる変数
-		shared_ptr<GaugeSizeSettings> m_bar;
+		shared_ptr<GaugeSizeSettings> m_bar[2];
 
 	public:
 		ExpBar(const std::shared_ptr<Stage>& stage) :

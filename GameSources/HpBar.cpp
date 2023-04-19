@@ -12,9 +12,12 @@ namespace basecross {
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
-		m_bar = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, true);
-		m_bar->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
-		m_bar->SetPosition((float)App::GetApp()->GetGameWidth(), 0.0f, 0.49f); // 画面の左端から右端に向かってゲージを伸ばす
+		m_bar[1] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, true, true);
+		m_bar[0] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, true, false);
+		m_bar[0]->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
+		m_bar[1]->UpdateGaugeSize(playerStatus->GetMaxHp(), (float)playerStatus->GetMaxHp());
+		m_bar[0]->SetPosition((float)App::GetApp()->GetGameWidth(), 0.0f, 0.49f); // 画面の左端から右端に向かってゲージを伸ばす
+		m_bar[1]->SetPosition((float)App::GetApp()->GetGameWidth(), 0.0f, 0.49f); // 画面の左端から右端に向かってゲージを伸ばす
 	}
 
 	void HpBar::OnUpdate()
@@ -26,12 +29,14 @@ namespace basecross {
 		}
 
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		m_bar->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
+		m_bar[0]->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
+		m_bar[1]->UpdateGaugeSize(playerStatus->GetMaxHp(), (float)playerStatus->GetMaxHp());
 	}
 
 	void HpBar::OnDraw()
 	{
-		m_bar->GameObject::OnDraw();
+		m_bar[1]->GameObject::OnDraw();
+		m_bar[0]->GameObject::OnDraw();
 	}
 }
 //end basecross
