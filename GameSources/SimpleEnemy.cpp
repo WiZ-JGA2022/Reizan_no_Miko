@@ -7,10 +7,11 @@
 #include "stdafx.h"
 #include "Project.h"
 
+
 namespace basecross {
 	SimpleEnemy::SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
-		m_DamageDelayCount(60),
+		m_DamageDelayCount(640),
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
 		m_currentPointIndex(0)
@@ -28,13 +29,14 @@ namespace basecross {
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 
+		srand(time(NULL));
 		int rnd = rand() % 10;
-		Vec3 m_randomPosition(0.0f, 0.0f, -rnd);
+		Vec3 m_randomPosition(0.0f, 1.5f, -rnd*10);
 
 		float direction_x = m_direction[1].x - m_points[2].x;
 		float direction_y = m_direction[1].z - m_points[2].z;
 
-		Vec3 m_randomDirection(-direction_x+20.0f, 0.0f,direction_y);
+		Vec3 m_randomDirection(-direction_x+15.0f, 0.0f,direction_y);
 		//Vec3 m_randomDirection(30, 0.0f,-30);
 		
 		m_direction[2] = m_randomDirection;
