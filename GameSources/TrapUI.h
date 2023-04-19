@@ -9,20 +9,47 @@
 namespace basecross {
 
 	class TrapSprite : public GameObject {
-		const Vec2 m_DefaultSize = Vec2(150.0f, 150.0f);;
-
-		// スプライトの元になる頂点データと頂点インデックス
-		vector<VertexPositionColorTexture> m_vertices;
-		vector<uint16_t> m_indices;
-
-		// ドローコンポーネントとトランスフォームコンポーネントを取得
-		shared_ptr<PCTSpriteDraw> m_draw;
-		shared_ptr<Transform> m_transform;
-
+	private:
+		bool m_alpha;         // 透明フラグ
+		Vec2 m_defaultScale;    // 大きさ
+		Vec2 m_defaultPos;      // 位置
+		int m_textureNum;	  // テクスチャ番号
+		wstring m_textureKey; // テクスチャ
+		int m_texNum;
+		float m_alphaNum = 1.0f;
 	public:
-		TrapSprite(const shared_ptr<Stage>& stage);
-		~TrapSprite();
+		//--------------------------------------------------------------------------------------
+		/*!
+		@brief　コンストラクタ
+		*/
+		//--------------------------------------------------------------------------------------
+		TrapSprite(const shared_ptr<Stage>& stagePtr,
+			const int& m_textureNum,
+			bool trace,
+			const Vec2& startScale,
+			const Vec2& startPos,
+			const int& texNum
+		);
+		//--------------------------------------------------------------------------------------
+		/**
+		@brief　デストラクタ
+		*/
+		//--------------------------------------------------------------------------------------
+		virtual ~TrapSprite() {}
+		//--------------------------------------------------------------------------------------
+		/**
+		@brief　初期化
+		*/
+		//--------------------------------------------------------------------------------------
+		virtual void OnCreate() override;
+		//--------------------------------------------------------------------------------------
+		/**
+		@brief　更新
+		*/
+		//--------------------------------------------------------------------------------------
+		virtual void OnUpdate() override;
 
-		void OnCreate() override;
+		wstring ControllerNum(int i);
 	};
 }
+//end basecross

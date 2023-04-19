@@ -43,3 +43,4 @@
 #include "StandbySprite.h"
 #include "GameSprite.h"
 #include "TrapUI.h"
+#include "TrapSelect.h"

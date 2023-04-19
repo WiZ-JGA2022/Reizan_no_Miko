@@ -69,6 +69,8 @@ namespace basecross {
 		
 		AddGameObject<TimeChara>();
 
+		AddGameObject<TrapSelect>();
+
 		m_standby = AddGameObject<StandbySprite>();
 
 	} // end CreateUI

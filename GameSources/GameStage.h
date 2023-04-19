@@ -9,6 +9,7 @@
 #include "TimeNumber.h"
 #include "StandbySprite.h"
 #include "TrapUI.h"
+#include"TrapSelect.h"
 
 namespace basecross {
 

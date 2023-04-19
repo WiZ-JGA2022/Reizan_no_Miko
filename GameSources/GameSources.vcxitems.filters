@@ -115,6 +115,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -229,6 +232,9 @@
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
