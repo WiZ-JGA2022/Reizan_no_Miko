@@ -109,6 +109,8 @@ namespace basecross{
 		RoadSound(L"STONEDAMAGE_SE", L"StoneDamageSE.wav");
 		RoadSound(L"SPIKE_SE", L"SpikeSE.wav");
 		RoadSound(L"SPIKEDAMAGE_SE", L"SpikeDamageSE.wav");
+		RoadSound(L"LAVA_SE", L"StaticLavaSE.wav");
+		RoadSound(L"SPURTLAVA_SE", L"SpurtLavaSE.wav");
 
 		RoadStaticModelMesh(L"atage3", L"STAGE");
 		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");

@@ -38,22 +38,5 @@ namespace basecross {
 		{
 			return m_angle;
 		}
-
-		float GetDistance()
-		{
-			return m_distance;
-		}
-
-		void SetDistance(float distance)
-		{
-			if (distance < 0)
-			{
-				m_distance = distance;
-			}
-			else
-			{
-				m_distance = -distance;
-			}
-		}
 	};
 }

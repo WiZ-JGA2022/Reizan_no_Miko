@@ -35,6 +35,7 @@ namespace basecross {
 		Vec3 m_position; // 位置情報
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
+		shared_ptr<SoundItem> m_se[2];
 
 	public:
 		SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale);

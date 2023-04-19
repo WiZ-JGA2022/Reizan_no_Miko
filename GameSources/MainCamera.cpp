@@ -27,7 +27,7 @@ namespace basecross {
 
 		m_atPos += padRStick.z * app->GetElapsedTime();
 
-		////注視点からの相対座標(回り込みの角度と注視点からの距離で算出する)
+		//注視点からの相対座標(回り込みの角度と注視点からの距離で算出する)
 		auto relativePos = Vec3(
 			cos(m_angle) * -m_distance,
 			5.0f,
