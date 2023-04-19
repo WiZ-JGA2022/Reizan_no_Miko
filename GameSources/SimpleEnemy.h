@@ -11,17 +11,21 @@ namespace basecross {
 
 		Vec3 m_position;
 
+		Vec3 m_randomDirection;
+		Vec3 m_randomPosition;
+
 		Vec3 m_direction[3] = {
 			Vec3(0.0f, 0.0f, -40.0f),
-			Vec3(-40.0f, 0.0f, 0.0f),
-			Vec3(20.0f, 0.0f, -30.0f)
+			Vec3(-20.0f, 0.0f, 0.0f),
+			Vec3(-10.0f,0.0f,0.0f)
+			//Vec3(20.0f, 0.0f, -30.0f)
 		};
 
 		Vec3 m_points[4] = {
 			Vec3(20.0f, 1.5f, 40.0f),
 			Vec3(20.0f, 1.5f, 20.0f),
 			Vec3(-20.0f, 1.5f, 20.0f),
-			Vec3(0.0f, 1.5f, -10.0f)
+			Vec3(0.0f, 1.5f, 0.0f)
 		};
 		
 		int m_currentPointIndex;
