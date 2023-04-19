@@ -34,6 +34,10 @@ namespace basecross {
 		bool m_LRBaseMode;
 		//上下スティック変更のモード
 		bool m_UDBaseMode;
+
+		float m_angle;
+		shared_ptr<Transform> m_targetTrans;
+
 	public:
 		//--------------------------------------------------------------------------------------
 		/*!
@@ -245,6 +249,7 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnUpdate()override;
+		float GetAngle();
 	};
 
 }

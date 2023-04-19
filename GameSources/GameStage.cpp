@@ -117,7 +117,7 @@ namespace basecross {
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
-			//maincamera->SetTarget(m_player);
+			maincamera->SetTargetObject(m_player);
 		}
 		catch (...) {
 			throw;
