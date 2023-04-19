@@ -12,9 +12,23 @@ namespace basecross {
 	*/
 	class SpurtLava : public GameObject {
 
-		// ダメージを与える間隔
-		const int m_DamageDelayFlame = 50;
+		// 状態フラグ
+		enum class TrapState
+		{
+			Wait,		// 待機
+			Active,		// 実行
+			ActiveDelay	// 実行遅延
+		};
+		enum TrapState m_isState = TrapState::Wait;
+
+		// ダメージが発生するまでの時間
+		const int m_DamageActiveDelayFlame = 180;
+		// ダメージが発生する間隔
+		const int m_DamageIntervalFlame = 50;
+		// 消えるまでの時間
 		const int m_RemoveDelayCount = 300;
+
+		int m_activeFlame;
 		int m_removeDelayFlame;
 
 		Vec3 m_scale; // 大きさ

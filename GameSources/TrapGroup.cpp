@@ -9,6 +9,7 @@
 namespace basecross {
 	SpurtLava::SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale) :
 		GameObject(stage),
+		m_activeFlame(m_DamageActiveDelayFlame),
 		m_removeDelayFlame(m_RemoveDelayCount),
 		m_scale(scale),
 		m_position(position)
@@ -34,19 +35,61 @@ namespace basecross {
 
 	void SpurtLava::OnUpdate()
 	{
+		auto& app = App::GetApp();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
+			
+		// 基本的にコリジョンを待機状態にしておく
 		auto ptrColl = GetComponent<CollisionObb>();
 		ptrColl->SetUpdateActive(false);
 		ptrColl->SetDrawActive(false);
 
-		m_removeDelayFlame--;
-		if (m_removeDelayFlame % m_DamageDelayFlame == 0)
+		// プレイヤーの状態が実行状態のときRスティックを押し込んだら
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		if (player->GetCondition() == 1)
 		{
-			ptrColl->SetUpdateActive(true);
-			ptrColl->SetDrawActive(true);
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_THUMB)
+			{
+				// 実行待機状態に入る
+				m_isState = TrapState::ActiveDelay;
+			}
 		}
-		if (m_removeDelayFlame <= 0)
+
+		// 実行待機状態なら
+		if (m_isState == TrapState::ActiveDelay)
 		{
-			GetStage()->RemoveGameObject<SpurtLava>(GetThis<SpurtLava>());
+			// 待機時間を減少
+			m_activeFlame--;
+			// 待機時間が終わったら
+			if (m_activeFlame <= 0)
+			{
+				// 実行状態に入る
+				m_isState = TrapState::Active;
+				// 待機時間を初期化しておく
+				m_activeFlame = m_DamageActiveDelayFlame;
+			}
+		}
+
+		// 実行状態なら
+		if (m_isState == TrapState::Active)
+		{
+			// 削除までの時間を経過させる
+			m_removeDelayFlame--;
+
+			// ダメージを与える間隔毎にコリジョンをアクティブにする
+			if (m_removeDelayFlame % m_DamageIntervalFlame == 0)
+			{
+				ptrColl->SetUpdateActive(true);
+				ptrColl->SetDrawActive(true);
+			}
+			// 削除までの時間が0になったら
+			if (m_removeDelayFlame <= 0)
+			{
+				// 待機状態に移行
+				m_isState = TrapState::Wait;
+				// このオブジェクトの削除
+				GetStage()->RemoveGameObject<SpurtLava>(GetThis<SpurtLava>());
+			}
 		}
 	}
 
