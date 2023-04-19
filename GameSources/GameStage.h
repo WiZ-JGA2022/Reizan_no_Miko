@@ -8,6 +8,7 @@
 #include "PlayerController.h"
 #include "TimeNumber.h"
 #include "StandbySprite.h"
+#include "TrapUI.h"
 
 namespace basecross {
 

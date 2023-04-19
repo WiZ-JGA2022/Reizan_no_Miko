@@ -90,6 +90,7 @@ namespace basecross{
 		RoadTexture(L"STONE", L"Stone.png");
 		RoadTexture(L"SPIKE", L"Spike.png");
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
+		RoadTexture(L"TRAP_1", L"ã©.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");

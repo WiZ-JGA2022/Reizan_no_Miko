@@ -112,6 +112,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -224,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h">
       <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

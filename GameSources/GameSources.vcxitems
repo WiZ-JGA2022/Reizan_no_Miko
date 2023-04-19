@@ -50,6 +50,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +89,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>

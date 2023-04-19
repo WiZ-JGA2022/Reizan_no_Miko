@@ -5,6 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Enemy.h"
 
 namespace basecross {
 	class SimpleEnemy : public Enemy {
