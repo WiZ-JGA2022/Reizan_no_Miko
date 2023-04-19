@@ -69,7 +69,9 @@ namespace basecross {
 		
 		AddGameObject<TimeChara>();
 
-		AddGameObject<TrapSelect>();
+		m_trap = AddGameObject<TrapSelect>();
+
+		m_button = AddGameObject<ButtonSelect>();
 
 		m_standby = AddGameObject<StandbySprite>();
 
@@ -134,6 +136,9 @@ namespace basecross {
 			player->SetCondition(1);
 			RemoveGameObject<TimeNumber>(m_time);
 			RemoveGameObject<StandbySprite>(m_standby);
+			RemoveGameObject<TrapSelect>(m_trap);
+			RemoveGameObject<ButtonSelect>(m_button);
+
 			if (m_isOnce)
 			{
 				AddGameObject<TimeNumber>(60.0f, true);

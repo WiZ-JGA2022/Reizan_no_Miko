@@ -9,7 +9,9 @@
 #include "TimeNumber.h"
 #include "StandbySprite.h"
 #include "TrapUI.h"
-#include"TrapSelect.h"
+#include "TrapSelect.h"
+#include "ButtonUI.h"
+#include "ButtonSelect.h"
 
 namespace basecross {
 
@@ -38,6 +40,9 @@ namespace basecross {
 		shared_ptr<PlayerController> m_player;
 		shared_ptr<TimeNumber> m_time;
 		shared_ptr<StandbySprite> m_standby;
+		shared_ptr<TrapSelect> m_trap;
+		shared_ptr<ButtonSelect> m_button;
+
 	public:
 		Vec3 m_trapPosition = Vec3(0);
 

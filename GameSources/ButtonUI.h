@@ -1,6 +1,6 @@
 /* !
-@file TrapUI.h
-@brief トラップUI
+@file ButtonUI.h
+@brief ボタンUI
 */
 
 #pragma once
@@ -8,7 +8,7 @@
 
 namespace basecross {
 
-	class TrapSprite : public GameObject {
+	class ButtonSprite : public GameObject {
 	private:
 		bool m_alpha;         // 透明フラグ
 		Vec2 m_defaultScale;    // 大きさ
@@ -23,7 +23,7 @@ namespace basecross {
 		@brief　コンストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		TrapSprite(const shared_ptr<Stage>& stagePtr,
+		ButtonSprite(const shared_ptr<Stage>& stagePtr,
 			const int& m_textureNum,
 			bool trace,
 			const Vec2& startScale,
@@ -35,7 +35,7 @@ namespace basecross {
 		@brief　デストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		virtual ~TrapSprite() {}
+		virtual ~ButtonSprite() {}
 		//--------------------------------------------------------------------------------------
 		/**
 		@brief　初期化
@@ -48,8 +48,6 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnUpdate() override;
-
-
 
 		wstring ControllerNum(int i);
 	};

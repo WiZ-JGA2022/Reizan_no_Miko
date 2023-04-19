@@ -1,13 +1,13 @@
 /*!
-@file RandomSelectLevelUpButton.h
-@brief ランダムにレベルアップできる項目を出すクラス
+@file ButtonSelect.h
+@brief 複数のボタンUI
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class TrapSelect : public GameObject
+	class ButtonSelect : public GameObject
 	{
 		// レベルアップ時に表示するボタンの数
 		static const int m_PickUpStatusCount = 4;
@@ -16,21 +16,11 @@ namespace basecross {
 
 		bool m_isActiveSprite = false;
 
-		/**
-		* 強化できるステータス・強化できる武器をランダムに指定
-		*
-		* @param selectStatus 強化可能なステータス・武器の総数
-		*/
-
 	public:
-		TrapSelect(const shared_ptr<Stage>& StagePtr);
-		~TrapSelect();
+		ButtonSelect(const shared_ptr<Stage>& StagePtr);
+		~ButtonSelect();
 
 		virtual void OnCreate() override;
-
-		/**
-		* レベルアップ時に呼ばれる関数
-		*/
 
 
 
@@ -42,3 +32,5 @@ namespace basecross {
 	};
 }
 //end basecross
+
+
