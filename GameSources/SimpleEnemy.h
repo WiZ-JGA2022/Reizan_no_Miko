@@ -18,8 +18,7 @@ namespace basecross {
 		Vec3 m_direction[3] = {
 			Vec3(0.0f, 0.0f, -40.0f),
 			Vec3(-20.0f, 0.0f, 0.0f),
-			Vec3(-10.0f,0.0f,0.0f)
-			//Vec3(20.0f, 0.0f, -30.0f)
+			Vec3(20.0f, 0.0f, -30.0f)
 		};
 
 		Vec3 m_points[4] = {
@@ -34,6 +33,9 @@ namespace basecross {
 		// ダメージを与える間隔
 		const int m_DamageDelayCount;
 		int m_damageDelayFlame;
+
+		Vec3 m_directionPlayer;
+		Vec3 m_directionKeyStone;
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
@@ -61,6 +63,8 @@ namespace basecross {
 		* 敵の移動処理
 		*/
 		void MoveEnemy() override;
+		void MoveEnemyPlayer();//player
+		void MoveEnemyKeyStone();//keystone
 
 		/**
 		* 敵が受けるダメージの計算
