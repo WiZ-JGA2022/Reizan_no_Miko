@@ -22,7 +22,7 @@ namespace basecross {
 		auto device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];
 
-		Vec3 padRStick(-pad.fThumbRX, 0.0f, pad.fThumbRY);
+		Vec3 padRStick(-pad.fThumbRX, pad.fThumbRX, pad.fThumbRY);
 
 		m_angle += padRStick.x * app->GetElapsedTime();
 		m_anglevertical += padRStick.z * app->GetElapsedTime();
@@ -36,7 +36,7 @@ namespace basecross {
 		Vec3 newAt = GetAt();
 
 		//計算に使うための腕角度（ベクトル）
-		bsm::Vec3 armVec = newEye - newAt;
+		//bsm::Vec3 armVec = newEye - newAt;
 
 		//縦カメラ
 		//auto fThumbRY = m_fThumR;
@@ -50,18 +50,18 @@ namespace basecross {
 		//右スティックのカメラの上下角度変更
 		if (padRStick.z >= 0.1f )//{
 			if (IsUDBaseMode()) {
-				m_RadY += m_CameraUpDownSpeed * m_anglevertical;
+				m_RadY += m_CameraUpDownSpeed * elapsedTime;
 			}
 			else {
-				m_RadY -= m_CameraUpDownSpeed * m_anglevertical;
+				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
 
 		else if (padRStick.z<= -0.1f ) {
 			if (IsUDBaseMode()) {
-				m_RadY -= m_CameraUpDownSpeed * m_anglevertical;
+				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
 			else {
-				m_RadY += m_CameraUpDownSpeed * m_anglevertical;
+				m_RadY += m_CameraUpDownSpeed * elapsedTime;
 			}
 		}
 		if (m_RadY > XM_PI * 4 / 9.0f) {
@@ -89,7 +89,7 @@ namespace basecross {
 			}
 		}
 
-		if (pad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN ) {
+		if (pad.wButtons & XINPUT_GAMEPAD_DPAD_UP ) {
 			//カメラ位置を寄る
 			m_ArmLen -= m_ZoomSpeed;
 			if (m_ArmLen <= m_MinArm) {
@@ -97,12 +97,6 @@ namespace basecross {
 				m_ArmLen = m_MinArm;
 			}
 		}
-		//Vec3 Verticaleye = at + relativePos*m_ArmLen;
-		//newEye = Lerp::CalculateLerp(GetEye(), Verticaleye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);
-
-		//SetAt(newAt);
-		//SetEye(newEye);
-
 
 		Vec3 eye = at + relativePos * m_ArmLen;
 		newEye = Lerp::CalculateLerp(GetEye(), eye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);

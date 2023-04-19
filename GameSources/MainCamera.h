@@ -20,6 +20,7 @@ namespace basecross {
 		float m_RadY;
 		float m_CameraUpDownSpeed;//カメラの上下スピード
 		float m_CameraUnderRot;//カメラを下げる降下限界
+		//腕の長さの設定
 		float m_ArmLen;
 		float m_MaxArm;
 		float m_MinArm;
@@ -38,8 +39,8 @@ namespace basecross {
 			m_distance(-15.0f),
 			m_fThumR(0.0f),
 			m_ToTargetLerp(1.0f),
-			m_RadY(0.5f),
-			m_CameraUpDownSpeed(1.0f),
+			m_RadY(1.0f),
+			m_CameraUpDownSpeed(8.0f),
 			m_CameraUnderRot(0.1f),
 			m_ArmLen(5.0f),
 			m_MaxArm(20.0f),
@@ -52,6 +53,7 @@ namespace basecross {
 		//bool GetUDBaseMode() const;//Rスティックの上下変更をBaseモードにするかどうかを得る,Baseモードならtrue（デフォルト）
 		bool IsUDBaseMode() const;	//							〃							,Baseモードならtrue
 		void OnCreate() override;
+		void UpdateArmLengh();
 		void OnUpdate() override;
 
 		void SetTarget(const std::shared_ptr<GameObject>& target)
