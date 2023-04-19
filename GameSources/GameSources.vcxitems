@@ -27,7 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GimmickController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Item.h" />
@@ -45,12 +45,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapGroup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +66,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GimmickController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp" />
@@ -84,7 +83,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SimpleEnemy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapGroup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StandbySprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp" />

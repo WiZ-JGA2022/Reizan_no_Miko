@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
+
 namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//	class PlayerController : public GameObject;
@@ -14,21 +15,41 @@ namespace basecross {
 	void PlayerController::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(0.0f, 0.0f, 0.0f);
+		m_transform->SetPosition(0.0f, 0.4f, 0.0f);
+		m_transform->SetScale(1.0f, 1.0f, 1.0f);
 
 		// コリジョンをつける
-		auto ptrColl = AddComponent<CollisionObb>();
+		auto ptrColl = AddComponent<CollisionCapsule>();
+		ptrColl->SetDrawActive(true);
 		// 衝突判定はAuto
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(false);
 
-		// 影をつける
-		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(L"MIKO");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		// Playerオブジェクトの初期設定
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		//描画コンポーネントの設定
+		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
+		ptrDraw->SetFogEnabled(true);
+		//描画するメッシュを設定
+		ptrDraw->SetMeshResource(L"MIKO");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+
+		ptrDraw->AddAnimation(L"Miko_w", 0, 100, true, 20.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Miko_w");
+
+		//透明処理
+		SetAlphaActive(true);
 	}
 
 	void PlayerController::OnUpdate()
@@ -53,6 +74,22 @@ namespace basecross {
 			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
 
 			m_recastFlame = m_RecastCount - (m_RecastCount * (playerStatus->GetStatusValue(L"HASTE") - 1.0f));
+		}
+
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
+		
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
+		{
+			if (m_condition == PlayerCondition::Standby && m_trapCount < m_TrapLimitCount)
+			{
+				auto XAPtr = App::GetApp()->GetXAudio2Manager();
+				XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
+				GetStage()->AddGameObject<SpikeTrap>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(5.0f, 0.5f, 5.0f));
+				m_trapCount++;
+			}
 		}
 	}
 

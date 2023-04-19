@@ -95,7 +95,7 @@ namespace basecross {
 
 	void AttackAnnounceLine::OnUpdate()
 	{
-		auto gimmickController = GetStage()->GetSharedGameObject<GimmickController>(L"GimmickController");
+		auto gimmickController = GetStage()->GetSharedGameObject<TrapController>(L"TrapController");
 		m_coefficient = ((float)gimmickController->GetDamageFlame() - (float)gimmickController->GetDamageDelay()) / (float)gimmickController->GetDamageFlame();
 
 		m_scale = Vec3(m_DefaultSize.x * m_coefficient, m_DefaultSize.y, m_DefaultSize.z * m_coefficient);

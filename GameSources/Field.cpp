@@ -1,5 +1,5 @@
 /*!
-@file Ground.cpp
+@file Field.cpp
 @brief 地面を表すクラスの実装
 */
 
@@ -41,6 +41,7 @@ namespace basecross {
 	void Field::OnUpdate()
 	{
 	}
+
 	void Field2::OnCreate()
 	{
 		auto collComp = AddComponent<CollisionObb>();
@@ -74,6 +75,48 @@ namespace basecross {
 
 	void Field2::OnUpdate()
 	{
+	}
+
+	void KeyStone::OnCreate()
+	{
+		auto collComp = AddComponent<CollisionSphere>();
+		// 衝突判定はAuto
+		collComp->SetAfterCollision(AfterCollision::None);
+		collComp->SetSleepActive(false);
+
+		auto transComp = GetComponent<Transform>();
+		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
+		transComp->SetRotation(0.0f, 0.0f, 0.0f);
+		transComp->SetScale(5.0f, 5.0f, 5.0f);
+
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+		drawComp->SetTextureResource(L"STONE");
+	}
+
+	void KeyStone::OnUpdate()
+	{
+		m_delay--;
+		if (m_delay <= 0)
+		{
+			auto drawComp = GetComponent<PNTStaticDraw>();
+			drawComp->SetEmissive(Col4(0.6f, 0.6f, 0.6f, 1.0f)); // Normalカラー
+		}
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		if (m_hp <= 0)
+		{
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
+		}
+	}
+
+	void KeyStone::DamageProcess()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Start(L"STONEDAMAGE_SE", 0, 0.5f);
+		auto drawComp = GetComponent<PNTStaticDraw>();
+		drawComp->SetEmissive(Col4(1.0f, 0.2f, 0.2f, 1.0f));
+		m_delay = m_DefaultDelay;
+		m_hp -= 10.0f;
 	}
 }
 //end basecross

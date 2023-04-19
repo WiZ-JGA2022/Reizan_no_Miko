@@ -7,13 +7,14 @@
 #include "Project.h"
 
 namespace basecross {
-	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime) :
+	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay) :
 		GameObject(stage),
 		m_place(5),
 		m_totalTime(totalTime),
 		m_minutes(0),
 		m_seconds(0),
-		m_oldSeconds(0)
+		m_oldSeconds(0),
+		m_isPlay(isPlay)
 	{
 	}
 	TimeNumber::~TimeNumber() {}
@@ -56,13 +57,15 @@ namespace basecross {
 		}
 		m_oldSeconds = m_seconds;
 
-		// 時間切れになったら
-		if (m_totalTime <= 1 && player->GetCondition() == 1)
+		if (m_isPlay)
 		{
-			// プレイヤーと時間の処理を停止する
-			player->SetUpdateActive(false);
-			player->SetDrawActive(false);
-			return;
+			// 時間切れになったら
+			if (m_totalTime <= 1 && player->GetCondition() == 1)
+			{
+				// クリア
+				PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+				return;
+			}
 		}
 	}
 

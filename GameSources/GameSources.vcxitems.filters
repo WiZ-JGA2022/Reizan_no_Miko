@@ -52,10 +52,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GimmickController.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp">
       <Filter>Sources\Gimmic</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpurtLava.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapGroup.cpp">
       <Filter>Sources\Gimmic</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
@@ -165,10 +165,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GimmickController.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h">
       <Filter>Headers\Gimmic</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpurtLava.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapGroup.h">
       <Filter>Headers\Gimmic</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
@@ -218,9 +218,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h">
       <Filter>Headers\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h">
-      <Filter>Headers\Other</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h">
       <Filter>Headers\UI\SceneUI</Filter>

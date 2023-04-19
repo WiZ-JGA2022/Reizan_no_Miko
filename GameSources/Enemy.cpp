@@ -34,12 +34,13 @@ namespace basecross {
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
-		m_transform->SetScale(Vec3(0.1f, 0.1f, 0.1f));
+		m_transform->SetScale(Vec3(3.0f, 3.0f, 3.0f));
 
 		// コリジョンをつける
-		auto ptrColl = AddComponent<CollisionObb>();
+		auto ptrColl = AddComponent<CollisionCapsule>();
+		ptrColl->SetDrawActive(true);
 		// 衝突判定はNone
-		ptrColl->SetAfterCollision(AfterCollision::None);
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(true);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
