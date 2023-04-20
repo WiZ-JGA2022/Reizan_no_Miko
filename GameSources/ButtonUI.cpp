@@ -1,6 +1,6 @@
 /* !
-@file TrapUI.h
-@brief トラップUIの実装
+@file ButtonUI.h
+@brief ボタンUIの実装
 */
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@ namespace basecross {
 	constexpr float m_startPosZ = 1.0f;	 // 奥行き
 	constexpr float m_helfSize = 0.5f;	 // 半分の大きさ
 
-	TrapSprite::TrapSprite(const shared_ptr<Stage>& stage,
+	ButtonSprite::ButtonSprite(const shared_ptr<Stage>& stage,
 		const int& textureNum,
 		bool trace,
 		const Vec2& startScale,
@@ -29,34 +29,34 @@ namespace basecross {
 		m_texNum(texNum)
 	{
 	}
-	wstring TrapSprite::ControllerNum(int i) {
+	wstring ButtonSprite::ControllerNum(int i) {
 		if (i == 0)
 		{
-			m_textureKey = L"TRAP_1";
+			m_textureKey = L"XBUTTON";
 			return m_textureKey;
 		}
 		else if (i == 1)
 		{
-			m_textureKey = L"TRAP_1";
+			m_textureKey = L"YBUTTON";
 			return m_textureKey;
 
 		}
 		else if (i == 2)
 		{
-			m_textureKey = L"TRAP_1";
+			m_textureKey = L"ABUTTON";
 			return m_textureKey;
 
 		}
 		else if (i == 3)
 		{
-			m_textureKey = L"TRAP_1";
+			m_textureKey = L"BBUTTON";
 			return m_textureKey;
 
 		}
 	}
 
 	// 初期化
-	void TrapSprite::OnCreate()
+	void ButtonSprite::OnCreate()
 	{
 		float HelfSize = m_helfSize;
 
@@ -88,7 +88,7 @@ namespace basecross {
 	} // end OnCreate
 
 	// 更新処理
-	void TrapSprite::OnUpdate() {
+	void ButtonSprite::OnUpdate() {
 		auto& app = App::GetApp();
 		auto stage = app->GetScene<Scene>()->GetActiveStage();	// ステージオブジェクトを取得する
 		auto objs = stage->GetGameObjectVec();					// ステージに追加されているすべてのオブジェクト
@@ -98,7 +98,9 @@ namespace basecross {
 		if (player->GetCondition() == 1) {
 			// 処理終了後に表示した画像を消す処理
 
-			GetStage()->RemoveGameObject<TrapSprite>(GetThis<TrapSprite>());
+			GetStage()->RemoveGameObject<ButtonSprite>(GetThis<ButtonSprite>());
+
 		}
+
 	} // end OnUpdate
 }

@@ -15,6 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
@@ -50,11 +52,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
@@ -89,6 +94,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
