@@ -83,25 +83,25 @@ namespace basecross {
 		if (m_condition == PlayerCondition::Standby)
 		{	
 			// スパイクトラップの上限未満なら
-			if (m_spikeTrapCount < (int)TrapLimit::SpikeTrap)
+			if (m_trapCount[0] < (int)TrapLimit::SpikeTrap)
 			{
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
 				{
 					auto XAPtr = App::GetApp()->GetXAudio2Manager();
 					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
 					GetStage()->AddGameObject<SpikeTrap>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(5.0f, 0.5f, 5.0f));
-					m_spikeTrapCount++;
+					m_trapCount[0]++;
 				}
 			}
 			// 溶岩罠の上限未満なら
-			if (m_lavaTrapCount < (int)TrapLimit::SpurtLava)
+			if (m_trapCount[1] < (int)TrapLimit::SpurtLava)
 			{
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_Y)
 				{
 					auto XAPtr = App::GetApp()->GetXAudio2Manager();
 					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
 					GetStage()->AddGameObject<SpurtLava>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(4.0f, 20.0f, 4.0f));
-					m_lavaTrapCount++;
+					m_trapCount[1]++;
 				}
 			}
 		}

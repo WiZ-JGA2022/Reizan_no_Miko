@@ -95,6 +95,7 @@ namespace basecross{
 		RoadTexture(L"YBUTTON", L"Yボタン.png");
 		RoadTexture(L"ABUTTON", L"Aボタン.png");
 		RoadTexture(L"BBUTTON", L"Bボタン.png");
+		RoadTexture(L"TRAP_NUMBER", L"TrapNumberUi.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");

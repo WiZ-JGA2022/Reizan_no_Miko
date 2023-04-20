@@ -75,6 +75,8 @@ namespace basecross {
 
 		m_standby = AddGameObject<StandbySprite>();
 
+		AddGameObject<TrapNumber>();
+
 	} // end CreateUI
 
 	void GameStage::PlayBGM()
