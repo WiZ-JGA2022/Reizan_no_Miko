@@ -7,38 +7,41 @@
 #include "stdafx.h"
 #include "Project.h"
 
+
 namespace basecross {
 	SimpleEnemy::SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
-		m_DamageDelayCount(60),
+		m_DamageDelayCount(640),
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
 		m_currentPointIndex(0)
-		{
-		}
+	{
+	}
 	SimpleEnemy::~SimpleEnemy() {}
 
 	void SimpleEnemy::OnCreate()
 	{
 
 		Enemy::OnCreate();
-		
+
 		m_position = m_points[0];
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 
-		int rnd = rand() % 10;
-		Vec3 m_randomPosition(0.0f, 0.0f, -rnd);
 
-		float direction_x = m_direction[1].x - m_points[2].x;
-		float direction_y = m_direction[1].z - m_points[2].z;
+		//srand(time(NULL));
+		//int rnd = rand() % 10;
+		//Vec3 m_randomPosition(0.0f, 1.5f, -rnd*10);
 
-		Vec3 m_randomDirection(-direction_x+20.0f, 0.0f,direction_y);
-		//Vec3 m_randomDirection(30, 0.0f,-30);
-		
-		m_direction[2] = m_randomDirection;
-		m_points[3] = m_randomPosition;
+		//float direction_x = m_points[2].x - m_direction[1].x;
+		//float direction_y = m_points[2].z - m_direction[1].z;
+
+		//Vec3 m_randomDirection(direction_x+15.0f, 0.0f,-direction_y);
+		////Vec3 m_randomDirection(30, 0.0f,-30);
+		//
+		//m_direction[2] = m_randomDirection;
+		//m_points[3] = m_randomPosition;
 
 	}
 
@@ -62,7 +65,16 @@ namespace basecross {
 			SetDrawActive(false);
 		}
 		m_damageDelayFlame--;
-		MoveEnemy();
+
+		if (m_currentPointIndex < 2)
+		{
+			MoveEnemy();
+		}
+		else
+		{
+			//MoveEnemyPlayer();
+			MoveEnemyKeyStone();
+		}
 	}
 
 	void SimpleEnemy::OnCollisionEnter(shared_ptr<GameObject>& other)
@@ -166,6 +178,63 @@ namespace basecross {
 		}
 	}
 
+	void SimpleEnemy::MoveEnemyPlayer()
+	{
+		// デルタタイムの取得
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();
+
+		// 各種ベクトルの取得
+		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
+		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
+
+		m_directionPlayer = playerPos - pos; // プレイヤーへの方向を計算
+
+		// ベクトルの正規化処理
+		float normalizeMagnification = 1 / sqrt(
+			m_directionPlayer.x * m_directionPlayer.x +
+			m_directionPlayer.y * m_directionPlayer.y +
+			m_directionPlayer.z * m_directionPlayer.z);
+		m_directionPlayer *= normalizeMagnification;
+		// ここまで
+
+		pos += m_directionPlayer * m_statusValue[L"SPD"] * delta;	// 移動の計算
+		float rotationY = atan2f(-m_directionPlayer.z, m_directionPlayer.x); // 回転の計算
+
+		m_transform->SetPosition(pos); // 移動処理
+		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
+	}
+
+	void SimpleEnemy::MoveEnemyKeyStone()
+	{
+		// デルタタイムの取得
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();
+
+		// 各種ベクトルの取得
+		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
+		auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone")->GetComponent<Transform>();
+		auto stonePos = stoneTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
+
+		m_directionKeyStone = stonePos - pos; // プレイヤーへの方向を計算
+
+		// ベクトルの正規化処理
+		float normalizeMagnification = 1 / sqrt(
+			m_directionKeyStone.x * m_directionKeyStone.x +
+			m_directionKeyStone.y * m_directionKeyStone.y +
+			m_directionKeyStone.z * m_directionKeyStone.z);
+		m_directionKeyStone *= normalizeMagnification;
+		// ここまで
+
+		pos += m_directionKeyStone * m_statusValue[L"SPD"] * delta;	// 移動の計算
+		float rotationY = atan2f(-m_directionKeyStone.z, m_directionKeyStone.x); // 回転の計算
+
+		m_transform->SetPosition(pos); // 移動処理
+		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
+	}
+
+
 	void SimpleEnemy::EnemyDamageProcess(float damage)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
@@ -178,4 +247,6 @@ namespace basecross {
 	{
 		return m_statusValue[statusKey];
 	}
+
+
 }
