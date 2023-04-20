@@ -38,7 +38,7 @@ namespace basecross {
 		const int m_DefaultDelay;
 
 		float m_hp;
-		float m_delay;
+		int m_delay;
 
 	public:
 		KeyStone(const std::shared_ptr<Stage>& stage) :

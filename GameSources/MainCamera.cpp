@@ -197,7 +197,7 @@ namespace basecross {
 		}
 
 		//ã‰ºŠp“x‚Ì•ÏX
-		if (fThumbRY >= 0.1f ) {
+		if (fThumbRY >= 0.5f ) {
 			if (IsUDBaseMode()) {
 				m_RadY += m_CameraUpDownSpeed * elapsedTime;
 			}
@@ -205,7 +205,7 @@ namespace basecross {
 				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
 		}
-		else if (fThumbRY <= -0.1f ) {
+		else if (fThumbRY <= -0.5f ) {
 			if (IsUDBaseMode()) {
 				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
