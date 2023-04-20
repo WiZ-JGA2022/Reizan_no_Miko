@@ -11,7 +11,7 @@
 namespace basecross {
 	SimpleEnemy::SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
-		m_DamageDelayCount(640),
+		m_DamageDelayCount(60),
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
 		m_currentPointIndex(0)
@@ -21,27 +21,12 @@ namespace basecross {
 
 	void SimpleEnemy::OnCreate()
 	{
-
 		Enemy::OnCreate();
 
 		m_position = m_points[0];
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
-
-
-		//srand(time(NULL));
-		//int rnd = rand() % 10;
-		//Vec3 m_randomPosition(0.0f, 1.5f, -rnd*10);
-
-		//float direction_x = m_points[2].x - m_direction[1].x;
-		//float direction_y = m_points[2].z - m_direction[1].z;
-
-		//Vec3 m_randomDirection(direction_x+15.0f, 0.0f,-direction_y);
-		////Vec3 m_randomDirection(30, 0.0f,-30);
-		//
-		//m_direction[2] = m_randomDirection;
-		//m_points[3] = m_randomPosition;
 
 	}
 
@@ -127,7 +112,7 @@ namespace basecross {
 		}
 	} // end OnCollisionEnter
 
-	void SimpleEnemy::MoveEnemy()
+	void SimpleEnemy::MoveEnemy()//シンプル
 	{
 
 		if (3 < m_currentPointIndex)
@@ -178,7 +163,7 @@ namespace basecross {
 		}
 	}
 
-	void SimpleEnemy::MoveEnemyPlayer()
+	void SimpleEnemy::MoveEnemyPlayer()//プレイヤーに向かって
 	{
 		// デルタタイムの取得
 		auto& app = App::GetApp();
@@ -188,8 +173,10 @@ namespace basecross {
 		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
+		auto playerScale = playerTrans->GetScale();
 
-		m_directionPlayer = playerPos - pos; // プレイヤーへの方向を計算
+		Vec3 positionControl(0.0f, playerScale.y, 0.0f);
+		m_directionPlayer = playerPos + positionControl - pos; // プレイヤーへの方向を計算
 
 		// ベクトルの正規化処理
 		float normalizeMagnification = 1 / sqrt(
@@ -206,7 +193,7 @@ namespace basecross {
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
 	}
 
-	void SimpleEnemy::MoveEnemyKeyStone()
+	void SimpleEnemy::MoveEnemyKeyStone()//要石に向かって
 	{
 		// デルタタイムの取得
 		auto& app = App::GetApp();
@@ -215,9 +202,11 @@ namespace basecross {
 		// 各種ベクトルの取得
 		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 		auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone")->GetComponent<Transform>();
-		auto stonePos = stoneTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
-
-		m_directionKeyStone = stonePos - pos; // プレイヤーへの方向を計算
+		auto stonePos = stoneTrans->GetPosition(); // 要石の位置ベクトルを取得
+		
+		auto stoneScale = stoneTrans->GetScale();// 要石のスケールを取得
+		Vec3 positionControl(0.0f, stoneScale.y, 0.0f);//要石の位置調整
+		m_directionKeyStone = stonePos + positionControl - pos; // 要石への方向を計算
 
 		// ベクトルの正規化処理
 		float normalizeMagnification = 1 / sqrt(
@@ -247,6 +236,4 @@ namespace basecross {
 	{
 		return m_statusValue[statusKey];
 	}
-
-
 }
