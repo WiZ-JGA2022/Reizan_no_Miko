@@ -15,6 +15,11 @@ namespace basecross{
 			Play
 		};
 
+		enum class TrapLimit {
+			SpikeTrap = 5,
+			SpurtLava = 1
+		};
+
 		PlayerCondition m_condition = PlayerCondition::Standby;
 
 		// プレイヤーの操作に使用するボタン
@@ -23,9 +28,9 @@ namespace basecross{
 		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 		
 		const float m_RecastCount;
-		const int m_TrapLimitCount;
 
-		int m_trapCount;
+		int m_spikeTrapCount;
+		int m_lavaTrapCount;
 		float m_recastFlame;
 
 		shared_ptr<Transform> m_transform;
@@ -33,8 +38,8 @@ namespace basecross{
 		PlayerController(const std::shared_ptr<Stage>& stage, const int condition) :
 			GameObject(stage),
 			m_RecastCount(9.0f),
-			m_TrapLimitCount(5),
-			m_trapCount(0),
+			m_spikeTrapCount(0),
+			m_lavaTrapCount(0),
 			m_condition((PlayerCondition)condition),
 			m_recastFlame(m_RecastCount)
 		{

@@ -38,8 +38,6 @@ namespace basecross {
 		shared_ptr<TimeNumber> m_time;
 		shared_ptr<StandbySprite> m_standby;
 	public:
-		Vec3 m_trapPosition = Vec3(0);
-
 		//構築と破棄
 		GameStage() :Stage() {}
 		virtual ~GameStage() {}
@@ -49,11 +47,6 @@ namespace basecross {
 		virtual void OnDestroy() override;
 
 		virtual void OnDraw() override; // デバッグ文字用に上書きする
-
-		void SetTrapPosition(Vec3& position)
-		{
-			m_trapPosition = position;
-		}
 	};
 
 	//--------------------------------------------------------------------------------------

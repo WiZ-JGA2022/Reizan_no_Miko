@@ -28,6 +28,7 @@ namespace basecross {
 		float m_uvShiftDistance; // 1ゲージごとにずらすUV座標の差
 
 		bool m_isHp; // HPバー用の処理かEXPバー用の処理か判定する
+		bool m_isBlack;
 
 	public:
 		/**
@@ -36,7 +37,7 @@ namespace basecross {
 		* @param defaultGaugeWidth : 初期状態でのゲージの横幅
 		* @param isHp : HPバーで使うならtrue それ以外ならfalse
 		*/
-		GaugeSizeSettings(const std::shared_ptr<Stage>& stage, float defaultGaugeWidth, bool isHp) :
+		GaugeSizeSettings(const std::shared_ptr<Stage>& stage, float defaultGaugeWidth, bool isHp, bool isBlack) :
 			GameObject(stage),
 			m_DefaultGaugeWidth(defaultGaugeWidth),
 			m_DefaultGaugeHeight(24.0f),
@@ -44,7 +45,8 @@ namespace basecross {
 			m_uvPosition(1),
 			m_gaugeWidth(0),
 			m_uvShiftDistance(0.1f),
-			m_isHp(isHp)
+			m_isHp(isHp),
+			m_isBlack(isBlack)
 		{
 		}
 		// 初期化 

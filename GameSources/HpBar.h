@@ -16,8 +16,7 @@ namespace basecross {
 		float m_maxHP;
 
 		// HPƒo[‚Ìî•ñ‚ğ“ü‚ê‚é•Ï”
-		shared_ptr<GaugeSizeSettings> m_bar;
-
+		shared_ptr<GaugeSizeSettings> m_bar[2];
 	public:
 		HpBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),

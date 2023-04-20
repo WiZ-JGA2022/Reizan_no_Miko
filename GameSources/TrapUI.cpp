@@ -38,7 +38,7 @@ namespace basecross {
 		m_draw->SetTextureResource(L"TRAP_1");
 
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(m_DefaultSize.x * 3.0, -m_DefaultSize.y * 1.5, 0.0f);
+		m_transform->SetPosition(m_DefaultSize.x * 3.0f, -m_DefaultSize.y * 1.5f, 0.0f);
 
 		// “§‰ßˆ—‚ğ—LŒø‚É‚·‚é
 		SetAlphaActive(true);

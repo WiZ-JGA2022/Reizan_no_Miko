@@ -77,20 +77,35 @@ namespace basecross {
 		}
 
 		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
 		auto device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];
-		
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
-		{
-			if (m_condition == PlayerCondition::Standby && m_trapCount < m_TrapLimitCount)
+		// プレイヤーの状態が準備状態なら
+		if (m_condition == PlayerCondition::Standby)
+		{	
+			// スパイクトラップの上限未満なら
+			if (m_spikeTrapCount < (int)TrapLimit::SpikeTrap)
 			{
-				auto XAPtr = App::GetApp()->GetXAudio2Manager();
-				XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
-				GetStage()->AddGameObject<SpikeTrap>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(5.0f, 0.5f, 5.0f));
-				m_trapCount++;
+				if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
+				{
+					auto XAPtr = App::GetApp()->GetXAudio2Manager();
+					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
+					GetStage()->AddGameObject<SpikeTrap>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(5.0f, 0.5f, 5.0f));
+					m_spikeTrapCount++;
+				}
+			}
+			// 溶岩罠の上限未満なら
+			if (m_lavaTrapCount < (int)TrapLimit::SpurtLava)
+			{
+				if (pad.wPressedButtons & XINPUT_GAMEPAD_Y)
+				{
+					auto XAPtr = App::GetApp()->GetXAudio2Manager();
+					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
+					GetStage()->AddGameObject<SpurtLava>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(4.0f, 20.0f, 4.0f));
+					m_lavaTrapCount++;
+				}
 			}
 		}
+
 	}
 
 	void PlayerController::PlayerMoveProcess()
