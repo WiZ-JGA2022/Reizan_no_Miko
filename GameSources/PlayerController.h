@@ -22,12 +22,19 @@ namespace basecross{
 
 		PlayerCondition m_condition = PlayerCondition::Standby;
 
+		TrapLimit m_trapLimit[2] = {
+			TrapLimit::SpikeTrap,
+			TrapLimit::SpurtLava
+		};
+
 		// プレイヤーの操作に使用するボタン
 		const WORD BUTTON_HOMING = XINPUT_GAMEPAD_LEFT_SHOULDER;
 		const WORD BUTTON_BARRIER = XINPUT_GAMEPAD_RIGHT_SHOULDER;
 		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 		
 		const float m_RecastCount;
+
+		int m_trapCount[2] = { 0 };
 
 		int m_spikeTrapCount;
 		int m_lavaTrapCount;
@@ -61,6 +68,16 @@ namespace basecross{
 		void SetCondition(int conditionIndex)
 		{
 			m_condition = (PlayerCondition)conditionIndex;
+		}
+
+		int GetTrapLimit(int index)
+		{
+			return (int)m_trapLimit[index];
+		}
+
+		int GetTrapCount(int index)
+		{
+			return m_trapCount[index];
 		}
 	};
 }
