@@ -18,7 +18,7 @@ namespace basecross {
 		auto PtrView = CreateView<SingleView>();
 		
 		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<MainCamera>();
+		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
@@ -118,8 +118,8 @@ namespace basecross {
 
 			// メインカメラにプレイヤーをセットする
 			auto camera = GetView()->GetTargetCamera();
-			auto maincamera = dynamic_pointer_cast<MainCamera>(camera);
-			maincamera->SetTarget(m_player);
+			auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
+			maincamera->SetTargetObject(m_player);
 		}
 		catch (...) {
 			throw;

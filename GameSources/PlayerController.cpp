@@ -124,7 +124,7 @@ namespace basecross {
 
 			float stickRad = atan2(padLStick.z, padLStick.x);
 			auto camera = GetStage()->GetView()->GetTargetCamera();
-			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+			auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
 			if (mainCamera)
 			{
 				float cameraAngle = mainCamera->GetAngle();
@@ -133,7 +133,7 @@ namespace basecross {
 				padLStick.x = cos(stickRad);
 				padLStick.z = sin(stickRad);
 			}
-		
+
 			auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
 			// ˆÚ“®ˆ—
