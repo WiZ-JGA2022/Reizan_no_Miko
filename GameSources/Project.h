@@ -44,5 +44,6 @@
 #include "GameSprite.h"
 #include "TrapUI.h"
 #include "TrapSelect.h"
-#include"ButtonSelect.h"
-#include"ButtonUI.h"
+#include "ButtonSelect.h"
+#include "ButtonUI.h"
+#include "TrapNumber.h"

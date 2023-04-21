@@ -52,6 +52,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
