@@ -14,7 +14,7 @@ namespace basecross {
 		// 色
 		const Col4 m_SpriteColor;
 		// スプライトの数とずらすUV座標
-		const float m_SpriteNumber = 11.0f;
+		const int m_SpriteNumber = 11;
 		const float m_SpriteUvPosition = 0.09f;
 
 		// 表示される数字を表す値
