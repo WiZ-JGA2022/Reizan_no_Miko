@@ -5,9 +5,10 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprites.h"
 
 namespace basecross {
-	class ResultSprite : public GameObject {
+	class ResultSprite : public Sprites {
 		const Vec2 m_DefaultSize = Vec2((float)App::GetApp()->GetGameWidth(), (float)App::GetApp()->GetGameHeight());
 
 		// スプライトの元になる頂点データと頂点インデックス
@@ -25,7 +26,7 @@ namespace basecross {
 		void OnCreate() override;
 	};
 
-	class ClearSprite : public GameObject {
+	class ClearSprite : public Sprites {
 		const Vec2 m_DefaultSize = Vec2((float)App::GetApp()->GetGameWidth(), (float)App::GetApp()->GetGameHeight());
 
 		// スプライトの元になる頂点データと頂点インデックス

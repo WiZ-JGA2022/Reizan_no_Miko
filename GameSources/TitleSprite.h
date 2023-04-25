@@ -5,9 +5,10 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprites.h"
 
 namespace basecross {
-	class TitleSprite : public GameObject {
+	class TitleSprite : public Sprites {
 		const Vec2 m_DefaultSize = Vec2((float)App::GetApp()->GetGameWidth(), (float)App::GetApp()->GetGameHeight());
 
 		// スプライトの元になる頂点データと頂点インデックス
