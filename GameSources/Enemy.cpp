@@ -53,12 +53,13 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"ONI");
+		ptrShadow->SetMeshResource(L"HITOTSUME");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
-		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(L"ONI");
+		//描画コンポーネントの設定
+		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
+		drawComp->SetFogEnabled(true);
+		drawComp->SetMeshResource(L"HITOTSUME");
 		drawComp->SetMeshToTransformMatrix(spanMat);
 
 		AddTag(L"Enemy"); 

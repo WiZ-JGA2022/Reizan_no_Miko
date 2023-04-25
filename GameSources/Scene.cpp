@@ -124,6 +124,7 @@ namespace basecross{
 		RoadStaticModelMesh(L"M_enemy", L"HITOTUME");
 
 		RoadBoneModel(L"Miko_w", L"MIKO", L"MIKO_TAN");
+		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
 	}
 
 	void Scene::OnCreate(){
