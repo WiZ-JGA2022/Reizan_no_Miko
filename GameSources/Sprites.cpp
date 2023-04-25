@@ -44,4 +44,5 @@ namespace basecross {
 		// “§‰ßˆ—‚ğ—LŒø‚É‚·‚é
 		SetAlphaActive(true);
 	}
+
 }

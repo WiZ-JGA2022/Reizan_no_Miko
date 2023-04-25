@@ -8,9 +8,8 @@
 
 namespace basecross {
 	NumberUI::NumberUI(const shared_ptr<Stage>& stage, const Vec2& spriteSize, const wstring& spriteKey) :
-		GameObject(stage),
-		m_SpriteWidth(spriteSize.x),
-		m_SpriteHeight(spriteSize.y),
+		Sprites(stage),
+		m_DefaultSize(spriteSize),
 		m_SpriteColor(Col4(1.0f, 1.0f, 1.0f, 1.0f)),
 		m_spriteKey(spriteKey),
 		m_number(0)
@@ -23,10 +22,10 @@ namespace basecross {
 		float uv = m_number / m_SpriteNumber;
 
 		m_vertices = {
-			{Vec3(0.0f			, 0.0f			, 0.0f), m_SpriteColor, Vec2(uv						, 0.0f)}, // 左上
-			{Vec3(m_SpriteWidth	, 0.0f			, 0.0f), m_SpriteColor, Vec2(uv + m_SpriteUvPosition, 0.0f)}, // 右上
-			{Vec3(0.0f			,-m_SpriteHeight, 0.0f), m_SpriteColor, Vec2(uv						, 1.0f)}, // 左下
-			{Vec3(m_SpriteWidth	,-m_SpriteHeight, 0.0f), m_SpriteColor, Vec2(uv + m_SpriteUvPosition, 1.0f)}, // 右下
+			{Vec3(0.0f				, 0.0f				, 0.0f), m_SpriteColor, Vec2(0						, 0.0f)}, // 左上
+			{Vec3(m_DefaultSize.x	, 0.0f				, 0.0f), m_SpriteColor, Vec2(m_SpriteUvPosition, 0.0f)}, // 右上
+			{Vec3(0.0f				,-m_DefaultSize.y	, 0.0f), m_SpriteColor, Vec2(0						, 1.0f)}, // 左下
+			{Vec3(m_DefaultSize.x	,-m_DefaultSize.y	, 0.0f), m_SpriteColor, Vec2(m_SpriteUvPosition, 1.0f)}, // 右下
 		};
 
 		m_indices = {

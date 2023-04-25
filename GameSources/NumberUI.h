@@ -5,12 +5,12 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprites.h"
 
 namespace basecross {
-	class NumberUI : public GameObject {
+	class NumberUI : public Sprites {
 		// 大きさ
-		const float m_SpriteWidth;
-		const float m_SpriteHeight;
+		const Vec2 m_DefaultSize;
 		// 色
 		const Col4 m_SpriteColor;
 		// スプライトの数とずらすUV座標
