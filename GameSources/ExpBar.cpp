@@ -12,8 +12,8 @@ namespace basecross {
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
-		m_bar[1] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 200.0f, false, true);
-		m_bar[0] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 200.0f, false, false);
+		m_bar[0] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 200.0f, L"EXPBAR_BLUE");
+		m_bar[1] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 200.0f, L"EXPBAR_BLACK");
 		m_bar[0]->UpdateGaugeSize(m_maxExp, playerStatus->GetStatusValue(L"EXP"));
 		m_bar[1]->UpdateGaugeSize(m_maxExp, playerStatus->GetStatusValue(L"EXP"));
 		m_bar[0]->SetPosition((float)App::GetApp()->GetGameWidth(), 0.0f, 0.46f); // 画面の左端から右端に向かってゲージを伸ばす
