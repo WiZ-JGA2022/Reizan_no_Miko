@@ -40,7 +40,7 @@ namespace basecross {
 		* @param defaultGaugeWidth : 初期状態でのゲージの横幅
 		* @param textureKey : 使用するテクスチャの名前
 		*/
-		GaugeSizeSettings(const std::shared_ptr<Stage>& stage, float defaultGaugeWidth, const wstring& textureKey) :
+		GaugeSizeSettings(const shared_ptr<Stage>& stage, float defaultGaugeWidth, const wstring& textureKey) :
 			GameObject(stage),
 			m_DefaultSize(Vec2(defaultGaugeWidth, 24.0f)),
 			m_TextureKey(textureKey),

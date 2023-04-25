@@ -22,9 +22,9 @@ namespace basecross {
 		float uv = m_number / m_SpriteNumber;
 
 		m_vertices = {
-			{Vec3(0.0f				, 0.0f				, 0.0f), m_SpriteColor, Vec2(0						, 0.0f)}, // ç∂è„
+			{Vec3(0.0f				, 0.0f				, 0.0f), m_SpriteColor, Vec2(0				   , 0.0f)}, // ç∂è„
 			{Vec3(m_DefaultSize.x	, 0.0f				, 0.0f), m_SpriteColor, Vec2(m_SpriteUvPosition, 0.0f)}, // âEè„
-			{Vec3(0.0f				,-m_DefaultSize.y	, 0.0f), m_SpriteColor, Vec2(0						, 1.0f)}, // ç∂â∫
+			{Vec3(0.0f				,-m_DefaultSize.y	, 0.0f), m_SpriteColor, Vec2(0				   , 1.0f)}, // ç∂â∫
 			{Vec3(m_DefaultSize.x	,-m_DefaultSize.y	, 0.0f), m_SpriteColor, Vec2(m_SpriteUvPosition, 1.0f)}, // âEâ∫
 		};
 

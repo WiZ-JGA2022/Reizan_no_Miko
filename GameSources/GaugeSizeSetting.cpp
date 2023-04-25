@@ -69,7 +69,7 @@ namespace basecross {
 
 		// 更新されたデータを元にポリゴンを作り直す
 		m_draw->UpdateVertices(m_vertices);
-		}
+	}
 
 	void GaugeSizeSettings::SetPosition(const Vec3& pos, float h)
 	{
