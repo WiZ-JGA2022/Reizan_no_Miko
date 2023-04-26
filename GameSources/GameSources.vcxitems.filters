@@ -113,19 +113,22 @@
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
-      <Filter>Sources\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\UI\TrapUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\UI\TrapUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp">
+      <Filter>Sources\UI\TrapUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\UI\TrapUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
+      <Filter>Sources\UI\TrapUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp">
+      <Filter>Sources\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,20 +243,23 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
-      <Filter>Headers\UI</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h">
+      <Filter>Headers\UI\TrapUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\UI\TrapUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\UI\TrapUI</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h">
+      <Filter>Headers\UI\TrapUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
+      <Filter>Headers\UI\TrapUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h">
+      <Filter>Headers\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +328,12 @@
     </Filter>
     <Filter Include="Sources\UI\SceneUI">
       <UniqueIdentifier>{5da95573-fbc5-4fb2-be7d-586bb3ad6e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\TrapUI">
+      <UniqueIdentifier>{315f5002-26eb-4967-96c0-4d5d68750043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\TrapUI">
+      <UniqueIdentifier>{edf7485e-107f-4750-818e-25a66f9e6808}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

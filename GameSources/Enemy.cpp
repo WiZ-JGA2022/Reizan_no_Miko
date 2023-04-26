@@ -56,7 +56,8 @@ namespace basecross {
 		ptrShadow->SetMeshResource(L"ONI");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
+		//描画コンポーネントの設定
+		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
 		drawComp->SetFogEnabled(false);
 		drawComp->SetMeshResource(L"ONI");
 		drawComp->SetMeshToTransformMatrix(spanMat);

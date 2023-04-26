@@ -29,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
@@ -73,6 +74,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />

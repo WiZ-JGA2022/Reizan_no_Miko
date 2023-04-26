@@ -10,10 +10,16 @@ namespace basecross {
 	class GaugeSizeSettings : public GameObject 
 	{
 		// Gaugeの初期サイズ
-		const float m_DefaultGaugeWidth;
-		const float m_DefaultGaugeHeight;
+		const Vec2 m_DefaultSize;
 		// 頂点の数
 		const int m_SquareVartex;
+		// テクスチャキー
+		const wstring m_TextureKey;
+
+		enum class GaugeType {
+			HP,
+			EXP
+		};
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
@@ -27,26 +33,21 @@ namespace basecross {
 		float m_gaugeWidth; // 一単位毎に伸ばす・減らすゲージの横幅
 		float m_uvShiftDistance; // 1ゲージごとにずらすUV座標の差
 
-		bool m_isHp; // HPバー用の処理かEXPバー用の処理か判定する
-		bool m_isBlack;
-
 	public:
 		/**
 		* GaugeSizeSettingsのコンストラクタ
 		*
 		* @param defaultGaugeWidth : 初期状態でのゲージの横幅
-		* @param isHp : HPバーで使うならtrue それ以外ならfalse
+		* @param textureKey : 使用するテクスチャの名前
 		*/
-		GaugeSizeSettings(const std::shared_ptr<Stage>& stage, float defaultGaugeWidth, bool isHp, bool isBlack) :
+		GaugeSizeSettings(const shared_ptr<Stage>& stage, float defaultGaugeWidth, const wstring& textureKey) :
 			GameObject(stage),
-			m_DefaultGaugeWidth(defaultGaugeWidth),
-			m_DefaultGaugeHeight(24.0f),
+			m_DefaultSize(Vec2(defaultGaugeWidth, 24.0f)),
+			m_TextureKey(textureKey),
 			m_SquareVartex(4),
 			m_uvPosition(1),
 			m_gaugeWidth(0),
-			m_uvShiftDistance(0.1f),
-			m_isHp(isHp),
-			m_isBlack(isBlack)
+			m_uvShiftDistance(0.1f)
 		{
 		}
 		// 初期化 

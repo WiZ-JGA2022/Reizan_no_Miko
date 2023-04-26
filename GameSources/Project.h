@@ -47,3 +47,4 @@
 #include "ButtonSelect.h"
 #include "ButtonUI.h"
 #include "TrapNumber.h"
+#include "Sprites.h"

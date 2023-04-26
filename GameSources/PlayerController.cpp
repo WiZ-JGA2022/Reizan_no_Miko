@@ -39,14 +39,11 @@ namespace basecross {
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//描画コンポーネントの設定
-		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
-		ptrDraw->SetFogEnabled(true);
+		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
+		drawComp->SetFogEnabled(false);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"MIKO");
-		ptrDraw->SetMeshToTransformMatrix(spanMat);
-
-		ptrDraw->AddAnimation(L"Miko_w", 0, 100, true, 20.0f);
-		ptrDraw->ChangeCurrentAnimation(L"Miko_w");
+		drawComp->SetMeshResource(L"MIKO");
+		drawComp->SetMeshToTransformMatrix(spanMat);
 
 		//透明処理
 		SetAlphaActive(true);

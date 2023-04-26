@@ -5,12 +5,11 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprites.h"
 
 namespace basecross {
-	class GameSprite : public GameObject {
-		const Vec2 m_UiSize = Vec2(384.0f, 64.0f);
-
-		Vec3 m_position;
+	class GameSprite : public Sprites {
+		const Vec2 m_DefaultSize = Vec2(384.0f, 64.0f);
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
