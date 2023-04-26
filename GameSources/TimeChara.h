@@ -5,10 +5,11 @@
 
 #pragma once
 #include "stdafx.h"
+#include "Sprites.h"
 
 namespace basecross {
-	class TimeChara : public GameObject {
-		const Vec2 m_UiSize = Vec2(128.0f, 25.6f);
+	class TimeChara : public Sprites {
+		const Vec2 m_DefaultSize = Vec2(128.0f, 25.6f);
 
 		Vec3 m_position;
 

@@ -66,6 +66,9 @@ namespace basecross {
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
+
+		// •`‰æ‡‚Ì•ÏX
+		SetDrawLayer((int)DrawLayer::Bottom);
 	}
 
 	void Enemy::OnUpdate()

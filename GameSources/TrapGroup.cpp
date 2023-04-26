@@ -37,6 +37,7 @@ namespace basecross {
 
 		AddTag(L"SpurtLava");
 		SetAlphaActive(true);
+		SetDrawLayer((int)DrawLayer::Bottom);
 	}
 
 	void SpurtLava::OnUpdate()
@@ -141,6 +142,7 @@ namespace basecross {
 		AddTag(L"SpikeTrap");
 
 		SetAlphaActive(true);
+		SetDrawLayer((int)DrawLayer::Bottom);
 	}
 
 	void SpikeTrap::OnUpdate()

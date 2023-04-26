@@ -18,11 +18,12 @@ namespace basecross {
 
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_TextureKey);
+		SetDrawLayer((int)DrawLayer::ForeFront);
 
 		m_transform = GetComponent<Transform>();
 
-		// “§‰ßˆ—‚ğ—LŒø‚É‚·‚é
-		SetAlphaActive(true);
+		//// “§‰ßˆ—‚ğ—LŒø‚É‚·‚é
+		//SetAlphaActive(true);
 	}
 
 	void GaugeSizeSettings::SetVartices()

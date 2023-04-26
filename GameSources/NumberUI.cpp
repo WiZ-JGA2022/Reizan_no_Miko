@@ -35,6 +35,7 @@ namespace basecross {
 
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_spriteKey);
+		m_draw->SetSamplerState(SamplerState::LinearWrap);
 
 		m_transform = GetComponent<Transform>();
 

@@ -36,6 +36,8 @@ namespace basecross {
 		drawComp->SetFogEnabled(false);
 		drawComp->SetMeshResource(L"STAGE");
 		drawComp->SetMeshToTransformMatrix(spanMat);
+
+		SetDrawLayer((int)DrawLayer::MostBottom);
 	}
 
 	void Field::OnUpdate()
@@ -71,6 +73,8 @@ namespace basecross {
 		drawComp->SetFogEnabled(false);
 		drawComp->SetMeshResource(L"BOX");
 		drawComp->SetMeshToTransformMatrix(spanMat);
+
+		SetDrawLayer((int)DrawLayer::MostBottom);
 	}
 
 	void Field2::OnUpdate()
@@ -92,6 +96,8 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 		drawComp->SetTextureResource(L"STONE");
+
+		SetDrawLayer((int)DrawLayer::MostBottom);
 	}
 
 	void KeyStone::OnUpdate()
