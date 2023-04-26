@@ -128,7 +128,7 @@
       <Filter>Sources\UI\TrapUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp">
-      <Filter>Sources\UI</Filter>
+      <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +259,7 @@
       <Filter>Headers\UI\TrapUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h">
-      <Filter>Headers\UI</Filter>
+      <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
