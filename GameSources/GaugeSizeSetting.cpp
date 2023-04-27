@@ -32,14 +32,12 @@ namespace basecross {
 
 		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f); // 色を白(画像ファイルの色そのまま)に
 
-		float u = m_uvPosition / 10.0f; // uvの位置を調整
-
 		// 頂点データの設定
 		m_vertices = {
-			{Vec3(0.0f			 , 0.0f			  , 0.0f), white, Vec2(u, 0.0f)}, // 左上
-			{Vec3(m_DefaultSize.x, 0.0f			  , 0.0f), white, Vec2(u + 0.1f, 0.0f)}, // 右上
-			{Vec3(0.0f			 ,-m_DefaultSize.y, 0.0f), white, Vec2(u, 1.0f)}, // 左下
-			{Vec3(m_DefaultSize.x,-m_DefaultSize.y, 0.0f), white, Vec2(u + 0.1f, 1.0f)}, // 右下
+			{Vec3(0.0f			 , 0.0f			  , 0.0f), white, Vec2(0.0f, 0.0f)}, // 左上
+			{Vec3(m_DefaultSize.x, 0.0f			  , 0.0f), white, Vec2(1.0f, 0.0f)}, // 右上
+			{Vec3(0.0f			 ,-m_DefaultSize.y, 0.0f), white, Vec2(0.0f, 1.0f)}, // 左下
+			{Vec3(m_DefaultSize.x,-m_DefaultSize.y, 0.0f), white, Vec2(1.0f, 1.0f)}, // 右下
 		};
 	}
 
@@ -70,6 +68,7 @@ namespace basecross {
 
 		// 更新されたデータを元にポリゴンを作り直す
 		m_draw->UpdateVertices(m_vertices);
+		
 	}
 
 	void GaugeSizeSettings::SetPosition(const Vec3& pos, float h)
