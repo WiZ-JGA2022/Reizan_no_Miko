@@ -77,6 +77,7 @@ namespace basecross {
 
 		AddGameObject<TrapNumber>();
 
+
 	} // end CreateUI
 
 	void GameStage::PlayBGM()
@@ -113,6 +114,9 @@ namespace basecross {
 			// ƒMƒ~ƒbƒN‚Ìì¬
 			//auto gimmick = AddGameObject<TrapController>();
 			//SetSharedGameObject(L"TrapController", gimmick);
+
+			AddGameObject<KeyStoneGauge>(stone);
+
 
 			// UI‚Ìì¬
 			CreateUI();

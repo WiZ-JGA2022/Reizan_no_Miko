@@ -130,6 +130,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp">
       <Filter>Sources\UI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -261,6 +262,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h">
       <Filter>Headers\UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
