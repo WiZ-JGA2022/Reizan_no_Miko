@@ -110,23 +110,24 @@ namespace basecross {
 				return;
 			}
 		}
-	} // end OnCollisionEnter
 
-	void SimpleEnemy::MoveEnemy()//シンプル
-	{
-
-		if (3 < m_currentPointIndex)
+		if (other->FindTag(L"KeyStone"))
 		{
 			auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
 			if (m_damageDelayFlame <= 0)
 			{
 				stone->DamageProcess();
 				m_damageDelayFlame = m_DamageDelayCount;
-			}
-			m_transform->SetRotation(Vec3(0.0f, 0.0f, 0.0f));
-			return;
-		}
 
+				return;
+			}
+			
+
+		}
+	} // end OnCollisionEnter
+
+	void SimpleEnemy::MoveEnemy()//シンプル
+	{
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 

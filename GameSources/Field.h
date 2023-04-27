@@ -36,7 +36,8 @@ namespace basecross {
 	class KeyStone : public GameObject
 	{
 		const int m_DefaultDelay;
-
+		const float m_DefaultHp = 100.0f;
+		
 		float m_hp;
 		int m_delay;
 
@@ -45,7 +46,7 @@ namespace basecross {
 			GameObject(stage),
 			m_DefaultDelay(5),
 			m_delay(0),
-			m_hp(100.0f)
+			m_hp(m_DefaultHp)
 		{
 		}
 
@@ -53,6 +54,16 @@ namespace basecross {
 		void OnUpdate() override;
 
 		void DamageProcess();
+
+		int GetMaxHp()
+		{
+			return (int)m_DefaultHp;
+		}
+		float GetCurrentHp()
+		{
+			return m_hp;
+		}
+
 	};
 }
 //end basecross

@@ -77,6 +77,7 @@ namespace basecross {
 
 		AddGameObject<TrapNumber>();
 
+
 	} // end CreateUI
 
 	void GameStage::PlayBGM()
@@ -109,6 +110,8 @@ namespace basecross {
 			AddGameObject<Field2>(Vec3(-10.0f, 3.5f, 30.0f));
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
+
+			AddGameObject<KeyStoneGauge>(stone);
 
 			// UI�̍쐬
 			CreateUI();

@@ -93,6 +93,8 @@ namespace basecross {
 		transComp->SetRotation(0.0f, 0.0f, 0.0f);
 		transComp->SetScale(5.0f, 5.0f, 5.0f);
 
+		AddTag(L"KeyStone");
+
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 		drawComp->SetTextureResource(L"STONE");
