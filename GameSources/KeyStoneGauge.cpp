@@ -23,15 +23,15 @@ namespace basecross {
 	//初期化
 	void KeyStoneGauge::OnCreate() {
 
-		auto PtrTransform = GetComponent<Transform>();
+		auto transform = GetComponent<Transform>();
 		if (!m_keyStoneHp.expired()) {
-			auto SeekPtr = m_keyStoneHp.lock();
-			auto SeekTransPtr = SeekPtr->GetComponent<Transform>();
-			auto Pos = SeekTransPtr->GetPosition();
-			Pos.y += 3.0f;
-			PtrTransform->SetPosition(Pos);
-			PtrTransform->SetScale(1.0f, 1.0f, 1.0f);
-			PtrTransform->SetQuaternion(SeekTransPtr->GetQuaternion());
+			auto stonePtr = m_keyStoneHp.lock();
+			auto stoneTransPtr = stonePtr->GetComponent<Transform>();
+			auto position = stoneTransPtr->GetPosition();
+			position.y += 3.0f;
+			transform->SetPosition(position);
+			transform->SetScale(1.0f, 1.0f, 1.0f);
+			transform->SetQuaternion(stoneTransPtr->GetQuaternion());
 
 			const Col4 white(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -56,8 +56,6 @@ namespace basecross {
 
 	}
 
-
-	//変化
 	void KeyStoneGauge::OnUpdate() {
 
 		if (!m_keyStoneHp.expired()) {
@@ -65,6 +63,7 @@ namespace basecross {
 			auto transform = GetComponent<Transform>();
 			auto stonePtr = m_keyStoneHp.lock();
 			auto cameraPtr = GetStage()->GetView()->GetTargetCamera();
+
 			// ゲージの大きさを更新
 			UpdateGaugeSize(stonePtr->GetMaxHp(), stonePtr->GetCurrentHp());
 
@@ -73,7 +72,6 @@ namespace basecross {
 			Qt = Billboard(cameraPtr->GetAt() - cameraPtr->GetEye());
 			transform->SetQuaternion(Qt);
 		}
-
 	}
 
 	void KeyStoneGauge::UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize)
@@ -89,7 +87,6 @@ namespace basecross {
 		}
 
 		m_draw->UpdateVertices(m_vertices);
-
 	}
 
 
