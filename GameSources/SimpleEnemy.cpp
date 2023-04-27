@@ -207,7 +207,8 @@ namespace basecross {
 		
 		auto stoneScale = stoneTrans->GetScale();// 要石のスケールを取得
 		Vec3 positionControl(0.0f, stoneScale.y, 0.0f);//要石の位置調整
-		m_directionKeyStone = stonePos + positionControl - pos; // 要石への方向を計算
+		Vec3 stonePosition = stonePos + (positionControl/2);
+		m_directionKeyStone = stonePosition - pos; // 要石への方向を計算
 
 		// ベクトルの正規化処理
 		float normalizeMagnification = 1 / sqrt(
