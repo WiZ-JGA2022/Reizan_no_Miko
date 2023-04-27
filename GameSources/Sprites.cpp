@@ -43,5 +43,6 @@ namespace basecross {
 
 		// “§‰ßˆ—‚ğ—LŒø‚É‚·‚é
 		SetAlphaActive(true);
+		SetDrawLayer((int)DrawLayer::ForeFront);
 	}
 }

@@ -110,10 +110,6 @@ namespace basecross {
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 
-			// ƒMƒ~ƒbƒN‚Ìì¬
-			//auto gimmick = AddGameObject<TrapController>();
-			//SetSharedGameObject(L"TrapController", gimmick);
-
 			// UI‚Ìì¬
 			CreateUI();
 			PlayBGM();
