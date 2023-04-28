@@ -47,6 +47,8 @@ namespace basecross {
 
 		//“§–¾ˆ—
 		SetAlphaActive(true);
+
+		SetDrawActive((int)DrawLayer::Bottom);
 	}
 
 	void PlayerController::OnUpdate()

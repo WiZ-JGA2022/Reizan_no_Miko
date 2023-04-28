@@ -35,12 +35,12 @@ namespace basecross {
 
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_spriteKey);
-		m_draw->SetSamplerState(SamplerState::LinearWrap);
 
 		m_transform = GetComponent<Transform>();
 
 		// “§‰ßˆ—‚ğ—LŒø‚É‚·‚é
 		SetAlphaActive(true);
+		SetDrawLayer((int)DrawLayer::ForeFront);
 	}
 
 	void NumberUI::SetNumber(int number)
