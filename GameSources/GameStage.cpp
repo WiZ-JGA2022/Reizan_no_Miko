@@ -181,6 +181,7 @@ namespace basecross {
 	//スプライトの作成
 	void TitleStage::CreateTitleSprite() {
 		AddGameObject<TitleSprite>();
+		AddGameObject<StartSprite>();
 	} // end CreateTitleSprite
 
 	void TitleStage::PlayBGM()

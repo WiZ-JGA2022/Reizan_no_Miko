@@ -31,6 +31,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
@@ -76,6 +77,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
