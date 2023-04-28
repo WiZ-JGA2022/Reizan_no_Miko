@@ -12,10 +12,33 @@ namespace basecross {
 	//	class PlayerController : public GameObject;
 	//	用途: プレイヤー
 	//--------------------------------------------------------------------------------------
+	PlayerController::PlayerController(const std::shared_ptr<Stage>& stage, const int condition) :
+		GameObject(stage),
+		m_RecastCount(9.0f),
+		m_spikeTrapCount(0),
+		m_lavaTrapCount(0),
+		m_position(Vec3(0)),
+		m_condition((PlayerCondition)condition),
+		m_recastFlame(m_RecastCount)
+	{
+	}
+	PlayerController::PlayerController(const std::shared_ptr<Stage>& stage, const Vec3& position, const int condition) :
+		GameObject(stage),
+		m_RecastCount(9.0f),
+		m_spikeTrapCount(0),
+		m_lavaTrapCount(0),
+		m_position(position),
+		m_condition((PlayerCondition)condition),
+		m_recastFlame(m_RecastCount)
+	{
+	}
+	PlayerController::~PlayerController() {}
+
+
 	void PlayerController::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(0.0f, 0.4f, 0.0f);
+		m_transform->SetPosition(m_position.x, 0.4f, m_position.z);
 		m_transform->SetScale(1.0f, 1.0f, 1.0f);
 
 		// コリジョンをつける

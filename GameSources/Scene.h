@@ -13,6 +13,8 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
 		int m_texNum = 0;
+
+		Vec3 m_playerPosition = Vec3(0);
 	public:
 		//--------------------------------------------------------------------------------------
 		/**
@@ -88,6 +90,16 @@ namespace basecross{
 		int GetTexNum()
 		{
 			return m_texNum;
+		}
+
+		void SetBeforePlayerPosition(Vec3 pos)
+		{
+			m_playerPosition = pos;
+		}
+
+		Vec3 GetBeforePlayerPosition() const
+		{
+			return m_playerPosition;
 		}
 	};
 

@@ -28,8 +28,6 @@ namespace basecross{
 		};
 
 		// プレイヤーの操作に使用するボタン
-		const WORD BUTTON_HOMING = XINPUT_GAMEPAD_LEFT_SHOULDER;
-		const WORD BUTTON_BARRIER = XINPUT_GAMEPAD_RIGHT_SHOULDER;
 		const WORD BUTTON_SHOT = XINPUT_GAMEPAD_X;
 		
 		const float m_RecastCount;
@@ -40,18 +38,13 @@ namespace basecross{
 		int m_lavaTrapCount;
 		float m_recastFlame;
 
+		Vec3 m_position;
+
 		shared_ptr<Transform> m_transform;
 	public:
-		PlayerController(const std::shared_ptr<Stage>& stage, const int condition) :
-			GameObject(stage),
-			m_RecastCount(9.0f),
-			m_spikeTrapCount(0),
-			m_lavaTrapCount(0),
-			m_condition((PlayerCondition)condition),
-			m_recastFlame(m_RecastCount)
-		{
-		}
-		~PlayerController() {}
+		PlayerController(const shared_ptr<Stage>& stage, const int condition);
+		PlayerController(const shared_ptr<Stage>& stage, const Vec3& position, const int condition);
+		~PlayerController();
 
 		void OnCreate() override; // オブジェクトの初期設定用の関数
 		void OnUpdate() override; // オブジェクトデータの更新
