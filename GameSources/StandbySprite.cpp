@@ -16,6 +16,6 @@ namespace basecross {
 
 	void StandbySprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(260.0f, App::GetApp()->GetGameHeight() * 0.5f, 0.0f), m_DefaultSize, L"STANDBY_PHASE");
+		Sprites::CreateSprite(Vec3(260.0f, App::GetApp()->GetGameHeight() * 0.5f, 0.0f), m_DefaultSize, L"STANDBY_PHASE",false);
 	}
 }

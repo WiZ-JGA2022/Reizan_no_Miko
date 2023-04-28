@@ -12,6 +12,7 @@
 #include "TrapSelect.h"
 #include "ButtonUI.h"
 #include "ButtonSelect.h"
+#include "StartButtonUI.h"
 
 namespace basecross {
 
@@ -64,6 +65,9 @@ namespace basecross {
 		void CreateViewLight();
 		//スプライトの作成
 		void CreateTitleSprite();
+
+		void CreateStartSprite();
+
 		//BGMの再生
 		void PlayBGM();
 		//入力ハンドラー

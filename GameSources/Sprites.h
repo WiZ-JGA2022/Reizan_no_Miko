@@ -11,6 +11,7 @@ namespace basecross {
 		Vec2 m_spriteSize;
 		Vec3 m_spritePosition;
 		wstring m_textureKey;
+		bool m_Trace;
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
@@ -25,7 +26,8 @@ namespace basecross {
 		~Sprites();
 
 		void OnCreate() override;
+		void OnUpdate() override;
 
-		void CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey);
+		void CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey,bool Trace);
 	};
 }

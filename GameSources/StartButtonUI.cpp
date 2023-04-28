@@ -8,6 +8,12 @@
 #include "Project.h"
 
 namespace basecross {
+
+	constexpr float m_startScaleZ = 1.0f;// ‘å‚«‚³
+	constexpr float m_startPosZ = 1.0f;	 // ‰œs‚«
+	constexpr float m_helfSize = 0.5f;	 // ”¼•ª‚Ì‘å‚«‚³
+
+
 	StartSprite::StartSprite(const shared_ptr<Stage>& stage) :
 		Sprites(stage)
 	{
@@ -16,6 +22,6 @@ namespace basecross {
 
 	void StartSprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"START_UI");
+		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"START_UI",true);
 	}
 }
