@@ -12,6 +12,8 @@ namespace basecross {
 		Vec3 m_spritePosition;
 		wstring m_textureKey;
 		bool m_Trace;
+		float m_TotalTime;
+		bool m_selected;
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
