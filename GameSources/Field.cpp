@@ -81,6 +81,7 @@ namespace basecross {
 	{
 	}
 
+	//óvêŒ
 	void KeyStone::OnCreate()
 	{
 		auto collComp = AddComponent<CollisionSphere>();
@@ -107,7 +108,6 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
 
-
 		m_delay--;
 		if (m_delay <= 0)
 		{
@@ -130,5 +130,6 @@ namespace basecross {
 		m_delay = m_DefaultDelay;
 		m_hp -= 10.0f;
 	}
+
 }
 //end basecross

@@ -65,4 +65,42 @@ namespace basecross {
 		// 衝突応答処理
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 	};
+
+	/**
+	侵攻を妨害するオブジェクトを設置する罠
+	*/
+	class BlockingStone : public GameObject
+	{
+		const int m_DefaultDelay;
+		const float m_DefaultHp = 100.0f;
+
+		float m_hp;
+		int m_delay;
+
+		Vec3 m_objectPosition;
+
+	public:
+		BlockingStone(const std::shared_ptr<Stage>& stage) :
+			GameObject(stage),
+			m_DefaultDelay(5),
+			m_delay(0),
+			m_hp(m_DefaultHp)
+		{
+		}
+
+		void OnCreate() override;
+		void OnUpdate() override;
+
+		void DamageProcess();
+
+		int GetMaxHp()
+		{
+			return (int)m_DefaultHp;
+		}
+		float GetCurrentHp()
+		{
+			return m_hp;
+		}
+
+	};
 }

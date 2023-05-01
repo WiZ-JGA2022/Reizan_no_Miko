@@ -98,6 +98,9 @@ namespace basecross {
 
 			AddGameObject<KeyStoneGauge>(stone);
 
+			auto blockingStone = AddGameObject<BlockingStone>();
+			SetSharedGameObject(L"BlockingStone", blockingStone);
+
 			// UI�̍쐬
 			CreateUI();
 			PlayBGM();

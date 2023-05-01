@@ -36,6 +36,7 @@ namespace basecross {
 
 		Vec3 m_directionPlayer;
 		Vec3 m_directionKeyStone;
+		Vec3 m_directionBlockingStone;
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
@@ -65,6 +66,7 @@ namespace basecross {
 		void MoveEnemy() override;
 		void MoveEnemyPlayer();//player
 		void MoveEnemyKeyStone();//keystone
+		void MoveEnemyBlockingStone();//blockingStone
 
 		/**
 		* 敵が受けるダメージの計算
