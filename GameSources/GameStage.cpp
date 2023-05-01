@@ -113,13 +113,27 @@ namespace basecross {
 	}
 
 	void StandbyStage::OnUpdate() {
+		auto scene = App::GetApp()->GetScene<Scene>();
+		auto pos = scene->GetBeforeSpikePosition(0);
+		wstringstream wss;
+		wss << L"TrapLimit : " <<
+			scene->GetBeforePlacedTrap(0) << endl;
+		auto dstr = scene->GetDebugString();
+		scene->SetDebugString(dstr + wss.str());
+
+
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
-			auto& scene = App::GetApp()->GetScene<Scene>();
 			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
 			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
 		}
+	}
+
+	void StandbyStage::OnDraw()
+	{
+		Stage::OnDraw(); // 継承するはずだった親クラスの関数を呼び出す
+		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 
 	//--------------------------------------------------------------------------------------
@@ -219,6 +233,18 @@ namespace basecross {
 			SetSharedGameObject(L"KeyStone", stone);
 
 			AddGameObject<KeyStoneGauge>(stone);
+
+			auto& app = App::GetApp();
+			auto scene = app->GetScene<Scene>();
+
+			for (int i = 0; i < 1; i++)
+			{
+				AddGameObject<SpikeTrap>(scene->GetBeforeSpikePosition(0), Vec3(5.0f, 0.5f, 5.0f));
+			}
+			for (int i = 0; i < 1; i++)
+			{
+				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(0), Vec3(4.0f, 20.0f, 4.0f));
+			}
 
 			// UIの作成
 			CreateUI();

@@ -13,8 +13,12 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
 		int m_texNum = 0;
+		int m_trapCount[4] = { 0 };
 
 		Vec3 m_playerPosition = Vec3(0);
+		Vec3 m_spikePosition[5] = {Vec3(0)};
+		Vec3 m_lavaPosition[1] = {Vec3(0)};
+		
 	public:
 		//--------------------------------------------------------------------------------------
 		/**
@@ -97,9 +101,36 @@ namespace basecross{
 			m_playerPosition = pos;
 		}
 
+		void SetBeforeSpikePosition(Vec3 pos, int index)
+		{
+			m_spikePosition[index] = pos;
+		}
+
+		void SetBeforeLavaPosition(Vec3 pos, int index)
+		{
+			m_spikePosition[index] = pos;
+		}
+
+		int GetBeforePlacedTrap(int index)
+		{
+			return m_trapCount[index];
+		}
+
 		Vec3 GetBeforePlayerPosition() const
 		{
 			return m_playerPosition;
+		}
+
+		Vec3 GetBeforeSpikePosition(int index)
+		{
+			m_trapCount[0]++;
+			return m_spikePosition[index];
+		}
+
+		Vec3 GetBeforeLavaPosition(int index)
+		{
+			m_trapCount[1]++;
+			return m_lavaPosition[index];
 		}
 	};
 

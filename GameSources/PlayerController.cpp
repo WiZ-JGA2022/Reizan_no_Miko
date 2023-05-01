@@ -109,9 +109,12 @@ namespace basecross {
 			{
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
 				{
-					auto XAPtr = App::GetApp()->GetXAudio2Manager();
+					auto XAPtr = app->GetXAudio2Manager();
 					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
-					GetStage()->AddGameObject<SpikeTrap>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(5.0f, 0.5f, 5.0f));
+
+					Vec3 trapPosition = Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z);
+					GetStage()->AddGameObject<SpikeTrap>(trapPosition, Vec3(5.0f, 0.5f, 5.0f));
+					app->GetScene<Scene>()->SetBeforeSpikePosition(trapPosition, m_trapCount[0]);
 					m_trapCount[0]++;
 				}
 			}
@@ -120,14 +123,16 @@ namespace basecross {
 			{
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_Y)
 				{
-					auto XAPtr = App::GetApp()->GetXAudio2Manager();
+					auto XAPtr = app->GetXAudio2Manager();
 					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
-					GetStage()->AddGameObject<SpurtLava>(Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z), Vec3(4.0f, 20.0f, 4.0f));
+
+					Vec3 trapPosition = Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z);
+					GetStage()->AddGameObject<SpurtLava>(trapPosition, Vec3(4.0f, 20.0f, 4.0f));
+					app->GetScene<Scene>()->SetBeforeLavaPosition(trapPosition, m_trapCount[1]);
 					m_trapCount[1]++;
 				}
 			}
 		}
-
 	}
 
 	void PlayerController::PlayerMoveProcess()
