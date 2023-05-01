@@ -65,42 +65,6 @@ namespace basecross {
 		}
 
 	};
-
-	class BlockingStone : public GameObject
-	{
-		const int m_DefaultDelay;
-		const float m_DefaultHp = 100.0f;
-
-		float m_hp;
-		int m_delay;
-
-		Vec3 m_playerPosition;
-
-	public:
-		BlockingStone(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage),
-			m_DefaultDelay(5),
-			m_delay(0),
-			m_hp(m_DefaultHp)
-		{
-		}
-
-		void OnCreate() override;
-		void OnUpdate() override;
-
-		void DamageProcess();
-
-		int GetMaxHp()
-		{
-			return (int)m_DefaultHp;
-		}
-		float GetCurrentHp()
-		{
-			return m_hp;
-		}
-
-	};
-
 }
 //end basecross
 

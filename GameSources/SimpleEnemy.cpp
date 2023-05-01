@@ -58,8 +58,8 @@ namespace basecross {
 		else
 		{
 			//MoveEnemyPlayer();
-			//MoveEnemyKeyStone();
-			MoveEnemyBlockingStone();
+			MoveEnemyKeyStone();
+			//MoveEnemyBlockingStone();
 		}
 	}
 

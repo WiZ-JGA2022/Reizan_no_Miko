@@ -156,4 +156,61 @@ namespace basecross {
 			GetStage()->RemoveGameObject<SpikeTrap>(GetThis<SpikeTrap>());
 		}
 	}
+
+
+	//妨害するオブジェクト
+	void BlockingStone::OnCreate()
+	{
+		auto collComp = AddComponent<CollisionSphere>();
+		// 衝突判定はAuto
+		collComp->SetAfterCollision(AfterCollision::Auto);
+		collComp->SetSleepActive(false);
+
+		auto playerPos = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>()->GetPosition();
+		m_objectPosition = Vec3(playerPos.x, playerPos.y, playerPos.z + 5.0f);
+
+		auto transComp = GetComponent<Transform>();
+		//transComp->SetPosition(Vec3(5.0f, 0.0f, -12.0f));
+		transComp->SetPosition(m_objectPosition);
+		transComp->SetRotation(0.0f, 0.0f, 0.0f);
+		transComp->SetScale(5.0f, 5.0f, 5.0f);
+
+		AddTag(L"BlockingStone");
+
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+		drawComp->SetTextureResource(L"STONE");//妨害用に変更必須
+
+		SetDrawLayer((int)DrawLayer::MostBottom);
+	}
+
+	void BlockingStone::OnUpdate()
+	{
+		auto transComp = GetComponent<Transform>();
+		//transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
+		transComp->SetPosition(m_objectPosition);
+
+		m_delay--;
+		if (m_delay <= 0)
+		{
+			auto drawComp = GetComponent<PNTStaticDraw>();
+			drawComp->SetEmissive(Col4(0.6f, 0.6f, 0.6f, 1.0f)); // Normalカラー
+		}
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		if (m_hp <= 0)
+		{
+			GetStage()->RemoveGameObject<BlockingStone>(GetThis<BlockingStone>());
+		}
+	}
+
+	void BlockingStone::DamageProcess()
+	{
+		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		XAPtr->Start(L"STONEDAMAGE_SE", 0, 0.5f);
+		auto drawComp = GetComponent<PNTStaticDraw>();
+		drawComp->SetEmissive(Col4(1.0f, 0.2f, 0.2f, 1.0f));
+		m_delay = m_DefaultDelay;
+		m_hp -= 10.0f;
+	}
+
 }
