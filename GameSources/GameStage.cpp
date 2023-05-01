@@ -121,6 +121,7 @@ namespace basecross {
 		if (time->GetTimeLeft() <= 0.0f)
 		{
 			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
+			scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
 			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
 		}
 	}
@@ -171,7 +172,8 @@ namespace basecross {
 	//ƒvƒŒƒCƒ„[‚Ìì¬
 	void GameStage::CreatePlayer() {
 		Vec3 beforePlayerPosition = App::GetApp()->GetScene<Scene>()->GetBeforePlayerPosition();
-		m_player = AddGameObject<PlayerController>(beforePlayerPosition, 1);
+		Quat beforePlayerQuaternion = App::GetApp()->GetScene<Scene>()->GetBeforePlayerQuaternion();
+		m_player = AddGameObject<PlayerController>(beforePlayerPosition, beforePlayerQuaternion, 1);
 		SetSharedGameObject(L"Player", m_player);
 		m_player->AddTag(L"Player");
 		auto statusController = AddGameObject<PlayerStatusController>();

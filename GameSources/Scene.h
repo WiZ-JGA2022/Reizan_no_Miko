@@ -16,6 +16,7 @@ namespace basecross{
 		int m_trapCount[4] = { 0 };
 
 		Vec3 m_playerPosition = Vec3(0);
+		Quat m_playerRotation = Quat(0);
 		Vec3 m_spikePosition[5] = {Vec3(0)};
 		Vec3 m_lavaPosition[1] = {Vec3(0)};
 		
@@ -101,6 +102,11 @@ namespace basecross{
 			m_playerPosition = pos;
 		}
 
+		void SetBeforePlayerQuaternion(Quat rot)
+		{
+			m_playerRotation = rot;
+		}
+
 		void SetBeforeSpikePosition(Vec3 pos, int index)
 		{
 			m_trapCount[0]++;
@@ -121,6 +127,11 @@ namespace basecross{
 		Vec3 GetBeforePlayerPosition() const
 		{
 			return m_playerPosition;
+		}
+
+		Quat GetBeforePlayerQuaternion() const
+		{
+			return m_playerRotation;
 		}
 
 		Vec3 GetBeforeSpikePosition(int index)
