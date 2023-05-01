@@ -58,7 +58,8 @@ namespace basecross {
 		else
 		{
 			//MoveEnemyPlayer();
-			MoveEnemyKeyStone();
+			//MoveEnemyKeyStone();
+			MoveEnemyBlockingStone();
 		}
 	}
 
@@ -225,6 +226,36 @@ namespace basecross {
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
 	}
 
+	void SimpleEnemy::MoveEnemyBlockingStone()//妨害オブジェクトに向かって
+	{
+		// デルタタイムの取得
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();
+
+		// 各種ベクトルの取得
+		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
+		auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"BlockingStone")->GetComponent<Transform>();
+		auto stonePos = stoneTrans->GetPosition(); // 要石の位置ベクトルを取得
+
+		auto stoneScale = stoneTrans->GetScale();// 要石のスケールを取得
+		Vec3 positionControl(0.0f, stoneScale.y, 0.0f);//要石の位置調整
+		Vec3 stonePosition = stonePos + (positionControl / 2);
+		m_directionBlockingStone = stonePosition - pos; // 要石への方向を計算
+
+		// ベクトルの正規化処理
+		float normalizeMagnification = 1 / sqrt(
+			m_directionBlockingStone.x * m_directionBlockingStone.x +
+			m_directionBlockingStone.y * m_directionBlockingStone.y +
+			m_directionBlockingStone.z * m_directionBlockingStone.z);
+		m_directionBlockingStone *= normalizeMagnification;
+		// ここまで
+
+		pos += m_directionBlockingStone * m_statusValue[L"SPD"] * delta;	// 移動の計算
+		float rotationY = atan2f(-m_directionBlockingStone.z, m_directionBlockingStone.x); // 回転の計算
+
+		m_transform->SetPosition(pos); // 移動処理
+		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
+	}
 
 	void SimpleEnemy::EnemyDamageProcess(float damage)
 	{
