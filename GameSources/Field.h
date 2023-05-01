@@ -74,6 +74,8 @@ namespace basecross {
 		float m_hp;
 		int m_delay;
 
+		Vec3 m_playerPosition;
+
 	public:
 		BlockingStone(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),

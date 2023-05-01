@@ -139,8 +139,12 @@ namespace basecross {
 		collComp->SetAfterCollision(AfterCollision::Auto);
 		collComp->SetSleepActive(false);
 
+		auto playerPos = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>()->GetPosition();
+		m_playerPosition = Vec3(playerPos.x, playerPos.y, playerPos.z + 5.0f);
+
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(Vec3(5.0f, 0.0f, -12.0f));
+		//transComp->SetPosition(Vec3(5.0f, 0.0f, -12.0f));
+		transComp->SetPosition(m_playerPosition);
 		transComp->SetRotation(0.0f, 0.0f, 0.0f);
 		transComp->SetScale(5.0f, 5.0f, 5.0f);
 
@@ -156,7 +160,8 @@ namespace basecross {
 	void BlockingStone::OnUpdate()
 	{
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
+		//transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
+		transComp->SetPosition(m_playerPosition);
 
 		m_delay--;
 		if (m_delay <= 0)
