@@ -103,12 +103,14 @@ namespace basecross{
 
 		void SetBeforeSpikePosition(Vec3 pos, int index)
 		{
+			m_trapCount[0]++;
 			m_spikePosition[index] = pos;
 		}
 
 		void SetBeforeLavaPosition(Vec3 pos, int index)
 		{
-			m_spikePosition[index] = pos;
+			m_trapCount[1]++;
+			m_lavaPosition[index] = pos;
 		}
 
 		int GetBeforePlacedTrap(int index)
@@ -123,13 +125,11 @@ namespace basecross{
 
 		Vec3 GetBeforeSpikePosition(int index)
 		{
-			m_trapCount[0]++;
 			return m_spikePosition[index];
 		}
 
 		Vec3 GetBeforeLavaPosition(int index)
 		{
-			m_trapCount[1]++;
 			return m_lavaPosition[index];
 		}
 	};

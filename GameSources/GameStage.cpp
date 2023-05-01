@@ -117,14 +117,6 @@ namespace basecross {
 
 	void StandbyStage::OnUpdate() {
 		auto scene = App::GetApp()->GetScene<Scene>();
-		auto pos = scene->GetBeforeSpikePosition(0);
-		wstringstream wss;
-		wss << L"TrapLimit : " <<
-			scene->GetBeforePlacedTrap(0) << endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
-
-
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
@@ -133,9 +125,10 @@ namespace basecross {
 		}
 	}
 
+	// デバッグ文字列表示用
 	void StandbyStage::OnDraw()
 	{
-		Stage::OnDraw(); // 継承するはずだった親クラスの関数を呼び出す
+		Stage::OnDraw(); 
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 
@@ -240,13 +233,13 @@ namespace basecross {
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
 
-			for (int i = 0; i < 1; i++)
+			for (int i = 0; i < scene->GetBeforePlacedTrap(0); i++)
 			{
-				AddGameObject<SpikeTrap>(scene->GetBeforeSpikePosition(0), Vec3(5.0f, 0.5f, 5.0f));
+				AddGameObject<SpikeTrap>(scene->GetBeforeSpikePosition(i), Vec3(5.0f, 0.5f, 5.0f));
 			}
-			for (int i = 0; i < 1; i++)
+			for (int i = 0; i < scene->GetBeforePlacedTrap(1); i++)
 			{
-				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(0), Vec3(4.0f, 20.0f, 4.0f));
+				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(i), Vec3(4.0f, 20.0f, 4.0f));
 			}
 
 			// UIの作成
