@@ -16,6 +16,6 @@ namespace basecross {
 
 	void TimeChara::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(-64.0f, App::GetApp()->GetGameHeight() * 0.5f, 0.0f), m_DefaultSize, L"TIME_CHARA");
+		Sprites::CreateSprite(Vec3(-64.0f, App::GetApp()->GetGameHeight() * 0.5f, 0.0f), m_DefaultSize, L"TIME_CHARA",false);
 	}
 }

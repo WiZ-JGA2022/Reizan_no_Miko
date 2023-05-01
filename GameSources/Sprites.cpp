@@ -8,7 +8,9 @@
 
 namespace basecross {
 	Sprites::Sprites(const shared_ptr<Stage>& stage) :
-		GameObject(stage)
+		GameObject(stage),
+		m_TotalTime(0.0f),
+		m_selected(false)
 	{
 	}
 	Sprites::~Sprites() {}
@@ -17,8 +19,38 @@ namespace basecross {
 	{
 	}
 
-	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey)
+	void Sprites::OnUpdate()
 	{
+		if (m_Trace)
+		{
+			m_TotalTime += 0.75;
+			float a = sinf(m_TotalTime);
+			auto& app = App::GetApp();
+			auto device = app->GetInputDevice();
+			auto& pad = device.GetControlerVec()[0];
+
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
+			{
+				m_selected = true;
+
+			}
+
+			if (m_selected)
+			{
+				auto drawComp = GetComponent<PCTSpriteDraw>();
+				m_vertices[0].color = Col4(a, a, a, 1.0f);
+				m_vertices[1].color = Col4(a, a, a, 1.0f);
+				m_vertices[2].color = Col4(a, a, a, 1.0f);
+				m_vertices[3].color = Col4(a, a, a, 1.0f);
+				drawComp->UpdateVertices(m_vertices);
+			}
+		}
+		
+	}
+
+	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey,bool Trace)
+	{
+		m_Trace = Trace;
 		auto& app = App::GetApp();
 
 		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f);

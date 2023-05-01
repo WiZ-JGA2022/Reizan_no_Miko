@@ -133,6 +133,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp">
       <Filter>Sources\UI\GaugeUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -266,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h">
       <Filter>Headers\UI\GaugeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h">
+      <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
