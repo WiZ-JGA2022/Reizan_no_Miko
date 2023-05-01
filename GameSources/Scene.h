@@ -17,6 +17,11 @@ namespace basecross{
 
 		Vec3 m_playerPosition = Vec3(0);
 		Quat m_playerRotation = Quat(0);
+
+		Vec3 m_cameraEye = Vec3(0);
+		Vec3 m_cameraArmVec = Vec3(0);
+		float m_cameraArmLength = 0.0f;
+
 		Vec3 m_spikePosition[5] = {Vec3(0)};
 		Vec3 m_lavaPosition[1] = {Vec3(0)};
 		
@@ -107,6 +112,21 @@ namespace basecross{
 			m_playerRotation = rot;
 		}
 
+		void SetBeforeCameraEye(Vec3 eye)
+		{
+			m_cameraEye = eye;
+		}
+
+		void SetBeforeCameraArmVec(Vec3 armVec)
+		{
+			m_cameraArmVec = armVec;
+		}
+
+		void SetBeforeCameraArmLength(float armLength)
+		{
+			m_cameraArmLength = armLength;
+		}
+
 		void SetBeforeSpikePosition(Vec3 pos, int index)
 		{
 			m_trapCount[0]++;
@@ -132,6 +152,21 @@ namespace basecross{
 		Quat GetBeforePlayerQuaternion() const
 		{
 			return m_playerRotation;
+		}
+
+		Vec3 GetBeforeCameraEye() const
+		{
+			return m_cameraEye;
+		}
+
+		Vec3 GetBeforeCameraArmVec() const
+		{
+			return m_cameraArmVec;
+		}
+
+		float GetBeforeCameraArmLength() const
+		{
+			return m_cameraArmLength;
 		}
 
 		Vec3 GetBeforeSpikePosition(int index)

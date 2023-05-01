@@ -91,8 +91,6 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
-			AddGameObject<Field2>(Vec3(10.0f, 3.5f, 10.0f));
-			AddGameObject<Field2>(Vec3(-10.0f, 3.5f, 30.0f));
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 
@@ -117,11 +115,16 @@ namespace basecross {
 
 	void StandbyStage::OnUpdate() {
 		auto scene = App::GetApp()->GetScene<Scene>();
+		auto camera = GetView()->GetTargetCamera();
+		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
 			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
 			scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
+			scene->SetBeforeCameraEye(maincamera->GetEye());
+			scene->SetBeforeCameraArmVec(maincamera->GetArmVec());
+			scene->SetBeforeCameraArmLength(maincamera->GetArmLengh());
 			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
 		}
 	}
@@ -137,15 +140,16 @@ namespace basecross {
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
 	void GameStage::CreateViewLight() {
-		const Vec3 eye(0.0f, 5.0f, -10.0f);
 		const Vec3 at(0.0f, 1.0f ,0.0f);
 
 		auto PtrView = CreateView<SingleView>();
 		
+		auto scene = App::GetApp()->GetScene<Scene>();
+
 		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<MyCamera>();
+		auto PtrCamera = ObjectFactory::Create<MyCamera>(scene->GetBeforeCameraArmLength());
 		PtrView->SetCamera(PtrCamera);
-		PtrCamera->SetEye(eye);
+		PtrCamera->SetEye(scene->GetBeforeCameraEye());
 		PtrCamera->SetAt(at);
 
 		//マルチライトの作成
@@ -225,8 +229,6 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
-			AddGameObject<Field2>(Vec3(10.0f, 3.5f, 10.0f));
-			AddGameObject<Field2>(Vec3(-10.0f, 3.5f, 30.0f));
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 

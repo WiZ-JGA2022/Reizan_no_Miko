@@ -11,9 +11,24 @@ namespace basecross {
 
     void PlayerBullet::OnCreate()
     {
-        auto drawComp = AddComponent<PNTStaticDraw>();
-        drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-        
+        Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+        spanMat.affineTransformation(
+            Vec3(1.0f, 1.0f, 1.0f),
+            Vec3(0.0f, 0.0f, 0.0f),
+            Vec3(0.0f, 0.0f, 0.0f),
+            Vec3(0.0f, 0.0f, 0.0f)
+        );
+        //影をつける（シャドウマップを描画する）
+        auto ptrShadow = AddComponent<Shadowmap>();
+        //影の形（メッシュ）を設定
+        ptrShadow->SetMeshResource(L"OHUDA");
+        ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+        auto drawComp = AddComponent<BcPNTStaticModelDraw>();
+        drawComp->SetFogEnabled(false);
+        drawComp->SetMeshResource(L"OHUDA");
+        drawComp->SetMeshToTransformMatrix(spanMat);
+
         // オーナーの向きをベクトルで取得しておく
         auto ownerTrans = m_owner->GetComponent<Transform>();
         m_forward = ownerTrans->GetForward(); // 前方向を示すベクトル

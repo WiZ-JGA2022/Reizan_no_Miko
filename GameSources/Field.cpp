@@ -16,7 +16,7 @@ namespace basecross {
 		collComp->SetSleepActive(false);
 
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(0.0f, -5.5f, 0.0f);
+		transComp->SetPosition(0.0f, -0.5f, 100.0f);
 		transComp->SetScale(1.0f, 1.0f, 1.0f);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列

@@ -89,6 +89,10 @@ namespace basecross {
 		return m_ArmLen;
 	}
 
+	Vec3 MyCamera::GetArmVec() const {
+		return m_armVec;
+	}
+
 	void MyCamera::UpdateArmLengh() {
 		auto vec = GetEye() - GetAt();
 		m_ArmLen = bsm::length(vec);
@@ -184,9 +188,9 @@ namespace basecross {
 		Vec3 newEye = GetEye();
 		Vec3 newAt = GetAt();
 		//計算に使うための腕角度（ベクトル）
-		bsm::Vec3 armVec = newEye - newAt;
+		m_armVec = newEye - newAt;
 		//正規化しておく
-		armVec.normalize();
+		m_armVec.normalize();
 		float fThumbRY = 0.0f;
 		float fThumbRX = 0.0f;
 		WORD wButtons = 0;
@@ -220,7 +224,7 @@ namespace basecross {
 			//カメラが限界下に下がったらそれ以上下がらない
 			m_RadY = m_CameraUnderRot;
 		}
-		armVec.y = sin(m_RadY);
+		m_armVec.y = sin(m_RadY);
 		//ここでY軸回転を作成
 		if (fThumbRX != 0  ) {
 			//回転スピードを反映
@@ -247,10 +251,10 @@ namespace basecross {
 
 		Vec3 posXZ = Mat.transInMatrix();
 		//XZの値がわかったので腕角度に代入
-		armVec.x = posXZ.x;
-		armVec.z = posXZ.z;
+		m_armVec.x = posXZ.x;
+		m_armVec.z = posXZ.z;
 		//腕角度を正規化
-		armVec.normalize();
+		m_armVec.normalize();
 
 		auto ptrTarget = GetTargetObject();
 		if (ptrTarget) {
@@ -280,8 +284,8 @@ namespace basecross {
 		}
 		m_angle += -fThumbRX * elapsedTime;
 
-		////目指したい場所にアームの値と腕ベクトルでEyeを調整
-		Vec3 toEye = newAt + armVec * m_ArmLen;
+		//目指したい場所にアームの値と腕ベクトルでEyeを調整
+		Vec3 toEye = newAt + m_armVec * m_ArmLen;
 		newEye = Lerp::CalculateLerp(GetEye(), toEye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);
 
 		SetAt(newAt);

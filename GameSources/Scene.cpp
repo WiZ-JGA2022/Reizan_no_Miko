@@ -121,6 +121,7 @@ namespace basecross{
 		RoadStaticModelMesh(L"O_stage", L"STAGE");
 		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
 		RoadStaticModelMesh(L"Holl2", L"ARCH");
+		RoadStaticModelMesh(L"ofuda", L"OHUDA");
 
 		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
