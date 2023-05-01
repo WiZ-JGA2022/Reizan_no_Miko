@@ -131,6 +131,9 @@
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp">
+      <Filter>Sources\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -263,6 +266,9 @@
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
