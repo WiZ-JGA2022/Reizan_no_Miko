@@ -16,7 +16,7 @@ namespace basecross {
 
 	void ResultSprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"RESULT",false);
+		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"RESULT",false,false);
 	}
 
 	ClearSprite::ClearSprite(const shared_ptr<Stage>& stage) :
@@ -27,6 +27,6 @@ namespace basecross {
 
 	void ClearSprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"CLEAR_SPRITE",false);
+		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"CLEAR_SPRITE",false,false);
 	}
 }

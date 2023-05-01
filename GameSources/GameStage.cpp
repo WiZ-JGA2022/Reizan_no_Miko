@@ -65,6 +65,8 @@ namespace basecross {
 		AddGameObject<StandbySprite>();
 
 		AddGameObject<TrapNumber>();
+
+		AddGameObject<TutorialUI>();
 	} // end CreateUI
 
 	void StandbyStage::PlayBGM()

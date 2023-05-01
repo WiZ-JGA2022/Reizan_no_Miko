@@ -10,7 +10,8 @@ namespace basecross {
 	Sprites::Sprites(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
 		m_TotalTime(0.0f),
-		m_selected(false)
+		m_selected(false),
+		m_changeSize(false)
 	{
 	}
 	Sprites::~Sprites() {}
@@ -32,7 +33,6 @@ namespace basecross {
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
 			{
 				m_selected = true;
-
 			}
 
 			if (m_selected)
@@ -45,12 +45,45 @@ namespace basecross {
 				drawComp->UpdateVertices(m_vertices);
 			}
 		}
-		
+
+		if (m_changeSize)
+		{
+			// ŽžŠÔ‚ÌXV
+			auto& app = App::GetApp();
+			auto delta = app->GetElapsedTime();
+
+			m_TotalTime += delta;
+
+			if (m_TotalTime > 5.0f && m_isState != TutorialState::Stop)
+			{
+				m_isState = TutorialState::SizeChange;
+			}
+			if (m_isState == TutorialState::SizeChange)
+			{
+				m_tutorialUiSize += 0.05f;
+				m_vertices[0].position.x = m_spriteSize.x * m_tutorialUiSize;
+				m_vertices[0].position.y = -m_spriteSize.y * m_tutorialUiSize;
+				m_vertices[1].position.y = -m_spriteSize.y * m_tutorialUiSize;
+				m_vertices[2].position.x = m_spriteSize.x * m_tutorialUiSize;
+
+				auto drawComp = GetComponent<PCTSpriteDraw>();
+				drawComp->UpdateVertices(m_vertices);
+
+				if (m_tutorialUiSize > 1.0f)
+				{
+					m_isState = TutorialState::Stop;
+				}
+			}
+
+		}
+
 	}
 
-	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey,bool Trace)
+	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey, bool Trace, bool changeSize)
 	{
 		m_Trace = Trace;
+		m_changeSize = changeSize;
+		m_spriteSize = size;
 		auto& app = App::GetApp();
 
 		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f);

@@ -136,6 +136,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h">
       <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
