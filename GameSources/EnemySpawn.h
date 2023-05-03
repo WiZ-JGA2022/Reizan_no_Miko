@@ -9,11 +9,12 @@
 namespace basecross {
 	class EnemySpawn :public GameObject
 	{
-
+		Vec3 m_enemyInterval;
 
 	public:
 		EnemySpawn(const shared_ptr<Stage>& stage) :
-			GameObject(stage)
+			GameObject(stage),
+			m_enemyInterval(5.0f,0.0f,5.0f)
 		{
 		}
 

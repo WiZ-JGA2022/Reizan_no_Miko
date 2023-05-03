@@ -10,7 +10,7 @@ namespace basecross {
 
 	void EnemySpawn::OnCreate()
 	{
-		Spawn1(Vec3(20.0f, 0.0f, 40.0f));
+		//Spawn1(Vec3(20.0f, 0.0f, 40.0f));
 		//Spawn2(Vec3(20.0f, 0.0f, 40.0f));
 		//Spawn3(Vec3(20.0f, 0.0f, 40.0f));
 		//Spawn4(Vec3(20.0f, 0.0f, 40.0f));
@@ -32,13 +32,13 @@ namespace basecross {
 
 	void EnemySpawn::Spawn2(Vec3 pos)
 	{
-		auto enemyTrans = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
+		// m_enemyInterval = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
 
 		for (int i = 0;i < 2;i++)
 		{
 			Vec3 transPos;
-			if (i == 0) { transPos = (Vec3(pos.x, pos.y, pos.z + (enemyTrans.z * 2))); }
-			if (i == 1) { transPos = (Vec3(pos.x, pos.y, pos.z - (enemyTrans.z * 2))); }
+			if (i == 0) { transPos = (Vec3(pos.x, pos.y, pos.z + (m_enemyInterval.z * 2))); }
+			if (i == 1) { transPos = (Vec3(pos.x, pos.y, pos.z - (m_enemyInterval.z * 2))); }
 			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
 			//GetStage()->AddGameObject<EnemyBullet>();
 			//GetStage()->AddGameObject<EnemyBullet>(enemy);
@@ -47,14 +47,12 @@ namespace basecross {
 
 	void EnemySpawn::Spawn3(Vec3 pos)
 	{
-		auto enemyTrans = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
-
 		for (int i = 0;i < 3;i++)
 		{
 			Vec3 transPos;
-			if (i == 0) { transPos = (Vec3(pos.x + (enemyTrans.x * 2), pos.y, pos.z)); }
-			if (i == 1) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z + (enemyTrans.z * 2))); }
-			if (i == 2) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z - (enemyTrans.z * 2))); }
+			if (i == 0) { transPos = (Vec3(pos.x + (m_enemyInterval.x * 2), pos.y, pos.z)); }
+			if (i == 1) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + (m_enemyInterval.z * 2))); }
+			if (i == 2) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - (m_enemyInterval.z * 2))); }
 			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
 			//GetStage()->AddGameObject<EnemyBullet>();
 			//GetStage()->AddGameObject<EnemyBullet>(enemy);
@@ -63,15 +61,13 @@ namespace basecross {
 
 	void EnemySpawn::Spawn4(Vec3 pos)
 	{
-		auto enemyTrans = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
-
 		for (int i = 0;i < 4;i++)
 		{
 			Vec3 transPos;
-			if (i == 0) { transPos = (Vec3(pos.x + enemyTrans.x, pos.y, pos.z + enemyTrans.z)); }
-			if (i == 1) { transPos = (Vec3(pos.x + enemyTrans.x, pos.y, pos.z - enemyTrans.z)); }
-			if (i == 2) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z + enemyTrans.z)); }
-			if (i == 3) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z - enemyTrans.z)); }
+			if (i == 0) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
+			if (i == 1) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
+			if (i == 2) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
+			if (i == 3) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
 			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
 			//GetStage()->AddGameObject<EnemyBullet>();
 			//GetStage()->AddGameObject<EnemyBullet>(enemy);
@@ -80,16 +76,14 @@ namespace basecross {
 
 	void EnemySpawn::Spawn5(Vec3 pos)
 	{
-		auto enemyTrans = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
-
 		for (int i = 0;i < 5;i++)
 		{
 			Vec3 transPos;
-			if (i == 0) { transPos = (Vec3(pos.x + (enemyTrans.x * 2), pos.y, pos.z )); }
-			if (i == 1) { transPos = (Vec3(pos.x + enemyTrans.x, pos.y, pos.z + enemyTrans.z)); }
-			if (i == 2) { transPos = (Vec3(pos.x + enemyTrans.x, pos.y, pos.z - enemyTrans.z)); }
-			if (i == 3) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z + enemyTrans.z)); }
-			if (i == 4) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z - enemyTrans.z)); }
+			if (i == 0) { transPos = (Vec3(pos.x + (m_enemyInterval.x * 2), pos.y, pos.z )); }
+			if (i == 1) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
+			if (i == 2) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
+			if (i == 3) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
+			if (i == 4) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
 			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
 			//GetStage()->AddGameObject<EnemyBullet>();
 			//GetStage()->AddGameObject<EnemyBullet>(enemy);
@@ -98,17 +92,15 @@ namespace basecross {
 
 	void EnemySpawn::Spawn6(Vec3 pos)
 	{
-		auto enemyTrans = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
-
 		for (int i = 0;i < 6;i++)
 		{
 			Vec3 transPos;
-			if (i == 0) { transPos = (Vec3(pos.x + (enemyTrans.x * 2), pos.y, pos.z)); }
-			if (i == 1) { transPos = (Vec3(pos.x + enemyTrans.x, pos.y, pos.z + enemyTrans.z)); }
-			if (i == 2) { transPos = (Vec3(pos.x + enemyTrans.x, pos.y, pos.z - enemyTrans.z)); }
-			if (i == 3) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z + enemyTrans.z)); }
-			if (i == 4) { transPos = (Vec3(pos.x - enemyTrans.x, pos.y, pos.z - enemyTrans.z)); }
-			if (i == 5) { transPos = (Vec3(pos.x - (enemyTrans.x * 2), pos.y, pos.z)); }
+			if (i == 0) { transPos = (Vec3(pos.x + (m_enemyInterval.x * 2), pos.y, pos.z)); }
+			if (i == 1) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
+			if (i == 2) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
+			if (i == 3) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
+			if (i == 4) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
+			if (i == 5) { transPos = (Vec3(pos.x - (m_enemyInterval.x * 2), pos.y, pos.z)); }
 			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
 			//GetStage()->AddGameObject<EnemyBullet>();
 			//GetStage()->AddGameObject<EnemyBullet>(enemy);
