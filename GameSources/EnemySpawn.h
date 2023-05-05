@@ -28,6 +28,8 @@ namespace basecross {
 		void Spawn4(Vec3 pos);//4‘Ì
 		void Spawn5(Vec3 pos);//5‘Ì
 		void Spawn6(Vec3 pos);//6‘Ì
+
+		void EnemyCreate(Vec3 transPos);
 	};
 
 }

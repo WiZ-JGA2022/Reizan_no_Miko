@@ -24,10 +24,7 @@ namespace basecross {
 
 	void EnemySpawn::Spawn1(Vec3 pos)
 	{
-		auto enemy = GetStage()->AddGameObject<SimpleEnemy>(pos);
-		//GetStage()->AddGameObject<EnemyBullet>();
-		//GetStage()->AddGameObject<EnemyBullet>(enemy);
-
+		EnemyCreate(pos);
 	}
 
 	void EnemySpawn::Spawn2(Vec3 pos)
@@ -39,9 +36,8 @@ namespace basecross {
 			Vec3 transPos;
 			if (i == 0) { transPos = (Vec3(pos.x, pos.y, pos.z + (m_enemyInterval.z * 2))); }
 			if (i == 1) { transPos = (Vec3(pos.x, pos.y, pos.z - (m_enemyInterval.z * 2))); }
-			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
-			//GetStage()->AddGameObject<EnemyBullet>();
-			//GetStage()->AddGameObject<EnemyBullet>(enemy);
+
+			EnemyCreate(transPos);
 		}
 	}
 
@@ -53,9 +49,8 @@ namespace basecross {
 			if (i == 0) { transPos = (Vec3(pos.x + (m_enemyInterval.x * 2), pos.y, pos.z)); }
 			if (i == 1) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + (m_enemyInterval.z * 2))); }
 			if (i == 2) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - (m_enemyInterval.z * 2))); }
-			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
-			//GetStage()->AddGameObject<EnemyBullet>();
-			//GetStage()->AddGameObject<EnemyBullet>(enemy);
+
+			EnemyCreate(transPos);
 		}
 	}
 
@@ -68,9 +63,8 @@ namespace basecross {
 			if (i == 1) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
 			if (i == 2) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
 			if (i == 3) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
-			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
-			//GetStage()->AddGameObject<EnemyBullet>();
-			//GetStage()->AddGameObject<EnemyBullet>(enemy);
+
+			EnemyCreate(transPos);
 		}
 	}
 
@@ -84,9 +78,8 @@ namespace basecross {
 			if (i == 2) { transPos = (Vec3(pos.x + m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
 			if (i == 3) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
 			if (i == 4) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
-			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
-			//GetStage()->AddGameObject<EnemyBullet>();
-			//GetStage()->AddGameObject<EnemyBullet>(enemy);
+
+			EnemyCreate(transPos);
 		}
 	}
 
@@ -101,11 +94,16 @@ namespace basecross {
 			if (i == 3) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z + m_enemyInterval.z)); }
 			if (i == 4) { transPos = (Vec3(pos.x - m_enemyInterval.x, pos.y, pos.z - m_enemyInterval.z)); }
 			if (i == 5) { transPos = (Vec3(pos.x - (m_enemyInterval.x * 2), pos.y, pos.z)); }
-			auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
-			//GetStage()->AddGameObject<EnemyBullet>();
-			//GetStage()->AddGameObject<EnemyBullet>(enemy);
+
+			EnemyCreate(transPos);
 		}
 	}
 
+	void EnemySpawn::EnemyCreate(Vec3 transPos)
+	{
+		auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
+		//GetStage()->AddGameObject<EnemyBullet>();
+		//GetStage()->AddGameObject<EnemyBullet>(enemy);
+	}
 }
 //end basecross
