@@ -21,7 +21,7 @@ namespace basecross {
 		m_RadXZ(0),
 		m_CameraUpDownSpeed(0.5f),
 		m_CameraUnderRot(0.1f),
-		m_ArmLen(5.0f),
+		m_ArmLen(10.0f),
 		m_MaxArm(20.0f),
 		m_MinArm(2.0f),
 		m_RotSpeed(1.0f),
@@ -30,30 +30,6 @@ namespace basecross {
 		m_UDBaseMode(true),
 		m_angle(XMConvertToRadians(270.0f))
 	{}
-
-	MyCamera::MyCamera(float ArmLen) :
-		Camera(),
-		m_ToTargetLerp(1.0f),
-		m_TargetToAt(0, 0, 0),
-		m_RadY(0.5f),
-		m_RadXZ(0),
-		m_CameraUpDownSpeed(0.5f),
-		m_CameraUnderRot(0.1f),
-		m_ArmLen(5.0f),
-		m_MaxArm(20.0f),
-		m_MinArm(2.0f),
-		m_RotSpeed(1.0f),
-		m_ZoomSpeed(0.1f),
-		m_LRBaseMode(true),
-		m_UDBaseMode(true),
-		m_angle(XMConvertToRadians(270.0f))
-	{
-		m_ArmLen = ArmLen;
-		auto eye = GetEye();
-		eye.y = m_ArmLen;
-		SetEye(eye);
-	}
-
 	MyCamera::~MyCamera() {}
 	//アクセサ
 
@@ -140,19 +116,12 @@ namespace basecross {
 		return m_LRBaseMode;
 
 	}
-	bool MyCamera::IsLRBaseMode() const {
-		return m_LRBaseMode;
-
-	}
 	void MyCamera::SetLRBaseMode(bool b) {
 		m_LRBaseMode = b;
 	}
 	bool MyCamera::GetUDBaseMode() const {
 		return m_UDBaseMode;
 
-	}
-	bool MyCamera::IsUDBaseMode() const {
-		return m_UDBaseMode;
 	}
 	void MyCamera::SetUDBaseMode(bool b) {
 		m_UDBaseMode = b;
@@ -168,24 +137,15 @@ namespace basecross {
 		Vec3 newEye = GetAt() + armVec;
 		Camera::SetEye(newEye);
 	}
-	void MyCamera::SetAt(float x, float y, float z) {
-		Camera::SetAt(x, y, z);
-		Vec3 armVec = GetEye() - GetAt();
-		armVec.normalize();
-		armVec *= m_ArmLen;
-		Vec3 newEye = GetAt() + armVec;
-		Camera::SetEye(newEye);
-
-	}
-
 
 	void MyCamera::OnUpdate() {
 	
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyData = App::GetApp()->GetInputDevice().GetKeyState();
+		auto scene = App::GetApp()->GetScene<Scene>();
 		//前回のターンからの時間
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		Vec3 newEye = GetEye();
+		Vec3 newEye = scene->GetBeforeCameraEye();
 		Vec3 newAt = GetAt();
 		//計算に使うための腕角度（ベクトル）
 		m_armVec = newEye - newAt;
@@ -202,7 +162,7 @@ namespace basecross {
 
 		//上下角度の変更
 		if (fThumbRY >= 0.5f ) {
-			if (IsUDBaseMode()) {
+			if (GetUDBaseMode()) {
 				m_RadY += m_CameraUpDownSpeed * elapsedTime;
 			}
 			else {
@@ -210,7 +170,7 @@ namespace basecross {
 			}
 		}
 		else if (fThumbRY <= -0.5f ) {
-			if (IsUDBaseMode()) {
+			if (GetUDBaseMode()) {
 				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
 			else {
@@ -229,7 +189,7 @@ namespace basecross {
 		if (fThumbRX != 0  ) {
 			//回転スピードを反映
 			if (fThumbRX != 0) {
-				if (IsLRBaseMode()) {
+				if (GetLRBaseMode()) {
 					m_RadXZ += -fThumbRX * elapsedTime * m_RotSpeed;
 				}
 				else {
@@ -261,7 +221,7 @@ namespace basecross {
 			//目指したい場所
 			Vec3 toAt = ptrTarget->GetComponent<Transform>()->GetWorldMatrix().transInMatrix();
 			toAt += m_TargetToAt;
-			newAt = Lerp::CalculateLerp(GetAt(), toAt, 0, 1.0f, 1.0, Lerp::Linear);
+			newAt = Lerp::CalculateLerp(scene->GetBeforeCameraAt(), toAt, 0, 1.0f, 1.0, Lerp::Linear);
 		}
 		//アームの変更
 		//Dパッド下
@@ -288,8 +248,8 @@ namespace basecross {
 		Vec3 toEye = newAt + m_armVec * m_ArmLen;
 		newEye = Lerp::CalculateLerp(GetEye(), toEye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);
 
-		SetAt(newAt);
 		SetEye(newEye);
+		SetAt(newAt);
 		UpdateArmLengh();
 		Camera::OnUpdate();
 	}

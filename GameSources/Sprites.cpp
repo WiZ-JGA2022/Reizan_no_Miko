@@ -23,7 +23,7 @@ namespace basecross {
 	{
 		if (m_Trace)
 		{
-			m_TotalTime += 0.75;
+			m_TotalTime += 0.75f;
 			float a = sinf(m_TotalTime);
 			auto& app = App::GetApp();
 			auto device = app->GetInputDevice();
@@ -68,6 +68,7 @@ namespace basecross {
 		};
 
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
+		m_draw->SetDiffuse(white);
 		m_draw->SetTextureResource(texKey);
 
 		m_transform = GetComponent<Transform>();

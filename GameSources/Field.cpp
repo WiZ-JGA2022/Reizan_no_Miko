@@ -84,7 +84,7 @@ namespace basecross {
 	//óvêŒ
 	void KeyStone::OnCreate()
 	{
-		auto collComp = AddComponent<CollisionSphere>();
+		auto collComp = AddComponent<CollisionObb>();
 		// è’ìÀîªíËÇÕAuto
 		collComp->SetAfterCollision(AfterCollision::Auto);
 		collComp->SetSleepActive(false);

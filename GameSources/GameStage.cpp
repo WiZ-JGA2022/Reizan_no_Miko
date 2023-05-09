@@ -8,7 +8,7 @@
 
 namespace basecross {
 	void StandbyStage::CreateViewLight() {
-		const Vec3 eye(0.0f, 5.0f, -10.0f);
+		const Vec3 eye(0.0f, 5.0f, 10.0f);
 		const Vec3 at(0.0f, 1.0f, 0.0f);
 
 		auto PtrView = CreateView<SingleView>();
@@ -123,10 +123,31 @@ namespace basecross {
 			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
 			scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
 			scene->SetBeforeCameraEye(maincamera->GetEye());
+			scene->SetBeforeCameraAt(maincamera->GetAt());
 			scene->SetBeforeCameraArmVec(maincamera->GetArmVec());
 			scene->SetBeforeCameraArmLength(maincamera->GetArmLengh());
 			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
 		}
+
+		wstringstream wss;
+		wss << L"CurrentEye : " <<
+			maincamera->GetEye().x << L" " <<
+			maincamera->GetEye().y << L" " <<
+			maincamera->GetEye().z << L"\n" <<
+			L"CurrentAt : " <<
+			maincamera->GetAt().x << L" " <<
+			maincamera->GetAt().y << L" " <<
+			maincamera->GetAt().z << L"\n" <<
+			L"CurrentArmVec : " <<
+			maincamera->GetArmVec().x << L" " <<
+			maincamera->GetArmVec().y << L" " <<
+			maincamera->GetArmVec().z << L"\n" <<
+			L"CurrentArmLength : " <<
+			maincamera->GetArmLengh() << endl;
+		auto dstr = scene->GetDebugString();
+		scene->SetDebugString(dstr + wss.str());
+
+
 	}
 
 	// デバッグ文字列表示用
@@ -140,18 +161,17 @@ namespace basecross {
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
 	void GameStage::CreateViewLight() {
-		const Vec3 at(0.0f, 1.0f ,0.0f);
-
 		auto PtrView = CreateView<SingleView>();
 		
 		auto scene = App::GetApp()->GetScene<Scene>();
 
 		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<MyCamera>(scene->GetBeforeCameraArmLength());
+		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
-		PtrCamera->SetEye(scene->GetBeforeCameraEye());
-		PtrCamera->SetAt(at);
-
+		auto beforeEye = scene->GetBeforeCameraEye();
+		PtrCamera->SetAt(scene->GetBeforeCameraAt());
+		PtrCamera->SetEye(beforeEye);
+		auto eye = PtrCamera->GetEye();
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		
@@ -270,6 +290,44 @@ namespace basecross {
 			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
 			return;
 		}
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		auto camera = GetView()->GetTargetCamera();
+		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
+		wstringstream wss;
+		wss << L"BeforeEye : " <<
+			scene->GetBeforeCameraEye().x << L" " <<
+			scene->GetBeforeCameraEye().y << L" " <<
+			scene->GetBeforeCameraEye().z << L"\n" <<
+			L"CurrentEye : " <<
+			maincamera->GetEye().x << L" " <<
+			maincamera->GetEye().y << L" " <<
+			maincamera->GetEye().z << L"\n" <<
+
+			L"BeforeAt : " <<
+			scene->GetBeforeCameraAt().x << L" " <<
+			scene->GetBeforeCameraAt().y << L" " <<
+			scene->GetBeforeCameraAt().z << L"\n" <<
+			L"CurrentAt : " <<
+			maincamera->GetAt().x << L" " <<
+			maincamera->GetAt().y << L" " <<
+			maincamera->GetAt().z << L"\n" <<
+
+			L"BeforeArmVec : " <<
+			scene->GetBeforeCameraArmVec().x << L" " <<
+			scene->GetBeforeCameraArmVec().y << L" " <<
+			scene->GetBeforeCameraArmVec().z << L"\n" <<
+			L"CurrentArmVec : " <<
+			maincamera->GetArmVec().x << L" " <<
+			maincamera->GetArmVec().y << L" " <<
+			maincamera->GetArmVec().z << L"\n" <<
+
+			L"BeforeArmLength : " <<
+			scene->GetBeforeCameraArmLength() << L"\n" <<
+			L"CurrentArmLength : " <<
+			maincamera->GetArmLengh() << endl;
+		auto dstr = scene->GetDebugString();
+		scene->SetDebugString(dstr + wss.str());
 	} // end OnUpdate
 
 	void GameStage::OnDraw()
