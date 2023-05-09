@@ -33,6 +33,8 @@ namespace basecross {
 		void OnUpdate() override;
 	};
 
+	
+
 	class KeyStone : public GameObject
 	{
 		const int m_DefaultDelay;
@@ -63,8 +65,20 @@ namespace basecross {
 		{
 			return m_hp;
 		}
+	};
 
+	class StageCollision : public GameObject
+	{
+	public:
+		StageCollision(const std::shared_ptr<Stage>& stage) :
+			GameObject(stage)
+		{
+		}
+
+		void OnCreate() override;
+		void OnUpdate() override;
 	};
 }
+
 //end basecross
 

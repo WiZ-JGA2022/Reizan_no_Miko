@@ -69,6 +69,7 @@ namespace basecross {
 		AddGameObject<TutorialUI>();
 	} // end CreateUI
 
+
 	void StandbyStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
@@ -92,13 +93,15 @@ namespace basecross {
 			CreatePlayer();
 
 			// ínñ ÇÃçÏê¨
-			AddGameObject<Field>();
-			AddGameObject<Field2>(Vec3(10.0f, 3.5f, 10.0f));
-			AddGameObject<Field2>(Vec3(-10.0f, 3.5f, 30.0f));
+			//AddGameObject<Field>();
+			//AddGameObject<Field2>(Vec3(10.0f, 3.5f, 10.0f));
+			//AddGameObject<Field2>(Vec3(-10.0f, 3.5f, 30.0f));
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
-
+			
 			AddGameObject<KeyStoneGauge>(stone);
+
+			AddGameObject<StageCollision>();
 
 			auto blockingStone = AddGameObject<BlockingStone>();
 			SetSharedGameObject(L"BlockingStone", blockingStone);

@@ -18,6 +18,6 @@ namespace basecross {
 	// èâä˙âª
 	void TutorialUI::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(300.0f, 250.0f, 0.0f), Vec2(200.0f, 200.0f), L"TUTORIAL", false, true);
+		Sprites::CreateSprite(Vec3(350.0f, 250.0f, 0.0f), Vec2(250.0f, 200.0f), L"TUTORIAL", false, true);
 	} // end OnCreate
 }
