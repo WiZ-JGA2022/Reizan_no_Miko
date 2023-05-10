@@ -34,6 +34,7 @@ namespace basecross {
 		const int m_DamageDelayCount;
 		int m_damageDelayFlame;
 
+		Vec3 m_directionPoint;
 		Vec3 m_directionPlayer;
 		Vec3 m_directionKeyStone;
 
@@ -63,6 +64,7 @@ namespace basecross {
 		* “G‚ÌˆÚ“®ˆ—
 		*/
 		void MoveEnemy() override;
+		void MoveEnemyPoint(Vec3 point);//point
 		void MoveEnemyPlayer();//player
 		void MoveEnemyKeyStone();//keystone
 
