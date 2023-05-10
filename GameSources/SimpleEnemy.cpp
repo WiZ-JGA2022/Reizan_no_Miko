@@ -23,6 +23,7 @@ namespace basecross {
 	{
 		Enemy::OnCreate();
 
+		//auto pos = GetStage()->AddGameObject<EnemyController>()->SetPos();
 		m_position = m_points[0];
 
 		m_transform = GetComponent<Transform>();
@@ -51,11 +52,17 @@ namespace basecross {
 		}
 		m_damageDelayFlame--;
 
-		if (m_currentPointIndex < 2)
+
+
+		if (m_currentPointIndex == 0)
+		{
+			MoveEnemyPoint(Vec3(20.0f, 1.5f, 20.0f));
+		}
+		else if (m_currentPointIndex == 2 )
 		{
 			MoveEnemy();
 		}
-		else
+		else if(m_currentPointIndex >= 3)
 		{
 			//MoveEnemyPlayer();
 			MoveEnemyKeyStone();
@@ -121,7 +128,7 @@ namespace basecross {
 
 				return;
 			}
-			
+
 
 		}
 	} // end OnCollisionEnter
@@ -164,6 +171,47 @@ namespace basecross {
 		}
 	}
 
+	void SimpleEnemy::MoveEnemyPoint(Vec3 point)//チェックポイントに向かって
+	{
+		// デルタタイムの取得
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();
+
+		// 各種ベクトルの取得
+		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
+		auto pointPos = point;
+
+		Vec3 positionControl(0.0f, 0.0f, 0.0f);
+		m_directionPoint = pointPos + positionControl - pos; // プレイヤーへの方向を計算
+
+		// ベクトルの正規化処理
+		float normalizeMagnification = 1 / sqrt(
+			m_directionPoint.x * m_directionPoint.x +
+			m_directionPoint.y * m_directionPoint.y +
+			m_directionPoint.z * m_directionPoint.z);
+		m_directionPoint *= normalizeMagnification;
+		// ここまで
+
+		pos += m_directionPoint * m_statusValue[L"SPD"] * delta;	// 移動の計算
+		float rotationY = atan2f(-m_directionPoint.z, m_directionPoint.x); // 回転の計算
+
+		m_transform->SetPosition(pos); // 移動処理
+		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
+		
+		for (int i = 0; i < 1; i++)
+		{
+			if (m_currentPointIndex == 0)
+			{
+				if (point.z  >= pos.z )
+				{
+					m_currentPointIndex++;
+					break;
+				}
+			}
+		}
+	}
+
+
 	void SimpleEnemy::MoveEnemyPlayer()//プレイヤーに向かって
 	{
 		// デルタタイムの取得
@@ -204,10 +252,10 @@ namespace basecross {
 		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 		auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone")->GetComponent<Transform>();
 		auto stonePos = stoneTrans->GetPosition(); // 要石の位置ベクトルを取得
-		
+
 		auto stoneScale = stoneTrans->GetScale();// 要石のスケールを取得
 		Vec3 positionControl(0.0f, stoneScale.y, 0.0f);//要石の位置調整
-		Vec3 stonePosition = stonePos + (positionControl/2);
+		Vec3 stonePosition = stonePos + (positionControl / 2);
 		m_directionKeyStone = stonePosition - pos; // 要石への方向を計算
 
 		// ベクトルの正規化処理

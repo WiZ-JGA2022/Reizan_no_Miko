@@ -24,6 +24,8 @@ namespace basecross {
 		Vec3 m_position; // このオブジェクトの位置情報
 		Vec3 m_enemyPos; // 敵の位置情報
 
+		Vec3 m_pos;
+
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 	public:
@@ -33,6 +35,7 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
+		Vec3 SetPos();
 		/**
 		* 敵の識別番号を取得する関数
 		* 
