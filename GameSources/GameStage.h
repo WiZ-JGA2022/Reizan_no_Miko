@@ -17,7 +17,7 @@
 namespace basecross {
 
 	class StandbyStage : public Stage {
-		const float m_TotalTimeSeconds = 60.0f;
+		const float m_TotalTimeSeconds = 10.0f;
 
 		shared_ptr<SoundItem> m_BGM;
 		
@@ -42,6 +42,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		virtual void OnDestroy() override;
+		// デバッグ文字列表示用
 		virtual void OnDraw() override;
 	};
 

@@ -16,6 +16,14 @@ namespace basecross{
 		int m_trapCount[4] = { 0 };
 
 		Vec3 m_playerPosition = Vec3(0);
+		Quat m_playerRotation = Quat(0);
+
+		Vec3 m_cameraEye = Vec3(0);
+		Vec3 m_cameraAt = Vec3(0);
+
+		Vec3 m_cameraArmVec = Vec3(0);
+		float m_cameraArmLength = 0.0f;
+
 		Vec3 m_spikePosition[5] = {Vec3(0)};
 		Vec3 m_lavaPosition[1] = {Vec3(0)};
 		
@@ -96,19 +104,46 @@ namespace basecross{
 			return m_texNum;
 		}
 
-		void SetBeforePlayerPosition(Vec3 pos)
+		void SetBeforePlayerPosition(const Vec3& pos)
 		{
 			m_playerPosition = pos;
 		}
 
-		void SetBeforeSpikePosition(Vec3 pos, int index)
+		void SetBeforePlayerQuaternion(const Quat& rot)
 		{
+			m_playerRotation = rot;
+		}
+
+		void SetBeforeCameraEye(const Vec3& eye)
+		{
+			m_cameraEye = eye;
+		}
+
+		void SetBeforeCameraAt(const Vec3& at)
+		{
+			m_cameraAt = at;
+		}
+
+		void SetBeforeCameraArmVec(const Vec3& armVec)
+		{
+			m_cameraArmVec = armVec;
+		}
+
+		void SetBeforeCameraArmLength(float armLength)
+		{
+			m_cameraArmLength = armLength;
+		}
+
+		void SetBeforeSpikePosition(const Vec3& pos, int index)
+		{
+			m_trapCount[0]++;
 			m_spikePosition[index] = pos;
 		}
 
-		void SetBeforeLavaPosition(Vec3 pos, int index)
+		void SetBeforeLavaPosition(const Vec3& pos, int index)
 		{
-			m_spikePosition[index] = pos;
+			m_trapCount[1]++;
+			m_lavaPosition[index] = pos;
 		}
 
 		int GetBeforePlacedTrap(int index)
@@ -121,15 +156,39 @@ namespace basecross{
 			return m_playerPosition;
 		}
 
+		Quat GetBeforePlayerQuaternion() const
+		{
+			return m_playerRotation;
+		}
+
+		Vec3 GetBeforeCameraEye() const
+		{
+			return m_cameraEye;
+			;
+		}
+
+		Vec3 GetBeforeCameraAt() const
+		{
+			return m_cameraAt;
+		}
+
+		Vec3 GetBeforeCameraArmVec() const
+		{
+			return m_cameraArmVec;
+		}
+
+		float GetBeforeCameraArmLength() const
+		{
+			return m_cameraArmLength;
+		}
+
 		Vec3 GetBeforeSpikePosition(int index)
 		{
-			m_trapCount[0]++;
 			return m_spikePosition[index];
 		}
 
 		Vec3 GetBeforeLavaPosition(int index)
 		{
-			m_trapCount[1]++;
 			return m_lavaPosition[index];
 		}
 	};

@@ -39,11 +39,12 @@ namespace basecross{
 		float m_recastFlame;
 
 		Vec3 m_position;
+		Quat m_quaternion;
 
 		shared_ptr<Transform> m_transform;
 	public:
 		PlayerController(const shared_ptr<Stage>& stage, const int condition);
-		PlayerController(const shared_ptr<Stage>& stage, const Vec3& position, const int condition);
+		PlayerController(const shared_ptr<Stage>& stage, const Vec3& position, const Quat& quaternion, const int condition);
 		~PlayerController();
 
 		void OnCreate() override; // オブジェクトの初期設定用の関数

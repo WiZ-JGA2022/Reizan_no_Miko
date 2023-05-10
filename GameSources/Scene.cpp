@@ -119,9 +119,10 @@ namespace basecross{
 		RoadSound(L"LAVA_SE", L"StaticLavaSE.wav");
 		RoadSound(L"SPURTLAVA_SE", L"SpurtLavaSE.wav");
 
-		RoadStaticModelMesh(L"atage3", L"STAGE");
+		RoadStaticModelMesh(L"O_stage", L"STAGE");
 		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
 		RoadStaticModelMesh(L"Holl2", L"ARCH");
+		RoadStaticModelMesh(L"ofuda", L"OHUDA");
 
 		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");

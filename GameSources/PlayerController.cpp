@@ -18,16 +18,18 @@ namespace basecross {
 		m_spikeTrapCount(0),
 		m_lavaTrapCount(0),
 		m_position(Vec3(0)),
+		m_quaternion(Quat(0)),
 		m_condition((PlayerCondition)condition),
 		m_recastFlame(m_RecastCount)
 	{
 	}
-	PlayerController::PlayerController(const std::shared_ptr<Stage>& stage, const Vec3& position, const int condition) :
+	PlayerController::PlayerController(const std::shared_ptr<Stage>& stage, const Vec3& position, const Quat& quaternion, const int condition) :
 		GameObject(stage),
 		m_RecastCount(9.0f),
 		m_spikeTrapCount(0),
 		m_lavaTrapCount(0),
 		m_position(position),
+		m_quaternion(quaternion),
 		m_condition((PlayerCondition)condition),
 		m_recastFlame(m_RecastCount)
 	{
@@ -39,6 +41,7 @@ namespace basecross {
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position.x, 0.4f, m_position.z);
+		m_transform->SetQuaternion(m_quaternion);
 		m_transform->SetScale(1.0f, 1.0f, 1.0f);
 
 		// ƒRƒŠƒWƒ‡ƒ“‚ð‚Â‚¯‚é
