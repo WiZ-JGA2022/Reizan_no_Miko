@@ -278,7 +278,7 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h">
       <Filter>Headers\UI\SceneUI</Filter>
-    </ClCompile>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
