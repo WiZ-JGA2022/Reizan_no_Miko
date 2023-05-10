@@ -42,6 +42,7 @@ namespace basecross {
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
         m_Transform = GetComponent<Transform>();
         m_Transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
+        m_Transform->SetQuaternion(ownerTrans->GetQuaternion());
         m_Transform->SetScale(Vec3(0.5f));
 
     }

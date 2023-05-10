@@ -35,11 +35,9 @@ namespace basecross {
 
 	void MyCamera::SetEye(const bsm::Vec3& Eye) {
 		Camera::SetEye(Eye);
-		UpdateArmLengh();
 	}
 	void MyCamera::SetEye(float x, float y, float z) {
 		Camera::SetEye(x, y, z);
-		UpdateArmLengh();
 	}
 
 
@@ -67,19 +65,6 @@ namespace basecross {
 
 	Vec3 MyCamera::GetArmVec() const {
 		return m_armVec;
-	}
-
-	void MyCamera::UpdateArmLengh() {
-		auto vec = GetEye() - GetAt();
-		m_ArmLen = bsm::length(vec);
-		if (m_ArmLen >= m_MaxArm) {
-			//m_MaxArm以上離れないようにする
-			m_ArmLen = m_MaxArm;
-		}
-		if (m_ArmLen <= m_MinArm) {
-			//m_MinArm以下近づかないようにする
-			m_ArmLen = m_MinArm;
-		}
 	}
 
 	float MyCamera::GetMaxArm() const {
@@ -221,26 +206,7 @@ namespace basecross {
 			//目指したい場所
 			Vec3 toAt = ptrTarget->GetComponent<Transform>()->GetWorldMatrix().transInMatrix();
 			toAt += m_TargetToAt;
-			newAt = Lerp::CalculateLerp(scene->GetBeforeCameraAt(), toAt, 0, 1.0f, 1.0, Lerp::Linear);
-		}
-		//アームの変更
-		//Dパッド下
-		if (wButtons & XINPUT_GAMEPAD_DPAD_DOWN ) {
-			//カメラ位置を引く
-			m_ArmLen += m_ZoomSpeed;
-			if (m_ArmLen >= m_MaxArm) {
-				//m_MaxArm以上離れないようにする
-				m_ArmLen = m_MaxArm;
-			}
-		}
-		//Dパッド上
-		else if (wButtons & XINPUT_GAMEPAD_DPAD_UP ) {
-			//カメラ位置を寄る
-			m_ArmLen -= m_ZoomSpeed;
-			if (m_ArmLen <= m_MinArm) {
-				//m_MinArm以下近づかないようにする
-				m_ArmLen = m_MinArm;
-			}
+			newAt = Lerp::CalculateLerp(GetAt(), toAt, 0, 1.0f, 1.0, Lerp::Linear);
 		}
 		m_angle += -fThumbRX * elapsedTime;
 
@@ -250,7 +216,6 @@ namespace basecross {
 
 		SetEye(newEye);
 		SetAt(newAt);
-		UpdateArmLengh();
 		Camera::OnUpdate();
 	}
 
