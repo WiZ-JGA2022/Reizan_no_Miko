@@ -22,6 +22,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h" />
@@ -69,6 +70,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp" />
