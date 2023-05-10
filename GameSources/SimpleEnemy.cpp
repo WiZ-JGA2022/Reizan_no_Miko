@@ -23,8 +23,7 @@ namespace basecross {
 	{
 		Enemy::OnCreate();
 
-		//auto pos = GetStage()->AddGameObject<EnemyController>()->SetPos();
-		m_position = m_points[0];
+		//m_position = m_points[0];
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);

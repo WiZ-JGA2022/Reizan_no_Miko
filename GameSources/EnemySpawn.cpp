@@ -27,7 +27,7 @@ namespace basecross {
 		EnemyCreate(pos);
 	}
 
-	Vec3 EnemySpawn::Spawn2(Vec3 pos)
+	void EnemySpawn::Spawn2(Vec3 pos)
 	{
 		// m_enemyInterval = GetStage()->GetSharedGameObject<Enemy>(L"Enemy")->GetComponent<Transform>()->GetScale();
 
@@ -38,8 +38,6 @@ namespace basecross {
 			if (i == 1) { transPos = (Vec3(pos.x, pos.y, pos.z - (m_enemyInterval.z * 2))); }
 
 			EnemyCreate(transPos);
-
-			return transPos;
 		}
 	}
 

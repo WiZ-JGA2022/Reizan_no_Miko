@@ -59,7 +59,7 @@ namespace basecross {
 
 		if (m_delayFlame <= 0)
 		{
-			m_pos = GetStage()->AddGameObject<EnemySpawn>()->Spawn2(Vec3(20.0f, 0.0f, 40.0f));
+			GetStage()->AddGameObject<EnemySpawn>()->Spawn2(Vec3(20.0f, 0.0f, 40.0f));
 			
 			//GetStage()->AddGameObject<EnemySpawn>();
 
@@ -69,7 +69,6 @@ namespace basecross {
 			m_delayFlame = m_DelayCount;
 		}
 	}
-	Vec3 EnemyController::SetPos() {return m_pos;}
 
 	int EnemyController::GetEnemyNumber()
 	{
