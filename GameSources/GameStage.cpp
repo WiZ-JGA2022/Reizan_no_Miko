@@ -95,12 +95,16 @@ namespace basecross {
 			// ínñ ÇÃçÏê¨
 
 			AddGameObject<Field>();
+			AddGameObject<StageCollision>(Vec3(25.4f, 4.5f, 25.0f));
+			AddGameObject<StageCollision2>(Vec3(-25.4f, 4.5f, 25.0f));
+			AddGameObject<StageCollision3>(Vec3(1.0f, 4.5f, -15.0f));
+
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 			
 			AddGameObject<KeyStoneGauge>(stone);
 
-			AddGameObject<StageCollision>();
+			
 
 			auto blockingStone = AddGameObject<BlockingStone>();
 			SetSharedGameObject(L"BlockingStone", blockingStone);
@@ -257,6 +261,9 @@ namespace basecross {
 			AddGameObject<Field>();
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
+			AddGameObject<StageCollision>(Vec3(25.4f, 4.5f, 25.0f));
+			AddGameObject<StageCollision2>(Vec3(-25.4f, 4.5f, 25.0f));
+			AddGameObject<StageCollision3>(Vec3(1.0f, 4.5f, -15.0f));
 
 			AddGameObject<KeyStoneGauge>(stone);
 

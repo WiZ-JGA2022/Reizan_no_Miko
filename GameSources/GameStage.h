@@ -13,6 +13,7 @@
 #include "ButtonUI.h"
 #include "ButtonSelect.h"
 #include "StartButtonUI.h"
+#include "StageCollision.h"
 
 namespace basecross {
 
