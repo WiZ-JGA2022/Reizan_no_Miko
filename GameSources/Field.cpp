@@ -9,16 +9,10 @@
 namespace basecross {
 	void Field::OnCreate()
 	{
-		auto collComp = AddComponent<CollisionObb>();
-		collComp->SetDrawActive(true);
-		// 衝突判定はAuto
-		collComp->SetAfterCollision(AfterCollision::Auto);
-		collComp->SetSleepActive(false);
-
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(0.0f, -0.5f, 48.0f);
 		transComp->SetScale(10.0f, 5.0f, 5.0f);
-
+		
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(1.0f, 1.0f, 1.0f),

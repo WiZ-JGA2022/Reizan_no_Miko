@@ -134,12 +134,13 @@ namespace basecross {
 			scene->SetBeforeCameraArmLength(maincamera->GetArmLengh());
 			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
 		}
+		auto b = maincamera->GetAt() + maincamera->GetArmVec() * 10.0f;
 
 		wstringstream wss;
-		wss << L"CurrentEye : " <<
-			maincamera->GetEye().x << L" " <<
-			maincamera->GetEye().y << L" " <<
-			maincamera->GetEye().z << L"\n" <<
+		wss << L"b : " <<
+			b.x << L" " <<
+			b.y << L" " <<
+			b.z << L"\n" <<
 			L"CurrentAt : " <<
 			maincamera->GetAt().x << L" " <<
 			maincamera->GetAt().y << L" " <<
@@ -174,10 +175,10 @@ namespace basecross {
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
-		auto beforeEye = scene->GetBeforeCameraEye();
+		PtrCamera->SetEye(scene->GetBeforeCameraEye());
 		PtrCamera->SetAt(scene->GetBeforeCameraAt());
-		PtrCamera->SetEye(beforeEye);
-		auto eye = PtrCamera->GetEye();
+		auto eye = scene->GetBeforeCameraEye();
+		auto eye2 = PtrCamera->GetEye();
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		
@@ -297,9 +298,43 @@ namespace basecross {
 			return;
 		}
 
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto delta = App::GetApp()->GetElapsedTime();
 		auto scene = App::GetApp()->GetScene<Scene>();
 		auto camera = GetView()->GetTargetCamera();
 		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
+		auto b = maincamera->GetEye();
+		auto c = b - maincamera->GetAt();
+		c.normalize();
+		float fThumbRY = 0.0f;
+		float fThumbRX = 0.0f;
+		WORD wButtons = 0;
+		if (cntlVec[0].bConnected) {
+			fThumbRY = cntlVec[0].fThumbRY;
+			fThumbRX = cntlVec[0].fThumbRX;
+			wButtons = cntlVec[0].wButtons;
+		}
+
+		//クオータニオンでY回転（つまりXZベクトルの値）を計算
+		Quat qtXZ;
+		qtXZ.rotation(-(fThumbRX * delta * 1.0f), bsm::Vec3(0, 1.0f, 0));
+		qtXZ.normalize();
+		//移動先行の行列計算することで、XZの値を算出
+		Mat4x4 Mat;
+		auto sat = Mat.strTransformation(
+			bsm::Vec3(1.0f, 1.0f, 1.0f),
+			bsm::Vec3(0.0f, 0.0f, -1.0f),
+			qtXZ
+		);
+
+		Vec3 posXZ = Mat.transInMatrix();
+		//XZの値がわかったので腕角度に代入
+		c.x = posXZ.x;
+		c.z = posXZ.z;
+		//腕角度を正規化
+		c.normalize();
+
+
 		wstringstream wss;
 		wss << L"BeforeEye : " <<
 			scene->GetBeforeCameraEye().x << L" " <<
@@ -334,6 +369,7 @@ namespace basecross {
 			maincamera->GetArmLengh() << endl;
 		auto dstr = scene->GetDebugString();
 		scene->SetDebugString(dstr + wss.str());
+
 	} // end OnUpdate
 
 	void GameStage::OnDraw()

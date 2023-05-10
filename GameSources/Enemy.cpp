@@ -61,6 +61,8 @@ namespace basecross {
 		drawComp->SetFogEnabled(false);
 		drawComp->SetMeshResource(L"ONI");
 		drawComp->SetMeshToTransformMatrix(spanMat);
+		drawComp->AddAnimation(L"walk", 0, 30, true, 10.0f);
+		drawComp->ChangeCurrentAnimation(L"walk");
 
 		AddTag(L"Enemy"); 
 
