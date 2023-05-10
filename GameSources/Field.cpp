@@ -16,8 +16,8 @@ namespace basecross {
 		collComp->SetSleepActive(false);
 
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(0.0f, -0.5f, 100.0f);
-		transComp->SetScale(1.0f, 1.0f, 1.0f);
+		transComp->SetPosition(0.0f, -0.5f, 48.0f);
+		transComp->SetScale(10.0f, 5.0f, 5.0f);
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
@@ -44,43 +44,6 @@ namespace basecross {
 	{
 	}
 
-	void Field2::OnCreate()
-	{
-		auto collComp = AddComponent<CollisionObb>();
-		// 衝突判定はAuto
-		collComp->SetAfterCollision(AfterCollision::Auto);
-		collComp->SetSleepActive(false);
-
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(m_position);
-		transComp->SetRotation(0.0f, XMConvertToRadians(90.0f), 0.0f);
-		transComp->SetScale(1.5f, 1.0f, 1.5f);
-
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
-		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
-		);
-		//影をつける（シャドウマップを描画する）
-		auto ptrShadow = AddComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"BOX");
-		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
-		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(L"BOX");
-		drawComp->SetMeshToTransformMatrix(spanMat);
-
-		SetDrawLayer((int)DrawLayer::MostBottom);
-	}
-
-	void Field2::OnUpdate()
-	{
-	}
-
 	//要石
 	void KeyStone::OnCreate()
 	{
@@ -88,7 +51,7 @@ namespace basecross {
 		// 衝突判定はAuto
 		collComp->SetAfterCollision(AfterCollision::Auto);
 		collComp->SetSleepActive(false);
-
+		collComp->SetFixed(true);
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
 		transComp->SetRotation(0.0f, 0.0f, 0.0f);
@@ -106,9 +69,6 @@ namespace basecross {
 
 	void KeyStone::OnUpdate()
 	{
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
-
 		m_delay--;
 		if (m_delay <= 0)
 		{
@@ -130,45 +90,6 @@ namespace basecross {
 		drawComp->SetEmissive(Col4(1.0f, 0.2f, 0.2f, 1.0f));
 		m_delay = m_DefaultDelay;
 		m_hp -= 10.0f;
-	}
-
-	void StageCollision::OnCreate()
-	{
-		auto collComp = AddComponent<CollisionObb>();
-		collComp->SetDrawActive(true);
-		// 衝突判定はAuto
-		collComp->SetAfterCollision(AfterCollision::Auto);
-		collComp->SetSleepActive(false);
-
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(0.0f, 0.0f, 0.0f);
-		transComp->SetScale(5.0f, 1.0f, 1.0f);
-
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
-		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
-		);
-		//影をつける（シャドウマップを描画する）
-		auto ptrShadow = AddComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"DEFAULT_CUBE");
-		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
-		drawComp->SetFogEnabled(true);
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetMeshToTransformMatrix(spanMat);
-
-		SetDrawLayer((int)DrawLayer::MostBottom);
-	}
-
-	void StageCollision::OnUpdate()
-	{
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(Vec3(0.0f, 0.0f,1.0f));
 	}
 
 }

@@ -18,22 +18,6 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 	};
-	class Field2 : public GameObject
-	{
-		Vec3 m_position;
-
-	public:
-		Field2(const std::shared_ptr<Stage>& stage, const Vec3& position) :
-			GameObject(stage),
-			m_position(position)
-		{
-		}
-
-		void OnCreate() override;
-		void OnUpdate() override;
-	};
-
-	
 
 	class KeyStone : public GameObject
 	{
@@ -65,18 +49,6 @@ namespace basecross {
 		{
 			return m_hp;
 		}
-	};
-
-	class StageCollision : public GameObject
-	{
-	public:
-		StageCollision(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage)
-		{
-		}
-
-		void OnCreate() override;
-		void OnUpdate() override;
 	};
 }
 

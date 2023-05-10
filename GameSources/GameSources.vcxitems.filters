@@ -139,8 +139,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp">
+      <Filter>Sources\GameStage</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -282,8 +285,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h">
+      <Filter>Headers\GameStage</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
