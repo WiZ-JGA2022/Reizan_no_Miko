@@ -53,15 +53,15 @@ namespace basecross {
 		m_damageDelayFlame--;
 
 
-
+		//“G‚ÌˆÚ“®‚Ì‡”Ô
 		if (m_currentPointIndex == 0)
 		{
 			MoveEnemyPoint(Vec3(20.0f, 1.5f, 20.0f));
 		}
 		else if (m_currentPointIndex == 1)
 		{
-			//MoveEnemy();
 			MoveEnemyPoint(Vec3(-20.0f, 1.5f, 20.0f));
+			//MoveEnemy();
 		}
 		else if(m_currentPointIndex >= 2)
 		{
