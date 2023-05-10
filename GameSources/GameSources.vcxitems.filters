@@ -139,6 +139,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -278,6 +281,9 @@
     </ClCompile>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
       <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

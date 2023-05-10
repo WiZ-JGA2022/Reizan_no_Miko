@@ -9,7 +9,7 @@
 
 namespace basecross {
 	class StartSprite : public Sprites {
-		const Vec2 m_DefaultSize = Vec2((float)App::GetApp()->GetGameWidth(), (float)App::GetApp()->GetGameHeight());
+		const Vec2 m_DefaultSize = Vec2(250.0f,250.0f);
 
 	public:
 		StartSprite(const shared_ptr<Stage>& stage);
