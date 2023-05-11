@@ -53,21 +53,23 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"ONI");
+		ptrShadow->SetMeshResource(L"ONI_WALK");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//描画コンポーネントの設定
 		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
 		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(L"ONI");
+		drawComp->SetMeshResource(L"ONI_WALK");
 		drawComp->SetMeshToTransformMatrix(spanMat);
-		drawComp->AddAnimation(L"walk", 0, 30, true, 10.0f);
+		drawComp->AddAnimation(L"walk", 0, 100, true, 20.0f);
 		drawComp->ChangeCurrentAnimation(L"walk");
 
 		AddTag(L"Enemy"); 
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
+		//透明処理
+		SetAlphaActive(true);
 
 		// 描画順の変更
 		SetDrawLayer((int)DrawLayer::Bottom);
@@ -75,6 +77,7 @@ namespace basecross {
 
 	void Enemy::OnUpdate()
 	{
+		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
@@ -96,6 +99,8 @@ namespace basecross {
 		m_shotRecastFlame--;
 
 		MoveEnemy();
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		ptrDraw->UpdateAnimation(elapsedTime);
 
 		if (m_shotRecastFlame <= 0)
 		{

@@ -126,6 +126,9 @@ namespace basecross{
 
 		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
+		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
+		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
+		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
 		RoadBoneModel(L"oni_w", L"ONI", L"ONI_TAN");
 	}
 

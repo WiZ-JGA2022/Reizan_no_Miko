@@ -123,6 +123,14 @@ namespace basecross {
 		Camera::SetEye(newEye);
 	}
 
+	void MyCamera::OnCreate() {
+		// 初期値の設定
+		auto scene = App::GetApp()->GetScene<Scene>();
+		m_RadXZ = scene->GetBeforeCameraRadXZ();
+		m_RadY = scene->GetBeforeCameraRadY();
+		m_angle = scene->GetBeforeCameraAngle();
+	}
+
 	void MyCamera::OnUpdate() {
 	
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
@@ -183,46 +191,34 @@ namespace basecross {
 				}
 			}
 		}
-		////クオータニオンでY回転（つまりXZベクトルの値）を計算
-		//Quat qtXZ;
-		//qtXZ.rotation(-m_RadXZ, bsm::Vec3(0, 1.0f, 0));
-		//qtXZ.normalize();
-		////移動先行の行列計算することで、XZの値を算出
-		//Mat4x4 Mat;
-		//Mat.strTransformation(
-		//	bsm::Vec3(1.0f, 1.0f, 1.0f),
-		//	bsm::Vec3(0.0f, 0.0f, -1.0f),
-		//	qtXZ
-		//);
-
-		//Vec3 posXZ = Mat.transInMatrix();
-		////XZの値がわかったので腕角度に代入
-		//m_armVec.x = posXZ.x;
-		//m_armVec.z = posXZ.z;
-		////腕角度を正規化
-		//m_armVec.normalize();
-
-		//m_angle += -fThumbRX * elapsedTime;
-
-		////目指したい場所にアームの値と腕ベクトルでEyeを調整
-
-		m_armVec = Vec3(
-			cos(m_RadXZ) * m_ArmLen,
-			sin(m_RadY) * m_ArmLen,
-			sin(m_RadXZ) * m_ArmLen
+		//クオータニオンでY回転（つまりXZベクトルの値）を計算
+		Quat qtXZ;
+		qtXZ.rotation(-m_RadXZ, bsm::Vec3(0, 1.0f, 0));
+		qtXZ.normalize();
+		//移動先行の行列計算することで、XZの値を算出
+		Mat4x4 Mat;
+		Mat.strTransformation(
+			bsm::Vec3(1.0f, 1.0f, 1.0f),
+			bsm::Vec3(0.0f, 0.0f, -1.0f),
+			qtXZ
 		);
 
-		Vec3 toEye = newAt + m_armVec;
+		Vec3 posXZ = Mat.transInMatrix();
+		//XZの値がわかったので腕角度に代入
+		m_armVec.x = posXZ.x;
+		m_armVec.z = posXZ.z;
+		//腕角度を正規化
+		m_armVec.normalize();
+
+		m_angle += -fThumbRX * elapsedTime;
+
+		//目指したい場所にアームの値と腕ベクトルでEyeを調整
+		Vec3 toEye = newAt + m_armVec * m_ArmLen;
 		newEye = Lerp::CalculateLerp(GetEye(), toEye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);
 
 		Camera::SetAt(newAt);
 		SetEye(newEye);
-		Camera::OnUpdate();
-	}
-
-	float MyCamera::GetAngle()
-	{
-		return m_angle;
+		Camera::OnUpdate();	
 	}
 }
 //end basecross
