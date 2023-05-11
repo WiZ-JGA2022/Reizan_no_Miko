@@ -53,3 +53,5 @@
 #include "EnemySpawn.h"
 #include "TutorialUI.h"
 #include "StageCollision.h"
+#include "FadeIn.h"
+#include "FadeOut.h"

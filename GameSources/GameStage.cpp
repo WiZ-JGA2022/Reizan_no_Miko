@@ -397,9 +397,11 @@ namespace basecross {
 
 	//Bボタン
 	void TitleStage::OnPushB() {
+		AddGameObject<FadeIn>();
+
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"SELECT_SE", 0, 0.5f);
-		PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStandbyStage");
+		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStandbyStage");
 
 	} // end OnPushB
 
@@ -456,7 +458,9 @@ namespace basecross {
 
 	//Bボタン
 	void ResultStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
+		AddGameObject<FadeOut>();
+
+		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 
 	} // end OnPushB
 
@@ -512,7 +516,9 @@ namespace basecross {
 
 	//Bボタン
 	void ClearStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
+		AddGameObject<FadeOut>();
+
+		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 
 	} // end OnPushB
 

@@ -145,6 +145,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeIn.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp">
+      <Filter>Sources\UI\SceneUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -289,6 +295,12 @@
       <Filter>Headers\GameStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h">
+      <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeIn.h">
+      <Filter>Headers\UI\SceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
   </ItemGroup>
