@@ -127,6 +127,13 @@ namespace basecross{
 		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
 		RoadBoneModel(L"oni_w", L"ONI", L"ONI_TAN");
+		RoadBoneModel(L"O_oni_work", L"ONI_WORK", L"ONI_WORK_TAN"); 
+		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
+		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
+		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
+		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
+		RoadBoneModel(L"O_hitotume_work", L"HITOTSUME_WORK", L"HITOTSUME_WORK_TAN");
+
 	}
 
 	void Scene::OnCreate(){
