@@ -401,7 +401,7 @@ namespace basecross {
 
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"SELECT_SE", 0, 0.5f);
-		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStandbyStage");
+		PostEvent(2.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStandbyStage");
 
 	} // end OnPushB
 
