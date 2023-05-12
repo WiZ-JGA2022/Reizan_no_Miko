@@ -14,6 +14,7 @@ namespace basecross {
 		Effekseer::ManagerRef m_manager;
 		EffekseerRendererDX11::RendererRef m_renderer;
 		Effekseer::EffectRef m_effect;
+		Effekseer::EffectRef m_effect2;
 
 
 	public:
@@ -23,12 +24,15 @@ namespace basecross {
 			m_handle(0),
 			m_manager(nullptr),
 			m_renderer(nullptr),
-			m_effect(nullptr) {}
+			m_effect(nullptr), 
+			m_effect2(nullptr) 
+		{}
 		virtual ~EffectController() {}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 		virtual void OnDraw() override;
+		virtual void OnDraw2();
 		virtual void OnDestroy()override;
 	};
 

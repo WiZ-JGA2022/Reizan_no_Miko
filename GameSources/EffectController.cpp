@@ -18,7 +18,6 @@ namespace basecross {
 		// エフェクトのレンダラーの作成
 		m_renderer = ::EffekseerRendererDX11::Renderer::Create(d3D11Device, d3D11DeviceContext, 8000);
 
-
 		// エフェクトのマネージャーの作成
 		m_manager = ::Effekseer::Manager::Create(8000);
 		// 描画モジュールの設定
@@ -49,11 +48,11 @@ namespace basecross {
 
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
-		wstring wstrEfk = dataDir + L"Lava.efk";
-		wstring  wstrEfk2 = dataDir + L"fire_1.62.efk";
+		wstring efect01 = dataDir + L"Lava.efk";
+		wstring efect02 = dataDir + L"fire02.efk";
 
-		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk.c_str());
-		//m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)wstrEfk2.c_str());
+		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect01.c_str());
+		m_effect2 = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect02.c_str());
 
 	}
 
@@ -68,33 +67,38 @@ namespace basecross {
 		auto elps = App::GetApp()->GetElapsedTime();
 		if (m_TotalTime <= 0.0f) {
 			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
-			m_handle = m_manager->Play(m_effect, playerPos.x, playerPos.y+ 5, playerPos.z);
+			m_handle = m_manager->Play(m_effect, playerPos.x, playerPos.y+ 10, playerPos.z);
 		}
 		else if (m_TotalTime >= 30.0f) {
 			m_manager->StopEffect(m_handle);
 		}
 		m_TotalTime += elps;
 
-		// Update the manager
-		// マネージャーの更新
-		m_manager->Update();
+		m_manager->Update();// マネージャーの更新		
+		m_renderer->SetTime(elps);// 時間を更新する
+		m_renderer->BeginRendering();// エフェクトの描画開始処理を行う。
+		m_manager->Draw();// エフェクトの描画を行う。
+		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
+	}
+	void EffectController::OnDraw2() {
+		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
-		// Update a time
-		// 時間を更新する
-		m_renderer->SetTime(elps);
+		auto elps = App::GetApp()->GetElapsedTime();
+		if (m_TotalTime <= 0.0f) {
+			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
+			m_handle = m_manager->Play(m_effect2, playerPos.x, playerPos.y+ 10, playerPos.z);
+		}
+		else if (m_TotalTime >= 30.0f) {
+			m_manager->StopEffect(m_handle);
+		}
+		m_TotalTime += elps;
 
-		// Begin to rendering effects
-		// エフェクトの描画開始処理を行う。
-		m_renderer->BeginRendering();
-
-		// Render effects
-		// エフェクトの描画を行う。
-		m_manager->Draw();
-
-		// Finish to rendering effects
-		// エフェクトの描画終了処理を行う。
-		m_renderer->EndRendering();
-
+		m_manager->Update();// マネージャーの更新		
+		m_renderer->SetTime(elps);// 時間を更新する
+		m_renderer->BeginRendering();// エフェクトの描画開始処理を行う。
+		m_manager->Draw();// エフェクトの描画を行う。
+		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
 	}
 
 	void EffectController::OnDestroy() {
