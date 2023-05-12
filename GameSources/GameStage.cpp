@@ -1,5 +1,5 @@
 /*!
-@file GameStage.cpp
+@file FirstStage.cpp
 @brief ゲームステージ実体
 */
 
@@ -93,7 +93,6 @@ namespace basecross {
 			CreatePlayer();
 
 			// 地面の作成
-
 			AddGameObject<Field>();
 			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f));
 			AddGameObject<StageCollision2>(Vec3(-30.4f, 4.5f, 30.0f));
@@ -115,6 +114,7 @@ namespace basecross {
 
 			// UIの作成
 			CreateUI();
+			AddGameObject<FadeIn>();
 			PlayBGM();
 
 			// メインカメラにプレイヤーをセットする
@@ -140,7 +140,7 @@ namespace basecross {
 			scene->SetBeforeCameraRadY(maincamera->GetRadY());
 			scene->SetBeforeCameraAngle(maincamera->GetAngle());
 			scene->SetBeforeCameraAt(maincamera->GetAt());
-			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToFirstStage");
 		}
 	}
 
@@ -154,7 +154,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
-	void GameStage::CreateViewLight() {
+	void FirstStage::CreateViewLight() {
 		auto PtrView = CreateView<SingleView>();
 		
 		auto scene = App::GetApp()->GetScene<Scene>();
@@ -171,21 +171,21 @@ namespace basecross {
 	}
 
 	// 敵の作成
-	void GameStage::CreateEnemy() {
+	void FirstStage::CreateEnemy() {
 		CreateSharedObjectGroup(L"EnemyGroup");
 		auto enemyController = AddGameObject<EnemyController>();
 		SetSharedGameObject(L"EnemyController", enemyController);
 	}
 
 	// レベルアップイベントの作成
-	void GameStage::CreateLevelUpEvent() {
+	void FirstStage::CreateLevelUpEvent() {
 		auto levelUpEvent = AddGameObject<RandomSelectLevelUpButton>();
 
 		SetSharedGameObject(L"LevelUpEvent", levelUpEvent);
 	}
 
 	//プレイヤーの作成
-	void GameStage::CreatePlayer() {
+	void FirstStage::CreatePlayer() {
 		Vec3 beforePlayerPosition = App::GetApp()->GetScene<Scene>()->GetBeforePlayerPosition();
 		Quat beforePlayerQuaternion = App::GetApp()->GetScene<Scene>()->GetBeforePlayerQuaternion();
 		m_player = AddGameObject<PlayerController>(beforePlayerPosition, beforePlayerQuaternion, 1);
@@ -195,7 +195,7 @@ namespace basecross {
 		SetSharedGameObject(L"PlayerStatus", statusController);
 	} // end CreatePlayer	
 
-	void GameStage::CreateUI()
+	void FirstStage::CreateUI()
 	{
 		// ExpバーとHpバーの作成
 		AddGameObject<HpBar>();
@@ -214,20 +214,20 @@ namespace basecross {
 		AddGameObject<GameSprite>();
 	} // end CreateUI
 
-	void GameStage::PlayBGM()
+	void FirstStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
-	void GameStage::OnDestroy()
+	void FirstStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
 
-	void GameStage::OnCreate() {
+	void FirstStage::OnCreate() {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
@@ -279,7 +279,7 @@ namespace basecross {
 	}
 
 	//更新
-	void GameStage::OnUpdate() {
+	void FirstStage::OnUpdate() {
 		auto player = GetSharedGameObject<PlayerController>(L"Player");
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		
@@ -295,7 +295,7 @@ namespace basecross {
 		}
 	} // end OnUpdate
 
-	void GameStage::OnDraw()
+	void FirstStage::OnDraw()
 	{
 		Stage::OnDraw();
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
@@ -356,7 +356,7 @@ namespace basecross {
 
 	//Bボタン
 	void TitleStage::OnPushB() {
-		AddGameObject<FadeIn>();
+		AddGameObject<FadeOut>();
 
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"SELECT_SE", 0, 0.5f);

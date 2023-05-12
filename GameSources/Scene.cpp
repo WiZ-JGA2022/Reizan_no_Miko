@@ -161,9 +161,9 @@ namespace basecross{
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
-		if (event->m_MsgStr == L"ToGameStage") {
+		if (event->m_MsgStr == L"ToFirstStage") {
 			//最初のアクティブステージの設定
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<FirstStage>();
 		}
 		else if (event->m_MsgStr == L"ToStandbyStage") {
 			//最初のアクティブステージの設定
