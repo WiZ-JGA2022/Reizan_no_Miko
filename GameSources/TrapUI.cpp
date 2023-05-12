@@ -37,7 +37,7 @@ namespace basecross {
 		}
 		else if (i == 1)
 		{
-			m_textureKey = L"TRAP";
+			m_textureKey = L"TRAP_2";
 			return m_textureKey;
 
 		}

@@ -91,6 +91,7 @@ namespace basecross{
 		RoadTexture(L"SPIKE", L"Spike.png");
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
 		RoadTexture(L"TRAP_1", L"罠1.png");
+		RoadTexture(L"TRAP_2", L"罠2.png");
 		RoadTexture(L"TRAP", L"罠.png");
 		RoadTexture(L"XBUTTON", L"Xボタン.png");
 		RoadTexture(L"YBUTTON", L"Yボタン.png");
