@@ -99,6 +99,8 @@ namespace basecross{
 		RoadTexture(L"TRAP_NUMBER", L"TrapNumberUi.png");
 		RoadTexture(L"START_UI", L"スタートUI.png");
 		RoadTexture(L"TUTORIAL", L"チュートリアル(仮).png");
+		RoadTexture(L"FADE_BLACK", L"Fade_Black.png");
+		RoadTexture(L"FADE_WHITE", L"Fade_White.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");

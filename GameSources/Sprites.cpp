@@ -11,7 +11,8 @@ namespace basecross {
 		GameObject(stage),
 		m_TotalTime(0.0f),
 		m_selected(false),
-		m_changeSize(false)
+		m_changeSize(false),
+		m_fadeCount(0.0f)
 	{
 	}
 	Sprites::~Sprites() {}
@@ -77,6 +78,39 @@ namespace basecross {
 
 		}
 
+		if (m_fade)
+		{
+			auto& app = App::GetApp();
+			auto device = app->GetInputDevice();
+			auto& pad = device.GetControlerVec()[0];
+
+			if (m_fadeType == FadeType::FadeIn)
+			{
+				m_fadeCount -= 0.01;
+
+				auto drawComp = GetComponent<PCTSpriteDraw>();
+				m_vertices[0].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
+				m_vertices[1].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
+				m_vertices[2].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
+				m_vertices[3].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
+				drawComp->SetDiffuse(m_vertices[0].color);
+				drawComp->UpdateVertices(m_vertices);
+			}
+			if (m_fadeType == FadeType::FadeOut)
+			{
+				m_fadeCount += 0.01;
+
+				auto drawComp = GetComponent<PCTSpriteDraw>();
+				m_vertices[0].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
+				m_vertices[1].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
+				m_vertices[2].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
+				m_vertices[3].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
+				drawComp->SetDiffuse(m_vertices[0].color);
+				drawComp->UpdateVertices(m_vertices);
+			}
+
+		}
+
 	}
 
 	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey, bool Trace, bool changeSize)
@@ -111,4 +145,19 @@ namespace basecross {
 		SetAlphaActive(true);
 		SetDrawLayer((int)DrawLayer::ForeFront);
 	}
+	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey, bool Trace, bool fade, int fadeType){
+		m_fade = fade;
+		if (m_fade) {
+			m_fadeType = (FadeType)fadeType;
+			if (m_fadeType == FadeType::FadeOut) {
+				m_fadeCount = 0.0f;
+			}
+			else if(m_fadeType == FadeType::FadeIn)
+			{
+				m_fadeCount = 1.0f;
+			}
+		}
+		CreateSprite(position, size, texKey, Trace,fade);
+	}
+	
 }
