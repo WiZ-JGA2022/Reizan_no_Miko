@@ -47,6 +47,24 @@ namespace basecross {
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 
 		/**
+		* 敵の初期メッシュを設定する関数
+		* 
+		* @param position 初期位置
+		* @param scale 初期サイズ
+		* @param meshKey 初期メッシュ
+		* @param animationName アニメーション名
+		*/
+		virtual void CreateEnemyMesh(const Vec3& position, const Vec3& scale, const wstring& meshKey, const wstring& animationName);
+
+		/**
+		* 敵のアニメーションを変更する関数
+		*
+		* @param meshKey メッシュ名
+		* @param animationName アニメーション名
+		*/
+		virtual void ChangeEnemyAnimation(const wstring& meshKey, const wstring& animationName);
+
+		/**
 		* 敵の移動処理
 		*/
 		virtual void MoveEnemy();
@@ -68,6 +86,6 @@ namespace basecross {
 		* 
 		* @return 指定したステータスの値
 		*/
-		float GetEnemyStatus(wstring statusKey);
+		float GetEnemyStatus(const wstring& statusKey);
 	};
 }

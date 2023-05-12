@@ -1,5 +1,5 @@
 /*!
-@file SimpleEnemy.h
+@file Oni.h
 @brief 単純な動きの敵
 */
 
@@ -8,36 +8,17 @@
 #include "Enemy.h"
 
 namespace basecross {
-	class SimpleEnemy : public Enemy {
+	class Oni : public Enemy {
 
 		Vec3 m_position;
-
-		Vec3 m_randomDirection;
-		Vec3 m_randomPosition;
-
-		Vec3 m_direction[3] = {
-			Vec3(0.0f, 0.0f, -40.0f),
-			Vec3(-20.0f, 0.0f, 0.0f),
-			Vec3(20.0f, 0.0f, -30.0f)
-		};
-
-		Vec3 m_points[4] = {
-			Vec3(20.0f, 1.5f, 40.0f),
-			Vec3(20.0f, 1.5f, 20.0f),
-			Vec3(-20.0f, 1.5f, 20.0f),
-			Vec3(0.0f, 1.5f, 0.0f)
-		};
+		Vec3 m_scale;
+		Vec3 m_directionPoint;
 		
 		int m_currentPointIndex;
 
 		// ダメージを与える間隔
 		const int m_DamageDelayCount;
 		int m_damageDelayFlame;
-
-		Vec3 m_directionPoint;
-		Vec3 m_directionPlayer;
-		Vec3 m_directionKeyStone;
-		Vec3 m_directionBlockingStone;
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
@@ -50,8 +31,8 @@ namespace basecross {
 		};
 
 	public :
-		SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position);
-		~SimpleEnemy();
+		Oni(const shared_ptr<Stage>& stage, const Vec3& position);
+		~Oni();
 
 		void OnCreate() override;
 		void OnUpdate() override;
@@ -64,11 +45,7 @@ namespace basecross {
 		/**
 		* 敵の移動処理
 		*/
-		void MoveEnemy() override;
-		void MoveEnemyPoint(Vec3 point);//point
-		void MoveEnemyPlayer();//player
-		void MoveEnemyKeyStone();//keystone
-		void MoveEnemyBlockingStone();//blockingStone
+		void MoveEnemyPoint(const Vec3& point);//point
 
 		/**
 		* 敵が受けるダメージの計算
@@ -82,7 +59,7 @@ namespace basecross {
 		*
 		* @return 指定したステータスの値
 		*/
-		float GetEnemyStatus(wstring statusKey);
+		float GetEnemyStatus(const wstring& statusKey);
 
 	};
 }

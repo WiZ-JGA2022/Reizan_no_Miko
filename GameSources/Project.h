@@ -23,7 +23,6 @@
 #include "MainCamera.h"
 #include "PlayerBullet.h"
 #include "PlayerStatusController.h"
-#include "ShotDestroy.h"
 #include "GaugeSizeSetting.h"
 #include "Enemy.h"
 #include "CrossKey.h"

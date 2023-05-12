@@ -1,5 +1,5 @@
 /*!
-@file SimpleEnemy.cpp
+@file Oni.cpp
 @brief 単純な動きの敵
 */
 
@@ -9,28 +9,27 @@
 
 
 namespace basecross {
-	SimpleEnemy::SimpleEnemy(const shared_ptr<Stage>& stage, const Vec3& position) :
+	Oni::Oni(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
 		m_DamageDelayCount(60),
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
+		m_scale(Vec3(3.0f)),
 		m_currentPointIndex(0)
 	{
 	}
-	SimpleEnemy::~SimpleEnemy() {}
+	Oni::~Oni() {}
 
-	void SimpleEnemy::OnCreate()
+	void Oni::OnCreate()
 	{
-		Enemy::OnCreate();
-
-		//m_position = m_points[0];
+		Enemy::CreateEnemyMesh(m_position, m_scale, L"ONI_WALK", L"walk");
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 
 	}
 
-	void SimpleEnemy::OnUpdate()
+	void Oni::OnUpdate()
 	{
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
@@ -50,9 +49,8 @@ namespace basecross {
 		}
 		m_damageDelayFlame--;
 
-		auto ptrDraw = Enemy::GetComponent<BcPNTBoneModelDraw>();
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		ptrDraw->UpdateAnimation(elapsedTime);
-
 
 		//敵の移動の順番
 		if (m_currentPointIndex == 0)
@@ -62,17 +60,23 @@ namespace basecross {
 		else if (m_currentPointIndex == 1)
 		{
 			MoveEnemyPoint(Vec3(-20.0f, 1.5f, 40.0f));
-			//MoveEnemy();
 		}
-		else if(m_currentPointIndex >= 2)
+		else if(m_currentPointIndex == 2)
 		{
-			//MoveEnemyPlayer();
-			MoveEnemyKeyStone();
-			//MoveEnemyBlockingStone();
+			MoveEnemyPoint(Vec3(-20.0f, 1.5f, 20.0f));
+		}
+		else if(m_currentPointIndex == 3)
+		{
+			MoveEnemyPoint(Vec3(20.0f, 1.5f, 20.0f));
+		}
+		else if(m_currentPointIndex == 4)
+		{
+			auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone")->GetComponent<Transform>();
+			MoveEnemyPoint(Vec3(stoneTrans->GetPosition().x, stoneTrans->GetPosition().y + 1.5f, stoneTrans->GetPosition().z));
 		}
 	}
 
-	void SimpleEnemy::OnCollisionEnter(shared_ptr<GameObject>& other)
+	void Oni::OnCollisionEnter(shared_ptr<GameObject>& other)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		// 弾にあたったら
@@ -106,7 +110,7 @@ namespace basecross {
 		}
 	} // end OnCollisionEnter
 
-	void SimpleEnemy::OnCollisionExcute(shared_ptr<GameObject>& other)
+	void Oni::OnCollisionExcute(shared_ptr<GameObject>& other)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		// プレイヤーにあたったら
@@ -124,6 +128,7 @@ namespace basecross {
 		if (other->FindTag(L"KeyStone"))
 		{
 			auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
+			Enemy::ChangeEnemyAnimation(L"ONI_ATTACK", L"attack");
 			if (m_damageDelayFlame <= 0)
 			{
 				stone->DamageProcess();
@@ -131,192 +136,34 @@ namespace basecross {
 
 				return;
 			}
-
-
 		}
 	} // end OnCollisionEnter
 
-	void SimpleEnemy::MoveEnemy()//シンプル
-	{
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
-
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_direction[m_currentPointIndex].x * m_direction[m_currentPointIndex].x +
-			m_direction[m_currentPointIndex].y * m_direction[m_currentPointIndex].y +
-			m_direction[m_currentPointIndex].z * m_direction[m_currentPointIndex].z);
-		m_direction[m_currentPointIndex] *= normalizeMagnification;
-		// ここまで
-
-		m_position += m_direction[m_currentPointIndex] * m_statusValue[L"SPD"] * delta;	// 移動の計算
-		float rotationY = atan2f(-m_direction[m_currentPointIndex].z, m_direction[m_currentPointIndex].x); // 回転の計算
-
-		m_transform->SetRotation(0.0f, rotationY, 0.0f);
-		m_transform->SetPosition(m_position);
-
-		for (int i = 0; i < 1; i++)
-		{
-			if (m_currentPointIndex == 0)
-			{
-				if ((int)m_position.z == (int)m_points[m_currentPointIndex + 1].z)
-				{
-					m_currentPointIndex++;
-					break;
-				}
-				break;
-			}
-			if ((int)m_position.x == (int)m_points[m_currentPointIndex + 1].x)
-			{
-				m_currentPointIndex++;
-				break;
-			}
-		}
-	}
-
-	void SimpleEnemy::MoveEnemyPoint(Vec3 point)//チェックポイントに向かって
+	void Oni::MoveEnemyPoint(const Vec3& point)//チェックポイントに向かって
 	{
 		// デルタタイムの取得
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 
 		// 各種ベクトルの取得
-		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
-		auto pointPos = point;
+		Vec3 pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 
-		Vec3 positionControl(0.0f, 0.0f, 0.0f);
-		m_directionPoint = pointPos + positionControl - pos; // プレイヤーへの方向を計算
-
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_directionPoint.x * m_directionPoint.x +
-			m_directionPoint.y * m_directionPoint.y +
-			m_directionPoint.z * m_directionPoint.z);
-		m_directionPoint *= normalizeMagnification;
-		// ここまで
+		m_directionPoint = point - pos; // プレイヤーへの方向を計算
+		if (m_directionPoint.x < 0.1f && m_directionPoint.z < 0.1f && m_directionPoint.x > -0.1f && m_directionPoint.z > -0.1f)
+		{
+			m_currentPointIndex++;
+			return;
+		}
+		m_directionPoint.normalize();
 
 		pos += m_directionPoint * m_statusValue[L"SPD"] * delta;	// 移動の計算
 		float rotationY = atan2f(-m_directionPoint.z, m_directionPoint.x); // 回転の計算
 
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
-
-		for (int i = 0; i < 1; i++)
-		{
-			if (m_currentPointIndex == 0)
-			{
-				if (point.z >= pos.z)
-				{
-					m_currentPointIndex++;
-					break;
-				}
-			}
-			if (m_currentPointIndex == 1)
-			{
-				if (point.x >= pos.x)
-				{
-					m_currentPointIndex++;
-					break;
-				}
-			}
-			
-		}
 	}
 
-
-	void SimpleEnemy::MoveEnemyPlayer()//プレイヤーに向かって
-	{
-		// デルタタイムの取得
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
-
-		// 各種ベクトルの取得
-		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
-		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
-		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
-		auto playerScale = playerTrans->GetScale();
-
-		Vec3 positionControl(0.0f, playerScale.y, 0.0f);
-		m_directionPlayer = playerPos + positionControl - pos; // プレイヤーへの方向を計算
-
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_directionPlayer.x * m_directionPlayer.x +
-			m_directionPlayer.y * m_directionPlayer.y +
-			m_directionPlayer.z * m_directionPlayer.z);
-		m_directionPlayer *= normalizeMagnification;
-		// ここまで
-
-		pos += m_directionPlayer * m_statusValue[L"SPD"] * delta;	// 移動の計算
-		float rotationY = atan2f(-m_directionPlayer.z, m_directionPlayer.x); // 回転の計算
-
-		m_transform->SetPosition(pos); // 移動処理
-		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
-	}
-
-	void SimpleEnemy::MoveEnemyKeyStone()//要石に向かって
-	{
-		// デルタタイムの取得
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
-
-		// 各種ベクトルの取得
-		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
-		auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone")->GetComponent<Transform>();
-		auto stonePos = stoneTrans->GetPosition(); // 要石の位置ベクトルを取得
-
-		auto stoneScale = stoneTrans->GetScale();// 要石のスケールを取得
-		Vec3 positionControl(0.0f, stoneScale.y, 0.0f);//要石の位置調整
-		Vec3 stonePosition = stonePos + (positionControl / 2);
-		m_directionKeyStone = stonePosition - pos; // 要石への方向を計算
-
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_directionKeyStone.x * m_directionKeyStone.x +
-			m_directionKeyStone.y * m_directionKeyStone.y +
-			m_directionKeyStone.z * m_directionKeyStone.z);
-		m_directionKeyStone *= normalizeMagnification;
-		// ここまで
-
-		pos += m_directionKeyStone * m_statusValue[L"SPD"] * delta;	// 移動の計算
-		float rotationY = atan2f(-m_directionKeyStone.z, m_directionKeyStone.x); // 回転の計算
-
-		m_transform->SetPosition(pos); // 移動処理
-		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
-	}
-
-	void SimpleEnemy::MoveEnemyBlockingStone()//妨害オブジェクトに向かって
-	{
-		// デルタタイムの取得
-		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
-
-		// 各種ベクトルの取得
-		auto pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
-		auto stoneTrans = GetStage()->GetSharedGameObject<KeyStone>(L"BlockingStone")->GetComponent<Transform>();
-		auto stonePos = stoneTrans->GetPosition(); // 要石の位置ベクトルを取得
-
-		auto stoneScale = stoneTrans->GetScale();// 要石のスケールを取得
-		Vec3 positionControl(0.0f, stoneScale.y, 0.0f);//要石の位置調整
-		Vec3 stonePosition = stonePos + (positionControl / 2);
-		m_directionBlockingStone = stonePosition - pos; // 要石への方向を計算
-
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_directionBlockingStone.x * m_directionBlockingStone.x +
-			m_directionBlockingStone.y * m_directionBlockingStone.y +
-			m_directionBlockingStone.z * m_directionBlockingStone.z);
-		m_directionBlockingStone *= normalizeMagnification;
-		// ここまで
-
-		pos += m_directionBlockingStone * m_statusValue[L"SPD"] * delta;	// 移動の計算
-		float rotationY = atan2f(-m_directionBlockingStone.z, m_directionBlockingStone.x); // 回転の計算
-
-		m_transform->SetPosition(pos); // 移動処理
-		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
-	}
-
-	void SimpleEnemy::EnemyDamageProcess(float damage)
+	void Oni::EnemyDamageProcess(float damage)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
@@ -324,7 +171,7 @@ namespace basecross {
 		m_statusValue[L"HP"] -= totalDamage;
 	}
 
-	float SimpleEnemy::GetEnemyStatus(wstring statusKey)
+	float Oni::GetEnemyStatus(const wstring& statusKey)
 	{
 		return m_statusValue[statusKey];
 	}

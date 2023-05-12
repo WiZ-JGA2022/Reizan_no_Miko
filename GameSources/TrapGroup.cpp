@@ -170,7 +170,6 @@ namespace basecross {
 		m_objectPosition = Vec3(playerPos.x, playerPos.y, playerPos.z + 5.0f);
 
 		auto transComp = GetComponent<Transform>();
-		//transComp->SetPosition(Vec3(5.0f, 0.0f, -12.0f));
 		transComp->SetPosition(m_objectPosition);
 		transComp->SetRotation(0.0f, 0.0f, 0.0f);
 		transComp->SetScale(5.0f, 5.0f, 5.0f);

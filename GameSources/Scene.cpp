@@ -123,15 +123,15 @@ namespace basecross{
 		RoadSound(L"SPURTLAVA_SE", L"SpurtLavaSE.wav");
 
 		RoadStaticModelMesh(L"O_stage", L"STAGE");
-		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
-		RoadStaticModelMesh(L"Holl2", L"ARCH");
 		RoadStaticModelMesh(L"ofuda", L"OHUDA");
+		RoadStaticModelMesh(L"Thorn", L"SPIKE_MODEL");
 
 		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
-		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
+		RoadBoneModel(L"O_miko_walk", L"MIKO_WALK", L"MIKO_WALK_TAN");
 		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
 		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
 		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
+		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
 		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
 		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
 		RoadBoneModel(L"O_hitotume_walk", L"HITOTSUME_WALK", L"HITOTSUME_WALK_TAN");

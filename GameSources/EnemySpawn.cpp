@@ -101,7 +101,7 @@ namespace basecross {
 
 	void EnemySpawn::EnemyCreate(Vec3 transPos)
 	{
-		auto enemy = GetStage()->AddGameObject<SimpleEnemy>(transPos);
+		auto enemy = GetStage()->AddGameObject<Oni>(transPos);
 		//GetStage()->AddGameObject<EnemyBullet>();
 		//GetStage()->AddGameObject<EnemyBullet>(enemy);
 	}
