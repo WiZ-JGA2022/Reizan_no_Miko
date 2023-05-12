@@ -95,12 +95,20 @@ namespace basecross {
 			// ínñ ÇÃçÏê¨
 
 			AddGameObject<Field>();
+			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision2>(Vec3(-30.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision3>(Vec3(0.0f, 4.5f, -15.0f));
+			AddGameObject<StageCollision4>(Vec3(-17.5f, 1.0f, 12.5f));
+			AddGameObject<StageCollision5>(Vec3(13.5f, 1.0f, 28.0f));
+			AddGameObject<StageCollision6>(Vec3(13.0f, 1.0f, 58.0f));
+			AddGameObject<StageCollision7>(Vec3(-13.5f, 1.0f, 57.5f));
+
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 			
 			AddGameObject<KeyStoneGauge>(stone);
 
-			AddGameObject<StageCollision>();
+			
 
 			auto blockingStone = AddGameObject<BlockingStone>();
 			SetSharedGameObject(L"BlockingStone", blockingStone);
@@ -234,6 +242,13 @@ namespace basecross {
 			AddGameObject<Field>();
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
+			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision2>(Vec3(-30.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision3>(Vec3(0.0f, 4.5f, -15.0f));
+			AddGameObject<StageCollision4>(Vec3(-17.5f, 1.0f, 12.5f));
+			AddGameObject<StageCollision5>(Vec3(13.5f, 1.0f, 28.0f));
+			AddGameObject<StageCollision6>(Vec3(13.0f, 1.0f, 58.0f));
+			AddGameObject<StageCollision7>(Vec3(-13.5f, 1.0f, 57.5f));
 
 			AddGameObject<KeyStoneGauge>(stone);
 

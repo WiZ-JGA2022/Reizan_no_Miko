@@ -64,6 +64,7 @@ namespace basecross {
 		drawComp->AddAnimation(L"walk", 0, 100, true, 20.0f);
 		drawComp->ChangeCurrentAnimation(L"walk");
 
+
 		AddTag(L"Enemy"); 
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");

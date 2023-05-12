@@ -90,7 +90,8 @@ namespace basecross{
 		RoadTexture(L"STONE", L"Stone.png");
 		RoadTexture(L"SPIKE", L"Spike.png");
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
-		RoadTexture(L"TRAP_1", L"罠.png");
+		RoadTexture(L"TRAP_1", L"罠1.png");
+		RoadTexture(L"TRAP", L"罠.png");
 		RoadTexture(L"XBUTTON", L"Xボタン.png");
 		RoadTexture(L"YBUTTON", L"Yボタン.png");
 		RoadTexture(L"ABUTTON", L"Aボタン.png");
@@ -129,6 +130,10 @@ namespace basecross{
 		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
 		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
 		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
+		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
+		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
+		RoadBoneModel(L"O_hitotume_work", L"HITOTSUME_WORK", L"HITOTSUME_WORK_TAN");
+
 	}
 
 	void Scene::OnCreate(){
