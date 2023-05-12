@@ -10,20 +10,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp">
       <Filter>Sources\Player</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp">
-      <Filter>Sources\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp">
-      <Filter>Sources\Player</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp">
       <Filter>Sources\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
       <Filter>Sources\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
-      <Filter>Sources\Other</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Sources\Other</Filter>
@@ -103,9 +94,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleEnemy.cpp">
-      <Filter>Sources\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StandbySprite.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
@@ -151,6 +139,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp">
       <Filter>Sources\UI\SceneUI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Oni.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -177,9 +166,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
       <Filter>Headers\Other</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
-      <Filter>Headers\Other</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
       <Filter>Headers\GameStage</Filter>
     </ClInclude>
@@ -188,12 +174,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
       <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h">
-      <Filter>Headers\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h">
-      <Filter>Headers\Player</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
       <Filter>Headers\GameStage</Filter>
@@ -255,9 +235,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h">
-      <Filter>Headers\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
@@ -303,6 +280,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h">
       <Filter>Headers\UI\SceneUI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Oni.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
