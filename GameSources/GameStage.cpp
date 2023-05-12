@@ -272,6 +272,8 @@ namespace basecross {
 				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(i), Vec3(4.0f, 20.0f, 4.0f));
 			}
 
+			AddGameObject<EffectController>();
+
 			// UI�̍쐬
 			CreateUI();
 			PlayBGM();

@@ -12,6 +12,9 @@
 #include "GameStage.h"
 #include "Character.h"
 
+#include <Effekseer.h>
+#include <EffekseerRendererDX11.h>
+
 #include "EnemyController.h"
 #include "ExpBar.h"
 #include "HpBar.h"
