@@ -145,6 +145,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp">
       <Filter>Sources\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -290,6 +293,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
       <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
