@@ -37,7 +37,7 @@
 #include "AttackAnnounce.h"
 #include "TitleSprite.h"
 #include "ResultSprite.h"
-#include "SimpleEnemy.h"
+#include "Oni.h"
 #include "StandbySprite.h"
 #include "GameSprite.h"
 #include "TrapUI.h"
