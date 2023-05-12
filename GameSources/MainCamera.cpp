@@ -123,15 +123,24 @@ namespace basecross {
 		Camera::SetEye(newEye);
 	}
 
+	void MyCamera::OnCreate() {
+		// 初期値の設定
+		auto scene = App::GetApp()->GetScene<Scene>();
+		m_RadXZ = scene->GetBeforeCameraRadXZ();
+		m_RadY = scene->GetBeforeCameraRadY();
+		m_angle = scene->GetBeforeCameraAngle();
+	}
+
 	void MyCamera::OnUpdate() {
 	
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto keyData = App::GetApp()->GetInputDevice().GetKeyState();
 		auto scene = App::GetApp()->GetScene<Scene>();
+		auto ptrTarget = GetTargetObject();
 		//前回のターンからの時間
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		Vec3 newEye = scene->GetBeforeCameraEye();
-		Vec3 newAt = GetAt();
+		Vec3 newEye = GetEye();
+		Vec3 newAt = ptrTarget->GetComponent<Transform>()->GetPosition();
 		//計算に使うための腕角度（ベクトル）
 		m_armVec = newEye - newAt;
 		//正規化しておく
@@ -146,7 +155,7 @@ namespace basecross {
 		}
 
 		//上下角度の変更
-		if (fThumbRY >= 0.5f ) {
+		if (cntlVec[0].fThumbRY >= 0.5f ) {
 			if (GetUDBaseMode()) {
 				m_RadY += m_CameraUpDownSpeed * elapsedTime;
 			}
@@ -154,7 +163,7 @@ namespace basecross {
 				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
 		}
-		else if (fThumbRY <= -0.5f ) {
+		else if (cntlVec[0].fThumbRY <= -0.5f ) {
 			if (GetUDBaseMode()) {
 				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
 			}
@@ -171,14 +180,14 @@ namespace basecross {
 		}
 		m_armVec.y = sin(m_RadY);
 		//ここでY軸回転を作成
-		if (fThumbRX != 0  ) {
+		if (cntlVec[0].fThumbRX != 0  ) {
 			//回転スピードを反映
-			if (fThumbRX != 0) {
+			if (cntlVec[0].fThumbRX != 0) {
 				if (GetLRBaseMode()) {
-					m_RadXZ += -fThumbRX * elapsedTime * m_RotSpeed;
+					m_RadXZ += -cntlVec[0].fThumbRX * elapsedTime * m_RotSpeed;
 				}
 				else {
-					m_RadXZ += fThumbRX * elapsedTime * m_RotSpeed;
+					m_RadXZ += cntlVec[0].fThumbRX * elapsedTime * m_RotSpeed;
 				}
 			}
 		}
@@ -201,27 +210,15 @@ namespace basecross {
 		//腕角度を正規化
 		m_armVec.normalize();
 
-		auto ptrTarget = GetTargetObject();
-		if (ptrTarget) {
-			//目指したい場所
-			Vec3 toAt = ptrTarget->GetComponent<Transform>()->GetWorldMatrix().transInMatrix();
-			toAt += m_TargetToAt;
-			newAt = Lerp::CalculateLerp(GetAt(), toAt, 0, 1.0f, 1.0, Lerp::Linear);
-		}
 		m_angle += -fThumbRX * elapsedTime;
 
 		//目指したい場所にアームの値と腕ベクトルでEyeを調整
 		Vec3 toEye = newAt + m_armVec * m_ArmLen;
 		newEye = Lerp::CalculateLerp(GetEye(), toEye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);
 
+		Camera::SetAt(newAt);
 		SetEye(newEye);
-		SetAt(newAt);
-		Camera::OnUpdate();
-	}
-
-	float MyCamera::GetAngle()
-	{
-		return m_angle;
+		Camera::OnUpdate();	
 	}
 }
 //end basecross

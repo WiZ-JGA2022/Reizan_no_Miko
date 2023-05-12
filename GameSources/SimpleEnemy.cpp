@@ -32,6 +32,7 @@ namespace basecross {
 
 	void SimpleEnemy::OnUpdate()
 	{
+		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
@@ -43,13 +44,14 @@ namespace basecross {
 		// HPが0になったら
 		if (m_statusValue[L"HP"] <= 0)
 		{
-			// expを落とす
-			//GetStage()->AddGameObject<Item>(m_transform->GetPosition());
 			// 処理を停止し、見えなくする
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
 		m_damageDelayFlame--;
+
+		auto ptrDraw = Enemy::GetComponent<BcPNTBoneModelDraw>();
+		ptrDraw->UpdateAnimation(elapsedTime);
 
 
 		//敵の移動の順番

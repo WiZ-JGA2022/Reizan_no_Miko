@@ -12,20 +12,19 @@ namespace basecross{
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
-		int m_texNum = 0;
-		int m_trapCount[4] = { 0 };
+		int m_texNum;
+		int m_trapCount[4];
 
-		Vec3 m_playerPosition = Vec3(0);
-		Quat m_playerRotation = Quat(0);
+		Vec3 m_playerPosition;
+		Quat m_playerRotation;
+		
+		float m_cameraRadY;
+		float m_cameraRadXZ;
+		float m_cameraAngle;
+		Vec3 m_cameraAt;
 
-		Vec3 m_cameraEye = Vec3(0);
-		Vec3 m_cameraAt = Vec3(0);
-
-		Vec3 m_cameraArmVec = Vec3(0);
-		float m_cameraArmLength = 0.0f;
-
-		Vec3 m_spikePosition[5] = {Vec3(0)};
-		Vec3 m_lavaPosition[1] = {Vec3(0)};
+		Vec3 m_spikePosition[5];
+		Vec3 m_lavaPosition[1];
 		
 	public:
 		//--------------------------------------------------------------------------------------
@@ -73,7 +72,16 @@ namespace basecross{
 		@brief コンストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		Scene() :SceneBase(){}
+		Scene() :
+			SceneBase(),
+			m_texNum(0),
+			m_playerPosition(Vec3(0.0f)),
+			m_playerRotation(Vec3(0.0f)),
+			m_cameraRadY(0.0f),
+			m_cameraRadXZ(0.0f),
+			m_cameraAngle(XMConvertToRadians(270.0f)),
+			m_cameraAt(Vec3(0.0f))
+		{}
 		//--------------------------------------------------------------------------------------
 		/**
 		@brief デストラクタ
@@ -114,26 +122,25 @@ namespace basecross{
 			m_playerRotation = rot;
 		}
 
-		void SetBeforeCameraEye(const Vec3& eye)
+		void SetBeforeCameraRadY(const float radY)
 		{
-			m_cameraEye = eye;
+			m_cameraRadY = radY;
+		}
+
+		void SetBeforeCameraRadXZ(const float radXZ)
+		{
+			m_cameraRadXZ = radXZ;
+		}
+
+		void SetBeforeCameraAngle(const float angle)
+		{
+			m_cameraAngle = angle;
 		}
 
 		void SetBeforeCameraAt(const Vec3& at)
 		{
 			m_cameraAt = at;
 		}
-
-		void SetBeforeCameraArmVec(const Vec3& armVec)
-		{
-			m_cameraArmVec = armVec;
-		}
-
-		void SetBeforeCameraArmLength(float armLength)
-		{
-			m_cameraArmLength = armLength;
-		}
-
 		void SetBeforeSpikePosition(const Vec3& pos, int index)
 		{
 			m_trapCount[0]++;
@@ -146,7 +153,7 @@ namespace basecross{
 			m_lavaPosition[index] = pos;
 		}
 
-		int GetBeforePlacedTrap(int index)
+		int GetBeforePlacedTrap(const int index)
 		{
 			return m_trapCount[index];
 		}
@@ -161,25 +168,24 @@ namespace basecross{
 			return m_playerRotation;
 		}
 
-		Vec3 GetBeforeCameraEye() const
+		float GetBeforeCameraRadY() const
 		{
-			return m_cameraEye;
-			;
+			return m_cameraRadY;
+		}
+
+		float GetBeforeCameraRadXZ() const
+		{
+			return m_cameraRadXZ;
+		}
+
+		float GetBeforeCameraAngle() const
+		{
+			return m_cameraAngle;
 		}
 
 		Vec3 GetBeforeCameraAt() const
 		{
 			return m_cameraAt;
-		}
-
-		Vec3 GetBeforeCameraArmVec() const
-		{
-			return m_cameraArmVec;
-		}
-
-		float GetBeforeCameraArmLength() const
-		{
-			return m_cameraArmLength;
 		}
 
 		Vec3 GetBeforeSpikePosition(int index)

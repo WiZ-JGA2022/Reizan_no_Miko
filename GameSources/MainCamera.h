@@ -206,6 +206,21 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void SetAt(const bsm::Vec3& At)override;
+
+		float GetRadY() const
+		{
+			return m_RadY;
+		}
+		float GetRadXZ() const
+		{
+			return m_RadXZ;
+		}
+		float GetAngle()
+		{
+			return m_angle;
+		}
+
+		virtual void OnCreate() override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief XVˆ—
@@ -213,7 +228,6 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnUpdate() override;
-		float GetAngle();
 	};
 
 }

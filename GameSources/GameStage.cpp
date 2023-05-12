@@ -95,12 +95,20 @@ namespace basecross {
 			// 地面の作成
 
 			AddGameObject<Field>();
+			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision2>(Vec3(-30.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision3>(Vec3(0.0f, 4.5f, -15.0f));
+			AddGameObject<StageCollision4>(Vec3(-17.5f, 1.0f, 12.5f));
+			AddGameObject<StageCollision5>(Vec3(13.5f, 1.0f, 28.0f));
+			AddGameObject<StageCollision6>(Vec3(13.0f, 1.0f, 58.0f));
+			AddGameObject<StageCollision7>(Vec3(-13.5f, 1.0f, 57.5f));
+
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 			
 			AddGameObject<KeyStoneGauge>(stone);
 
-			AddGameObject<StageCollision>();
+			
 
 			auto blockingStone = AddGameObject<BlockingStone>();
 			SetSharedGameObject(L"BlockingStone", blockingStone);
@@ -128,32 +136,12 @@ namespace basecross {
 		{
 			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
 			scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
-			scene->SetBeforeCameraEye(maincamera->GetEye());
+			scene->SetBeforeCameraRadXZ(maincamera->GetRadXZ());
+			scene->SetBeforeCameraRadY(maincamera->GetRadY());
+			scene->SetBeforeCameraAngle(maincamera->GetAngle());
 			scene->SetBeforeCameraAt(maincamera->GetAt());
-			scene->SetBeforeCameraArmVec(maincamera->GetArmVec());
-			scene->SetBeforeCameraArmLength(maincamera->GetArmLengh());
 			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToGameStage");
 		}
-
-		wstringstream wss;
-		wss << L"CurrentEye : " <<
-			maincamera->GetEye().x << L" " <<
-			maincamera->GetEye().y << L" " <<
-			maincamera->GetEye().z << L"\n" <<
-			L"CurrentAt : " <<
-			maincamera->GetAt().x << L" " <<
-			maincamera->GetAt().y << L" " <<
-			maincamera->GetAt().z << L"\n" <<
-			L"CurrentArmVec : " <<
-			maincamera->GetArmVec().x << L" " <<
-			maincamera->GetArmVec().y << L" " <<
-			maincamera->GetArmVec().z << L"\n" <<
-			L"CurrentArmLength : " <<
-			maincamera->GetArmLengh() << endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
-
-
 	}
 
 	// デバッグ文字列表示用
@@ -174,10 +162,7 @@ namespace basecross {
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
-		auto beforeEye = scene->GetBeforeCameraEye();
 		PtrCamera->SetAt(scene->GetBeforeCameraAt());
-		PtrCamera->SetEye(beforeEye);
-		auto eye = PtrCamera->GetEye();
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		
@@ -257,6 +242,13 @@ namespace basecross {
 			AddGameObject<Field>();
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
+			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision2>(Vec3(-30.4f, 4.5f, 30.0f));
+			AddGameObject<StageCollision3>(Vec3(0.0f, 4.5f, -15.0f));
+			AddGameObject<StageCollision4>(Vec3(-17.5f, 1.0f, 12.5f));
+			AddGameObject<StageCollision5>(Vec3(13.5f, 1.0f, 28.0f));
+			AddGameObject<StageCollision6>(Vec3(13.0f, 1.0f, 58.0f));
+			AddGameObject<StageCollision7>(Vec3(-13.5f, 1.0f, 57.5f));
 
 			AddGameObject<KeyStoneGauge>(stone);
 
@@ -296,44 +288,11 @@ namespace basecross {
 			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
 			return;
 		}
-
-		auto scene = App::GetApp()->GetScene<Scene>();
-		auto camera = GetView()->GetTargetCamera();
-		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
-		wstringstream wss;
-		wss << L"BeforeEye : " <<
-			scene->GetBeforeCameraEye().x << L" " <<
-			scene->GetBeforeCameraEye().y << L" " <<
-			scene->GetBeforeCameraEye().z << L"\n" <<
-			L"CurrentEye : " <<
-			maincamera->GetEye().x << L" " <<
-			maincamera->GetEye().y << L" " <<
-			maincamera->GetEye().z << L"\n" <<
-
-			L"BeforeAt : " <<
-			scene->GetBeforeCameraAt().x << L" " <<
-			scene->GetBeforeCameraAt().y << L" " <<
-			scene->GetBeforeCameraAt().z << L"\n" <<
-			L"CurrentAt : " <<
-			maincamera->GetAt().x << L" " <<
-			maincamera->GetAt().y << L" " <<
-			maincamera->GetAt().z << L"\n" <<
-
-			L"BeforeArmVec : " <<
-			scene->GetBeforeCameraArmVec().x << L" " <<
-			scene->GetBeforeCameraArmVec().y << L" " <<
-			scene->GetBeforeCameraArmVec().z << L"\n" <<
-			L"CurrentArmVec : " <<
-			maincamera->GetArmVec().x << L" " <<
-			maincamera->GetArmVec().y << L" " <<
-			maincamera->GetArmVec().z << L"\n" <<
-
-			L"BeforeArmLength : " <<
-			scene->GetBeforeCameraArmLength() << L"\n" <<
-			L"CurrentArmLength : " <<
-			maincamera->GetArmLengh() << endl;
-		auto dstr = scene->GetDebugString();
-		scene->SetDebugString(dstr + wss.str());
+		if (time->GetTimeLeft() <= 0.0f)
+		{
+			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			return;
+		}
 	} // end OnUpdate
 
 	void GameStage::OnDraw()
@@ -397,9 +356,11 @@ namespace basecross {
 
 	//Bボタン
 	void TitleStage::OnPushB() {
+		AddGameObject<FadeIn>();
+
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"SELECT_SE", 0, 0.5f);
-		PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStandbyStage");
+		PostEvent(2.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToStandbyStage");
 
 	} // end OnPushB
 
@@ -456,7 +417,9 @@ namespace basecross {
 
 	//Bボタン
 	void ResultStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
+		AddGameObject<FadeOut>();
+
+		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 
 	} // end OnPushB
 
@@ -512,7 +475,9 @@ namespace basecross {
 
 	//Bボタン
 	void ClearStage::OnPushB() {
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
+		AddGameObject<FadeOut>();
+
+		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 
 	} // end OnPushB
 

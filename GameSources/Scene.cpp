@@ -90,7 +90,8 @@ namespace basecross{
 		RoadTexture(L"STONE", L"Stone.png");
 		RoadTexture(L"SPIKE", L"Spike.png");
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
-		RoadTexture(L"TRAP_1", L"罠.png");
+		RoadTexture(L"TRAP_1", L"罠1.png");
+		RoadTexture(L"TRAP", L"罠.png");
 		RoadTexture(L"XBUTTON", L"Xボタン.png");
 		RoadTexture(L"YBUTTON", L"Yボタン.png");
 		RoadTexture(L"ABUTTON", L"Aボタン.png");
@@ -98,6 +99,8 @@ namespace basecross{
 		RoadTexture(L"TRAP_NUMBER", L"TrapNumberUi.png");
 		RoadTexture(L"START_UI", L"スタートUI.png");
 		RoadTexture(L"TUTORIAL", L"チュートリアル(仮).png");
+		RoadTexture(L"FADE_BLACK", L"Fade_Black.png");
+		RoadTexture(L"FADE_WHITE", L"Fade_White.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");
@@ -126,7 +129,13 @@ namespace basecross{
 
 		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
-		RoadBoneModel(L"oni_w", L"ONI", L"ONI_TAN");
+		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
+		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
+		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
+		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
+		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
+		RoadBoneModel(L"O_hitotume_walk", L"HITOTSUME_WALK", L"HITOTSUME_WALK_TAN");
+
 	}
 
 	void Scene::OnCreate(){
