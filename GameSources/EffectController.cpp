@@ -67,7 +67,7 @@ namespace basecross {
 		auto elps = App::GetApp()->GetElapsedTime();
 		if (m_TotalTime <= 0.0f) {
 			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
-			m_handle = m_manager->Play(m_effect, playerPos.x, playerPos.y+ 10, playerPos.z);
+			m_handle = m_manager->Play(m_effect, playerPos.x+ 10, playerPos.y, playerPos.z);
 		}
 		else if (m_TotalTime >= 30.0f) {
 			m_manager->StopEffect(m_handle);
@@ -87,7 +87,7 @@ namespace basecross {
 		auto elps = App::GetApp()->GetElapsedTime();
 		if (m_TotalTime <= 0.0f) {
 			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
-			m_handle = m_manager->Play(m_effect2, playerPos.x, playerPos.y+ 10, playerPos.z);
+			m_handle = m_manager->Play(m_effect2, playerPos.x, playerPos.y, playerPos.z+ 10);
 		}
 		else if (m_TotalTime >= 30.0f) {
 			m_manager->StopEffect(m_handle);
