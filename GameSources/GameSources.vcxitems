@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />

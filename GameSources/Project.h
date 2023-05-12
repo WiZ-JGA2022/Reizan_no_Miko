@@ -11,6 +11,9 @@
 #include "Scene.h"
 #include "GameStage.h"
 
+#include <Effekseer.h>
+#include <EffekseerRendererDX11.h>
+
 #include "EnemyController.h"
 #include "ExpBar.h"
 #include "HpBar.h"
@@ -53,3 +56,4 @@
 #include "StageCollision.h"
 #include "FadeIn.h"
 #include "FadeOut.h"
+#include "EffectController.h"
