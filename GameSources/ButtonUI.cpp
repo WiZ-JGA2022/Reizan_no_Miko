@@ -41,7 +41,7 @@ namespace basecross {
 			return m_textureKey;
 
 		}
-		else if (i == 2)
+		/*else if (i == 2)
 		{
 			m_textureKey = L"ABUTTON";
 			return m_textureKey;
@@ -52,7 +52,7 @@ namespace basecross {
 			m_textureKey = L"BBUTTON";
 			return m_textureKey;
 
-		}
+		}*/
 	}
 
 	// ‰Šú‰»

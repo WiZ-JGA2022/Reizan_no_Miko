@@ -10,7 +10,7 @@ namespace basecross {
 	class TrapSelect : public GameObject
 	{
 		// レベルアップ時に表示するボタンの数
-		static const int m_PickUpStatusCount = 4;
+		static const int m_PickUpStatusCount = 2;
 
 		int m_spriteNums[m_PickUpStatusCount] = { 0 };	// ボタンの数字を保存しておく用
 
