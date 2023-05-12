@@ -10,7 +10,6 @@
 #include "ProjectBehavior.h"
 #include "Scene.h"
 #include "GameStage.h"
-#include "Character.h"
 
 #include "EnemyController.h"
 #include "ExpBar.h"
