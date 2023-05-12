@@ -77,7 +77,6 @@ namespace basecross {
 
 	void Enemy::OnUpdate()
 	{
-		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
@@ -99,8 +98,6 @@ namespace basecross {
 		m_shotRecastFlame--;
 
 		MoveEnemy();
-		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-		ptrDraw->UpdateAnimation(elapsedTime);
 
 		if (m_shotRecastFlame <= 0)
 		{

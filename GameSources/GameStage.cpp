@@ -273,6 +273,11 @@ namespace basecross {
 			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
 			return;
 		}
+		if (time->GetTimeLeft() <= 0.0f)
+		{
+			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+			return;
+		}
 	} // end OnUpdate
 
 	void GameStage::OnDraw()

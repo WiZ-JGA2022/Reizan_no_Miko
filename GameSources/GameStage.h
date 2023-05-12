@@ -67,7 +67,7 @@ namespace basecross {
 		//BGMの再生
 		void PlayBGM();
 
-		// プレイヤーコンポーネント
+		// 各種コンポーネント
 		shared_ptr<PlayerController> m_player;
 		shared_ptr<TimeNumber> m_time;
 		shared_ptr<StandbySprite> m_standby;
