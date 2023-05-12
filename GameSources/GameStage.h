@@ -1,5 +1,5 @@
 /*!
-@file GameStage.h
+@file FirstStage.h
 @brief ゲームステージ
 */
 
@@ -50,7 +50,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//	ゲームステージクラス
 	//--------------------------------------------------------------------------------------
-	class GameStage : public Stage {
+	class FirstStage : public Stage {
 		const float m_TotalTimeSeconds = 240.0f;
 		bool m_isOnce = true;
 
@@ -77,8 +77,8 @@ namespace basecross {
 
 	public:
 		//構築と破棄
-		GameStage() :Stage() {}
-		virtual ~GameStage() {}
+		FirstStage() :Stage() {}
+		virtual ~FirstStage() {}
 		//初期化
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

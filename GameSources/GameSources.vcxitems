@@ -17,7 +17,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
@@ -52,8 +51,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ShotDestroy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleEnemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Oni.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapGroup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h" />
@@ -63,13 +61,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)WeaponStatus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />
@@ -102,8 +98,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ShotDestroy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleEnemy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Oni.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapGroup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StandbySprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp" />
@@ -113,7 +108,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)WeaponStatus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp" />
   </ItemGroup>

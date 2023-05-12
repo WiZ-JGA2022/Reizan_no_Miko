@@ -123,12 +123,14 @@ namespace basecross{
 		RoadSound(L"SPURTLAVA_SE", L"SpurtLavaSE.wav");
 
 		RoadStaticModelMesh(L"O_stage", L"STAGE");
-		RoadStaticModelMesh(L"tyokore-toke-ki", L"BOX");
-		RoadStaticModelMesh(L"Holl2", L"ARCH");
 		RoadStaticModelMesh(L"ofuda", L"OHUDA");
+		RoadStaticModelMesh(L"Thorn", L"SPIKE_MODEL");
 
-		RoadBoneModel(L"M_miko_w", L"MIKO", L"MIKO_TAN");
-		RoadBoneModel(L"Enemy_w", L"HITOTSUME", L"HITOTSUME_TAN");
+		RoadBoneModel(L"O_miko_walk", L"MIKO_WALK", L"MIKO_WALK_TAN");
+		RoadBoneModel(L"O_miko_damage", L"MIKO_DAMAGE", L"MIKO_DAMAGE_TAN");
+		RoadBoneModel(L"O_miko_fall", L"MIKO_FALL", L"MIKO_FALL_TAN");
+		RoadBoneModel(L"O_miko_set", L"MIKO_SET", L"MIKO_SET_TAN");
+		RoadBoneModel(L"O_miko_standby", L"MIKO_STANDBY", L"MIKO_STANDBY_TAN");
 		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
 		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
 		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
@@ -159,9 +161,9 @@ namespace basecross{
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
-		if (event->m_MsgStr == L"ToGameStage") {
+		if (event->m_MsgStr == L"ToFirstStage") {
 			//最初のアクティブステージの設定
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<FirstStage>();
 		}
 		else if (event->m_MsgStr == L"ToStandbyStage") {
 			//最初のアクティブステージの設定

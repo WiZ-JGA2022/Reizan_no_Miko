@@ -32,79 +32,10 @@ namespace basecross {
 
 	void Enemy::OnCreate()
 	{
-		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(m_position);
-		m_transform->SetScale(Vec3(3.0f, 3.0f, 3.0f));
-
-		// コリジョンをつける
-		auto ptrColl = AddComponent<CollisionCapsule>();
-		ptrColl->SetDrawActive(true);
-		// 衝突判定はNone
-		ptrColl->SetAfterCollision(AfterCollision::Auto);
-		ptrColl->SetSleepActive(true);
-
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
-		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
-		);
-		//影をつける（シャドウマップを描画する）
-		auto ptrShadow = AddComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"ONI_WALK");
-		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-		//描画コンポーネントの設定
-		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
-		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(L"ONI_WALK");
-		drawComp->SetMeshToTransformMatrix(spanMat);
-		drawComp->AddAnimation(L"walk", 0, 100, true, 20.0f);
-		drawComp->ChangeCurrentAnimation(L"walk");
-
-
-		AddTag(L"Enemy"); 
-
-		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
-		group->IntoGroup(GetThis<GameObject>());
-		//透明処理
-		SetAlphaActive(true);
-
-		// 描画順の変更
-		SetDrawLayer((int)DrawLayer::Bottom);
 	}
 
 	void Enemy::OnUpdate()
 	{
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
-		// レベルアップイベント実行中またはプレイヤーが居ないとき
-		if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
-		{
-			// 処理を停止する
-			return;
-		}
-		// HPが0になったら
-		if (m_statusValue[L"HP"] <= 0)
-		{
-			// expを落とす
-			GetStage()->AddGameObject<Item>(m_transform->GetPosition());
-			// 処理を停止し、見えなくする
-			SetUpdateActive(false);
-			SetDrawActive(false);
-		}
-		m_damageDelayFlame--;
-		m_shotRecastFlame--;
-
-		MoveEnemy();
-
-		if (m_shotRecastFlame <= 0)
-		{
-			ShotBullet();
-			m_shotRecastFlame = m_ShotRecastCount;
-		}
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& Other)
@@ -139,6 +70,74 @@ namespace basecross {
 
 	} // end OnCollisionEnter
 
+	void Enemy::CreateEnemyMesh(const Vec3& position, const Vec3& scale, const wstring& meshKey, const wstring& animationName)
+	{
+		m_transform = GetComponent<Transform>();
+		m_transform->SetPosition(position);
+		m_transform->SetScale(scale);
+
+		// コリジョンをつける
+		auto ptrColl = AddComponent<CollisionCapsule>();
+		ptrColl->SetDrawActive(true);
+		// 衝突判定はNone
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
+		ptrColl->SetSleepActive(true);
+
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(meshKey);
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		//描画コンポーネントの設定
+		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
+		drawComp->SetFogEnabled(false);
+		drawComp->SetMeshResource(meshKey);
+		drawComp->SetMeshToTransformMatrix(spanMat);
+		drawComp->AddAnimation(animationName, 0, 100, true, 20.0f);
+		drawComp->ChangeCurrentAnimation(animationName);
+
+		AddTag(L"Enemy");
+
+		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
+		group->IntoGroup(GetThis<GameObject>());
+		//透明処理
+		SetAlphaActive(true);
+
+		// 描画順の変更
+		SetDrawLayer((int)DrawLayer::Bottom);
+	}
+
+	void Enemy::ChangeEnemyAnimation(const wstring& meshKey, const wstring& animationName)
+	{
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = GetComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(meshKey);
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		//描画コンポーネントの設定
+		auto drawComp = GetComponent<BcPNTBoneModelDraw>();
+		drawComp->SetFogEnabled(false);
+		drawComp->SetMeshResource(meshKey);
+		drawComp->SetMeshToTransformMatrix(spanMat);
+		drawComp->AddAnimation(animationName, 0, 100, true, 20.0f);
+		drawComp->ChangeCurrentAnimation(animationName);
+	}
 
 	void Enemy::MoveEnemy()
 	{
@@ -152,14 +151,7 @@ namespace basecross {
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
 		m_direction = playerPos - pos; // プレイヤーへの方向を計算
-
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_direction.x * m_direction.x +	
-			m_direction.y * m_direction.y + 
-			m_direction.z * m_direction.z);
-		m_direction *= normalizeMagnification;
-		// ここまで
+		m_direction.normalize();
 
 		pos += m_direction * m_statusValue[L"SPD"] * delta;	// 移動の計算
 		float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
@@ -181,7 +173,7 @@ namespace basecross {
 		m_statusValue[L"HP"] -= damage;
 	}
 
-	float Enemy::GetEnemyStatus(wstring statusKey)
+	float Enemy::GetEnemyStatus(const wstring& statusKey)
 	{
 		return m_statusValue[statusKey];
 	}

@@ -140,7 +140,11 @@ namespace basecross {
 		//前回のターンからの時間
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		Vec3 newEye = GetEye();
-		Vec3 newAt = ptrTarget->GetComponent<Transform>()->GetPosition();
+		Vec3 newAt = Vec3(
+			ptrTarget->GetComponent<Transform>()->GetPosition().x,
+			ptrTarget->GetComponent<Transform>()->GetPosition().y + 1.0f, 
+			ptrTarget->GetComponent<Transform>()->GetPosition().z
+		);
 		//計算に使うための腕角度（ベクトル）
 		m_armVec = newEye - newAt;
 		//正規化しておく

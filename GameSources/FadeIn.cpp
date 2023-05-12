@@ -16,6 +16,6 @@ namespace basecross {
 
 	void FadeIn::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"FADE_BLACK", false, true, 1);
+		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"FADE_BLACK", false, true, 2);
 	}
 }

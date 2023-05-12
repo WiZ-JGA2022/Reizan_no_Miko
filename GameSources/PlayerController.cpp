@@ -61,15 +61,17 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"MIKO");
+		ptrShadow->SetMeshResource(L"MIKO_WALK");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//描画コンポーネントの設定
 		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
 		drawComp->SetFogEnabled(false);
 		//描画するメッシュを設定
-		drawComp->SetMeshResource(L"MIKO");
+		drawComp->SetMeshResource(L"MIKO_WALK");
 		drawComp->SetMeshToTransformMatrix(spanMat);
+		drawComp->AddAnimation(L"walk_player", 0, 30, true, 20.0f);
+		drawComp->ChangeCurrentAnimation(L"walk_player");
 
 		//透明処理
 		SetAlphaActive(true);
@@ -90,6 +92,10 @@ namespace basecross {
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		ptrDraw->UpdateAnimation(elapsedTime);
+
 		m_recastFlame -= 0.1f;
 		
 		PlayerMoveProcess();
