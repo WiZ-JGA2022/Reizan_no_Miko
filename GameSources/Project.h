@@ -53,3 +53,4 @@
 #include "EnemySpawn.h"
 #include "TutorialUI.h"
 #include "StageCollision.h"
+#include "EffectController.h"
