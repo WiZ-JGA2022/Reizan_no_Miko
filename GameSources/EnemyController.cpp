@@ -59,7 +59,7 @@ namespace basecross {
 
 		if (m_delayFlame <= 0)
 		{
-			GetStage()->AddGameObject<EnemySpawn>()->Spawn2(Vec3(20.0f, 0.0f, 40.0f));
+			GetStage()->AddGameObject<EnemySpawn>()->Spawn2(Vec3(20.0f, 1.5f, 60.0f));
 			
 			//GetStage()->AddGameObject<EnemySpawn>();
 

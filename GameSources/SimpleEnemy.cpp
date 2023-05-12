@@ -57,11 +57,11 @@ namespace basecross {
 		//“G‚ÌˆÚ“®‚Ì‡”Ô
 		if (m_currentPointIndex == 0)
 		{
-			MoveEnemyPoint(Vec3(20.0f, 1.5f, 20.0f));
+			MoveEnemyPoint(Vec3(20.0f, 1.5f, 40.0f));
 		}
 		else if (m_currentPointIndex == 1)
 		{
-			MoveEnemyPoint(Vec3(-20.0f, 1.5f, 20.0f));
+			MoveEnemyPoint(Vec3(-20.0f, 1.5f, 40.0f));
 			//MoveEnemy();
 		}
 		else if(m_currentPointIndex >= 2)
