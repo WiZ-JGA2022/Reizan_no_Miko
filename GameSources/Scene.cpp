@@ -132,7 +132,7 @@ namespace basecross{
 		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
 		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
 		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
-		RoadBoneModel(L"O_hitotume_work", L"HITOTSUME_WORK", L"HITOTSUME_WORK_TAN");
+		RoadBoneModel(L"O_hitotume_walk", L"HITOTSUME_WALK", L"HITOTSUME_WALK_TAN");
 
 	}
 
