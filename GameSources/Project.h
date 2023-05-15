@@ -6,7 +6,6 @@
 #pragma once
 
 
-#include "ProjectShader.h"
 #include "ProjectBehavior.h"
 #include "Scene.h"
 #include "GameStage.h"
@@ -19,7 +18,6 @@
 #include "HpBar.h"
 #include "RandomSelectLevelUp.h"
 #include "LevelUpSprites.h"
-#include "Item.h"
 #include "Field.h"
 #include "PlayerController.h"
 #include "MainCamera.h"
@@ -37,7 +35,6 @@
 #include "TimeChara.h"
 #include "NumberUI.h"
 #include "EventBackGround.h"
-#include "AttackAnnounce.h"
 #include "TitleSprite.h"
 #include "ResultSprite.h"
 #include "Oni.h"

@@ -1,41 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp">
-      <Filter>Sources\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerBullet.cpp">
-      <Filter>Sources\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp">
-      <Filter>Sources\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Item.cpp">
-      <Filter>Sources\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
-      <Filter>Sources\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
-      <Filter>Sources\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
-      <Filter>Sources\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
-      <Filter>Sources\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
-      <Filter>Sources\GameStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
-      <Filter>Sources\GameStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
-      <Filter>Sources\GameStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
-      <Filter>Sources\GameStage</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp">
+      <Filter>Sources\Effect</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>Sources\Enemy</Filter>
@@ -43,115 +10,163 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp">
-      <Filter>Sources\Gimmic</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapGroup.cpp">
-      <Filter>Sources\Gimmic</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
-      <Filter>Sources\UI\LevelUpUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
-      <Filter>Sources\UI\LevelUpUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
-      <Filter>Sources\UI\LevelUpUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
-      <Filter>Sources\UI\GaugeUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp">
-      <Filter>Sources\UI\NumberUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
-      <Filter>Sources\UI\GaugeUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp">
-      <Filter>Sources\UI\GaugeUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp">
-      <Filter>Sources\UI\NumberUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp">
-      <Filter>Sources\UI\NumberUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp">
-      <Filter>Sources\UI\NumberUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp">
-      <Filter>Sources\UI\NumberUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
-      <Filter>Sources\UI\LevelUpUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)AttackAnnounce.cpp">
-      <Filter>Sources\Gimmic</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StandbySprite.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
-      <Filter>Sources\UI\TrapUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp">
-      <Filter>Sources\UI\TrapUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp">
-      <Filter>Sources\UI\TrapUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp">
-      <Filter>Sources\UI\TrapUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
-      <Filter>Sources\UI\TrapUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp">
-      <Filter>Sources\UI\GaugeUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp">
+      <Filter>Sources\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp">
-      <Filter>Sources\GameStage</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
+      <Filter>Sources\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Sources\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeIn.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
+      <Filter>Sources\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp">
-      <Filter>Sources\UI\SceneUI</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Oni.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Oni.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp">
-      <Filter>Sources\Effect</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerBullet.cpp">
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp">
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp">
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
+      <Filter>Sources\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
+      <Filter>Sources\Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp">
+      <Filter>Sources\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp">
+      <Filter>Sources\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapGroup.cpp">
+      <Filter>Sources\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
+      <Filter>Sources\Project</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
+      <Filter>Sources\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp">
+      <Filter>Sources\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
+      <Filter>Sources\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp">
+      <Filter>Sources\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp">
+      <Filter>Sources\UI\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp">
+      <Filter>Sources\UI\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp">
+      <Filter>Sources\UI\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp">
+      <Filter>Sources\UI\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp">
+      <Filter>Sources\UI\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
+      <Filter>Sources\UI\LevelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
+      <Filter>Sources\UI\LevelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
+      <Filter>Sources\UI\LevelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeIn.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StandbySprite.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeChara.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp">
+      <Filter>Sources\UI\Sprites\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp">
+      <Filter>Sources\UI\Sprites\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
+      <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
+      <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
+      <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
+      <Filter>Headers\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Oni.h">
+      <Filter>Headers\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerBullet.h">
       <Filter>Headers\Player</Filter>
@@ -162,220 +177,199 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h">
       <Filter>Headers\Player</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Item.h">
-      <Filter>Headers\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h">
-      <Filter>Headers\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
-      <Filter>Headers\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
-      <Filter>Headers\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
-      <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
-      <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
-      <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
-      <Filter>Headers\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h">
-      <Filter>Headers\Enemy</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapGroup.h">
+      <Filter>Headers\Trap</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h">
-      <Filter>Headers\Gimmic</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapGroup.h">
-      <Filter>Headers\Gimmic</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
-      <Filter>Headers\UI\LevelUpUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
-      <Filter>Headers\UI\LevelUpUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h">
-      <Filter>Headers\UI\LevelUpUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
-      <Filter>Headers\UI\GaugeUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
-      <Filter>Headers\UI\GaugeUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h">
-      <Filter>Headers\UI\GaugeUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h">
-      <Filter>Headers\UI\NumberUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h">
-      <Filter>Headers\UI\NumberUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h">
-      <Filter>Headers\UI\NumberUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h">
-      <Filter>Headers\UI\NumberUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h">
-      <Filter>Headers\UI\NumberUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h">
-      <Filter>Headers\UI\LevelUpUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)AttackAnnounce.h">
-      <Filter>Headers\Gimmic</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ResultSprite.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h">
-      <Filter>Headers\UI\TrapUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
-      <Filter>Headers\UI\TrapUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h">
-      <Filter>Headers\UI\TrapUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h">
-      <Filter>Headers\UI\TrapUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
-      <Filter>Headers\UI\TrapUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h">
-      <Filter>Headers\UI\GaugeUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
-      <Filter>Headers\Enemy</Filter>
+      <Filter>Headers\Trap</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h">
-      <Filter>Headers\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeIn.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h">
-      <Filter>Headers\UI\SceneUI</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Oni.h" />
-      <Filter>Headers\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
-      <Filter>Headers\Effect</Filter>
+      <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
+      <Filter>Headers\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
+      <Filter>Headers\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Headers\Project</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
+      <Filter>Headers\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h">
+      <Filter>Headers\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
+      <Filter>Headers\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h">
+      <Filter>Headers\UI\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h">
+      <Filter>Headers\UI\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeNumber.h">
+      <Filter>Headers\UI\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h">
+      <Filter>Headers\UI\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h">
+      <Filter>Headers\UI\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h">
+      <Filter>Headers\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
+      <Filter>Headers\UI\LevelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
+      <Filter>Headers\UI\LevelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h">
+      <Filter>Headers\UI\LevelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StandbySprite.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResultSprite.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeChara.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeIn.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
-      <UniqueIdentifier>{1f45206a-97c3-4b53-ae6c-384c6cce19d2}</UniqueIdentifier>
+      <UniqueIdentifier>{8f3b5e43-40d5-4702-8be4-4ce21ef22e64}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sources">
-      <UniqueIdentifier>{8adc80d2-6726-427a-a03b-8276ff0f85c6}</UniqueIdentifier>
+      <UniqueIdentifier>{583cf4ea-1519-45d5-8f97-164dc811277e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Player">
-      <UniqueIdentifier>{81fe2420-b64e-4cce-b42a-5aa64ec426cf}</UniqueIdentifier>
+      <UniqueIdentifier>{014911be-d9fe-4f72-8145-69516dc088b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Enemy">
-      <UniqueIdentifier>{f81d8292-a0f0-48a3-9b65-959af393bfd8}</UniqueIdentifier>
+      <UniqueIdentifier>{2bab803d-352e-43c7-8e58-5a2163e2d326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Stage">
+      <UniqueIdentifier>{2c1407b5-8d57-4e84-8201-f9e1acc9048b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Scene">
+      <UniqueIdentifier>{ebc87cf8-7051-48d7-a49c-936e01272053}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\UI">
-      <UniqueIdentifier>{e46660a1-06ce-4c74-ab6e-c11094019a49}</UniqueIdentifier>
+      <UniqueIdentifier>{c254862a-f3d5-40f1-bb46-9a8c989f8507}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\Other">
-      <UniqueIdentifier>{530f9f13-866c-44d3-9622-52f510eb1135}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\GameStage">
-      <UniqueIdentifier>{bfcccac7-5b7e-4449-827d-1746fbfcc0ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Player">
-      <UniqueIdentifier>{c6f5c889-66e3-40cc-8d7c-0ef22eb4e63b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI">
-      <UniqueIdentifier>{400dedee-4b75-4228-bd3b-4a4ec6c291af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Enemy">
-      <UniqueIdentifier>{b8ebea1d-f673-459e-9be7-0bdb6c91d5dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Other">
-      <UniqueIdentifier>{85af88f2-89fe-4c54-bc0e-64a00bcdb784}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\GameStage">
-      <UniqueIdentifier>{3a3e89de-14c1-4a8d-b989-12770a06d3f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\Gimmic">
-      <UniqueIdentifier>{3e9c517f-f9f7-46cc-a077-2faf54a6a3f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Gimmic">
-      <UniqueIdentifier>{755823e3-53fb-4116-a505-e14082370c00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI\GaugeUI">
-      <UniqueIdentifier>{2100b7b5-ecfb-4970-9e22-2ec49a56ee63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI\NumberUI">
-      <UniqueIdentifier>{282411ad-2cdc-4459-b318-892a9eca7393}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI\LevelUpUI">
-      <UniqueIdentifier>{92cd76eb-2892-48e8-b219-411b698ce43b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\UI\LevelUpUI">
-      <UniqueIdentifier>{caf1415e-0dd8-4e92-a3f3-433fdd664aae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\UI\GaugeUI">
-      <UniqueIdentifier>{c0fab8c2-c6c6-44a6-906d-e6502420f4ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\UI\NumberUI">
-      <UniqueIdentifier>{c56de922-2163-434e-a5ac-3a2fa1280ae0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\UI\SceneUI">
-      <UniqueIdentifier>{b425edaf-6845-4e90-8737-8a06bb298632}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI\SceneUI">
-      <UniqueIdentifier>{5da95573-fbc5-4fb2-be7d-586bb3ad6e2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\UI\TrapUI">
-      <UniqueIdentifier>{315f5002-26eb-4967-96c0-4d5d68750043}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI\TrapUI">
-      <UniqueIdentifier>{edf7485e-107f-4750-818e-25a66f9e6808}</UniqueIdentifier>
+    <Filter Include="Headers\Trap">
+      <UniqueIdentifier>{d67780c3-59b2-4a72-8ca0-a5faf8558449}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Effect">
-      <UniqueIdentifier>{ec1e5ee0-4c1d-42ec-8762-6a74ba1e242f}</UniqueIdentifier>
+      <UniqueIdentifier>{acf30d27-8da7-4301-b5d6-56f1031373be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Project">
+      <UniqueIdentifier>{3923f0d2-9fad-4dee-954e-f605da30569e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\Sprites">
+      <UniqueIdentifier>{2b29f70d-003a-4d0d-93f6-9cecc8a3cb0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\Gauge">
+      <UniqueIdentifier>{d45bce3b-d374-48a5-9d0f-13835400f466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\Number">
+      <UniqueIdentifier>{8a2a5eba-4885-4748-b621-5cf4d96577b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\LevelEvent">
+      <UniqueIdentifier>{192309bb-a561-423d-bc6a-2b1d0e1818b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\Sprites\Inheritance">
+      <UniqueIdentifier>{27f7e41b-e368-4914-96c6-9cb4602e5eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\UI\Sprites\Other">
+      <UniqueIdentifier>{09b28d6e-4dd0-4221-8051-d1884b757271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Enemy">
+      <UniqueIdentifier>{433e21a2-2680-440c-8b41-0145e832bfa9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sources\Effect">
-      <UniqueIdentifier>{ea78a7d7-17c5-4411-b528-65f967a8a09f}</UniqueIdentifier>
+      <UniqueIdentifier>{6dcc461b-709b-436e-8639-959dada77383}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Project">
+      <UniqueIdentifier>{31a640b7-bc52-4648-aec2-effbf236ea3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Trap">
+      <UniqueIdentifier>{53ab79e5-062e-473e-b65c-d100bbe92bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI">
+      <UniqueIdentifier>{7fbbea55-adad-4f38-b2da-24447ac8f6ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Scene">
+      <UniqueIdentifier>{c07ad567-99f3-4da5-808f-1891602fac66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Stage">
+      <UniqueIdentifier>{2fca0b7e-64da-4092-b5af-fcc5b6ba8edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Player">
+      <UniqueIdentifier>{fe7e18f3-31c8-4d21-b2f6-16e741398123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\LevelEvent">
+      <UniqueIdentifier>{3fd3a486-89d8-4657-8b73-336db9489047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\Number">
+      <UniqueIdentifier>{f0590a9f-5136-4d24-a26c-5d1de0ae5bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\Sprites">
+      <UniqueIdentifier>{e7a5f7e4-5e1f-4202-9c2e-3a41022a93ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\Gauge">
+      <UniqueIdentifier>{3c8bc73a-9c80-439d-85d6-f30fc9e52e8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\Sprites\Inheritance">
+      <UniqueIdentifier>{1a45e3b9-abfb-40e5-af7d-94dc46beca4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\UI\Sprites\Other">
+      <UniqueIdentifier>{201bf00f-183b-465d-94eb-6e1a6d786a6e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
