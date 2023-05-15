@@ -8,7 +8,7 @@
 
 #include "ProjectBehavior.h"
 #include "Scene.h"
-#include "GameStage.h"
+#include "FirstStage.h"
 
 #include <Effekseer.h>
 #include <EffekseerRendererDX11.h>

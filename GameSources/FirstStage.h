@@ -6,10 +6,6 @@
 #pragma once
 #include "stdafx.h"
 #include "PlayerController.h"
-#include "TimeNumber.h"
-#include "StandbySprite.h"
-#include "TrapSelect.h"
-#include "ButtonSelect.h"
 
 namespace basecross {
 
@@ -36,10 +32,6 @@ namespace basecross {
 
 		// 各種コンポーネント
 		shared_ptr<PlayerController> m_player;
-		shared_ptr<TimeNumber> m_time;
-		shared_ptr<StandbySprite> m_standby;
-		shared_ptr<TrapSelect> m_trap;
-		shared_ptr<ButtonSelect> m_button;
 
 	public:
 		//構築と破棄

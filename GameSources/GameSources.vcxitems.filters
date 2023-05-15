@@ -127,7 +127,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
       <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)FirstStage.cpp">
       <Filter>Sources\Stage\MainGameStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
@@ -279,7 +279,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
       <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)FirstStage.h">
       <Filter>Headers\Stage\MainGameStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StandbyStage.h">
