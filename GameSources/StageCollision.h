@@ -11,9 +11,10 @@ namespace basecross {
 	{
 
 		Vec3 m_position;
+		Vec3 m_scale;
 
 	public:
-		StageCollision(const std::shared_ptr<Stage>& stage,const Vec3& potision);
+		StageCollision(const std::shared_ptr<Stage>& stage,const Vec3& potision,const Vec3& scale);
 		~StageCollision();
 
 		
