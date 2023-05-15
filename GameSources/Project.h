@@ -55,3 +55,7 @@
 #include "FadeOut.h"
 #include "EffectController.h"
 #include "Spike Drawing Process.h"
+#include "ClearStage.h"
+#include "DefeatStage.h"
+#include "TitleStage.h"
+#include "StandbyStage.h"

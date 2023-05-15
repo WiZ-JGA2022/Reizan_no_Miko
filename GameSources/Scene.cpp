@@ -180,7 +180,7 @@ namespace basecross{
 		}
 		else if (event->m_MsgStr == L"ToResultStage") {
 			//最初のアクティブステージの設定
-			ResetActiveStage<ResultStage>();
+			ResetActiveStage<DefeatStage>();
 		}
 
 		// デバッグ用文字列オブジェクトに対する設定

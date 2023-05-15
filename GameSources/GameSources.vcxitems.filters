@@ -16,15 +16,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
-      <Filter>Sources\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
-      <Filter>Sources\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
-      <Filter>Sources\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Oni.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
@@ -45,9 +36,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp">
       <Filter>Sources\Trap</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp">
-      <Filter>Sources\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp">
       <Filter>Sources\Trap</Filter>
@@ -139,6 +127,30 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
       <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Sources\Stage\MainGameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp">
+      <Filter>Sources\Stage\MainGameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp">
+      <Filter>Sources\Stage\MainGameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
+      <Filter>Sources\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StandbyStage.cpp">
+      <Filter>Sources\Stage\MainGameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
+      <Filter>Sources\Stage\OtherStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DefeatStage.cpp">
+      <Filter>Sources\Stage\OtherStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
+      <Filter>Sources\Stage\OtherStage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
@@ -155,15 +167,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h">
       <Filter>Headers\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
-      <Filter>Headers\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Headers\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
-      <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Oni.h">
       <Filter>Headers\Enemy</Filter>
@@ -182,9 +185,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h">
       <Filter>Headers\Trap</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h">
-      <Filter>Headers\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h">
       <Filter>Headers\Trap</Filter>
@@ -279,6 +279,30 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
       <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Headers\Stage\MainGameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StandbyStage.h">
+      <Filter>Headers\Stage\MainGameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h">
+      <Filter>Headers\Stage\MainGameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Field.h">
+      <Filter>Headers\Stage\MainGameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h">
+      <Filter>Headers\Stage\OtherStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DefeatStage.h">
+      <Filter>Headers\Stage\OtherStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
+      <Filter>Headers\Stage\OtherStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
+      <Filter>Headers\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -370,6 +394,24 @@
     </Filter>
     <Filter Include="Sources\UI\Sprites\Other">
       <UniqueIdentifier>{201bf00f-183b-465d-94eb-6e1a6d786a6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Stage\MainGameStage">
+      <UniqueIdentifier>{9050f871-d74c-42bd-8d37-27932ff44c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Stage\OtherStage">
+      <UniqueIdentifier>{9372de42-c716-485f-9590-02b5a71aeee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Camera">
+      <UniqueIdentifier>{b746bcea-277d-4a23-869a-61d89f4105e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Stage\MainGameStage">
+      <UniqueIdentifier>{cf831b3f-d4cf-42e7-996e-a3f0123e4731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Camera">
+      <UniqueIdentifier>{77e2ae44-5eab-4ad2-a4b6-6c630c75063e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Stage\OtherStage">
+      <UniqueIdentifier>{2d0ac158-d731-404b-bf95-747dafb286b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,57 +1,43 @@
 /*!
-@file FirstStage.cpp
-@brief ゲームステージ実体
+@file StandbyStage.cpp
+@brief 準備フェーズステージの実装
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	//--------------------------------------------------------------------------------------
-	//	ゲームステージクラス実体
-	//--------------------------------------------------------------------------------------
-	void FirstStage::CreateViewLight() {
+	void StandbyStage::CreateViewLight() {
 		auto PtrView = CreateView<SingleView>();
-		
-		auto scene = App::GetApp()->GetScene<Scene>();
 
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
-		PtrCamera->SetAt(scene->GetBeforeCameraAt());
+
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
-		
+
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	// 敵の作成
-	void FirstStage::CreateEnemy() {
-		CreateSharedObjectGroup(L"EnemyGroup");
-		auto enemyController = AddGameObject<EnemyController>();
-		SetSharedGameObject(L"EnemyController", enemyController);
-	}
-
 	// レベルアップイベントの作成
-	void FirstStage::CreateLevelUpEvent() {
+	void StandbyStage::CreateLevelUpEvent() {
 		auto levelUpEvent = AddGameObject<RandomSelectLevelUpButton>();
 
 		SetSharedGameObject(L"LevelUpEvent", levelUpEvent);
 	}
 
 	//プレイヤーの作成
-	void FirstStage::CreatePlayer() {
-		Vec3 beforePlayerPosition = App::GetApp()->GetScene<Scene>()->GetBeforePlayerPosition();
-		Quat beforePlayerQuaternion = App::GetApp()->GetScene<Scene>()->GetBeforePlayerQuaternion();
-		m_player = AddGameObject<PlayerController>(beforePlayerPosition, beforePlayerQuaternion, 1);
+	void StandbyStage::CreatePlayer() {
+		m_player = AddGameObject<PlayerController>(0);
 		SetSharedGameObject(L"Player", m_player);
 		m_player->AddTag(L"Player");
 		auto statusController = AddGameObject<PlayerStatusController>();
 		SetSharedGameObject(L"PlayerStatus", statusController);
 	} // end CreatePlayer	
 
-	void FirstStage::CreateUI()
+	void StandbyStage::CreateUI()
 	{
 		// ExpバーとHpバーの作成
 		AddGameObject<HpBar>();
@@ -64,40 +50,45 @@ namespace basecross {
 		// 残り時間の表示UIを作成
 		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds, false);
 		SetSharedGameObject(L"Time", time);
-		
+
 		AddGameObject<TimeChara>();
 
-		AddGameObject<GameSprite>();
+		AddGameObject<TrapSelect>();
+
+		AddGameObject<ButtonSelect>();
+
+		AddGameObject<StandbySprite>();
+
+		AddGameObject<TrapNumber>();
+
+		AddGameObject<TutorialUI>();
 	} // end CreateUI
 
-	void FirstStage::PlayBGM()
+
+	void StandbyStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
-	void FirstStage::OnDestroy()
+	void StandbyStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_BGM);
 	}
 
-	void FirstStage::OnCreate() {
+	void StandbyStage::OnCreate() {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
+
+			CreateLevelUpEvent();
 			//プレーヤーの作成
 			CreatePlayer();
-			// 敵の作成
-			CreateEnemy();
-			// レベルアップイベントの作成
-			CreateLevelUpEvent();
 
 			// 地面の作成
 			AddGameObject<Field>();
-			auto stone = AddGameObject<KeyStone>();
-			SetSharedGameObject(L"KeyStone", stone);
 			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f));
 			AddGameObject<StageCollision2>(Vec3(-30.4f, 4.5f, 30.0f));
 			AddGameObject<StageCollision3>(Vec3(0.0f, 4.5f, -15.0f));
@@ -106,25 +97,14 @@ namespace basecross {
 			AddGameObject<StageCollision6>(Vec3(13.0f, 1.0f, 58.0f));
 			AddGameObject<StageCollision7>(Vec3(-13.5f, 1.0f, 57.5f));
 
+			auto stone = AddGameObject<KeyStone>();
+			SetSharedGameObject(L"KeyStone", stone);
+
 			AddGameObject<KeyStoneGauge>(stone);
-
-			auto& app = App::GetApp();
-			auto scene = app->GetScene<Scene>();
-
-			for (int i = 0; i < scene->GetBeforePlacedTrap(0); i++)
-			{
-				AddGameObject<SpikeTrap>(scene->GetBeforeSpikePosition(i), Vec3(5.0f, 0.5f, 5.0f));
-			}
-			for (int i = 0; i < scene->GetBeforePlacedTrap(1); i++)
-			{
-				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(i), Vec3(4.0f, 20.0f, 4.0f));
-			}
-
-			AddGameObject<EffectController>()->OnDraw();
-			AddGameObject<EffectController>()->OnDraw2();
 
 			// UIの作成
 			CreateUI();
+			AddGameObject<FadeIn>();
 			PlayBGM();
 
 			// メインカメラにプレイヤーをセットする
@@ -137,28 +117,28 @@ namespace basecross {
 		}
 	}
 
-	//更新
-	void FirstStage::OnUpdate() {
-		auto player = GetSharedGameObject<PlayerController>(L"Player");
+	void StandbyStage::OnUpdate() {
+		auto scene = App::GetApp()->GetScene<Scene>();
+		auto camera = GetView()->GetTargetCamera();
+		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
-		
-		if (!player->GetDrawActive())
-		{
-			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
-			return;
-		}
 		if (time->GetTimeLeft() <= 0.0f)
 		{
-			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
-			return;
+			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
+			scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
+			scene->SetBeforeCameraRadXZ(maincamera->GetRadXZ());
+			scene->SetBeforeCameraRadY(maincamera->GetRadY());
+			scene->SetBeforeCameraAngle(maincamera->GetAngle());
+			scene->SetBeforeCameraAt(maincamera->GetAt());
+			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToFirstStage");
 		}
-	} // end OnUpdate
+	}
 
-	void FirstStage::OnDraw()
+	// デバッグ文字列表示用
+	void StandbyStage::OnDraw()
 	{
 		Stage::OnDraw();
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 
 }
-//end basecross

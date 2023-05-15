@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
@@ -32,10 +33,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DefeatStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StandbyStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
@@ -64,6 +68,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
@@ -79,10 +84,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DefeatStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StandbyStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
