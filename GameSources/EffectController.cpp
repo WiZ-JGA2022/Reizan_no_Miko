@@ -64,7 +64,7 @@ namespace basecross {
 
 	}
 
-	void EffectController::OnDraw() {
+	void EffectController::OnDraw() {//溶岩
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
@@ -84,7 +84,7 @@ namespace basecross {
 		m_manager->Draw();// エフェクトの描画を行う。
 		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
 	}
-	void EffectController::OnDraw2() {
+	void EffectController::OnDraw2() {//鬼火
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
@@ -93,8 +93,9 @@ namespace basecross {
 			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
 			m_handle = m_manager->Play(m_effect2, playerPos.x, playerPos.y, playerPos.z+ 10);
 		}
-		else if (m_TotalTime >= 30.0f) {
+		else if (m_TotalTime >= 5.0f) {
 			m_manager->StopEffect(m_handle);
+			EffectController::OnDestroy();
 		}
 		m_TotalTime += elps;
 
@@ -104,7 +105,7 @@ namespace basecross {
 		m_manager->Draw();// エフェクトの描画を行う。
 		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
 	}
-	void EffectController::OnDraw3() {
+	void EffectController::OnDraw3() {//砂埃
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
@@ -113,8 +114,9 @@ namespace basecross {
 			//m_handle = m_manager->Play(m_effect3, 1, 0, -1);
 			m_handle = m_manager->Play(m_effect3, playerPos.x , 0, playerPos.z);
 		}
-		else if (m_TotalTime >= 30.0f) {
+		else if (m_TotalTime >= 5.0f) {
 			m_manager->StopEffect(m_handle);
+			EffectController::OnDestroy();
 		}
 		m_TotalTime += elps;
 
@@ -124,7 +126,7 @@ namespace basecross {
 		m_manager->Draw();// エフェクトの描画を行う。
 		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
 	}
-	void EffectController::OnDraw4() {
+	void EffectController::OnDraw4() {//被弾
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
 
