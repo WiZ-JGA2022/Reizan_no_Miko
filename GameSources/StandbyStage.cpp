@@ -62,6 +62,7 @@ namespace basecross {
 		AddGameObject<TrapNumber>();
 
 		AddGameObject<TutorialUI>();
+
 	} // end CreateUI
 
 
