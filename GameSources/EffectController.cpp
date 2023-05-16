@@ -49,10 +49,12 @@ namespace basecross {
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
 		wstring efect01 = dataDir + L"Lava.efk";
-		wstring efect02 = dataDir + L"fire02.efk";
+		wstring efect02 = dataDir + L"fire04.efk";
+		wstring efect03 = dataDir + L"RunDust.efk";
 
 		m_effect = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect01.c_str());
 		m_effect2 = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect02.c_str());
+		m_effect3 = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect03.c_str());
 
 	}
 
@@ -67,7 +69,7 @@ namespace basecross {
 		auto elps = App::GetApp()->GetElapsedTime();
 		if (m_TotalTime <= 0.0f) {
 			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
-			m_handle = m_manager->Play(m_effect, playerPos.x+ 10, playerPos.y, playerPos.z);
+			m_handle = m_manager->Play(m_effect, playerPos.x + 10, playerPos.y-2, playerPos.z);
 		}
 		else if (m_TotalTime >= 30.0f) {
 			m_manager->StopEffect(m_handle);
@@ -88,6 +90,26 @@ namespace basecross {
 		if (m_TotalTime <= 0.0f) {
 			//m_handle = m_manager->Play(m_effect, 0, 5, 0);
 			m_handle = m_manager->Play(m_effect2, playerPos.x, playerPos.y, playerPos.z+ 10);
+		}
+		else if (m_TotalTime >= 30.0f) {
+			m_manager->StopEffect(m_handle);
+		}
+		m_TotalTime += elps;
+
+		m_manager->Update();// マネージャーの更新		
+		m_renderer->SetTime(elps);// 時間を更新する
+		m_renderer->BeginRendering();// エフェクトの描画開始処理を行う。
+		m_manager->Draw();// エフェクトの描画を行う。
+		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
+	}
+	void EffectController::OnDraw3() {
+		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
+
+		auto elps = App::GetApp()->GetElapsedTime();
+		if (m_TotalTime <= 0.0f) {
+			//m_handle = m_manager->Play(m_effect3, 1, 0, -1);
+			m_handle = m_manager->Play(m_effect3, playerPos.x , 0, playerPos.z);
 		}
 		else if (m_TotalTime >= 30.0f) {
 			m_manager->StopEffect(m_handle);
