@@ -12,6 +12,8 @@ namespace basecross {
 		const Vec2 m_DefaultSize;
 		const Vec2 m_AfterSize;
 
+		Vec3 m_position;
+
 	public:
 		GameSprite(const shared_ptr<Stage>& stage);
 		~GameSprite();

@@ -95,15 +95,5 @@ namespace basecross {
 		{
 			SetPosition(Vec2(x, y), h);
 		}
-
-		/**
-		* ゲージの横幅を取得する関数
-		*
-		* @return ゲージの横幅
-		*/
-		float GetGaugeSize()
-		{
-			return m_gaugeWidth;
-		}
 	};
 }

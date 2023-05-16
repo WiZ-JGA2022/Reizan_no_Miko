@@ -13,6 +13,7 @@ namespace basecross {
 		m_afterSize(Vec2(0.0f)),
 		m_uiSizeCoefficient(0.0f),
 		m_totalTime(0.0f),
+		m_waitSecond(5.0f),
 		m_alphaNum(0.0f),
 		m_fadeSpeed(0.01f)
 	{
@@ -57,7 +58,7 @@ namespace basecross {
 		{
 			m_totalTime += delta;
 
-			if (m_totalTime > 5.0f && m_isSeekSizeState != SeekSizeState::Stop)
+			if (m_totalTime > m_waitSecond && m_isSeekSizeState != SeekSizeState::Stop)
 			{
 				m_isSeekSizeState = SeekSizeState::SizeChange;
 			}
@@ -66,25 +67,29 @@ namespace basecross {
 				m_uiSizeCoefficient += 0.05f;
 				switch (m_seekDirection)
 				{
-				case basecross::Sprites::SeekDirection::UpperLeft:
+				case SeekDirection::UpperLeft:
 					m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					break;
-				case basecross::Sprites::SeekDirection::UpperRight:
+				case SeekDirection::UpperRight:
 					m_vertices[0].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					m_vertices[2].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					
+					m_position.x = m_position.x - (m_position.x + 600.0f) * m_uiSizeCoefficient;
+					m_position.y = m_position.y - (m_position.y - 400.0f) * (m_uiSizeCoefficient * 0.3f);
+					m_transform->SetPosition(m_position);
 					break;
-				case basecross::Sprites::SeekDirection::BottomLeft:
+				case SeekDirection::BottomLeft:
 					m_vertices[0].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					m_vertices[1].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					break;
-				case basecross::Sprites::SeekDirection::BottomRight:
+				case SeekDirection::BottomRight:
 					m_vertices[0].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					m_vertices[0].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[1].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
@@ -131,6 +136,7 @@ namespace basecross {
 
 	void Sprites::CreateSprite(const Vec3& position, const Vec2& size, const wstring& texKey)
 	{
+		m_position = position;
 		m_spriteSize = size;
 		auto& app = App::GetApp();
 
@@ -153,7 +159,7 @@ namespace basecross {
 		m_draw->SetTextureResource(texKey);
 
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(position);
+		m_transform->SetPosition(m_position);
 
 		// ìßâﬂèàóùÇóLå¯Ç…Ç∑ÇÈ
 		SetAlphaActive(true);
@@ -167,11 +173,12 @@ namespace basecross {
 		CreateSprite(position, size, texKey);
 	}
 
-	void Sprites::CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection)
+	void Sprites::CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection, const float waitSecond)
 	{
 		m_spriteType = SpriteType::SeekSize;
 		m_seekDirection = (SeekDirection)seekDirection;
 		m_afterSize = afterSize;
+		m_waitSecond = waitSecond;
 		CreateSprite(position, beforeSize, texKey);
 	}
 

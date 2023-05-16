@@ -47,9 +47,11 @@ namespace basecross {
 
 		Vec2 m_spriteSize;	// 大きさ
 		Vec2 m_afterSize;	// サイズ変更後の大きさ
+		Vec3 m_position;	// UIの位置
 
 		float m_uiSizeCoefficient;	// UIサイズの係数
 		float m_totalTime;			// 時間
+		float m_waitSecond;			// サイズ変化までの待機時間
 
 		float m_alphaNum;	// 透明度
 		float m_fadeSpeed;	// フェードの速度
@@ -96,7 +98,7 @@ namespace basecross {
 		* @param texKey 使用テクスチャ
 		* @param seekDirection サイズ変更の方向
 		*/
-		void CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection);
+		void CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection, const float waitSecond);
 
 		/**
 		* フェードするスプライトを作成する関数
