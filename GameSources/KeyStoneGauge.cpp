@@ -48,7 +48,7 @@ namespace basecross {
 
 			m_draw = AddComponent<PCTStaticDraw>();
 			m_draw->SetOriginalMeshUse(true);
-			m_draw->CreateOriginalMesh(m_vertices,m_indices);
+			m_draw->CreateOriginalMesh(m_vertices, m_indices);
 			m_draw->SetTextureResource(L"HPBAR_GREEN");
 			SetAlphaActive(true);
 			SetDrawLayer((int)DrawLayer::Bottom);

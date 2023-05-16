@@ -11,14 +11,13 @@
 namespace basecross {
 	class KeyStoneGauge :public GameObject
 	{
-		const Vec2 m_DefaultSize = Vec2(5.0f,0.5f);
+		const Vec2 m_DefaultSize = Vec2(5.0f, 0.5f);
 
 		weak_ptr<KeyStone> m_keyStoneHp;
-		shared_ptr<MeshResource> m_SquareMeshResource;
 		shared_ptr<PCTStaticDraw> m_draw;
 
 		vector< VertexPositionNormalTexture> m_vertices;
-		vector<uint16_t>m_indices;
+		vector<uint16_t> m_indices;
 
 		
 

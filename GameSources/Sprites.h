@@ -27,16 +27,23 @@ namespace basecross {
 			Stop,		// 終了
 			SizeChange	// 実行
 		};
+		enum class SeekDirection {
+			UpperLeft,	// 左上
+			UpperRight,	// 右上
+			BottomLeft,	// 左下
+			BottomRight	// 右下
+		};
 
 		enum class ChangeColorState {
 			Wait,		// 待機
 			ChangeColor	// 実行
 		};
 
-		enum SpriteType m_spriteType = SpriteType::Normal;
-		enum FadeType m_fadeType = FadeType::None;
-		enum SeekSizeState m_isSeekSizeState = SeekSizeState::Wait;
-		enum ChangeColorState m_isChangeColorState = ChangeColorState::Wait;
+		enum SpriteType m_spriteType = SpriteType::Normal; // スプライトタイプ
+		enum FadeType m_fadeType = FadeType::None; // フェードタイプ
+		enum SeekSizeState m_isSeekSizeState = SeekSizeState::Wait; // サイズ変更の状態
+		enum SeekDirection m_seekDirection = SeekDirection::BottomRight; // 変化する方向
+		enum ChangeColorState m_isChangeColorState = ChangeColorState::Wait; // 色変更の状態
 
 		Vec2 m_spriteSize;	// 大きさ
 		Vec2 m_afterSize;	// サイズ変更後の大きさ
@@ -87,8 +94,9 @@ namespace basecross {
 		* @param beforeSize 初期表示サイズ
 		* @param afterSize 変更後表示サイズ
 		* @param texKey 使用テクスチャ
+		* @param seekDirection サイズ変更の方向
 		*/
-		void CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey);
+		void CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection);
 
 		/**
 		* フェードするスプライトを作成する関数

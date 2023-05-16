@@ -10,6 +10,7 @@
 namespace basecross {
 	class GameSprite : public Sprites {
 		const Vec2 m_DefaultSize;
+		const Vec2 m_AfterSize;
 
 	public:
 		GameSprite(const shared_ptr<Stage>& stage);
