@@ -151,6 +151,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
       <Filter>Sources\Stage\OtherStage</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp">
+      <Filter>Sources\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
@@ -302,6 +305,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
       <Filter>Headers\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h">
+      <Filter>Headers\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
