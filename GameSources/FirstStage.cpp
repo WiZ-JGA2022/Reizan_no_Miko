@@ -122,6 +122,7 @@ namespace basecross {
 			AddGameObject<EffectController>()->OnDraw();
 			AddGameObject<EffectController>()->OnDraw2();
 			AddGameObject<EffectController>()->OnDraw3();
+			AddGameObject<EffectController>()->OnDraw4();
 
 			// UI�̍쐬
 			CreateUI();
