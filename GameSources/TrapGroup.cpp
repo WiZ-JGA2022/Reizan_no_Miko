@@ -186,7 +186,6 @@ namespace basecross {
 	void BlockingStone::OnUpdate()
 	{
 		auto transComp = GetComponent<Transform>();
-		//transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
 		transComp->SetPosition(m_objectPosition);
 
 		m_delay--;

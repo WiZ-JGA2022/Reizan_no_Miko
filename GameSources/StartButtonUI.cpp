@@ -8,20 +8,20 @@
 #include "Project.h"
 
 namespace basecross {
-
-	constexpr float m_startScaleZ = 1.0f;// ‘å‚«‚³
-	constexpr float m_startPosZ = 1.0f;	 // ‰œs‚«
-	constexpr float m_helfSize = 0.5f;	 // ”¼•ª‚Ì‘å‚«‚³
-
-
 	StartSprite::StartSprite(const shared_ptr<Stage>& stage) :
-		Sprites(stage)
+		Sprites(stage),
+		m_DefaultSize(Vec2(250.0f, 250.0f))
 	{
 	}
 	StartSprite::~StartSprite() {}
 
 	void StartSprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(50,-100, 0.0f), m_DefaultSize, L"START_UI",true,false);
+		Sprites::CreateColorChangeSprite(Vec3(50,-100, 0.0f), m_DefaultSize, L"START_UI");
+	}
+
+	void StartSprite::OnUpdate()
+	{
+		Sprites::OnUpdate();
 	}
 }

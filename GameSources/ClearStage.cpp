@@ -59,7 +59,7 @@ namespace basecross {
 
 	//Bƒ{ƒ^ƒ“
 	void ClearStage::OnPushB() {
-		AddGameObject<FadeOut>();
+		AddGameObject<FadeOut>(L"FADE_WHITE");
 
 		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 

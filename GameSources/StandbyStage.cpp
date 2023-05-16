@@ -104,7 +104,7 @@ namespace basecross {
 
 			// UIの作成
 			CreateUI();
-			AddGameObject<FadeIn>();
+			AddGameObject<FadeIn>(L"FADE_WHITE");
 			PlayBGM();
 
 			// メインカメラにプレイヤーをセットする

@@ -1,23 +1,28 @@
 /* !
-@file TrapUI.h
-@brief トラップUIの実装
+@file TutorialUI.h
+@brief チュートリアルUIの実装
 */
 
 #include "stdafx.h"
-#include <random>
-#include "time.h"
 #include "Project.h"
 
 namespace basecross {
 	TutorialUI::TutorialUI(const shared_ptr<Stage>& stage
 	) :
-		Sprites(stage)
+		Sprites(stage),
+		m_DefaultSize(Vec2(250.0f, 200.0f)),
+		m_AfterSize(Vec2(0.0f, 0.0f))
 	{
 	}
 
 	// 初期化
 	void TutorialUI::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(350.0f, 250.0f, 0.0f), Vec2(250.0f, 200.0f), L"TUTORIAL", false, true);
-	} // end OnCreate
+		Sprites::CreateSeekSizeSprite(Vec3(350.0f, 250.0f, 0.0f), m_DefaultSize, m_AfterSize, L"TUTORIAL");
+	}
+
+	void TutorialUI::OnUpdate()
+	{
+		Sprites::OnUpdate();
+	}
 }

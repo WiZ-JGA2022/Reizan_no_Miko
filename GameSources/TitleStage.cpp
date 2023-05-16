@@ -62,7 +62,7 @@ namespace basecross {
 
 	//Bƒ{ƒ^ƒ“
 	void TitleStage::OnPushB() {
-		AddGameObject<FadeOut>();
+		AddGameObject<FadeOut>(L"FADE_WHITE");
 
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"SELECT_SE", 0, 0.5f);
