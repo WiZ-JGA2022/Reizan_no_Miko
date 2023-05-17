@@ -11,8 +11,8 @@ namespace basecross {
 	class TimeNumber : public GameObject {
 
 		// ‘å‚«‚³
-		const Vec2 m_NumberSize = Vec2(24.0f, 48.0f);
-		const int m_OneMinite = 60;
+		const Vec2 m_NumberSize;
+		const int m_OneMinite;
 
 		int m_place; // Œ…”
 

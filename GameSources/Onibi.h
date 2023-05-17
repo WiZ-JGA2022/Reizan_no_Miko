@@ -15,7 +15,6 @@ namespace basecross {
 		Vec3 m_directionPoint;
 		Vec3 m_directionPlayer;
 
-
 		// ƒ_ƒ[ƒW‚ğ—^‚¦‚éŠÔŠu
 		const int m_DamageDelayCount;
 		int m_damageDelayFlame;

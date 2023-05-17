@@ -11,6 +11,7 @@ namespace basecross {
 		GameObject(stage),
 		m_spriteSize(Vec2(0.0f)),
 		m_afterSize(Vec2(0.0f)),
+		m_position(Vec3(0.0f)),
 		m_uiSizeCoefficient(0.0f),
 		m_totalTime(0.0f),
 		m_waitSecond(5.0f),
@@ -32,19 +33,37 @@ namespace basecross {
 
 		if (m_spriteType == SpriteType::ChangeColor)
 		{
-			m_totalTime += delta * 30;
-			float a = sinf(m_totalTime);
 			auto& app = App::GetApp();
 			auto device = app->GetInputDevice();
 			auto& pad = device.GetControlerVec()[0];
 
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_B && m_isChangeColorState == ChangeColorState::Wait)
+			float a = sinf(m_totalTime);
+			if (a < 0.0f)
 			{
-				m_isChangeColorState = ChangeColorState::ChangeColor;
+				a *= -1;
+			}
+
+			if (m_isChangeColorState == ChangeColorState::Wait)
+			{
+				m_totalTime += delta * 2; // ä…Ç‚Ç©Ç…ïœâªÇ∑ÇÈ
+
+				auto drawComp = GetComponent<PCTSpriteDraw>();
+				m_vertices[0].color = Col4(a, a, a, 1.0f);
+				m_vertices[1].color = Col4(a, a, a, 1.0f);
+				m_vertices[2].color = Col4(a, a, a, 1.0f);
+				m_vertices[3].color = Col4(a, a, a, 1.0f);
+				drawComp->UpdateVertices(m_vertices);
+
+				if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
+				{
+					m_isChangeColorState = ChangeColorState::ChangeColor;
+				}
 			}
 
 			if (m_isChangeColorState == ChangeColorState::ChangeColor)
 			{
+				m_totalTime += delta * 30; // ëfëÅÇ≠ïœâªÇ∑ÇÈ
+
 				auto drawComp = GetComponent<PCTSpriteDraw>();
 				m_vertices[0].color = Col4(a, a, a, 1.0f);
 				m_vertices[1].color = Col4(a, a, a, 1.0f);
@@ -65,15 +84,16 @@ namespace basecross {
 			if (m_isSeekSizeState == SeekSizeState::SizeChange)
 			{
 				m_uiSizeCoefficient += 0.05f;
-				switch (m_seekDirection)
+				switch (m_seekType)
 				{
-				case SeekDirection::UpperLeft:
+				case SeekType::UpperLeft :
 					m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					break;
-				case SeekDirection::UpperRight:
+
+				case SeekType::GameSprite :
 					m_vertices[0].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					m_vertices[2].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
@@ -83,19 +103,22 @@ namespace basecross {
 					m_position.y = m_position.y - (m_position.y - 400.0f) * (m_uiSizeCoefficient * 0.3f);
 					m_transform->SetPosition(m_position);
 					break;
-				case SeekDirection::BottomLeft:
+
+				case SeekType::BottomLeft :
 					m_vertices[0].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					m_vertices[1].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
 					break;
-				case SeekDirection::BottomRight:
+
+				case SeekType::BottomRight :
 					m_vertices[0].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					m_vertices[0].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[1].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
 					m_vertices[2].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
 					break;
-				default:
+
+				default :
 					break;
 				}
 
@@ -155,7 +178,6 @@ namespace basecross {
 		};
 
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
-		m_draw->SetDiffuse(white);
 		m_draw->SetTextureResource(texKey);
 
 		m_transform = GetComponent<Transform>();
@@ -173,19 +195,19 @@ namespace basecross {
 		CreateSprite(position, size, texKey);
 	}
 
-	void Sprites::CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection, const float waitSecond)
+	void Sprites::CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const SeekType& seekType, const float waitSecond)
 	{
 		m_spriteType = SpriteType::SeekSize;
-		m_seekDirection = (SeekDirection)seekDirection;
+		m_seekType = seekType;
 		m_afterSize = afterSize;
 		m_waitSecond = waitSecond;
 		CreateSprite(position, beforeSize, texKey);
 	}
 
-	void Sprites::CreateFadeSprite(const Vec3& position, const Vec2& size, const wstring& texKey, const int fadeType){
+	void Sprites::CreateFadeSprite(const Vec3& position, const Vec2& size, const wstring& texKey, const FadeType& fadeType){
 
 		m_spriteType = SpriteType::Fade;
-		m_fadeType = (FadeType)fadeType;
+		m_fadeType = fadeType;
 		if (m_fadeType == FadeType::FadeOut) {
 			m_alphaNum = 0.0f;
 		}

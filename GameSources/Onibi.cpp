@@ -3,10 +3,8 @@
 @brief ’Pƒ‚È“®‚«‚Ì“G
 */
 
-#pragma once
 #include "stdafx.h"
 #include "Project.h"
-
 
 namespace basecross {
 	Onibi::Onibi(const shared_ptr<Stage>& stage) :
