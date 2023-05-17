@@ -43,12 +43,6 @@ namespace basecross {
 		auto playerTrans = playerObj->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition();
 
-		//“G‚ÌˆÊ’u‚Ì•„†‚ðŒˆ’è‚·‚é(+,-À•W‚ðŒˆ’è)
-		int rnd_x = rand() % 2;
-		int rnd_z = rand() % 2;
-		if (rnd_x > 0) { m_sign_x = 1; } else { m_sign_x = -1; }
-		if (rnd_z > 0) { m_sign_z = 1; } else { m_sign_z = -1; }
-
 		if (m_delayFlame <= 0)
 		{
 			GetStage()->AddGameObject<EnemySpawn>()->Spawn2(Vec3(20.0f, 1.5f, 60.0f));

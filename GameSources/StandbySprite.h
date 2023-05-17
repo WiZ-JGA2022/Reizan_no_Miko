@@ -9,19 +9,14 @@
 
 namespace basecross {
 	class StandbySprite : public Sprites {
-		const Vec2 m_DefaultSize = Vec2(384.0f, 64.0f);
+		const Vec2 m_DefaultSize;
 
-		// スプライトの元になる頂点データと頂点インデックス
-		vector<VertexPositionColorTexture> m_vertices;
-		vector<uint16_t> m_indices;
-
-		// ドローコンポーネントとトランスフォームコンポーネントを取得
-		shared_ptr<PCTSpriteDraw> m_draw;
-		shared_ptr<Transform> m_transform;
 	public:
 		StandbySprite(const shared_ptr<Stage>& stage);
 		~StandbySprite();
 
-		void OnCreate();
+		void OnCreate() override;
+		void OnUpdate() override;
+
 	};
 }

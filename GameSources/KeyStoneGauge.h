@@ -11,32 +11,31 @@
 namespace basecross {
 	class KeyStoneGauge :public GameObject
 	{
-		const Vec2 m_DefaultSize = Vec2(5.0f,0.5f);
+		const Vec2 m_DefaultSize = Vec2(5.0f, 0.5f);
 
 		weak_ptr<KeyStone> m_keyStoneHp;
-		shared_ptr<MeshResource> m_SquareMeshResource;
 		shared_ptr<PCTStaticDraw> m_draw;
 
 		vector< VertexPositionNormalTexture> m_vertices;
-		vector<uint16_t>m_indices;
+		vector<uint16_t> m_indices;
 
 		
 
 		Quat Billboard(const Vec3& Line) {
-			Vec3 Temp = Line;
-			Mat4x4 RotMatrix;
-			Vec3 DefUp(0, 1.0f, 0);
-			Vec2 TempVec2(Temp.x, Temp.z);
-			if (TempVec2.length() < 0.1f) {
-				DefUp = Vec3(0, 0, 1.0f);
+			Vec3 temp = Line;
+			Mat4x4 rotMatrix;
+			Vec3 defUp(0, 1.0f, 0);
+			Vec2 tempVec2(temp.x, temp.z);
+			if (tempVec2.length() < 0.1f) {
+				defUp = Vec3(0, 0, 1.0f);
 			}
-			Temp.normalize();
-			RotMatrix = XMMatrixLookAtLH(Vec3(0, 0, 0), Temp, DefUp);
-			RotMatrix.inverse();
-			Quat Qt;
-			Qt = RotMatrix.quatInMatrix();
-			Qt.normalize();
-			return Qt;
+			temp.normalize();
+			rotMatrix = XMMatrixLookAtLH(Vec3(0, 0, 0), temp, defUp);
+			rotMatrix.inverse();
+			Quat qt;
+			qt = rotMatrix.quatInMatrix();
+			qt.normalize();
+			return qt;
 		}
 
 

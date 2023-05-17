@@ -36,6 +36,6 @@ namespace basecross {
 
 	void StageCollision::OnUpdate()
 	{
-	};
+	}
 
 }

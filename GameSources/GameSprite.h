@@ -9,19 +9,17 @@
 
 namespace basecross {
 	class GameSprite : public Sprites {
-		const Vec2 m_DefaultSize = Vec2(384.0f, 64.0f);
+		const Vec2 m_DefaultSize;
+		const Vec2 m_AfterSize;
 
-		// スプライトの元になる頂点データと頂点インデックス
-		vector<VertexPositionColorTexture> m_vertices;
-		vector<uint16_t> m_indices;
+		Vec3 m_position;
 
-		// ドローコンポーネントとトランスフォームコンポーネントを取得
-		shared_ptr<PCTSpriteDraw> m_draw;
-		shared_ptr<Transform> m_transform;
 	public:
 		GameSprite(const shared_ptr<Stage>& stage);
 		~GameSprite();
 
-		void OnCreate();
+		void OnCreate() override;
+		void OnUpdate() override;
+
 	};
 }

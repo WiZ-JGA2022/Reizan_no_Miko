@@ -9,10 +9,13 @@
 namespace basecross {
 	Sprites::Sprites(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
-		m_TotalTime(0.0f),
-		m_selected(false),
-		m_changeSize(false),
-		m_fadeCount(0.0f)
+		m_spriteSize(Vec2(0.0f)),
+		m_afterSize(Vec2(0.0f)),
+		m_uiSizeCoefficient(0.0f),
+		m_totalTime(0.0f),
+		m_waitSecond(5.0f),
+		m_alphaNum(0.0f),
+		m_fadeSpeed(0.01f)
 	{
 	}
 	Sprites::~Sprites() {}
@@ -23,20 +26,24 @@ namespace basecross {
 
 	void Sprites::OnUpdate()
 	{
-		if (m_Trace)
+		// 時間の取得
+		auto& app = App::GetApp();
+		auto delta = app->GetElapsedTime();
+
+		if (m_spriteType == SpriteType::ChangeColor)
 		{
-			m_TotalTime += 0.75f;
-			float a = sinf(m_TotalTime);
+			m_totalTime += delta * 30;
+			float a = sinf(m_totalTime);
 			auto& app = App::GetApp();
 			auto device = app->GetInputDevice();
 			auto& pad = device.GetControlerVec()[0];
 
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_B)
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_B && m_isChangeColorState == ChangeColorState::Wait)
 			{
-				m_selected = true;
+				m_isChangeColorState = ChangeColorState::ChangeColor;
 			}
 
-			if (m_selected)
+			if (m_isChangeColorState == ChangeColorState::ChangeColor)
 			{
 				auto drawComp = GetComponent<PCTSpriteDraw>();
 				m_vertices[0].color = Col4(a, a, a, 1.0f);
@@ -47,38 +54,62 @@ namespace basecross {
 			}
 		}
 
-		if (m_changeSize)
+		if (m_spriteType == SpriteType::SeekSize)
 		{
-			// 時間の更新
-			auto& app = App::GetApp();
-			auto delta = app->GetElapsedTime();
+			m_totalTime += delta;
 
-			m_TotalTime += delta;
-
-			if (m_TotalTime > 5.0f && m_isState != TutorialState::Stop)
+			if (m_totalTime > m_waitSecond && m_isSeekSizeState != SeekSizeState::Stop)
 			{
-				m_isState = TutorialState::SizeChange;
+				m_isSeekSizeState = SeekSizeState::SizeChange;
 			}
-			if (m_isState == TutorialState::SizeChange)
+			if (m_isSeekSizeState == SeekSizeState::SizeChange)
 			{
-				m_tutorialUiSize += 0.05f;
-				m_vertices[0].position.x = m_spriteSize.x * m_tutorialUiSize;
-				m_vertices[0].position.y = -m_spriteSize.y * m_tutorialUiSize;
-				m_vertices[1].position.y = -m_spriteSize.y * m_tutorialUiSize;
-				m_vertices[2].position.x = m_spriteSize.x * m_tutorialUiSize;
+				m_uiSizeCoefficient += 0.05f;
+				switch (m_seekDirection)
+				{
+				case SeekDirection::UpperLeft:
+					m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
+					m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
+					m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					break;
+				case SeekDirection::UpperRight:
+					m_vertices[0].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
+					m_vertices[2].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
+					m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					
+					m_position.x = m_position.x - (m_position.x + 600.0f) * m_uiSizeCoefficient;
+					m_position.y = m_position.y - (m_position.y - 400.0f) * (m_uiSizeCoefficient * 0.3f);
+					m_transform->SetPosition(m_position);
+					break;
+				case SeekDirection::BottomLeft:
+					m_vertices[0].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
+					m_vertices[1].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient);
+					break;
+				case SeekDirection::BottomRight:
+					m_vertices[0].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
+					m_vertices[0].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					m_vertices[1].position.y = (-m_spriteSize.y + m_afterSize.y) * m_uiSizeCoefficient;
+					m_vertices[2].position.x = (m_spriteSize.x - m_afterSize.x) * m_uiSizeCoefficient;
+					break;
+				default:
+					break;
+				}
 
 				auto drawComp = GetComponent<PCTSpriteDraw>();
 				drawComp->UpdateVertices(m_vertices);
 
-				if (m_tutorialUiSize > 1.0f)
+				if (m_uiSizeCoefficient > 1.0f)
 				{
-					m_isState = TutorialState::Stop;
+					m_isSeekSizeState = SeekSizeState::Stop;
 				}
 			}
-
 		}
 
-		if (m_fade)
+		if (m_spriteType == SpriteType::Fade)
 		{
 			auto& app = App::GetApp();
 			auto device = app->GetInputDevice();
@@ -86,37 +117,26 @@ namespace basecross {
 
 			if (m_fadeType == FadeType::FadeIn)
 			{
-				m_fadeCount -= 0.01;
+				m_alphaNum -= m_fadeSpeed;
 
 				auto drawComp = GetComponent<PCTSpriteDraw>();
-				m_vertices[0].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
-				m_vertices[1].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
-				m_vertices[2].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
-				m_vertices[3].color = Col4(0.0f, 0.0f, 0.0f, m_fadeCount);
-				drawComp->SetDiffuse(m_vertices[0].color);
+				drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, m_alphaNum));
 				drawComp->UpdateVertices(m_vertices);
 			}
 			if (m_fadeType == FadeType::FadeOut)
 			{
-				m_fadeCount += 0.01;
+				m_alphaNum += m_fadeSpeed;
 
 				auto drawComp = GetComponent<PCTSpriteDraw>();
-				m_vertices[0].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
-				m_vertices[1].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
-				m_vertices[2].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
-				m_vertices[3].color = Col4(1.0f, 1.0f, 1.0f, m_fadeCount);
-				drawComp->SetDiffuse(m_vertices[0].color);
+				drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, m_alphaNum));
 				drawComp->UpdateVertices(m_vertices);
 			}
-
 		}
-
 	}
 
-	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey, bool Trace, bool changeSize)
+	void Sprites::CreateSprite(const Vec3& position, const Vec2& size, const wstring& texKey)
 	{
-		m_Trace = Trace;
-		m_changeSize = changeSize;
+		m_position = position;
 		m_spriteSize = size;
 		auto& app = App::GetApp();
 
@@ -139,25 +159,42 @@ namespace basecross {
 		m_draw->SetTextureResource(texKey);
 
 		m_transform = GetComponent<Transform>();
-		m_transform->SetPosition(position);
+		m_transform->SetPosition(m_position);
 
 		// 透過処理を有効にする
 		SetAlphaActive(true);
+		// 描画レイヤーを最前面に
 		SetDrawLayer((int)DrawLayer::ForeFront);
 	}
-	void Sprites::CreateSprite(const Vec3 position, const Vec2 size, const wstring texKey, bool Trace, bool fade, int fadeType){
-		m_fade = fade;
-		if (m_fade) {
-			m_fadeType = (FadeType)fadeType;
-			if (m_fadeType == FadeType::FadeOut) {
-				m_fadeCount = 0.0f;
-			}
-			else if(m_fadeType == FadeType::FadeIn)
-			{
-				m_fadeCount = 1.0f;
-			}
+
+	void Sprites::CreateColorChangeSprite(const Vec3& position, const Vec2& size, const wstring& texKey)
+	{
+		m_spriteType = SpriteType::ChangeColor;
+		CreateSprite(position, size, texKey);
+	}
+
+	void Sprites::CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const int seekDirection, const float waitSecond)
+	{
+		m_spriteType = SpriteType::SeekSize;
+		m_seekDirection = (SeekDirection)seekDirection;
+		m_afterSize = afterSize;
+		m_waitSecond = waitSecond;
+		CreateSprite(position, beforeSize, texKey);
+	}
+
+	void Sprites::CreateFadeSprite(const Vec3& position, const Vec2& size, const wstring& texKey, const int fadeType){
+
+		m_spriteType = SpriteType::Fade;
+		m_fadeType = (FadeType)fadeType;
+		if (m_fadeType == FadeType::FadeOut) {
+			m_alphaNum = 0.0f;
 		}
-		CreateSprite(position, size, texKey, Trace,fade);
+		else if(m_fadeType == FadeType::FadeIn)
+		{
+			m_alphaNum = 1.0f;
+		}
+
+		CreateSprite(position, size, texKey);
 	}
 	
 }

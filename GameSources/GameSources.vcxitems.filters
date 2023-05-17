@@ -109,13 +109,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleSprite.cpp">
       <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
-      <Filter>Sources\UI\Sprites\Inheritance</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp">
-      <Filter>Sources\UI\Sprites\Inheritance</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
       <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp">
@@ -150,6 +144,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
       <Filter>Sources\Stage\OtherStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp">
+      <Filter>Sources\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
+      <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,9 +273,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h">
       <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
-      <Filter>Headers\UI\Sprites\Other</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">
       <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
@@ -302,6 +299,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
       <Filter>Headers\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
+      <Filter>Headers\Trap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

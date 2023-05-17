@@ -59,7 +59,7 @@ namespace basecross {
 
 	//Bƒ{ƒ^ƒ“
 	void DefeatStage::OnPushB() {
-		AddGameObject<FadeOut>();
+		AddGameObject<FadeOut>(L"FADE_BLACK");
 
 		PostEvent(3.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToTitleStage");
 

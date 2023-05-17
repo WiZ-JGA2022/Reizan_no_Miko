@@ -22,14 +22,12 @@ namespace basecross {
 
 		m_transform = GetComponent<Transform>();
 
-		//// 透過処理を有効にする
-		//SetAlphaActive(true);
+		// 透過処理を有効にする
+		SetAlphaActive(true);
 	}
 
 	void GaugeSizeSettings::SetVartices()
 	{
-		m_gaugeWidth = m_DefaultSize.x;
-
 		const Col4 white(1.0f, 1.0f, 1.0f, 1.0f); // 色を白(画像ファイルの色そのまま)に
 
 		// 頂点データの設定

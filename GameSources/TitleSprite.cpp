@@ -9,13 +9,19 @@
 
 namespace basecross {
 	TitleSprite::TitleSprite(const shared_ptr<Stage>& stage) :
-		Sprites(stage)
+		Sprites(stage),
+		m_DefaultSize(Vec2((float)App::GetApp()->GetGameWidth(), (float)App::GetApp()->GetGameHeight()))
 	{
 	}
 	TitleSprite::~TitleSprite() {}
 
 	void TitleSprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"TITLE",false,false);
+		Sprites::CreateSprite(Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f), m_DefaultSize, L"TITLE");
+	}
+
+	void TitleSprite::OnUpdate()
+	{
+		Sprites::OnUpdate();
 	}
 }
