@@ -151,6 +151,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp">
       <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp">
+      <Filter>Sources\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
@@ -302,6 +305,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h">
       <Filter>Headers\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h">
+      <Filter>Headers\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -62,6 +62,7 @@ namespace basecross {
 		AddGameObject<TrapNumber>();
 
 		AddGameObject<TutorialUI>();
+
 	} // end CreateUI
 
 
@@ -89,13 +90,13 @@ namespace basecross {
 
 			// ínñ ÇÃçÏê¨
 			AddGameObject<Field>();
-			AddGameObject<StageCollision>(Vec3(29.4f, 4.5f, 30.0f), Vec3(1.0f, 1.0f, 90.0f));
-			AddGameObject<StageCollision>(Vec3(-30.4f, 4.5f, 30.0f), Vec3(1.0f, 10.0f, 90.0f));
-			AddGameObject<StageCollision>(Vec3(0.0f, 4.5f, -15.0f), Vec3(60.0f, 10.0f, 1.0f));
-			AddGameObject<StageCollision>(Vec3(-17.5f, 1.0f, 12.5f), Vec3(28.0f, 3.0f, 7.5f));
-			AddGameObject<StageCollision>(Vec3(13.5f, 1.0f, 28.0f), Vec3(31.0f, 3.0f, 6.5f));
-			AddGameObject<StageCollision>(Vec3(13.0f, 1.0f, 58.0f), Vec3(5.0f, 3.0f, 16.0f));
-			AddGameObject<StageCollision>(Vec3(-13.5f, 1.0f, 57.5f), Vec3(5.0f, 3.0f, 14.5f));
+			AddGameObject<StageCollision>(Vec3(30.4f, 4.5f, 29.0f), Vec3(1.0f, 10.0f, 90.0f));
+			AddGameObject<StageCollision>(Vec3(-30.4f, 4.5f, 29.0f), Vec3(1.0f, 10.0f, 90.0f));
+			AddGameObject<StageCollision>(Vec3(0.0f, 4.5f, -16.0f), Vec3(60.0f, 10.0f, 1.0f));
+			AddGameObject<StageCollision>(Vec3(-16.0f, 1.0f, 7.5f), Vec3(28.0f, 3.0f, 8.5f));
+			AddGameObject<StageCollision>(Vec3(14.5f, 1.0f, 26.0f), Vec3(31.5f, 3.0f, 6.5f));
+			AddGameObject<StageCollision>(Vec3(7.5f, 1.0f, 53.0f), Vec3(3.0f, 3.0f, 18.0f));
+			AddGameObject<StageCollision>(Vec3(-8.0f, 1.0f, 52.0f), Vec3(3.0f, 3.0f, 16.5f));
 
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);

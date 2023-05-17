@@ -59,3 +59,4 @@
 #include "DefeatStage.h"
 #include "TitleStage.h"
 #include "StandbyStage.h"
+#include "Onibi.h"
