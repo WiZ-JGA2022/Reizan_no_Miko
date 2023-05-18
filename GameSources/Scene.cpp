@@ -102,6 +102,9 @@ namespace basecross{
 		RoadTexture(L"TUTORIAL", L"チュートリアル(仮).png");
 		RoadTexture(L"FADE_BLACK", L"Fade_Black.png");
 		RoadTexture(L"FADE_WHITE", L"Fade_White.png");
+		RoadTexture(L"RB_BUTTON", L"RBボタン.png");
+		RoadTexture(L"HOLDDOWN_SKIP", L"長押しでスキップ.png");
+		RoadTexture(L"HOLDBAR", L"HoldBar.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");

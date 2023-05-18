@@ -60,3 +60,6 @@
 #include "TitleStage.h"
 #include "StandbyStage.h"
 #include "Onibi.h"
+#include "RBButtonUI.h"
+#include "HoldSkip.h"
+#include "HoldGauge.h"

@@ -154,6 +154,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HoldSkip.cpp">
+      <Filter>Sources\UI\Sprites\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RBButtonUI.cpp">
+      <Filter>Sources\UI\Sprites\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HoldGauge.cpp">
+      <Filter>Sources\UI\Gauge</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
@@ -308,6 +317,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h">
       <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RBButtonUI.h">
+      <Filter>Headers\UI\Sprites\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HoldGauge.h">
+      <Filter>Headers\UI\Gauge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
