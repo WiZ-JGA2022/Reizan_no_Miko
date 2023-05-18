@@ -70,6 +70,12 @@ namespace basecross {
 		AddGameObject<GameSprite>();
 	} // end CreateUI
 
+	void FirstStage::CreateEffectController()
+	{
+		auto effect = AddGameObject<EffectController>();
+		SetSharedGameObject(L"EffectController", effect);
+	}
+
 	void FirstStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
@@ -121,11 +127,7 @@ namespace basecross {
 
 			AddGameObject<Onibi>();
 
-			AddGameObject<EffectController>()->OnDraw();
-			AddGameObject<EffectController>()->OnDraw2();
-			AddGameObject<EffectController>()->OnDraw3();
-			AddGameObject<EffectController>()->OnDraw4();
-
+			CreateEffectController();
 			// UI�̍쐬
 			CreateUI();
 			PlayBGM();

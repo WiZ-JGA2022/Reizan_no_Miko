@@ -163,33 +163,62 @@ namespace basecross{
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToFirstStage") {
-			//最初のアクティブステージの設定
+			// アクティブステージの設定
 			ResetActiveStage<FirstStage>();
 		}
 		else if (event->m_MsgStr == L"ToStandbyStage") {
-			//最初のアクティブステージの設定
+			// アクティブステージの設定
 			ResetActiveStage<StandbyStage>();
 		}
 		else if (event->m_MsgStr == L"ToTitleStage") {
-			//最初のアクティブステージの設定
+			// アクティブステージの設定
 			ResetActiveStage<TitleStage>();
 		}
 		else if (event->m_MsgStr == L"ToClearStage") {
-			//最初のアクティブステージの設定
+			// データのリセット
+			ResetData();
+			// アクティブステージの設定
 			ResetActiveStage<ClearStage>();
 		}
 		else if (event->m_MsgStr == L"ToResultStage") {
-			//最初のアクティブステージの設定
+			// データのリセット
+			ResetData();
+			// アクティブステージの設定
 			ResetActiveStage<DefeatStage>();
 		}
 
 		// デバッグ用文字列オブジェクトに対する設定
-		auto dss = GetDebugStringSprite();
-		dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
-		dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
-		dss->SetTextBlockWidth(400.0f);
-		dss->SetTextBlockHeight(200.0f);
+		//auto dss = GetDebugStringSprite();
+		//dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
+		//dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		//dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
+		//dss->SetTextBlockWidth(400.0f);
+		//dss->SetTextBlockHeight(200.0f);
+	}
+
+	void Scene::ResetData()
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			m_trapCount[i] = 0;
+		}
+
+		m_playerPosition = Vec3(0);
+		m_playerRotation = Quat(0);
+		m_cameraAt = Vec3(0);
+		m_cameraAngle = 0.0f;
+		m_cameraRadXZ = 0;
+		m_cameraRadY = 0;
+
+		for (int i = 0; i < 5; i++)
+		{
+			m_spikePosition[i] = Vec3(0);
+		}
+		for (int i = 0; i < 1; i++)
+		{
+			m_lavaPosition[i] = Vec3(0);
+		}
+
 	}
 
 }

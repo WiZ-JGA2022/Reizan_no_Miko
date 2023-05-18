@@ -52,6 +52,15 @@ namespace basecross {
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		ptrDraw->UpdateAnimation(elapsedTime);
 
+		//ptrDraw->AddAnimation(L"walk", 0, 60, true);
+		//ptrDraw->AddAnimation(L"Punch", 70, 30, false);
+		//if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"Punch")
+		//{
+		//	ptrDraw->ChangeCurrentAnimation(L"walk");
+		//}
+
+		//ptrDraw->ChangeCurrentAnimation(L"Punch");
+
 		//“G‚ÌˆÚ“®‚Ì‡”Ô
 		if (m_currentPointIndex == 0)
 		{

@@ -12,7 +12,6 @@ namespace basecross{
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
-		int m_texNum;
 		int m_trapCount[4];
 
 		Vec3 m_playerPosition;
@@ -74,7 +73,6 @@ namespace basecross{
 		//--------------------------------------------------------------------------------------
 		Scene() :
 			SceneBase(),
-			m_texNum(0),
 			m_playerPosition(Vec3(0.0f)),
 			m_playerRotation(Vec3(0.0f)),
 			m_cameraRadY(0.0f),
@@ -102,15 +100,9 @@ namespace basecross{
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
-		//--------------------------------------------------------------------------------------
-		/**
-		@brief テクスチャの番号を取得
-		*/
-		//--------------------------------------------------------------------------------------
-		int GetTexNum()
-		{
-			return m_texNum;
-		}
+
+		// データを全て0に戻す関数
+		void ResetData();
 
 		void SetBeforePlayerPosition(const Vec3& pos)
 		{

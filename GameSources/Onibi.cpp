@@ -131,8 +131,7 @@ namespace basecross {
 		Vec3 pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
-		auto playerScale = playerTrans->GetScale();
-		playerPos.y +5;
+		playerPos.y + 5;
 
 		m_directionPoint = playerPos - pos; // プレイヤーへの方向を計算
 		// ベクトルの正規化処理

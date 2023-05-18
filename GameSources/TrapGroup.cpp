@@ -92,6 +92,7 @@ namespace basecross {
 		// Àsó‘Ô‚È‚ç
 		if (m_isState == TrapState::Active)
 		{
+			GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 5.0f);
 			// íœ‚Ü‚Å‚ÌŠÔ‚ğŒo‰ß‚³‚¹‚é
 			m_removeDelayFlame--;
 
