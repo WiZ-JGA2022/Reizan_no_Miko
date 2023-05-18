@@ -22,7 +22,7 @@ namespace basecross {
 	{
 		for (int i = 0; i < m_PickUpStatusCount; i++)
 		{
-			GetStage()->AddGameObject<TrapSprite>(i, true, Vec2(100.0f, 100.0f), Vec2(-390.0f + (i * 250.0f) + (i * 20), -250.0f), i);
+			GetStage()->AddGameObject<TrapSprite>(i, true, Vec2(75.0f, 75.0f), Vec2(-400.0f + (i * 250.0f) + (i * 20), -300.0f), i);
 		}
 	} // end OnCreate
 

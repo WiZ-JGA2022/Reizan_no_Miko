@@ -24,7 +24,7 @@ namespace basecross {
 			for (int j = 0; j < m_place; j++)
 			{
 				auto numberObj = ObjectFactory::Create<NumberUI>(GetStage(), m_Size, L"TRAP_NUMBER"); // オブジェクトを生成するけどステージに追加しない
-				numberObj->SetPosition(Vec2((225.0f + (275.0f * i)) - m_Size.x * j, 0.0f), -0.40f); // 画面の右端から、スコアのすべての桁が収まる位置に調整する
+				numberObj->SetPosition(Vec2((210.0f + (270.0f * i)) - m_Size.x * j, 0.0f), -0.41f); // 画面の右端から、スコアのすべての桁が収まる位置に調整する
 				m_numbers[i].push_back(numberObj);
 			}
 		}
