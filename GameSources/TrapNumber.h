@@ -10,7 +10,7 @@
 namespace basecross {
 	class TrapNumber : public GameObject {
 
-		const Vec2 m_Size = Vec2(12.0f, 24.0f);
+		const Vec2 m_Size = Vec2(24.0f, 48.0f);
 
 		int m_place;
 
