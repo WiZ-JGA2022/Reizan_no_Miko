@@ -48,10 +48,10 @@ namespace basecross {
 
 		wstring dataDir;
 		App::GetApp()->GetDataDirectory(dataDir);
-		wstring efect01 = dataDir + L"Lava.efk";
-		wstring efect02 = dataDir + L"fire04.efk";
-		wstring efect03 = dataDir + L"RunDust.efk";
-		wstring efect04 = dataDir + L"damage.efk";
+		wstring efect01 = dataDir + L"Effects\\" + L"Lava.efk";
+		wstring efect02 = dataDir + L"Effects\\" + L"fire04.efk";
+		wstring efect03 = dataDir + L"Effects\\" + L"RunDust.efk";
+		wstring efect04 = dataDir + L"Effects\\" + L"damage.efk";
 
 		m_effects[L"SpurtLava_Efc"] = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect01.c_str());
 		m_effects[L"FireBall_Efc"] = ::Effekseer::Effect::Create(m_manager, (const char16_t*)efect02.c_str());
@@ -64,13 +64,13 @@ namespace basecross {
 
 	}
 
-	void EffectController::OnDraw() {//溶岩
+	void EffectController::OnDraw() {
 		auto elps = App::GetApp()->GetElapsedTime();
 		m_manager->Update();// マネージャーの更新		
 		m_renderer->SetTime(elps);// 時間を更新する
-		m_renderer->BeginRendering();// エフェクトの描画開始処理を行う。
-		m_manager->Draw();// エフェクトの描画を行う。
-		m_renderer->EndRendering();// エフェクトの描画終了処理を行う。
+		m_renderer->BeginRendering();// エフェクトの描画開始処理を行う
+		m_manager->Draw();// エフェクトの描画を行う
+		m_renderer->EndRendering();// エフェクトの描画終了処理を行う
 	}
 
 	void EffectController::OnDestroy() {
@@ -86,15 +86,15 @@ namespace basecross {
 	{
 		auto elps = App::GetApp()->GetElapsedTime();
 		if (m_totalTime <= 0.0f) {
-			//m_handle = m_manager->Play(m_effects[effectKey], position.x, position.y, position.z);
-			m_handle = m_manager->Play(m_effects[effectKey], -20.0f, 0.0f, -20.0f);
+			m_handle = m_manager->Play(m_effects[effectKey], position.x, position.y, position.z);
+			//m_handle = m_manager->Play(m_effects[effectKey], -20.0f, 0.0f, -20.0f);
 		}
 		else if (m_totalTime >= stopTime) {
 			m_manager->StopEffect(m_handle);
 		}
 		m_totalTime += elps;
 
-		m_manager->Update();			// マネージャーの更新		
+		m_manager->Update();			// マネージャーの更新
 		m_renderer->SetTime(elps);		// 時間を更新する
 		m_renderer->BeginRendering();	// エフェクトの描画開始処理を行う
 		m_manager->Draw();				// エフェクトの描画を行う

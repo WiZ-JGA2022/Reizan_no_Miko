@@ -22,12 +22,6 @@ namespace basecross {
 
 	void ExpBar::OnUpdate()
 	{
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive())
-		{
-			return;
-		}
-
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 
 		if (m_maxExp < playerStatus->GetMaxExp())

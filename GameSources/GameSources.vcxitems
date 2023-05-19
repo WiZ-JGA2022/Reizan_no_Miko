@@ -20,11 +20,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CountDownNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeIn.h" />
@@ -48,7 +46,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerController.h" />
@@ -56,7 +53,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Oni.h" />
@@ -77,11 +73,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CountDownNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeIn.cpp" />
@@ -104,14 +98,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Oni.cpp" />

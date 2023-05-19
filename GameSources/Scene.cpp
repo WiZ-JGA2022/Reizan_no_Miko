@@ -64,25 +64,10 @@ namespace basecross{
 		RoadTexture(L"EXPBAR_BLUE", L"ExpBar(Blue).png");
 		RoadTexture(L"HPBAR_GREEN", L"HpBar(Green).png");
 		RoadTexture(L"HPBAR_RED", L"HpBar(Red).png");
-		RoadTexture(L"HP_LEVELUP", L"ëÃóÕUP.png");
-		RoadTexture(L"ATK_LEVELUP", L"çUåÇóÕUP.png");
-		RoadTexture(L"DEF_LEVELUP", L"ñhå‰óÕUP.png");
-		RoadTexture(L"SPD_LEVELUP", L"à⁄ìÆë¨ìxUP.png");
-		RoadTexture(L"HASTE_LEVELUP", L"çUåÇë¨ìxUP.png");
-		RoadTexture(L"PICKUP_LEVELUP", L"éÊìæîÕàÕUP.png");
-		RoadTexture(L"WEPON_1_LEVELUP", L"ïêäÌ1.png");
-		RoadTexture(L"WEPON_2_LEVELUP", L"ïêäÌ2.png");
-		RoadTexture(L"CROSSKEY_UP", L"CrossKey_Up.png");
-		RoadTexture(L"CROSSKEY_RIGHT", L"CrossKey_Right.png");
-		RoadTexture(L"CROSSKEY_DOWN", L"CrossKey_Down.png");
 		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
 		RoadTexture(L"EXP_NUMBER", L"ExpNumber.png");
 		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
 		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
-		RoadTexture(L"GROUND", L"ground.jpg");
-		RoadTexture(L"EVENT_BACK_GROUND", L"EventBackGround.png");
-		RoadTexture(L"ATTACK_ANNOUNCE_CIRCLE", L"AttackAnnouncementCircle.png");
-		RoadTexture(L"ATTACK_ANNOUNCE_LINE", L"AttackAnnouncementLine.png");
 		RoadTexture(L"TITLE", L"Title.png");
 		RoadTexture(L"RESULT", L"Result.png");
 		RoadTexture(L"GAME_SPRITE", L"EnemyActive.png");
@@ -139,7 +124,7 @@ namespace basecross{
 		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
 		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
 		RoadBoneModel(L"O_hitotume_walk", L"HITOTSUME_WALK", L"HITOTSUME_WALK_TAN");
-		//RoadBoneModel(L"O_iwa2", L"STONE_MODEL", L"STONE_MODEL_TAN");
+		//RoadBoneModel(L"O_ooiwa", L"STONE_MODEL", L"STONE_MODEL_TAN");
 
 	}
 

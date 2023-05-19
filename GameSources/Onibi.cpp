@@ -35,10 +35,9 @@ namespace basecross {
 	void Onibi::OnUpdate()
 	{
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
-		if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
+		if (!player->GetDrawActive())
 		{
 			// 処理を停止する
 			return;

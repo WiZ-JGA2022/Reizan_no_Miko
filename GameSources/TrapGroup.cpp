@@ -92,9 +92,9 @@ namespace basecross {
 		// 実行状態なら
 		if (m_isState == TrapState::Active)
 		{
-			GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 5.0f);
 			// 削除までの時間を経過させる
 			m_removeDelayFlame--;
+			GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 7.0f);
 
 			// ダメージを与える間隔毎にコリジョンをアクティブにする
 			if (m_removeDelayFlame % m_DamageIntervalFlame == 0)

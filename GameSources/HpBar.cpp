@@ -22,12 +22,6 @@ namespace basecross {
 
 	void HpBar::OnUpdate()
 	{
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive())
-		{
-			return;
-		}
-
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		m_bar[0]->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
 		m_bar[1]->UpdateGaugeSize(playerStatus->GetMaxHp(), (float)playerStatus->GetMaxHp());
