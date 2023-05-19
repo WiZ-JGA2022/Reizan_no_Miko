@@ -54,15 +54,7 @@ namespace basecross {
 		* @param meshKey 初期メッシュ
 		* @param animationName アニメーション名
 		*/
-		virtual void CreateEnemyMesh(const Vec3& position, const Vec3& scale, const wstring& meshKey, const wstring& animationName);
-
-		/**
-		* 敵のアニメーションを変更する関数
-		*
-		* @param meshKey メッシュ名
-		* @param animationName アニメーション名
-		*/
-		virtual void ChangeEnemyAnimation(const wstring& meshKey, const wstring& animationName);
+		virtual void CreateEnemyMesh(const Vec3& position, const Vec3& scale, const wstring& meshKey);
 
 		/**
 		* 敵の移動処理

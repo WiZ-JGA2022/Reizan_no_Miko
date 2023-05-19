@@ -132,12 +132,11 @@ namespace basecross{
 		RoadBoneModel(L"O_miko_fall", L"MIKO_FALL", L"MIKO_FALL_TAN");
 		RoadBoneModel(L"O_miko_set", L"MIKO_SET", L"MIKO_SET_TAN");
 		RoadBoneModel(L"O_miko_standby", L"MIKO_STANDBY", L"MIKO_STANDBY_TAN");
-		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
-		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
-		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
+		RoadBoneModel(L"O_oni_all", L"ONI", L"ONI_TAN");
 		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
 		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
 		RoadBoneModel(L"O_hitotume_walk", L"HITOTSUME_WALK", L"HITOTSUME_WALK_TAN");
+		//RoadBoneModel(L"O_iwa2", L"STONE_MODEL", L"STONE_MODEL_TAN");
 
 	}
 
@@ -198,6 +197,7 @@ namespace basecross{
 
 	void Scene::ResetData()
 	{
+		// ÉfÅ[É^ÇÃèâä˙âª
 		for (int i = 0; i < 4; i++)
 		{
 			m_trapCount[i] = 0;
@@ -206,9 +206,9 @@ namespace basecross{
 		m_playerPosition = Vec3(0);
 		m_playerRotation = Quat(0);
 		m_cameraAt = Vec3(0);
-		m_cameraAngle = 0.0f;
-		m_cameraRadXZ = 0;
-		m_cameraRadY = 0;
+		m_cameraAngle = XMConvertToRadians(270.0f);
+		m_cameraRadXZ = 0.0f;
+		m_cameraRadY = 0.0f;
 
 		for (int i = 0; i < 5; i++)
 		{

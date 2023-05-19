@@ -101,7 +101,7 @@ namespace basecross{
 		//--------------------------------------------------------------------------------------
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 
-		// データを全て0に戻す関数
+		// データを初期化する関数
 		void ResetData();
 
 		void SetBeforePlayerPosition(const Vec3& pos)

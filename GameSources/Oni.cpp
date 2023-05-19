@@ -15,22 +15,31 @@ namespace basecross {
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_position(position),
 		m_scale(Vec3(3.0f)),
-		m_currentPointIndex(0)
+		m_currentPointIndex(0),
+		m_alpha(1.0f),
+		m_died(false)
 	{
 	}
 	Oni::~Oni() {}
 
 	void Oni::OnCreate()
 	{
-		Enemy::CreateEnemyMesh(m_position, m_scale, L"ONI_WALK", L"walk");
+		Enemy::CreateEnemyMesh(m_position, m_scale, L"ONI");
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		ptrDraw->AddAnimation(L"walk", 0, 30, true);
+		ptrDraw->AddAnimation(L"attack", 35, 30, true);
+		ptrDraw->AddAnimation(L"dead", 70, 30, false);
+		ptrDraw->AddAnimation(L"wait", 105, 30, true);
+		ptrDraw->ChangeCurrentAnimation(L"walk");
 	}
 
 	void Oni::OnUpdate()
 	{
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
@@ -40,26 +49,24 @@ namespace basecross {
 			// 処理を停止する
 			return;
 		}
+		ptrDraw->UpdateAnimation(elapsedTime);
 		// HPが0になったら
 		if (m_statusValue[L"HP"] <= 0)
 		{
-			// 処理を停止し、見えなくする
-			SetUpdateActive(false);
-			SetDrawActive(false);
+			if (!m_died)
+			{
+				ptrDraw->ChangeCurrentAnimation(L"dead");
+				m_died = true;
+			}
+			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"dead")
+			{
+				// 処理を停止し、見えなくする
+				SetUpdateActive(false);
+				SetDrawActive(false);
+			}
 		}
 		m_damageDelayFlame--;
 
-		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-		ptrDraw->UpdateAnimation(elapsedTime);
-
-		//ptrDraw->AddAnimation(L"walk", 0, 60, true);
-		//ptrDraw->AddAnimation(L"Punch", 70, 30, false);
-		//if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"Punch")
-		//{
-		//	ptrDraw->ChangeCurrentAnimation(L"walk");
-		//}
-
-		//ptrDraw->ChangeCurrentAnimation(L"Punch");
 
 		//敵の移動の順番
 		if (m_currentPointIndex == 0)
@@ -117,6 +124,12 @@ namespace basecross {
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
 		}
+
+		if (other->FindTag(L"KeyStone"))
+		{
+			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+			ptrDraw->ChangeCurrentAnimation(L"attack");
+		}
 	} // end OnCollisionEnter
 
 	void Oni::OnCollisionExcute(shared_ptr<GameObject>& other)
@@ -137,7 +150,6 @@ namespace basecross {
 		if (other->FindTag(L"KeyStone"))
 		{
 			auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
-			Enemy::ChangeEnemyAnimation(L"ONI_ATTACK", L"attack");
 			if (m_damageDelayFlame <= 0)
 			{
 				stone->DamageProcess();
@@ -157,16 +169,16 @@ namespace basecross {
 		// 各種ベクトルの取得
 		Vec3 pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 
-		m_directionPoint = point - pos; // プレイヤーへの方向を計算
-		if (m_directionPoint.x < 0.1f && m_directionPoint.z < 0.1f && m_directionPoint.x > -0.1f && m_directionPoint.z > -0.1f)
+		m_direction = point - pos; // プレイヤーへの方向を計算
+		if (m_direction.x < 0.1f && m_direction.z < 0.1f && m_direction.x > -0.1f && m_direction.z > -0.1f)
 		{
 			m_currentPointIndex++;
 			return;
 		}
-		m_directionPoint.normalize();
+		m_direction.normalize();
 
-		pos += m_directionPoint * m_statusValue[L"SPD"] * delta;	// 移動の計算
-		float rotationY = atan2f(-m_directionPoint.z, m_directionPoint.x); // 回転の計算
+		pos += m_direction * m_statusValue[L"SPD"] * delta;	// 移動の計算
+		float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
 
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理

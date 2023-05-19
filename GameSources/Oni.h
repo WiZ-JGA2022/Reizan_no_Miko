@@ -12,13 +12,16 @@ namespace basecross {
 
 		Vec3 m_position;
 		Vec3 m_scale;
-		Vec3 m_directionPoint;
+		Vec3 m_direction;
 		
 		int m_currentPointIndex;
 
 		// ダメージを与える間隔
 		const int m_DamageDelayCount;
 		int m_damageDelayFlame;
+
+		float m_alpha;
+		bool m_died;
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 

@@ -12,8 +12,7 @@ namespace basecross {
 
 		Vec3 m_position;
 		Vec3 m_scale;
-		Vec3 m_directionPoint;
-		Vec3 m_directionPlayer;
+		Vec3 m_direction;
 
 		// É_ÉÅÅ[ÉWÇó^Ç¶ÇÈä‘äu
 		const int m_DamageDelayCount;
@@ -26,7 +25,7 @@ namespace basecross {
 			{L"HP", 10.0f},
 			{L"ATK", 10.0f},
 			{L"DEF", 1.0f},
-			{L"SPD", 0.1f}
+			{L"SPD", 2.0f}
 		};
 
 	public:
