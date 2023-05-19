@@ -70,9 +70,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeNumber.cpp">
       <Filter>Sources\UI\Number</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp">
-      <Filter>Sources\UI\Number</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
       <Filter>Sources\UI\LevelEvent</Filter>
     </ClCompile>
@@ -154,9 +151,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CountDownNumber.cpp">
-      <Filter>Sources\UI\Number</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HoldSkip.cpp">
       <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
@@ -165,6 +159,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HoldGauge.cpp">
       <Filter>Sources\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +317,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h">
       <Filter>Headers\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CountDownNumber.h">
-      <Filter>Headers\UI\Number</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h">
       <Filter>Headers\UI\Sprites\Other</Filter>
