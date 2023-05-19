@@ -55,15 +55,15 @@ namespace basecross {
 		};
 
 		enum class ChangeColorState {
-			Wait,		// 待機
-			ChangeColor	// 実行
+			DefaultSpeed,	// 通常速度
+			SpeedChange		// 速度変更
 		};
 
 		enum SpriteType m_spriteType = SpriteType::Normal; // スプライトタイプ
 		enum FadeType m_fadeType = FadeType::None; // フェードタイプ
 		enum SeekSizeState m_isSeekSizeState = SeekSizeState::Wait; // サイズ変更の状態
 		enum SeekType m_seekType = SeekType::BottomRight; // 変化する方向
-		enum ChangeColorState m_isChangeColorState = ChangeColorState::Wait; // 色変更の状態
+		enum ChangeColorState m_isChangeColorState = ChangeColorState::DefaultSpeed; // 色変更の状態
 
 	public:
 		Sprites(const shared_ptr<Stage>& stage);
@@ -82,27 +82,6 @@ namespace basecross {
 		void CreateSprite(const Vec3& position, const Vec2& size, const wstring& texKey);
 
 		/**
-		* 色が変わるスプライトを作成する関数
-		*
-		* @param position	表示位置
-		* @param size		表示サイズ
-		* @param texKey		使用テクスチャ
-		*/		
-		void CreateColorChangeSprite(const Vec3& position, const Vec2& size, const wstring& texKey);
-
-		/**
-		* サイズが変わるスプライトを作成する関数
-		*
-		* @param position	表示位置
-		* @param beforeSize 初期表示サイズ
-		* @param afterSize	変更後表示サイズ
-		* @param texKey		使用テクスチャ
-		* @param seekType	サイズ変更タイプ
-		* @param waitSecond サイズ変更までの待機時間
-		*/
-		void CreateSeekSizeSprite(const Vec3& position, const Vec2& beforeSize, const Vec2& afterSize, const wstring& texKey, const SeekType& seekType, const float waitSecond);
-
-		/**
 		* フェードするスプライトを作成する関数
 		*
 		* @param position	表示位置
@@ -111,5 +90,47 @@ namespace basecross {
 		* @param fadeType	フェードタイプ
 		*/
 		void CreateFadeSprite(const Vec3& position, const Vec2& size, const wstring& texKey, const FadeType& fadeType);
+
+		/**
+		* スプライトの点滅処理
+		* 
+		* @param flashSpeed 点滅する速度(1でデフォルトのスピード(二秒に一回点滅))
+		*/
+		void UpdateFlashingSprite(const int flashSpeed);
+
+		/**
+		* スプライトの点滅処理
+		*
+		* @param flashSpeed 普段の速度(1でデフォルトのスピード(二秒に一回点滅))
+		* @param afterFlashSpeed スピード変更後の速度
+		* @param speedChangeTrigger false:通常速度 true:スピード変更後速度
+		*/
+		void UpdateFlashingSprite(const int flashSpeed, const int afterFlashSpeed, const bool speedChangeTrigger);
+
+		/**
+		* スプライトのサイズを変化させる処理
+		*
+		* @param afterSize 変化後のサイズ
+		* @param seekSecond 変化にかかる時間
+		* @param seekType 変化タイプ
+		*/
+		void UpdateSeekSizeSprite(const Vec2& afterSize, const float seekSecond, const SeekType& seekType);
+
+		/**
+		* スプライトのサイズを変化させる処理
+		* 
+		* @param afterSize 変化後のサイズ
+		* @param seekSecond 変化にかかる時間
+		* @param seekType 変化タイプ
+		* @param waitSecond 変化までの時間
+		*/
+		void UpdateSeekSizeSprite(const Vec2& afterSize, const float seekSecond, const SeekType& seekType, const float waitSecond);
+
+		/**
+		* スプライトをフェードさせる処理
+		* 
+		* @param fadeSecond フェードにかかる時間
+		*/
+		void UpdateFadeSprite(const float fadeSecond);
 	};
 }

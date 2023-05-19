@@ -21,12 +21,6 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	// レベルアップイベントの作成
-	void StandbyStage::CreateLevelUpEvent() {
-		auto levelUpEvent = AddGameObject<RandomSelectLevelUpButton>();
-
-		SetSharedGameObject(L"LevelUpEvent", levelUpEvent);
-	}
 
 	//プレイヤーの作成
 	void StandbyStage::CreatePlayer() {
@@ -87,8 +81,6 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
-
-			CreateLevelUpEvent();
 			//プレーヤーの作成
 			CreatePlayer();
 

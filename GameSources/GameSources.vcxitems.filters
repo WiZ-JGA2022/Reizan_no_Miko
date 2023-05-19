@@ -73,15 +73,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp">
       <Filter>Sources\UI\Number</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CrossKey.cpp">
-      <Filter>Sources\UI\LevelEvent</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.cpp">
-      <Filter>Sources\UI\LevelEvent</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)LevelUpSprites.cpp">
-      <Filter>Sources\UI\LevelEvent</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeIn.cpp">
       <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
@@ -116,9 +107,6 @@
       <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp">
-      <Filter>Sources\UI\Sprites\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EventBackGround.cpp">
       <Filter>Sources\UI\Sprites\Other</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FirstStage.cpp">
@@ -240,15 +228,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h">
       <Filter>Headers\UI\Gauge</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CrossKey.h">
-      <Filter>Headers\UI\LevelEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)LevelUpSprites.h">
-      <Filter>Headers\UI\LevelEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)RandomSelectLevelUp.h">
-      <Filter>Headers\UI\LevelEvent</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
       <Filter>Headers\UI\Sprites\Inheritance</Filter>
     </ClInclude>
@@ -283,9 +262,6 @@
       <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h">
-      <Filter>Headers\UI\Sprites\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EventBackGround.h">
       <Filter>Headers\UI\Sprites\Other</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h">

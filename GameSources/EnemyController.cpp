@@ -32,8 +32,7 @@ namespace basecross {
 	void EnemyController::OnUpdate()
 	{	
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive() || !player->GetDrawActive() || player->GetCondition() == 0)
+		if (!player->GetDrawActive() || player->GetCondition() == 0)
 		{
 			return;
 		}

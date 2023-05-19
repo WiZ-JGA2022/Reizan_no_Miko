@@ -16,7 +16,6 @@ namespace basecross {
 
 		//ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
-		void CreateLevelUpEvent();
 		// ålŒö‚Ìì¬
 		void CreatePlayer();
 		// UI‚Ìì¬

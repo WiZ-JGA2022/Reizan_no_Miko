@@ -18,11 +18,11 @@ namespace basecross {
 	// èâä˙âª
 	void TutorialUI::OnCreate()
 	{
-		Sprites::CreateSeekSizeSprite(Vec3(350.0f, 0.0f, 0.0f), m_DefaultSize, m_AfterSize, L"TUTORIAL", SeekType::BottomRight, 5.0f);
+		Sprites::CreateSprite(Vec3(350.0f, 0.0f, 0.0f), m_DefaultSize, L"TUTORIAL");
 	}
 
 	void TutorialUI::OnUpdate()
 	{
-		Sprites::OnUpdate();
+		Sprites::UpdateSeekSizeSprite(m_AfterSize, 0.5f, SeekType::BottomRight, 5.0f);
 	}
 }

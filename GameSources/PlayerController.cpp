@@ -46,7 +46,6 @@ namespace basecross {
 
 		// ƒRƒŠƒWƒ‡ƒ“‚ğ‚Â‚¯‚é
 		auto ptrColl = AddComponent<CollisionCapsule>();
-		ptrColl->SetDrawActive(true);
 		// Õ“Ë”»’è‚ÍAuto
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(false);
@@ -81,11 +80,6 @@ namespace basecross {
 
 	void PlayerController::OnUpdate()
 	{
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		if (levelUpEvent->GetEventActive())
-		{
-			return;
-		}
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		if (playerStatus->GetStatusValue(L"HP") <= 0)
 		{

@@ -33,12 +33,6 @@ namespace basecross {
 		SetSharedGameObject(L"EnemyController", enemyController);
 	}
 
-	// レベルアップイベントの作成
-	void FirstStage::CreateLevelUpEvent() {
-		auto levelUpEvent = AddGameObject<RandomSelectLevelUpButton>();
-
-		SetSharedGameObject(L"LevelUpEvent", levelUpEvent);
-	}
 
 	//プレイヤーの作成
 	void FirstStage::CreatePlayer() {
@@ -97,8 +91,6 @@ namespace basecross {
 			CreatePlayer();
 			// 敵の作成
 			CreateEnemy();
-			// レベルアップイベントの作成
-			CreateLevelUpEvent();
 
 			// 地面の作成
 			AddGameObject<Field>();

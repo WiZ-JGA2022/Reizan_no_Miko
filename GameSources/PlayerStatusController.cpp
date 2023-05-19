@@ -38,54 +38,6 @@ namespace basecross {
 			// 処理を停止する
 			return;
 		}
-
-		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
-		// 経験値取得量が必要経験値を超えたとき
-		if (m_statusValue[L"EXP"] >= m_maxExp)
-		{
-			// 経験値レベルを上げる
-			m_statusLevel[L"EXP"]++;
-			// レベルアップイベントの実行
-			levelUpEvent->LevelUpEvent();
-			// EXPを0に戻す
-			m_statusValue[L"EXP"] = 0;
-			// 次回レベルアップまでに必要なEXP量を増やす
-			m_maxExp = (m_BaseRisingValue / 2) * (m_statusLevel[L"EXP"] + 1);
-		}
-
-		// レベルアップイベントがアクティブなら
-		if (levelUpEvent->GetEventActive())
-		{
-			auto& app = App::GetApp();
-			auto device = app->GetInputDevice(); 
-			auto& pad = device.GetControlerVec()[0]; 
-
-			// 十字キーの上、右、下で選ぶ
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP)
-			{
-				auto XAPtr = App::GetApp()->GetXAudio2Manager();
-				XAPtr->Start(L"SELECT_SE", 0, 0.1f);
-
-				StatusLevelUpdate(levelUpEvent->GetSpriteNums(0));
-				levelUpEvent->SetEventActive(false);
-			}
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
-			{
-				auto XAPtr = App::GetApp()->GetXAudio2Manager();
-				XAPtr->Start(L"SELECT_SE", 0, 0.1f);
-
-				StatusLevelUpdate(levelUpEvent->GetSpriteNums(1));
-				levelUpEvent->SetEventActive(false);
-			}
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN)
-			{
-				auto XAPtr = App::GetApp()->GetXAudio2Manager();
-				XAPtr->Start(L"SELECT_SE", 0, 0.1f);
-
-				StatusLevelUpdate(levelUpEvent->GetSpriteNums(2));
-				levelUpEvent->SetEventActive(false);
-			}
-		}
 	}
 
 	void PlayerStatusController::StatusLevelUpdate(int selectStatusNum)

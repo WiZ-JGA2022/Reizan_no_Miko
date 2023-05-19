@@ -33,7 +33,7 @@ namespace basecross {
 
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-		drawComp->SetTextureResource(L"ATTACK_ANNOUNCE_CIRCLE");
+		drawComp->SetTextureResource(L"SPURT_LAVA");
 
 		AddTag(L"SpurtLava");
 		SetAlphaActive(true);
@@ -92,15 +92,14 @@ namespace basecross {
 		// 実行状態なら
 		if (m_isState == TrapState::Active)
 		{
-			GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 5.0f);
 			// 削除までの時間を経過させる
 			m_removeDelayFlame--;
+			GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 7.0f);
 
 			// ダメージを与える間隔毎にコリジョンをアクティブにする
 			if (m_removeDelayFlame % m_DamageIntervalFlame == 0)
 			{
 				ptrColl->SetUpdateActive(true);
-				ptrColl->SetDrawActive(true);
 			}
 			// 削除までの時間が0になったら
 			if (m_removeDelayFlame <= 0)
@@ -113,6 +112,15 @@ namespace basecross {
 				GetStage()->RemoveGameObject<SpurtLava>(GetThis<SpurtLava>());
 			}
 		}
+
+		//wstringstream wss;
+		//wss << L"pos : " <<
+		//	m_transform->GetPosition().x << L" " <<
+		//	m_transform->GetPosition().y << L" " <<
+		//	m_transform->GetPosition().z << endl;
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 	}
 
 

@@ -23,6 +23,6 @@ namespace basecross {
 	
 	void FadeIn::OnUpdate()
 	{
-		Sprites::OnUpdate();
+		Sprites::UpdateFadeSprite(1.0f);
 	}
 }
