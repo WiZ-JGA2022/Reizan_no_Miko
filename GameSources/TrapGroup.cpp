@@ -33,7 +33,7 @@ namespace basecross {
 
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-		drawComp->SetTextureResource(L"ATTACK_ANNOUNCE_CIRCLE");
+		drawComp->SetTextureResource(L"SPURT_LAVA");
 
 		AddTag(L"SpurtLava");
 		SetAlphaActive(true);
@@ -100,7 +100,6 @@ namespace basecross {
 			if (m_removeDelayFlame % m_DamageIntervalFlame == 0)
 			{
 				ptrColl->SetUpdateActive(true);
-				ptrColl->SetDrawActive(true);
 			}
 			// íœ‚Ü‚Å‚ÌŠÔ‚ª0‚É‚È‚Á‚½‚ç
 			if (m_removeDelayFlame <= 0)
@@ -113,6 +112,15 @@ namespace basecross {
 				GetStage()->RemoveGameObject<SpurtLava>(GetThis<SpurtLava>());
 			}
 		}
+
+		//wstringstream wss;
+		//wss << L"pos : " <<
+		//	m_transform->GetPosition().x << L" " <<
+		//	m_transform->GetPosition().y << L" " <<
+		//	m_transform->GetPosition().z << endl;
+		//auto scene = App::GetApp()->GetScene<Scene>();
+		//auto dstr = scene->GetDebugString();
+		//scene->SetDebugString(dstr + wss.str());
 	}
 
 

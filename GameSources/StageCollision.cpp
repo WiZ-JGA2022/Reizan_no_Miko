@@ -18,7 +18,6 @@ namespace basecross {
 	void StageCollision::OnCreate()
 	{
 		auto collComp = AddComponent<CollisionObb>();
-		collComp->SetDrawActive(true);
 		// Õ“Ë”»’è‚ÍAuto
 		collComp->SetAfterCollision(AfterCollision::Auto);
 		collComp->SetSleepActive(false);

@@ -61,7 +61,12 @@ namespace basecross {
 	}
 
 	void EffectController::OnUpdate() {
-
+		// メインカメラにプレイヤーをセットする
+		//auto cameraEye = GetStage()->GetView()->GetTargetCamera()->GetEye();
+		//auto cameraAt = GetStage()->GetView()->GetTargetCamera()->GetAt();
+		//auto g_position = ::Effekseer::Vector3D(cameraEye.x, cameraEye.y, cameraEye.z);
+		//m_renderer->SetCameraMatrix(
+		//	::Effekseer::Matrix44().LookAtRH(g_position, ::Effekseer::Vector3D(cameraAt.x, cameraAt.y, cameraAt.z), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 	}
 
 	void EffectController::OnDraw() {
@@ -93,13 +98,6 @@ namespace basecross {
 			m_manager->StopEffect(m_handle);
 		}
 		m_totalTime += elps;
-
-		m_manager->Update();			// マネージャーの更新
-		m_renderer->SetTime(elps);		// 時間を更新する
-		m_renderer->BeginRendering();	// エフェクトの描画開始処理を行う
-		m_manager->Draw();				// エフェクトの描画を行う
-		m_renderer->EndRendering();		// エフェクトの描画終了処理を行う
-
 	}
 }
 //end basecross

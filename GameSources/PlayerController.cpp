@@ -46,7 +46,6 @@ namespace basecross {
 
 		// ƒRƒŠƒWƒ‡ƒ“‚ğ‚Â‚¯‚é
 		auto ptrColl = AddComponent<CollisionCapsule>();
-		ptrColl->SetDrawActive(true);
 		// Õ“Ë”»’è‚ÍAuto
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(false);

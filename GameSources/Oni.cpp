@@ -93,6 +93,10 @@ namespace basecross {
 
 	void Oni::OnCollisionEnter(shared_ptr<GameObject>& other)
 	{
+		if (m_died)
+		{
+			return;
+		}
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		// 弾にあたったら
 		if (other->FindTag(L"PlayerBullet"))
@@ -133,6 +137,11 @@ namespace basecross {
 
 	void Oni::OnCollisionExcute(shared_ptr<GameObject>& other)
 	{
+		if (m_died)
+		{
+			return;
+		}
+
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		// プレイヤーにあたったら
 		if (other->FindTag(L"Player"))
@@ -161,6 +170,10 @@ namespace basecross {
 
 	void Oni::MoveEnemyPoint(const Vec3& point)//チェックポイントに向かって
 	{
+		if (m_died)
+		{
+			return;
+		}
 		// デルタタイムの取得
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
@@ -185,6 +198,10 @@ namespace basecross {
 
 	void Oni::EnemyDamageProcess(float damage)
 	{
+		if (m_died)
+		{
+			return;
+		}
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
 
