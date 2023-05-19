@@ -154,6 +154,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CountDownNumber.cpp">
+      <Filter>Sources\UI\Number</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
@@ -308,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h">
       <Filter>Headers\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CountDownNumber.h">
+      <Filter>Headers\UI\Number</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

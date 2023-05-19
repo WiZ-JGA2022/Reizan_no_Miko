@@ -19,7 +19,7 @@ namespace basecross {
 	void GameSprite::OnCreate()
 	{
 		m_position = Vec3(-m_DefaultSize.x / 2, m_DefaultSize.y / 2, 0.0f);
-		Sprites::CreateSeekSizeSprite(m_position, m_DefaultSize, m_AfterSize, L"GAME_SPRITE", 1, 0.5f);
+		Sprites::CreateSeekSizeSprite(m_position, m_DefaultSize, m_AfterSize, L"GAME_SPRITE", SeekType::GameSprite, 0.5f);
 	}
 
 	void GameSprite::OnUpdate()

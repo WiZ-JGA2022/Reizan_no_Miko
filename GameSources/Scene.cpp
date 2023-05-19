@@ -132,12 +132,11 @@ namespace basecross{
 		RoadBoneModel(L"O_miko_fall", L"MIKO_FALL", L"MIKO_FALL_TAN");
 		RoadBoneModel(L"O_miko_set", L"MIKO_SET", L"MIKO_SET_TAN");
 		RoadBoneModel(L"O_miko_standby", L"MIKO_STANDBY", L"MIKO_STANDBY_TAN");
-		RoadBoneModel(L"O_oni_attack", L"ONI_ATTACK", L"ONI_ATTACK_TAN");
-		RoadBoneModel(L"O_oni_standby", L"ONI_STANDBY", L"ONI_STANDBY_TAN");
-		RoadBoneModel(L"O_oni_walk", L"ONI_WALK", L"ONI_WALK_TAN");
+		RoadBoneModel(L"O_oni_all", L"ONI", L"ONI_TAN");
 		RoadBoneModel(L"O_hitotume_attack", L"HITOTSUME_ATTACK", L"HITOTSUME_ATTACK_TAN");
 		RoadBoneModel(L"O_hitotume_standby", L"HITOTSUME_STANDBY", L"HITOTSUME_STANDBY_TAN");
 		RoadBoneModel(L"O_hitotume_walk", L"HITOTSUME_WALK", L"HITOTSUME_WALK_TAN");
+		//RoadBoneModel(L"O_iwa2", L"STONE_MODEL", L"STONE_MODEL_TAN");
 
 	}
 
@@ -163,33 +162,63 @@ namespace basecross{
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
 		if (event->m_MsgStr == L"ToFirstStage") {
-			//最初のアクティブステージの設定
+			// アクティブステージの設定
 			ResetActiveStage<FirstStage>();
 		}
 		else if (event->m_MsgStr == L"ToStandbyStage") {
-			//最初のアクティブステージの設定
+			// アクティブステージの設定
 			ResetActiveStage<StandbyStage>();
 		}
 		else if (event->m_MsgStr == L"ToTitleStage") {
-			//最初のアクティブステージの設定
+			// アクティブステージの設定
 			ResetActiveStage<TitleStage>();
 		}
 		else if (event->m_MsgStr == L"ToClearStage") {
-			//最初のアクティブステージの設定
+			// データのリセット
+			ResetData();
+			// アクティブステージの設定
 			ResetActiveStage<ClearStage>();
 		}
 		else if (event->m_MsgStr == L"ToResultStage") {
-			//最初のアクティブステージの設定
+			// データのリセット
+			ResetData();
+			// アクティブステージの設定
 			ResetActiveStage<DefeatStage>();
 		}
 
 		// デバッグ用文字列オブジェクトに対する設定
-		auto dss = GetDebugStringSprite();
-		dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
-		dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
-		dss->SetTextBlockWidth(400.0f);
-		dss->SetTextBlockHeight(200.0f);
+		//auto dss = GetDebugStringSprite();
+		//dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
+		//dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		//dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
+		//dss->SetTextBlockWidth(400.0f);
+		//dss->SetTextBlockHeight(200.0f);
+	}
+
+	void Scene::ResetData()
+	{
+		// データの初期化
+		for (int i = 0; i < 4; i++)
+		{
+			m_trapCount[i] = 0;
+		}
+
+		m_playerPosition = Vec3(0);
+		m_playerRotation = Quat(0);
+		m_cameraAt = Vec3(0);
+		m_cameraAngle = XMConvertToRadians(270.0f);
+		m_cameraRadXZ = 0.0f;
+		m_cameraRadY = 0.0f;
+
+		for (int i = 0; i < 5; i++)
+		{
+			m_spikePosition[i] = Vec3(0);
+		}
+		for (int i = 0; i < 1; i++)
+		{
+			m_lavaPosition[i] = Vec3(0);
+		}
+
 	}
 
 }

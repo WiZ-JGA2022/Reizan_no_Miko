@@ -57,6 +57,26 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 		drawComp->SetTextureResource(L"STONE");
 
+		//Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		//spanMat.affineTransformation(
+		//	Vec3(1.0f, 1.0f, 1.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f)
+		//);
+		////影をつける（シャドウマップを描画する）
+		//auto ptrShadow = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//ptrShadow->SetMeshResource(meshKey);
+		//ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		////描画コンポーネントの設定
+		//auto drawComp = AddComponent<BcPNTBoneModelDraw>();
+		//drawComp->SetFogEnabled(false);
+		//drawComp->SetMeshResource(meshKey);
+		//drawComp->SetMeshToTransformMatrix(spanMat);
+
+
 		SetDrawLayer((int)DrawLayer::MostBottom);
 	}
 

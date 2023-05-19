@@ -70,7 +70,7 @@ namespace basecross {
 
 	} // end OnCollisionEnter
 
-	void Enemy::CreateEnemyMesh(const Vec3& position, const Vec3& scale, const wstring& meshKey, const wstring& animationName)
+	void Enemy::CreateEnemyMesh(const Vec3& position, const Vec3& scale, const wstring& meshKey)
 	{
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(position);
@@ -78,7 +78,6 @@ namespace basecross {
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionCapsule>();
-		ptrColl->SetDrawActive(true);
 		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		ptrColl->SetSleepActive(true);
@@ -101,8 +100,6 @@ namespace basecross {
 		drawComp->SetFogEnabled(false);
 		drawComp->SetMeshResource(meshKey);
 		drawComp->SetMeshToTransformMatrix(spanMat);
-		drawComp->AddAnimation(animationName, 0, 100, true, 20.0f);
-		drawComp->ChangeCurrentAnimation(animationName);
 
 		AddTag(L"Enemy");
 
@@ -113,30 +110,6 @@ namespace basecross {
 
 		// 描画順の変更
 		SetDrawLayer((int)DrawLayer::Bottom);
-	}
-
-	void Enemy::ChangeEnemyAnimation(const wstring& meshKey, const wstring& animationName)
-	{
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
-		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
-		);
-		//影をつける（シャドウマップを描画する）
-		auto ptrShadow = GetComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(meshKey);
-		ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-		//描画コンポーネントの設定
-		auto drawComp = GetComponent<BcPNTBoneModelDraw>();
-		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(meshKey);
-		drawComp->SetMeshToTransformMatrix(spanMat);
-		drawComp->AddAnimation(animationName, 0, 100, true, 20.0f);
-		drawComp->ChangeCurrentAnimation(animationName);
 	}
 
 	void Enemy::MoveEnemy()

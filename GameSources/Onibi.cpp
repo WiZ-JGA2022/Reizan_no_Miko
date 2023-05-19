@@ -1,12 +1,10 @@
 /*!
-@file Oni.cpp
+@file Onibi.cpp
 @brief 単純な動きの敵
 */
 
-#pragma once
 #include "stdafx.h"
 #include "Project.h"
-
 
 namespace basecross {
 	Onibi::Onibi(const shared_ptr<Stage>& stage) :
@@ -21,7 +19,7 @@ namespace basecross {
 
 	void Onibi::OnCreate()
 	{
-		Enemy::CreateEnemyMesh(m_position, m_scale, L"ONI_WALK", L"walk");
+		Enemy::CreateEnemyMesh(m_position, m_scale, L"ONI");
 
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
@@ -112,7 +110,6 @@ namespace basecross {
 		if (other->FindTag(L"KeyStone"))
 		{
 			auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
-			Enemy::ChangeEnemyAnimation(L"ONI_ATTACK", L"attack");
 			if (m_damageDelayFlame <= 0)
 			{
 				stone->DamageProcess();
@@ -133,19 +130,13 @@ namespace basecross {
 		Vec3 pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
-		auto playerScale = playerTrans->GetScale();
-		playerPos.y +5;
+		playerPos.y + 5;
 
-		m_directionPoint = playerPos - pos; // プレイヤーへの方向を計算
-		// ベクトルの正規化処理
-		float normalizeMagnification = 1 / sqrt(
-			m_directionPlayer.x * m_directionPlayer.x +
-			m_directionPlayer.y * m_directionPlayer.y +
-			m_directionPlayer.z * m_directionPlayer.z);
-		m_directionPlayer *= normalizeMagnification;
+		m_direction = playerPos - pos; // プレイヤーへの方向を計算
+		m_direction.normalize();
 
-		pos += m_directionPoint * m_statusValue[L"SPD"] * delta;	// 移動の計算
-		float rotationY = atan2f(-m_directionPoint.z, m_directionPoint.x); // 回転の計算
+		pos += m_direction * m_statusValue[L"SPD"] * delta;	// 移動の計算
+		float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
 
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理

@@ -9,6 +9,8 @@
 namespace basecross {
 	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay) :
 		GameObject(stage),
+		m_NumberSize(Vec2(24.0f, 48.0f)),
+		m_OneMinite(60),
 		m_place(5),
 		m_totalTime(totalTime),
 		m_minutes(0),
@@ -35,6 +37,7 @@ namespace basecross {
 	{
 		auto levelUpEvent = GetStage()->GetSharedGameObject<RandomSelectLevelUpButton>(L"LevelUpEvent");
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
 		if (levelUpEvent->GetEventActive() || !player->GetDrawActive())
 		{
