@@ -63,6 +63,10 @@ namespace basecross {
 
 		AddGameObject<TutorialUI>();
 
+		AddGameObject<RBButtonSprite>();
+		AddGameObject<HoldSkipSprite>();
+		AddGameObject<HoldBar>();
+
 	} // end CreateUI
 
 

@@ -33,9 +33,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FirstStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HoldGauge.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DefeatStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RBButtonUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h" />
@@ -88,7 +91,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FirstStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DefeatStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HoldGauge.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HoldSkip.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RBButtonUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp" />
