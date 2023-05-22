@@ -48,10 +48,10 @@ namespace basecross {
 			SizeChange	// 実行
 		};
 		enum class SeekType {
-			UpperLeft,	// 左上
-			GameSprite,	// 右上に動きながら縮小
-			BottomLeft,	// 左下
-			BottomRight	// 右下
+			UpperLeft,	// 左上基準
+			GameSprite,	// 右上基準に動きながら縮小
+			BottomLeft,	// 左下基準
+			BottomRight	// 右下基準
 		};
 
 		enum class ChangeColorState {

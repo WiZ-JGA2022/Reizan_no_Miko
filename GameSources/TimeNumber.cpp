@@ -81,7 +81,7 @@ namespace basecross {
 		{
 			m_timeSkip += delta;
 			if (m_timeSkip > 3) {
-					PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToFirstStage");
+				dynamic_pointer_cast<StandbyStage>(GetStage())->ChangeStage();
 			}
 		}
 

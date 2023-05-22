@@ -36,6 +36,8 @@ namespace basecross {
 		virtual void OnDestroy() override;
 		// デバッグ文字列表示用
 		virtual void OnDraw() override;
+
+		void ChangeStage();
 	};
 
 }

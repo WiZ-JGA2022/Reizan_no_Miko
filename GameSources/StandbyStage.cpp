@@ -115,19 +115,10 @@ namespace basecross {
 	}
 
 	void StandbyStage::OnUpdate() {
-		auto scene = App::GetApp()->GetScene<Scene>();
-		auto camera = GetView()->GetTargetCamera();
-		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
-			scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
-			scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
-			scene->SetBeforeCameraRadXZ(maincamera->GetRadXZ());
-			scene->SetBeforeCameraRadY(maincamera->GetRadY());
-			scene->SetBeforeCameraAngle(maincamera->GetAngle());
-			scene->SetBeforeCameraAt(maincamera->GetAt());
-			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToFirstStage");
+			ChangeStage();
 		}
 	}
 
@@ -138,4 +129,17 @@ namespace basecross {
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 
+	void StandbyStage::ChangeStage()
+	{
+		auto scene = App::GetApp()->GetScene<Scene>();
+		auto camera = GetView()->GetTargetCamera();
+		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
+		scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
+		scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
+		scene->SetBeforeCameraRadXZ(maincamera->GetRadXZ());
+		scene->SetBeforeCameraRadY(maincamera->GetRadY());
+		scene->SetBeforeCameraAngle(maincamera->GetAngle());
+		scene->SetBeforeCameraAt(maincamera->GetAt());
+		PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToFirstStage");
+	}
 }
