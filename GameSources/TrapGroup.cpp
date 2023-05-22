@@ -47,11 +47,6 @@ namespace basecross {
 		auto scene = app->GetScene<Scene>();
 		auto ShEfkInterface = scene->GetEfkInterface();
 		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
-		auto Ptr = GetComponent<Transform>();
-
-		//エフェクトのプレイ
-		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
-
 	}
 
 	void SpurtLava::OnUpdate()
@@ -77,7 +72,7 @@ namespace basecross {
 				// SEの再生
 				m_se[0] = XAPtr->Start(L"LAVA_SE", 0, 0.3f);
 				// 描画をやめる
-				ptrDraw->SetDrawActive(false);
+				//ptrDraw->SetDrawActive(false);
 				// 実行待機状態に入る
 				m_isState = TrapState::ActiveDelay;
 			}
@@ -100,6 +95,10 @@ namespace basecross {
 				m_isState = TrapState::Active;
 				// 待機時間を初期化しておく
 				m_activeFlame = m_DamageActiveDelayFlame;
+
+				auto Ptr = GetComponent<Transform>();
+				//エフェクトのプレイ
+				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition(), Vec3(0.5f));
 			}
 		}
 

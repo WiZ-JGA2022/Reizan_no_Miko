@@ -64,10 +64,10 @@ namespace basecross {
 		/*!
 		@brief	コンスラトクタ
 		@param[in]	effect	エフェクト
-		@param[in]	Emitter	エミッター
+		@param[in]	emitter	エミッター
 		*/
 		//--------------------------------------------------------------------------------------
-		EfkPlay(const shared_ptr<EfkEffect>& effect, const bsm::Vec3& Emitter);
+		EfkPlay(const shared_ptr<EfkEffect>& effect, const bsm::Vec3& emitter, const bsm::Vec3& scale);
 		virtual ~EfkPlay();
 		//--------------------------------------------------------------------------------------
 		/*!

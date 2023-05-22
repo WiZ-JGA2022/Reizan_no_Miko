@@ -41,13 +41,14 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	///	EffekseerエフェクトのPlayオブジェクト
 	//--------------------------------------------------------------------------------------
-	EfkPlay::EfkPlay(const shared_ptr<EfkEffect>& effect, const bsm::Vec3& Emitter):
+	EfkPlay::EfkPlay(const shared_ptr<EfkEffect>& effect, const bsm::Vec3& emitter, const bsm::Vec3& scale):
 		m_Handle(-1)
 	{
 		try {
 			auto iface = effect->m_EfkInterface.lock();
 			if (iface) {
-				m_Handle = iface->m_Manager->Play(effect->m_Effect, Emitter.x, Emitter.y, Emitter.z);
+				m_Handle = iface->m_Manager->Play(effect->m_Effect, emitter.x, emitter.y, emitter.z);
+				iface->m_Manager->SetScale(m_Handle, scale.x, scale.y, scale.z);
 				m_EfkInterface = iface;
 			}
 		}
