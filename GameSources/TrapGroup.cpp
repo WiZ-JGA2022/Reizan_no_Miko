@@ -165,6 +165,18 @@ namespace basecross {
 
 		SetAlphaActive(true);
 		SetDrawLayer((int)DrawLayer::Bottom);
+
+		//エフェクトの初期化
+		wstring DataDir;
+		App::GetApp()->GetDataDirectory(DataDir);
+		wstring TestEffectStr = DataDir + L"Effects\\" + L"E_aura.efk";
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto ShEfkInterface = scene->GetEfkInterface();
+		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+
+		//エフェクトのプレイ
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, m_transform->GetPosition(), Vec3(1.0f));
 	}
 
 	void SpikeTrap::OnUpdate()

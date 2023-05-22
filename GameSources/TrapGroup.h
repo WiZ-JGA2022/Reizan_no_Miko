@@ -53,6 +53,10 @@ namespace basecross {
 	踏むと刺さる棘を設置する罠
 	*/
 	class SpikeTrap : public GameObject {
+		//エフェクト
+		shared_ptr<EfkEffect> m_EfkEffect;
+		//エフェクト実行オブジェクト
+		shared_ptr<EfkPlay> m_EfkPlay;
 
 		Vec3 m_scale; // 大きさ
 		Vec3 m_position; // 位置情報
