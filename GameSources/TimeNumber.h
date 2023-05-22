@@ -10,6 +10,8 @@
 namespace basecross {
 	class TimeNumber : public GameObject {
 
+		const WORD BUTTON_TIMESKIP = XINPUT_GAMEPAD_RIGHT_SHOULDER;
+
 		// ‘å‚«‚³
 		const Vec2 m_NumberSize;
 		const int m_OneMinite;
@@ -21,12 +23,15 @@ namespace basecross {
 		float m_seconds; // •b
 		float m_oldSeconds; // ’¼‘O‚ÌŠÔ
 
+		float m_timeSkip;
+		bool m_skipFlag;
+
 		bool m_isPlay;
 		// ”š
 		vector<shared_ptr<NumberUI>> m_numbers;
 
 	public:
-		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay);
+		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay, const bool skipFlag);
 		~TimeNumber();
 
 		void OnCreate() override;
@@ -35,5 +40,10 @@ namespace basecross {
 
 		void UpdateValue(int minites, float seconds);
 		float GetTimeLeft();
+		float GetSkipTime()
+		{
+			return m_timeSkip;
+		}
+
 	};
 }
