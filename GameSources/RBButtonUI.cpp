@@ -18,7 +18,7 @@ namespace basecross {
 
 	void RBButtonSprite::OnCreate()
 	{
-		Sprites::CreateSeekSizeSprite(Vec3(400.0f, 350.0f, 0.0f), m_DefaultSize,m_AfterSize, L"RB_BUTTON", SeekType::BottomRight,5.0f);
+		Sprites::CreateSprite(Vec3(400.0f, 350.0f, 0.0f), m_DefaultSize, L"RB_BUTTON");
 	}
 
 	void RBButtonSprite::OnUpdate()

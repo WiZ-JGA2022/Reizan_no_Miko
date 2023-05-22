@@ -17,7 +17,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ButtonUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CountDownNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EfkInterface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
@@ -71,7 +70,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ButtonUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CountDownNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EfkInterface.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
