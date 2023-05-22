@@ -6,6 +6,7 @@
 #pragma once
 #include "stdafx.h"
 #include "PlayerController.h"
+#include "EfkInterface.h"
 
 namespace basecross {
 
@@ -43,6 +44,7 @@ namespace basecross {
 		virtual void OnDestroy() override;
 
 		virtual void OnDraw() override; // デバッグ文字用に上書きする
+
 	};
 
 

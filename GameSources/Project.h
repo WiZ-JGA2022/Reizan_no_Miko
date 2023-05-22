@@ -13,6 +13,8 @@
 #include <Effekseer.h>
 #include <EffekseerRendererDX11.h>
 
+#include "EfkInterface.h"
+
 #include "EnemyController.h"
 #include "ExpBar.h"
 #include "HpBar.h"

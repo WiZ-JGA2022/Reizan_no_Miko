@@ -152,7 +152,7 @@ namespace basecross {
 	} // end OnUpdate
 
 	void FirstStage::OnDraw()
-	{
+	{	
 		Stage::OnDraw();
 		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}

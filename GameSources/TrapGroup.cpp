@@ -38,6 +38,20 @@ namespace basecross {
 		AddTag(L"SpurtLava");
 		SetAlphaActive(true);
 		SetDrawLayer((int)DrawLayer::Bottom);
+
+		//エフェクトの初期化
+		wstring DataDir;
+		App::GetApp()->GetDataDirectory(DataDir);
+		wstring TestEffectStr = DataDir + L"Effects\\" + L"Lava.efk";
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto ShEfkInterface = scene->GetEfkInterface();
+		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+		auto Ptr = GetComponent<Transform>();
+
+		//エフェクトのプレイ
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
+
 	}
 
 	void SpurtLava::OnUpdate()
@@ -94,7 +108,7 @@ namespace basecross {
 		{
 			// 削除までの時間を経過させる
 			m_removeDelayFlame--;
-			GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 7.0f);
+			//GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 7.0f);
 
 			// ダメージを与える間隔毎にコリジョンをアクティブにする
 			if (m_removeDelayFlame % m_DamageIntervalFlame == 0)

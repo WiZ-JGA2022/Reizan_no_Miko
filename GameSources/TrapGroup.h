@@ -11,6 +11,10 @@ namespace basecross {
 	溶岩が吹き出すタイプの罠
 	*/
 	class SpurtLava : public GameObject {
+		//エフェクト
+		shared_ptr<EfkEffect> m_EfkEffect;
+		//エフェクト実行オブジェクト
+		shared_ptr<EfkPlay> m_EfkPlay;
 
 		// 状態フラグ
 		enum class TrapState

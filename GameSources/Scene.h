@@ -5,6 +5,7 @@
 #pragma once
 
 #include "stdafx.h"
+#include "EfkInterface.h"
 
 namespace basecross{
 
@@ -12,6 +13,9 @@ namespace basecross{
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
+		//エフェクトのインターフェイス
+		shared_ptr<EfkInterface> m_EfkInterface;
+
 		int m_trapCount[4];
 
 		Vec3 m_playerPosition;
@@ -93,6 +97,10 @@ namespace basecross{
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnCreate() override;
+
+		virtual void OnUpdate() override;
+
+		virtual void OnDraw() override;
 		//--------------------------------------------------------------------------------------
 		/**
 		@brief イベント取得
@@ -188,6 +196,10 @@ namespace basecross{
 		Vec3 GetBeforeLavaPosition(int index)
 		{
 			return m_lavaPosition[index];
+		}
+		//エフェクトのインターフェイスの取得
+		shared_ptr<EfkInterface> GetEfkInterface() const {
+			return m_EfkInterface;
 		}
 	};
 
