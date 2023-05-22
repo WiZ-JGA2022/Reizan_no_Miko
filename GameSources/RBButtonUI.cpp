@@ -26,10 +26,16 @@ namespace basecross {
 		auto& app = App::GetApp();
 		auto device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];
-		if ((pad.wPressedButtons && RB_BUTTON) && (m_isSeekSizeState != RBSeekSizeState::Stop))
+		if (pad.wButtons & RB_BUTTON)
 		{
-			m_isSeekSizeState = RBSeekSizeState::SizeChange;
-			Sprites::OnUpdate();
+			SetSeekSizeState(0);
+			Sprites::UpdateSeekSizeSprite(m_AfterSize,10.0f, SeekType::UpperRight);
+			return;
+		}
+		else
+		{
+			SetSeekSizeState(0);
+			Sprites::UpdateSeekSizeSprite(m_DefaultSize, 0.1f, SeekType::UpperRight);
 		}
 	}
 }
