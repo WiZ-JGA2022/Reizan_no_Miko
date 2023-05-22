@@ -25,6 +25,11 @@ namespace basecross {
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
+		//エフェクト
+		shared_ptr<EfkEffect> m_EfkEffect;
+		//エフェクト実行オブジェクト
+		shared_ptr<EfkPlay> m_EfkPlay;
+
 		// ステータス値
 		std::map<wstring, float> m_statusValue = {
 			{L"HP", 10.0f},

@@ -17,6 +17,11 @@ namespace basecross {
         int m_beforeMaxExp; // 前回必要経験値
                 
         int m_damageDelayFlame; // ダメージを受ける間隔
+
+        //エフェクト
+        shared_ptr<EfkEffect> m_EfkEffect;
+        //エフェクト実行オブジェクト
+        shared_ptr<EfkPlay> m_EfkPlay;
         
         // ステータス名
         std::map<int, wstring> m_statusName = {

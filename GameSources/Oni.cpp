@@ -104,6 +104,21 @@ namespace basecross {
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.1f);
 
+
+			//エフェクトの初期化
+			wstring DataDir;
+			App::GetApp()->GetDataDirectory(DataDir);
+			wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
+			auto& app = App::GetApp();
+			auto scene = app->GetScene<Scene>();
+			auto ShEfkInterface = scene->GetEfkInterface();
+			m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+			auto Ptr = GetComponent<Transform>();
+
+			//エフェクトのプレイ
+			m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
+
+
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
 		}
@@ -114,6 +129,19 @@ namespace basecross {
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"SPIKEDAMAGE_SE", 0, 0.3f);
 
+			//エフェクトの初期化
+			wstring DataDir;
+			App::GetApp()->GetDataDirectory(DataDir);
+			wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
+			auto& app = App::GetApp();
+			auto scene = app->GetScene<Scene>();
+			auto ShEfkInterface = scene->GetEfkInterface();
+			m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+			auto Ptr = GetComponent<Transform>();
+
+			//エフェクトのプレイ
+			m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
+
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
 		}
@@ -123,6 +151,19 @@ namespace basecross {
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"SPIKEDAMAGE_SE", 0, 0.3f);
+
+			//エフェクトの初期化
+			wstring DataDir;
+			App::GetApp()->GetDataDirectory(DataDir);
+			wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
+			auto& app = App::GetApp();
+			auto scene = app->GetScene<Scene>();
+			auto ShEfkInterface = scene->GetEfkInterface();
+			m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+			auto Ptr = GetComponent<Transform>();
+
+			//エフェクトのプレイ
+			m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
 
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
