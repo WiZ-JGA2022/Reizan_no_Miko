@@ -145,6 +145,7 @@ namespace basecross {
 
 	void Sprites::UpdateSeekSizeSprite(const Vec2& afterSize, const float seekSecond, const SeekType& seekType)
 	{
+
 		if (m_isSeekSizeState != SeekSizeState::Stop)
 		{
 			m_isSeekSizeState = SeekSizeState::SizeChange;
@@ -162,6 +163,13 @@ namespace basecross {
 				m_vertices[1].position.x = m_spriteSize.x - ((m_spriteSize.x - afterSize.x) * m_uiSizeCoefficient);
 				m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + afterSize.y) * m_uiSizeCoefficient;
 				m_vertices[3].position.x = m_spriteSize.x - ((m_spriteSize.x - afterSize.x) * m_uiSizeCoefficient);
+				m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + afterSize.y) * m_uiSizeCoefficient;
+				break;
+
+			case SeekType::UpperRight:
+				m_vertices[0].position.x = (m_spriteSize.x - afterSize.x) * m_uiSizeCoefficient;
+				m_vertices[2].position.x = (m_spriteSize.x - afterSize.x) * m_uiSizeCoefficient;
+				m_vertices[2].position.y = -m_spriteSize.y - (-m_spriteSize.y + afterSize.y) * m_uiSizeCoefficient;
 				m_vertices[3].position.y = -m_spriteSize.y - (-m_spriteSize.y + afterSize.y) * m_uiSizeCoefficient;
 				break;
 
@@ -196,11 +204,11 @@ namespace basecross {
 
 			auto drawComp = GetComponent<PCTSpriteDraw>();
 			drawComp->UpdateVertices(m_vertices);
-
 			if (m_uiSizeCoefficient > 1.0f)
 			{
-				m_isSeekSizeState = SeekSizeState::Stop;
+				m_uiSizeCoefficient = 1.0f;
 			}
+
 		}
 	}
 

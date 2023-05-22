@@ -49,6 +49,7 @@ namespace basecross {
 		};
 		enum class SeekType {
 			UpperLeft,	// 左上基準
+			UpperRight,	// 右上基準
 			GameSprite,	// 右上基準に動きながら縮小
 			BottomLeft,	// 左下基準
 			BottomRight	// 右下基準
@@ -132,5 +133,10 @@ namespace basecross {
 		* @param fadeSecond フェードにかかる時間
 		*/
 		void UpdateFadeSprite(const float fadeSecond);
+		void SetSeekSizeState(const int state)
+		{
+			m_isSeekSizeState = (SeekSizeState)state;
+		}
+
 	};
 }

@@ -13,15 +13,15 @@ namespace basecross {
 
 	class HoldBar : public GameObject
 	{
-		int m_maxExp; // 最大経験値
+		int m_maxTime; // 最大経験値
 
 		// EXPバーの情報を入れる変数
-		shared_ptr<GaugeSizeSettings> m_bar[1];
+		shared_ptr<GaugeSizeSettings> m_bar[2];
 
 	public:
 		HoldBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
-			m_maxExp(0)
+			m_maxTime(3)
 		{
 		}
 
