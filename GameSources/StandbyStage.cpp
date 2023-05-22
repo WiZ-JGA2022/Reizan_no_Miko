@@ -48,7 +48,7 @@ namespace basecross {
 		AddGameObject<ExpNumber>();
 
 		// c‚èŠÔ‚Ì•\¦UI‚ğì¬
-		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds, false);
+		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds, false,true);
 		SetSharedGameObject(L"Time", time);
 
 		AddGameObject<TimeChara>();

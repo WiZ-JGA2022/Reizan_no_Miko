@@ -7,14 +7,17 @@
 #include "Project.h"
 
 namespace basecross {
-	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay) :
+	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay, const bool skipFlag) :
 		GameObject(stage),
 		m_place(5),
 		m_totalTime(totalTime),
 		m_minutes(0),
 		m_seconds(0),
 		m_oldSeconds(0),
-		m_isPlay(isPlay)
+		m_isPlay(isPlay),
+		m_skipFlag(skipFlag),
+		m_timeSkip(0)
+	
 	{
 	}
 	TimeNumber::~TimeNumber() {}
@@ -46,6 +49,9 @@ namespace basecross {
 		auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();
 
+		auto device = app->GetInputDevice(); // インプットデバイスオブジェクトを取得する
+		auto& pad = device.GetControlerVec()[0]; // １個目のコントローラーの状態を取得する
+
 		m_totalTime -= delta;
 
 		m_minutes = (int)m_totalTime / m_OneMinite;
@@ -67,6 +73,16 @@ namespace basecross {
 				return;
 			}
 		}
+
+		//RBボタンを長押ししたらスキップ
+		if (pad.wButtons & BUTTON_TIMESKIP && m_skipFlag)
+		{
+			m_timeSkip += delta;
+			if (m_timeSkip > 3) {
+					PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToFirstStage");
+			}
+		}
+
 	}
 
 	void TimeNumber::OnDraw()
