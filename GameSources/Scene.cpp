@@ -93,15 +93,13 @@ namespace basecross{
 		RoadTexture(L"SPURT_LAVA", L"red02.png");
 		RoadTexture(L"HOLDBARFRAME", L"HoldBarFrame.png");
 
-		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM_long.wav");
-		RoadSound(L"GAMEOVER_BGM", L"GameOverBGM.wav");
-		RoadSound(L"TITLE_BGM", L"TitleBGM.wav");
-		RoadSound(L"MAINGAME_BGM", L"INGameBGM.wav");
-		RoadSound(L"EXP_SE", L"ExpSE.wav");
-		RoadSound(L"FALLROCK_SE", L"FallingRockSE.wav");
+		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM.wav");
+		RoadSound(L"GAMEOVER_BGM", L"GameOverSE.wav");
+		RoadSound(L"TITLE_BGM", L"TitleBGM2.wav");
+		RoadSound(L"STANDBY_BGM", L"StandbyStageBGM.wav");
+		RoadSound(L"MAINGAME_BGM", L"GameStageBGM2.wav");
 		RoadSound(L"GAMECLEAR_SE", L"GameClearSE.wav");
 		RoadSound(L"GAMEOVER_SE", L"GameOverSE.wav");
-		RoadSound(L"LEVELUP_SE", L"LevelUp2SE.wav");
 		RoadSound(L"PLAYERRUN_SE", L"PlayerRunSE.wav");
 		RoadSound(L"PLAYERWALK_SE", L"PlayerWalkSE.wav");
 		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
@@ -112,16 +110,15 @@ namespace basecross{
 		RoadSound(L"SPIKEDAMAGE_SE", L"SpikeDamageSE.wav");
 		RoadSound(L"LAVA_SE", L"StaticLavaSE.wav");
 		RoadSound(L"SPURTLAVA_SE", L"SpurtLavaSE.wav");
+		RoadSound(L"COUNTDOWN_SE", L"CountDownSE.wav");
+		RoadSound(L"SKIP_SE", L"SkipSE.wav");
 
 		RoadStaticModelMesh(L"O_stage", L"STAGE");
 		RoadStaticModelMesh(L"ofuda", L"OHUDA");
 		RoadStaticModelMesh(L"Thorn", L"SPIKE_MODEL");
+		RoadStaticModelMesh(L"O_trap", L"SPURTLAVA_MODEL");
 
-		RoadBoneModel(L"O_miko_walk", L"MIKO_WALK", L"MIKO_WALK_TAN");
-		RoadBoneModel(L"O_miko_damage", L"MIKO_DAMAGE", L"MIKO_DAMAGE_TAN");
-		RoadBoneModel(L"O_miko_fall", L"MIKO_FALL", L"MIKO_FALL_TAN");
-		RoadBoneModel(L"O_miko_set", L"MIKO_SET", L"MIKO_SET_TAN");
-		RoadBoneModel(L"O_miko_standby", L"MIKO_STANDBY", L"MIKO_STANDBY_TAN");
+		RoadBoneModel(L"O_miko_all", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"O_oni_all", L"ONI", L"ONI_TAN");
 		RoadBoneModel(L"O_hitotume_all", L"HITOTSUME", L"HITOTSUME_TAN");
 		RoadBoneModel(L"O_stone_animation", L"STONE_MODEL", L"STONE_MODEL_TAN");
@@ -191,12 +188,12 @@ namespace basecross{
 		}
 
 		// デバッグ用文字列オブジェクトに対する設定
-		auto dss = GetDebugStringSprite();
-		dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
-		dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
-		dss->SetTextBlockWidth(400.0f);
-		dss->SetTextBlockHeight(200.0f);
+		//auto dss = GetDebugStringSprite();
+		//dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
+		//dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		//dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
+		//dss->SetTextBlockWidth(400.0f);
+		//dss->SetTextBlockHeight(200.0f);
 	}
 
 	void Scene::ResetData()

@@ -59,14 +59,13 @@ namespace basecross {
 
 		AddGameObject<RBButtonSprite>();
 		AddGameObject<HoldBar>();
-
 	} // end CreateUI
 
 
 	void StandbyStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"STANDBY_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void StandbyStage::OnDestroy()

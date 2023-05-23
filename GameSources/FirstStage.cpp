@@ -67,7 +67,7 @@ namespace basecross {
 	void FirstStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 
 	void FirstStage::OnDestroy()
@@ -111,8 +111,6 @@ namespace basecross {
 				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(i), Vec3(4.0f, 20.0f, 4.0f));
 			}
 
-			//AddGameObject<Onibi>();
-
 			// UI‚Ìì¬
 			CreateUI();
 			PlayBGM();
@@ -134,11 +132,14 @@ namespace basecross {
 		
 		if (!player->GetDrawActive())
 		{
+			AddGameObject<FadeOut>(L"FADE_BLACK");
 			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
 			return;
 		}
+		// ƒNƒŠƒA
 		if (time->GetTimeLeft() <= 0.0f)
 		{
+			AddGameObject<FadeOut>(L"FADE_WHITE");
 			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 			return;
 		}

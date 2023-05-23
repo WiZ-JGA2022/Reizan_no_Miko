@@ -11,7 +11,8 @@ namespace basecross {
 	RBButtonSprite::RBButtonSprite(const shared_ptr<Stage>& stage) :
 		Sprites(stage),
 		m_DefaultSize(Vec2(150.0f, 150.0f)),
-		m_AfterSize(Vec2(170.0f, 170.0f))
+		m_AfterSize(Vec2(170.0f, 170.0f)),
+		m_startSe(false)
 	{
 	}
 	RBButtonSprite::~RBButtonSprite() {}
@@ -28,12 +29,19 @@ namespace basecross {
 		auto& pad = device.GetControlerVec()[0];
 		if (pad.wButtons & RB_BUTTON)
 		{
+			if (!m_startSe)
+			{
+				auto XAPtr = App::GetApp()->GetXAudio2Manager();
+				XAPtr->Start(L"SKIP_SE", 0, 0.3f);
+				m_startSe = true;
+			}
 			SetSeekSizeState(0);
 			Sprites::UpdateSeekSizeSprite(m_AfterSize,10.0f, SeekType::UpperRight);
 			return;
 		}
 		else
 		{
+			m_startSe = false;
 			SetSeekSizeState(0);
 			Sprites::UpdateSeekSizeSprite(m_DefaultSize, 0.1f, SeekType::UpperRight);
 		}

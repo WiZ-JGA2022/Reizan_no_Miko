@@ -60,17 +60,21 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"MIKO_WALK");
+		ptrShadow->SetMeshResource(L"MIKO");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		//描画コンポーネントの設定
 		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
 		drawComp->SetFogEnabled(false);
 		//描画するメッシュを設定
-		drawComp->SetMeshResource(L"MIKO_WALK");
+		drawComp->SetMeshResource(L"MIKO");
 		drawComp->SetMeshToTransformMatrix(spanMat);
-		drawComp->AddAnimation(L"walk_player", 0, 30, true, 20.0f);
-		drawComp->ChangeCurrentAnimation(L"walk_player");
+		drawComp->AddAnimation(L"wait_player", 0, 30, true, 20.0f);
+		drawComp->AddAnimation(L"attack_player", 31, 13, false, 20.0f);
+		drawComp->AddAnimation(L"damage_player", 61, 14, false, 20.0f);
+		drawComp->AddAnimation(L"died_player", 92, 30, false, 20.0f);
+		drawComp->AddAnimation(L"walk_player", 124, 30, true, 20.0f);
+		drawComp->ChangeCurrentAnimation(L"wait_player");
 
 		//透明処理
 		SetAlphaActive(true);
@@ -80,15 +84,26 @@ namespace basecross {
 
 	void PlayerController::OnUpdate()
 	{
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		if (playerStatus->GetStatusValue(L"HP") <= 0)
-		{
-			SetUpdateActive(false);
-			SetDrawActive(false);
-		}
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);
+		if (playerStatus->GetStatusValue(L"HP") <= 0)
+		{
+			if (m_action != PlayerAction::Died)
+			{
+				ptrDraw->ChangeCurrentAnimation(L"died_player");
+				m_action = PlayerAction::Died;
+			}
+
+			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"died_player")
+			{
+				SetUpdateActive(false);
+				SetDrawActive(false);
+			}
+
+			return;
+		}
 
 		m_recastFlame -= 0.1f;
 		
@@ -149,6 +164,12 @@ namespace basecross {
 
 		if (padLStick.length() > 0.0f)
 		{
+			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+			if (m_action != PlayerAction::Walk)
+			{
+				ptrDraw->ChangeCurrentAnimation(L"walk_player");
+				m_action = PlayerAction::Walk;
+			}
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			//XAPtr->Start(L"PLAYERRUN_SE", 1, 0.1f);
 
@@ -173,6 +194,16 @@ namespace basecross {
 			m_transform->SetPosition(pos);
 			float rotY = atan2f(-padLStick.z, padLStick.x);
 			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // 回転処理
+		}
+		else
+		{
+			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+			if (m_action != PlayerAction::Wait)
+			{
+				ptrDraw->ChangeCurrentAnimation(L"wait_player");
+				m_action = PlayerAction::Wait;
+			}
+
 		}
 	}
 }

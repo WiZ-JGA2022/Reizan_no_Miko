@@ -34,6 +34,7 @@ namespace basecross {
 			numberObj->SetPosition(Vec2(680.0f - m_NumberSize.x * i, 0.0f), 0.47f);
 			m_numbers.push_back(numberObj);
 		}
+
 	}
 
 	void TimeNumber::OnUpdate()
@@ -65,13 +66,30 @@ namespace basecross {
 		}
 		m_oldSeconds = m_seconds;
 
+		if (m_totalTime < 6.0f && !m_startCountDown)
+		{
+			m_startCountDown = true;
+			auto XAPtr = app->GetXAudio2Manager();
+			m_se = XAPtr->Start(L"COUNTDOWN_SE", 0, 0.5f);
+		}
+
+		if (m_totalTime <= 0.0f)
+		{
+			//BGMのストップ
+			auto XAPtr = app->GetXAudio2Manager();
+			XAPtr->Stop(m_se);
+		}
+
 		if (m_isPlay)
 		{
 			// 時間切れになったら
-			if (m_totalTime <= 1 && player->GetCondition() == 1)
+			if (m_totalTime <= 1.0f && player->GetCondition() == 1)
 			{
-				// クリア
-				PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
+				//BGMのストップ
+				auto XAPtr = app->GetXAudio2Manager();
+				XAPtr->Stop(m_se);
+
+				PostEvent(1.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToClearStage");
 				return;
 			}
 		}
@@ -81,6 +99,11 @@ namespace basecross {
 		{
 			m_timeSkip += delta;
 			if (m_timeSkip > 3) {
+				//BGMのストップ
+				auto XAPtr = App::GetApp()->GetXAudio2Manager();
+				XAPtr->Stop(m_se);
+
+				// ステージの変更
 				dynamic_pointer_cast<StandbyStage>(GetStage())->ChangeStage();
 			}
 		}

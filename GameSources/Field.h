@@ -26,13 +26,15 @@ namespace basecross {
 		
 		float m_hp;
 		int m_delay;
+		bool m_broken;
 
 	public:
 		KeyStone(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
 			m_DefaultDelay(5),
 			m_delay(0),
-			m_hp(m_DefaultHp)
+			m_hp(m_DefaultHp),
+			m_broken(false)
 		{
 		}
 

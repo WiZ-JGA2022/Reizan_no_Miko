@@ -48,6 +48,7 @@ namespace basecross {
 		CreateViewLight();
 		//スプライトの作成
 		CreateTitleSprite();
+		AddGameObject<FadeIn>(L"FADE_BLACK");
 
 		PlayBGM();
 

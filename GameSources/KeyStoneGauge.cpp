@@ -10,9 +10,9 @@
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
-//	数字のスクエア
-//--------------------------------------------------------------------------------------
-//構築と破棄
+	//	数字のスクエア
+	//--------------------------------------------------------------------------------------
+	//構築と破棄
 	KeyStoneGauge::KeyStoneGauge(const shared_ptr<Stage>& StagePtr,
 		const shared_ptr<KeyStone>& SeekObjectPtr) :
 		GameObject(StagePtr),
@@ -28,7 +28,7 @@ namespace basecross {
 			auto stonePtr = m_keyStoneHp.lock();
 			auto stoneTransPtr = stonePtr->GetComponent<Transform>();
 			auto position = stoneTransPtr->GetPosition();
-			position.y += 3.0f;
+			position.y += 5.0f;
 			transform->SetPosition(position);
 			transform->SetScale(1.0f, 1.0f, 1.0f);
 			transform->SetQuaternion(stoneTransPtr->GetQuaternion());

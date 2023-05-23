@@ -15,12 +15,22 @@ namespace basecross{
 			Play
 		};
 
+		enum class PlayerAction {
+			Wait,
+			Walk,
+			Attack,
+			Damage,
+			Died
+		};
+
 		enum class TrapLimit {
 			SpikeTrap = 5,
 			SpurtLava = 1
 		};
 
 		PlayerCondition m_condition = PlayerCondition::Standby;
+
+		PlayerAction m_action = PlayerAction::Wait;
 
 		TrapLimit m_trapLimit[2] = {
 			TrapLimit::SpikeTrap,
@@ -37,6 +47,7 @@ namespace basecross{
 		int m_spikeTrapCount;
 		int m_lavaTrapCount;
 		float m_recastFlame;
+
 
 		Vec3 m_position;
 		Quat m_quaternion;

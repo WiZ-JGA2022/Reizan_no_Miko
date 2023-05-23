@@ -16,10 +16,8 @@ namespace basecross {
 		weak_ptr<KeyStone> m_keyStoneHp;
 		shared_ptr<PCTStaticDraw> m_draw;
 
-		vector< VertexPositionNormalTexture> m_vertices;
+		vector<VertexPositionNormalTexture> m_vertices;
 		vector<uint16_t> m_indices;
-
-		
 
 		Quat Billboard(const Vec3& Line) {
 			Vec3 temp = Line;

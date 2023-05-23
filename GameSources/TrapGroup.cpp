@@ -20,7 +20,7 @@ namespace basecross {
 	void SpurtLava::OnCreate()
 	{
 		m_transform = GetComponent<Transform>();
-		m_transform->SetScale(Vec3(5.0f, 5.0f, 1.0f));
+		m_transform->SetScale(Vec3(1.0f, 1.0f, 1.0f));
 		m_transform->SetRotation(Vec3(XMConvertToRadians(90.0f), 0.0f, 0.0f));
 		m_transform->SetPosition(m_position);
 
@@ -31,9 +31,23 @@ namespace basecross {
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		ptrColl->SetSleepActive(false);
 
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-		drawComp->SetTextureResource(L"SPURT_LAVA");
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(L"SPURTLAVA_MODEL");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
+		drawComp->SetFogEnabled(false);
+		drawComp->SetMeshResource(L"SPURTLAVA_MODEL");
+		drawComp->SetMeshToTransformMatrix(spanMat);
 
 		AddTag(L"SpurtLava");
 		SetAlphaActive(true);
@@ -58,9 +72,7 @@ namespace basecross {
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		// 基本的にコリジョンを待機状態にしておく
 		auto ptrColl = GetComponent<CollisionObb>();
-		auto ptrDraw = GetComponent<PNTStaticDraw>();
 		ptrColl->SetUpdateActive(false);
-		ptrColl->SetDrawActive(false);
 
 		// プレイヤーが実行状態かつトラップが待機状態のとき
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
@@ -71,8 +83,6 @@ namespace basecross {
 			{
 				// SEの再生
 				m_se[0] = XAPtr->Start(L"LAVA_SE", 0, 0.3f);
-				// 描画をやめる
-				//ptrDraw->SetDrawActive(false);
 				// 実行待機状態に入る
 				m_isState = TrapState::ActiveDelay;
 			}
@@ -87,8 +97,7 @@ namespace basecross {
 			if (m_activeFlame <= 0)
 			{
 				// コリジョンを取得した大きさに変更
-				m_transform->SetScale(m_scale);
-				m_transform->SetRotation(Vec3(0));
+				ptrColl->SetMakedSize(3);
 				// SEの再生
 				m_se[1] = XAPtr->Start(L"SPURTLAVA_SE", 0, 0.3f);
 				// 実行状態に入る
@@ -107,7 +116,6 @@ namespace basecross {
 		{
 			// 削除までの時間を経過させる
 			m_removeDelayFlame--;
-			//GetStage()->GetSharedGameObject<EffectController>(L"EffectController")->PlayEffect(L"SpurtLava_Efc", m_transform->GetPosition(), 7.0f);
 
 			// ダメージを与える間隔毎にコリジョンをアクティブにする
 			if (m_removeDelayFlame % m_DamageIntervalFlame == 0)
@@ -125,15 +133,6 @@ namespace basecross {
 				GetStage()->RemoveGameObject<SpurtLava>(GetThis<SpurtLava>());
 			}
 		}
-
-		//wstringstream wss;
-		//wss << L"pos : " <<
-		//	m_transform->GetPosition().x << L" " <<
-		//	m_transform->GetPosition().y << L" " <<
-		//	m_transform->GetPosition().z << endl;
-		//auto scene = App::GetApp()->GetScene<Scene>();
-		//auto dstr = scene->GetDebugString();
-		//scene->SetDebugString(dstr + wss.str());
 	}
 
 
@@ -150,10 +149,6 @@ namespace basecross {
 		m_transform = GetComponent<Transform>();
 		m_transform->SetScale(m_scale);
 		m_transform->SetPosition(m_position);
-
-		auto ptrDraw = AddComponent<PNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
-		ptrDraw->SetTextureResource(L"SPIKE");
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionObb>();
@@ -187,6 +182,7 @@ namespace basecross {
 	{
 		if (other->FindTag(L"Enemy"))
 		{
+			GetStage()->AddGameObject<SpikeModel>(m_transform->GetPosition());
 			GetStage()->RemoveGameObject<SpikeTrap>(GetThis<SpikeTrap>());
 		}
 	}

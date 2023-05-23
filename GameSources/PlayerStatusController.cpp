@@ -82,7 +82,7 @@ namespace basecross {
 		// ƒ_ƒ[ƒW•ªŽ©•ª‚Ì‘Ì—Í‚ðŒ¸‚ç‚·
 		m_statusValue[L"HP"] -= totalDamage;
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Start(L"PLAYERDAMAGE_SE", 0, 0.1f);
+		XAPtr->Start(L"PLAYERDAMAGE_SE", 0, 0.3f);
 	} // end PlayerTakenDamage
 
 	float PlayerStatusController::GetStatusValue(wstring statusKey)

@@ -35,6 +35,16 @@ namespace basecross {
 		ptrDraw->AddAnimation(L"dead", 70, 30, false);
 		ptrDraw->AddAnimation(L"wait", 105, 30, true);
 		ptrDraw->ChangeCurrentAnimation(L"walk");
+
+		//エフェクトの初期化
+		wstring DataDir;
+		App::GetApp()->GetDataDirectory(DataDir);
+		wstring TestEffectStr = DataDir + L"Effects\\" + L"soul.efk";
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto ShEfkInterface = scene->GetEfkInterface();
+		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+
 	}
 
 	void Oni::OnUpdate()
@@ -55,6 +65,8 @@ namespace basecross {
 			if (!m_died)
 			{
 				ptrDraw->ChangeCurrentAnimation(L"dead");
+				//エフェクトのプレイ
+				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, m_transform->GetPosition(), Vec3(0.5f));
 				m_died = true;
 			}
 			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"dead")
@@ -102,7 +114,7 @@ namespace basecross {
 		if (other->FindTag(L"PlayerBullet"))
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.1f);
+			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.3f);
 
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));

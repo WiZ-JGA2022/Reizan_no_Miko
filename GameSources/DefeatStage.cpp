@@ -32,7 +32,7 @@ namespace basecross {
 	void DefeatStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GAMEOVER_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_BGM = XAPtr->Start(L"GAMEOVER_BGM", 0, 0.3f);
 	}
 
 	void DefeatStage::OnDestroy()
@@ -47,6 +47,7 @@ namespace basecross {
 		CreateViewLight();
 		//スプライトの作成
 		CreateResultSprite();
+		AddGameObject<FadeIn>(L"FADE_BLACK");
 		PlayBGM();
 	} // end OnCreate
 

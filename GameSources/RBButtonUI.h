@@ -13,6 +13,8 @@ namespace basecross {
 		const Vec2 m_AfterSize;
 		const WORD RB_BUTTON = XINPUT_GAMEPAD_RIGHT_SHOULDER;
 
+		bool m_startSe;
+
 		enum class RBSeekSizeState
 		{
 			Wait,		// ‘Ò‹@

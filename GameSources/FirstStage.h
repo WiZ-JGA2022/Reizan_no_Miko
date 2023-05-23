@@ -14,7 +14,7 @@ namespace basecross {
 	//	ゲームステージクラス
 	//--------------------------------------------------------------------------------------
 	class FirstStage : public Stage {
-		const float m_TotalTimeSeconds = 240.0f;
+		const float m_TotalTimeSeconds = 120.0f;
 		bool m_isOnce = true;
 
 		shared_ptr<SoundItem> m_BGM;

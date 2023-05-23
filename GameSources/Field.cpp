@@ -53,27 +53,31 @@ namespace basecross {
 
 		AddTag(L"KeyStone");
 
-		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
-		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
-		);
-		//影をつける（シャドウマップを描画する）
-		auto ptrShadow = AddComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"STONE_MODEL");
-		ptrShadow->SetMeshToTransformMatrix(spanMat);
+		auto drawComp = AddComponent<PNTStaticDraw>();
+		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+		drawComp->SetTextureResource(L"STONE");
 
-		//描画コンポーネントの設定
-		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
-		drawComp->SetFogEnabled(false);
-		drawComp->SetMeshResource(L"STONE_MODEL");
-		drawComp->SetMeshToTransformMatrix(spanMat);
-		drawComp->AddAnimation(L"wait", 0, 30, true);
-		drawComp->AddAnimation(L"broken", 35, 30, true);
-		drawComp->ChangeCurrentAnimation(L"wait");
+		//Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		//spanMat.affineTransformation(
+		//	Vec3(1.0f, 1.0f, 1.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f)
+		//);
+		////影をつける（シャドウマップを描画する）
+		//auto ptrShadow = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//ptrShadow->SetMeshResource(L"STONE_MODEL");
+		//ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		////描画コンポーネントの設定
+		//auto drawComp = AddComponent<BcPNTBoneModelDraw>();
+		//drawComp->SetFogEnabled(false);
+		//drawComp->SetMeshResource(L"STONE_MODEL");
+		//drawComp->SetMeshToTransformMatrix(spanMat);
+		//drawComp->AddAnimation(L"wait", 0, 30, true);
+		//drawComp->AddAnimation(L"broken", 35, 30, false);
+		//drawComp->ChangeCurrentAnimation(L"broken");
 
 		SetDrawLayer((int)DrawLayer::MostBottom);
 	}
@@ -81,16 +85,24 @@ namespace basecross {
 
 	void KeyStone::OnUpdate()
 	{
+		auto drawComp = GetComponent<PNTStaticDraw>();
 		m_delay--;
 		if (m_delay <= 0)
 		{
-			auto drawComp = GetComponent<BcPNTBoneModelDraw>();
 			drawComp->SetEmissive(Col4(0.6f, 0.6f, 0.6f, 1.0f)); // Normalカラー
 		}
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		if (m_hp <= 0)
 		{
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
+
+			if (drawComp->GetCurrentAnimation() == L"wait")
+			{
+				drawComp->ChangeCurrentAnimation(L"broken");
+			}
+			if (drawComp->IsTargetAnimeEnd() && drawComp->GetCurrentAnimation() == L"broken")
+			{
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");		
+			}
 		}
 	}
 
@@ -98,7 +110,7 @@ namespace basecross {
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"STONEDAMAGE_SE", 0, 0.5f);
-		auto drawComp = GetComponent<BcPNTBoneModelDraw>();
+		auto drawComp = GetComponent<PNTStaticDraw>();
 		drawComp->SetEmissive(Col4(1.0f, 0.2f, 0.2f, 1.0f));
 		m_delay = m_DefaultDelay;
 		m_hp -= 10.0f;

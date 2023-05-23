@@ -27,8 +27,11 @@ namespace basecross {
 		bool m_skipFlag;
 
 		bool m_isPlay;
+		bool m_startCountDown;
 		// ”š
 		vector<shared_ptr<NumberUI>> m_numbers;
+		// se—p
+		shared_ptr<SoundItem> m_se;
 
 	public:
 		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay, const bool skipFlag);

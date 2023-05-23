@@ -47,6 +47,7 @@ namespace basecross {
 		CreateViewLight();
 		//スプライトの作成
 		CreateResultSprite();
+		AddGameObject<FadeIn>(L"FADE_WHITE");
 		PlayBGM();
 	} // end OnCreate
 
