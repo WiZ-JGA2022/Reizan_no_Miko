@@ -26,8 +26,6 @@ namespace basecross {
 		void CreatePlayer();
 		// UIの作成
 		void CreateUI();
-		// エフェクトコントローラーの作成
-		void CreateEffectController();
 		//BGMの再生
 		void PlayBGM();
 

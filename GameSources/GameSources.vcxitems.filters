@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EffectController.cpp">
-      <Filter>Sources\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>Sources\Enemy</Filter>
     </ClCompile>
@@ -159,9 +156,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EffectController.h">
-      <Filter>Headers\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>

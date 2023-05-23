@@ -51,7 +51,6 @@
 #include "StageCollision.h"
 #include "FadeIn.h"
 #include "FadeOut.h"
-#include "EffectController.h"
 #include "Spike Drawing Process.h"
 #include "ClearStage.h"
 #include "DefeatStage.h"
