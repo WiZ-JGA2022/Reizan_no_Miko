@@ -77,7 +77,6 @@ namespace basecross{
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
 		RoadTexture(L"TRAP_1", L"罠1.png");
 		RoadTexture(L"TRAP_2", L"罠2.png");
-		RoadTexture(L"TRAP", L"罠.png");
 		RoadTexture(L"XBUTTON", L"Xボタン.png");
 		RoadTexture(L"YBUTTON", L"Yボタン.png");
 		RoadTexture(L"ABUTTON", L"Aボタン.png");
@@ -88,9 +87,7 @@ namespace basecross{
 		RoadTexture(L"FADE_BLACK", L"Fade_Black.png");
 		RoadTexture(L"FADE_WHITE", L"Fade_White.png");
 		RoadTexture(L"RB_BUTTON", L"RBボタン.png");
-		RoadTexture(L"HOLDDOWN_SKIP", L"長押しでスキップ.png");
 		RoadTexture(L"HOLDBAR", L"HoldBar.png");
-		RoadTexture(L"SPURT_LAVA", L"red02.png");
 		RoadTexture(L"HOLDBARFRAME", L"HoldBarFrame.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM.wav");
