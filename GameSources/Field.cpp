@@ -45,7 +45,10 @@ namespace basecross {
 		// 衝突判定はAuto
 		collComp->SetAfterCollision(AfterCollision::Auto);
 		collComp->SetSleepActive(false);
+		// 動かない
 		collComp->SetFixed(true);
+
+		// トランスフォームの設定
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(Vec3(0.0f, 0.0f, -12.0f));
 		transComp->SetRotation(0.0f, 0.0f, 0.0f);
@@ -53,40 +56,38 @@ namespace basecross {
 
 		AddTag(L"KeyStone");
 
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-		drawComp->SetTextureResource(L"STONE");
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(L"STONE_MODEL");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		//Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
-		//spanMat.affineTransformation(
-		//	Vec3(1.0f, 1.0f, 1.0f),
-		//	Vec3(0.0f, 0.0f, 0.0f),
-		//	Vec3(0.0f, 0.0f, 0.0f),
-		//	Vec3(0.0f, 0.0f, 0.0f)
-		//);
-		////影をつける（シャドウマップを描画する）
-		//auto ptrShadow = AddComponent<Shadowmap>();
-		////影の形（メッシュ）を設定
-		//ptrShadow->SetMeshResource(L"STONE_MODEL");
-		//ptrShadow->SetMeshToTransformMatrix(spanMat);
-
-		////描画コンポーネントの設定
-		//auto drawComp = AddComponent<BcPNTBoneModelDraw>();
-		//drawComp->SetFogEnabled(false);
-		//drawComp->SetMeshResource(L"STONE_MODEL");
-		//drawComp->SetMeshToTransformMatrix(spanMat);
-		//drawComp->AddAnimation(L"wait", 0, 30, true);
-		//drawComp->AddAnimation(L"broken", 35, 30, false);
-		//drawComp->ChangeCurrentAnimation(L"broken");
+		//描画コンポーネントの設定
+		auto drawComp = AddComponent<BcPNTBoneModelDraw>();
+		drawComp->SetFogEnabled(false);
+		drawComp->SetMeshResource(L"STONE_MODEL");
+		drawComp->SetMeshToTransformMatrix(spanMat);
+		drawComp->AddAnimation(L"wait", 0, 30, true);
+		drawComp->AddAnimation(L"broken", 35, 30, false);
+		drawComp->ChangeCurrentAnimation(L"wait");
 
 		SetDrawLayer((int)DrawLayer::MostBottom);
 	}
 
-
 	void KeyStone::OnUpdate()
 	{
-		auto drawComp = GetComponent<PNTStaticDraw>();
+		auto drawComp = GetComponent<BcPNTBoneModelDraw>();
 		m_delay--;
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		drawComp->UpdateAnimation(elapsedTime);
+
 		if (m_delay <= 0)
 		{
 			drawComp->SetEmissive(Col4(0.6f, 0.6f, 0.6f, 1.0f)); // Normalカラー
@@ -110,7 +111,7 @@ namespace basecross {
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"STONEDAMAGE_SE", 0, 0.5f);
-		auto drawComp = GetComponent<PNTStaticDraw>();
+		auto drawComp = GetComponent<BcPNTBoneModelDraw>();
 		drawComp->SetEmissive(Col4(1.0f, 0.2f, 0.2f, 1.0f));
 		m_delay = m_DefaultDelay;
 		m_hp -= 10.0f;
