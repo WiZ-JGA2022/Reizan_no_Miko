@@ -10,7 +10,9 @@ namespace basecross {
 	Onibi::Onibi(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
 		m_DamageDelayCount(60),
+		m_RecastCount(120),
 		m_damageDelayFlame(m_DamageDelayCount),
+		m_recastFlame(0),
 		m_position(position),
 		m_scale(Vec3(3.0f))
 	{
@@ -65,7 +67,15 @@ namespace basecross {
 			SetDrawActive(false);
 		}
 		m_damageDelayFlame--;
+		m_recastFlame--;
 		MoveEnemyPlayer();
+
+		if (m_recastFlame <= 0)
+		{
+			GetStage()->AddGameObject<EnemyBullet>(m_transform->GetPosition(), m_statusValue[L"ATK"]);
+
+			m_recastFlame = m_RecastCount;
+		}
 	}
 
 	void Onibi::OnCollisionEnter(shared_ptr<GameObject>& other)

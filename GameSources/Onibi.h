@@ -23,7 +23,10 @@ namespace basecross {
 
 		// ダメージを与える間隔
 		const int m_DamageDelayCount;
+		const float m_RecastCount;
+
 		int m_damageDelayFlame;
+		float m_recastFlame;
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
