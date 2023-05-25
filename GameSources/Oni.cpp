@@ -32,7 +32,7 @@ namespace basecross {
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		ptrDraw->AddAnimation(L"walk", 0, 30, true);
 		ptrDraw->AddAnimation(L"attack", 35, 30, true);
-		ptrDraw->AddAnimation(L"dead", 70, 30, false);
+		ptrDraw->AddAnimation(L"died", 70, 30, false);
 		ptrDraw->AddAnimation(L"wait", 105, 30, true);
 		ptrDraw->ChangeCurrentAnimation(L"walk");
 
@@ -66,12 +66,12 @@ namespace basecross {
 		{
 			if (!m_died)
 			{
-				ptrDraw->ChangeCurrentAnimation(L"dead");
+				ptrDraw->ChangeCurrentAnimation(L"died");
 				//エフェクトのプレイ
 				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_diedEffect, m_transform->GetPosition(), Vec3(0.5f));
 				m_died = true;
 			}
-			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"dead")
+			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"died")
 			{
 				// 処理を停止し、見えなくする
 				SetUpdateActive(false);

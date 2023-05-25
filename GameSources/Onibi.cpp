@@ -7,11 +7,11 @@
 #include "Project.h"
 
 namespace basecross {
-	Onibi::Onibi(const shared_ptr<Stage>& stage) :
+	Onibi::Onibi(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
 		m_DamageDelayCount(60),
 		m_damageDelayFlame(m_DamageDelayCount),
-		m_position(Vec3 (2,2,2)),
+		m_position(position),
 		m_scale(Vec3(3.0f))
 	{
 	}
@@ -27,16 +27,23 @@ namespace basecross {
 		ptrColl->SetDrawActive(true);
 		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::None);
+		
+		AddTag(L"Enemy");
+
 		//エフェクトの初期化
 		wstring DataDir;
 		App::GetApp()->GetDataDirectory(DataDir);
-		wstring TestEffectStr = DataDir + L"Effects\\" + L"fire04.efk";
+		wstring normalEffectStr = DataDir + L"Effects\\" + L"fire04.efk";
+		wstring damageEffectStr = DataDir + L"Effects\\" + L"damage.efk";
+		wstring diedEffectStr = DataDir + L"Effects\\" + L"soul.efk";
 		auto& app = App::GetApp();
 		auto scene = app->GetScene<Scene>();
 		auto ShEfkInterface = scene->GetEfkInterface();
-		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+		m_normalEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, normalEffectStr);
+		m_damageEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, damageEffectStr);
+		m_diedEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, diedEffectStr);
 		//エフェクトのプレイ
-		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, m_transform->GetPosition(), Vec3(0.5f));
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_normalEffect, m_transform->GetPosition(), Vec3(0.5f));
 	}
 
 	void Onibi::OnUpdate()
@@ -57,8 +64,7 @@ namespace basecross {
 			SetDrawActive(false);
 		}
 		m_damageDelayFlame--;
-
-		Onibi::MoveEnemyPlayer();
+		MoveEnemyPlayer();
 	}
 
 	void Onibi::OnCollisionEnter(shared_ptr<GameObject>& other)
@@ -123,7 +129,7 @@ namespace basecross {
 		}
 	} // end OnCollisionEnter
 
-	void Onibi::MoveEnemyPlayer()//チェックポイントに向かって
+	void Onibi::MoveEnemyPlayer()
 	{
 		// デルタタイムの取得
 		auto& app = App::GetApp();
@@ -136,11 +142,12 @@ namespace basecross {
 		playerPos.y + 5;
 
 		m_direction = playerPos - pos; // プレイヤーへの方向を計算
-		m_direction.normalize();
+		m_direction.normalize(); // 正規化
 
 		pos += m_direction * m_statusValue[L"SPD"] * delta;	// 移動の計算
 		float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
 
+		m_EfkPlay->AddLocation(m_direction * m_statusValue[L"SPD"] * delta); // エフェクトの移動
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
 	}
@@ -149,6 +156,7 @@ namespace basecross {
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
+		m_EfkPlay2 = ObjectFactory::Create<EfkPlay>(m_damageEffect, m_transform->GetPosition(), Vec3(0.5f));
 
 		m_statusValue[L"HP"] -= totalDamage;
 	}

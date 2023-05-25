@@ -10,9 +10,12 @@
 namespace basecross {
 	class Onibi : public Enemy {
 		//エフェクト
-		shared_ptr<EfkEffect> m_EfkEffect;
+		shared_ptr<EfkEffect> m_normalEffect;
+		shared_ptr<EfkEffect> m_damageEffect;
+		shared_ptr<EfkEffect> m_diedEffect;
 		//エフェクト実行オブジェクト
 		shared_ptr<EfkPlay> m_EfkPlay;
+		shared_ptr<EfkPlay> m_EfkPlay2;
 
 		Vec3 m_position;
 		Vec3 m_scale;
@@ -29,11 +32,11 @@ namespace basecross {
 			{L"HP", 10.0f},
 			{L"ATK", 10.0f},
 			{L"DEF", 1.0f},
-			{L"SPD", 2.0f}
+			{L"SPD", 1.0f}
 		};
 
 	public:
-		Onibi(const shared_ptr<Stage>& stage);
+		Onibi(const shared_ptr<Stage>& stage, const Vec3& position);
 		~Onibi();
 
 		void OnCreate() override;
@@ -45,7 +48,7 @@ namespace basecross {
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 
 		/**
-		* 敵の移動処理
+		* 主人公に向かって移動する処理
 		*/
 		void MoveEnemyPlayer();
 
