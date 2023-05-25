@@ -10,9 +10,13 @@
 namespace basecross {
 	class Oni : public Enemy {
 		//エフェクト
-		shared_ptr<EfkEffect> m_EfkEffect;
+		shared_ptr<EfkEffect> m_diedEffect;
+		shared_ptr<EfkEffect> m_damageEffect;
 		//エフェクト実行オブジェクト
 		shared_ptr<EfkPlay> m_EfkPlay;
+
+		wstring m_diedEffectStr;
+		wstring m_damageEffectStr;
 
 		Vec3 m_position;
 		Vec3 m_scale;
@@ -28,11 +32,6 @@ namespace basecross {
 		bool m_died;
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
-
-		//エフェクト
-		shared_ptr<EfkEffect> m_EfkEffect;
-		//エフェクト実行オブジェクト
-		shared_ptr<EfkPlay> m_EfkPlay;
 
 		// ステータス値
 		std::map<wstring, float> m_statusValue = {

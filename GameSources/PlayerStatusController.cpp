@@ -93,7 +93,7 @@ namespace basecross {
 		XAPtr->Start(L"PLAYERDAMAGE_SE", 0, 0.3f);
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		//エフェクトのプレイ
-		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, player->GetComponent<Transform>()->GetPosition());
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, player->GetComponent<Transform>()->GetPosition(), Vec3(1.0f));
 	} // end PlayerTakenDamage
 
 	float PlayerStatusController::GetStatusValue(wstring statusKey)

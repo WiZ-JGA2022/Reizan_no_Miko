@@ -39,11 +39,13 @@ namespace basecross {
 		//エフェクトの初期化
 		wstring DataDir;
 		App::GetApp()->GetDataDirectory(DataDir);
-		wstring TestEffectStr = DataDir + L"Effects\\" + L"soul.efk";
+		m_diedEffectStr = DataDir + L"Effects\\" + L"soul.efk";
+		m_damageEffectStr = DataDir + L"Effects\\" + L"damage.efk";
 		auto& app = App::GetApp();
 		auto scene = app->GetScene<Scene>();
 		auto ShEfkInterface = scene->GetEfkInterface();
-		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+		m_diedEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, m_diedEffectStr);
+		m_damageEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, m_damageEffectStr);
 
 	}
 
@@ -66,7 +68,7 @@ namespace basecross {
 			{
 				ptrDraw->ChangeCurrentAnimation(L"dead");
 				//エフェクトのプレイ
-				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, m_transform->GetPosition(), Vec3(0.5f));
+				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_diedEffect, m_transform->GetPosition(), Vec3(0.5f));
 				m_died = true;
 			}
 			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"dead")
@@ -116,21 +118,6 @@ namespace basecross {
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.3f);
 
-
-			//エフェクトの初期化
-			wstring DataDir;
-			App::GetApp()->GetDataDirectory(DataDir);
-			wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
-			auto& app = App::GetApp();
-			auto scene = app->GetScene<Scene>();
-			auto ShEfkInterface = scene->GetEfkInterface();
-			m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
-			auto Ptr = GetComponent<Transform>();
-
-			//エフェクトのプレイ
-			m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
-
-
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
 		}
@@ -141,19 +128,6 @@ namespace basecross {
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"SPIKEDAMAGE_SE", 0, 0.3f);
 
-			//エフェクトの初期化
-			wstring DataDir;
-			App::GetApp()->GetDataDirectory(DataDir);
-			wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
-			auto& app = App::GetApp();
-			auto scene = app->GetScene<Scene>();
-			auto ShEfkInterface = scene->GetEfkInterface();
-			m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
-			auto Ptr = GetComponent<Transform>();
-
-			//エフェクトのプレイ
-			m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
-
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
 		}
@@ -163,19 +137,6 @@ namespace basecross {
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
 			XAPtr->Start(L"SPIKEDAMAGE_SE", 0, 0.3f);
-
-			//エフェクトの初期化
-			wstring DataDir;
-			App::GetApp()->GetDataDirectory(DataDir);
-			wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
-			auto& app = App::GetApp();
-			auto scene = app->GetScene<Scene>();
-			auto ShEfkInterface = scene->GetEfkInterface();
-			m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
-			auto Ptr = GetComponent<Transform>();
-
-			//エフェクトのプレイ
-			m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition());
 
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));
@@ -255,6 +216,9 @@ namespace basecross {
 		{
 			return;
 		}
+		//エフェクトのプレイ
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_damageEffect, m_transform->GetPosition(), Vec3(1.0f));
+
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
 
