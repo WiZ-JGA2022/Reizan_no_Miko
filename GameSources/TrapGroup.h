@@ -87,6 +87,11 @@ namespace basecross {
 
 		Vec3 m_objectPosition;
 
+		//エフェクト
+		shared_ptr<EfkEffect> m_EfkEffect;
+		//エフェクト実行オブジェクト
+		shared_ptr<EfkPlay> m_EfkPlay;
+
 	public:
 		BlockingStone(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),

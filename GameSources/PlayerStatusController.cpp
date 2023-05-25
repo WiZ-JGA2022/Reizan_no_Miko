@@ -27,6 +27,14 @@ namespace basecross {
 		{
 			m_statusRisingValue.emplace_back(0);
 		}
+		//エフェクトの初期化
+		wstring DataDir;
+		App::GetApp()->GetDataDirectory(DataDir);
+		wstring TestEffectStr = DataDir + L"Effects\\" + L"damage.efk";
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto ShEfkInterface = scene->GetEfkInterface();
+		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
 	}
 
 	void PlayerStatusController::OnUpdate()
@@ -83,6 +91,9 @@ namespace basecross {
 		m_statusValue[L"HP"] -= totalDamage;
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Start(L"PLAYERDAMAGE_SE", 0, 0.3f);
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		//エフェクトのプレイ
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, player->GetComponent<Transform>()->GetPosition());
 	} // end PlayerTakenDamage
 
 	float PlayerStatusController::GetStatusValue(wstring statusKey)
