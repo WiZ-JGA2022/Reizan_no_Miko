@@ -31,6 +31,8 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
 		SetDrawLayer((int)DrawLayer::MostBottom);
+
+		AddTag(L"STAGE");
 	}
 
 	void StageCollision::OnUpdate()

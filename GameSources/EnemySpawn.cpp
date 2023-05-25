@@ -104,7 +104,7 @@ namespace basecross {
 		auto enemy = GetStage()->AddGameObject<Oni>(transPos);
 		//auto enemy2 = GetStage->AddGameObject<Onibi>(transPos);
 		//GetStage()->AddGameObject<EnemyBullet>();
-		//GetStage()->AddGameObject<EnemyBullet>(enemy);
+		GetStage()->AddGameObject<EnemyBullet>(transPos,2);
 	}
 }
 //end basecross
