@@ -26,8 +26,7 @@ namespace basecross {
 		ptrShadow->SetMeshResource(L"STAGE");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
-		drawComp->SetFogEnabled(false);
+		auto drawComp = AddComponent<PNTStaticModelDraw>();
 		drawComp->SetMeshResource(L"STAGE");
 		drawComp->SetMeshToTransformMatrix(spanMat);
 
