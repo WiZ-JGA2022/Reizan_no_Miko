@@ -53,6 +53,7 @@ namespace basecross {
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
 		if (!player->GetDrawActive())
 		{
+			//m_EfkPlay2->StopEffect();
 			// 処理を停止する
 			return;
 		}
@@ -74,7 +75,7 @@ namespace basecross {
 		if (other->FindTag(L"PlayerBullet"))
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.1f);
+			XAPtr->Start(L"ENEMYDAMAGE_SE", 0, 0.3f);
 
 			// ダメージを受ける(ダメージ量はプレイヤーの攻撃力依存)
 			EnemyDamageProcess(playerStatus->GetStatusValue(L"ATK"));

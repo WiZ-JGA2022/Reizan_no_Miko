@@ -158,7 +158,7 @@ namespace basecross {
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 		auto device = app->GetInputDevice();
-		auto& pad = device.GetControlerVec()[0];
+		auto& pad = device.GetControlerVec()[0];	
 
 		Vec3 padLStick(pad.fThumbLX, 0.0f, pad.fThumbLY);
 
