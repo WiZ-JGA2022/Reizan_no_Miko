@@ -19,8 +19,6 @@ namespace basecross {
 
 	void Onibi::OnCreate()
 	{
-		Enemy::CreateEnemyMesh(m_position, m_scale, L"ONI");
-
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 
@@ -29,7 +27,16 @@ namespace basecross {
 		ptrColl->SetDrawActive(true);
 		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::None);
-
+		//エフェクトの初期化
+		wstring DataDir;
+		App::GetApp()->GetDataDirectory(DataDir);
+		wstring TestEffectStr = DataDir + L"Effects\\" + L"fire04.efk";
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto ShEfkInterface = scene->GetEfkInterface();
+		m_EfkEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, TestEffectStr);
+		//エフェクトのプレイ
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, m_transform->GetPosition(), Vec3(0.5f));
 	}
 
 	void Onibi::OnUpdate()
@@ -50,9 +57,6 @@ namespace basecross {
 			SetDrawActive(false);
 		}
 		m_damageDelayFlame--;
-
-		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-		ptrDraw->UpdateAnimation(elapsedTime);
 
 		Onibi::MoveEnemyPlayer();
 	}
