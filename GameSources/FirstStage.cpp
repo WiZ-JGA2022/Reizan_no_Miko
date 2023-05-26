@@ -43,6 +43,8 @@ namespace basecross {
 		m_player->AddTag(L"Player");
 		auto statusController = AddGameObject<PlayerStatusController>();
 		SetSharedGameObject(L"PlayerStatus", statusController);
+		AddGameObject<PlayerHpGauge>(statusController, L"HPBAR_RED");
+		AddGameObject<PlayerHpGauge>(statusController, L"HPBAR_GREEN");
 	} // end CreatePlayer	
 
 	void FirstStage::CreateUI()
@@ -97,7 +99,7 @@ namespace basecross {
 			AddGameObject<StageCollision>(Vec3(14.5f, 1.0f, 26.0f), Vec3(31.5f, 3.0f, 6.5f));
 			AddGameObject<StageCollision>(Vec3(7.5f, 1.0f, 53.0f), Vec3(3.0f, 3.0f, 18.0f));
 			AddGameObject<StageCollision>(Vec3(-8.0f, 1.0f, 52.0f), Vec3(3.0f, 3.0f, 16.5f));
-			AddGameObject<KeyStoneGauge>(stone);
+
 
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();

@@ -10,21 +10,21 @@ namespace basecross {
 
 	void HpBar::OnCreate()
 	{
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
 
 		m_bar[0] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, L"HPBAR_GREEN");
 		m_bar[1] = ObjectFactory::Create<GaugeSizeSettings>(GetStage(), 400.0f, L"HPBAR_RED");
-		m_bar[0]->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
-		m_bar[1]->UpdateGaugeSize(playerStatus->GetMaxHp(), (float)playerStatus->GetMaxHp());
+		m_bar[0]->UpdateGaugeSize(stone->GetMaxHp(), stone->GetCurrentHp());
+		m_bar[1]->UpdateGaugeSize(stone->GetMaxHp(), (float)stone->GetMaxHp());
 		m_bar[0]->SetPosition((float)App::GetApp()->GetGameWidth(), 0.0f, 0.49f); // 画面の左端から右端に向かってゲージを伸ばす
 		m_bar[1]->SetPosition((float)App::GetApp()->GetGameWidth(), 0.0f, 0.49f); // 画面の左端から右端に向かってゲージを伸ばす
 	}
 
 	void HpBar::OnUpdate()
 	{
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		m_bar[0]->UpdateGaugeSize(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
-		m_bar[1]->UpdateGaugeSize(playerStatus->GetMaxHp(), (float)playerStatus->GetMaxHp());
+		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
+		m_bar[0]->UpdateGaugeSize(stone->GetMaxHp(), stone->GetCurrentHp());
+		m_bar[1]->UpdateGaugeSize(stone->GetMaxHp(), (float)stone->GetMaxHp());
 	}
 
 	void HpBar::OnDraw()

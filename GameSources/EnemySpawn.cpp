@@ -103,8 +103,6 @@ namespace basecross {
 	{
 		GetStage()->AddGameObject<Oni>(transPos);
 		GetStage()->AddGameObject<Onibi>(Vec3(transPos.x - 20.0f, transPos.y, transPos.z));
-		//GetStage()->AddGameObject<EnemyBullet>();
-		GetStage()->AddGameObject<EnemyBullet>(transPos,2);
 	}
 }
 //end basecross

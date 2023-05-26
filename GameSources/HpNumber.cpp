@@ -29,8 +29,11 @@ namespace basecross {
 
 	void HpNumber::OnUpdate()
 	{
-		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		UpdateValue(playerStatus->GetMaxHp(), playerStatus->GetStatusValue(L"HP"));
+		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
+		if (!(stone->GetCurrentHp() < 0.0f))
+		{
+			UpdateValue(stone->GetMaxHp(), stone->GetCurrentHp());
+		}
 	}
 
 	void HpNumber::OnDraw()

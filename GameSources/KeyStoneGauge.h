@@ -1,19 +1,20 @@
-
-
 /*!
-@file Character.h
-@brief キャラクターなど
+@file PlayerHpGauge.h
+@brief プレイヤーのHPバー
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class KeyStoneGauge :public GameObject
+	class PlayerHpGauge :public GameObject
 	{
-		const Vec2 m_DefaultSize = Vec2(5.0f, 0.5f);
+		const Vec2 m_DefaultSize;
+		const wstring m_TexKey;
+		const float m_AddPosY;
 
-		weak_ptr<KeyStone> m_keyStoneHp;
+
+		weak_ptr<PlayerStatusController> m_playerStatus;
 		shared_ptr<PCTStaticDraw> m_draw;
 
 		vector<VertexPositionNormalTexture> m_vertices;
@@ -38,9 +39,10 @@ namespace basecross {
 
 
 	public:
-		KeyStoneGauge(const shared_ptr<Stage>& StagePtr,
-			const shared_ptr<KeyStone>& SeekObjectPtr);
-		virtual ~KeyStoneGauge();
+		PlayerHpGauge(const shared_ptr<Stage>& StagePtr,
+			const shared_ptr<PlayerStatusController>& objectPtr,
+			const wstring& texKey);
+		virtual ~PlayerHpGauge();
 		//初期化
 		virtual void OnCreate() override;
 		//変化

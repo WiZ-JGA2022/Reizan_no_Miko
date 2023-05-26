@@ -1,37 +1,36 @@
-
 /*!
-@file Character.h
-@brief キャラクターなど
+@file PlayerHpGauge.cpp
+@brief プレイヤーのHPバーの実装
 */
-
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	//--------------------------------------------------------------------------------------
-	//	数字のスクエア
-	//--------------------------------------------------------------------------------------
 	//構築と破棄
-	KeyStoneGauge::KeyStoneGauge(const shared_ptr<Stage>& StagePtr,
-		const shared_ptr<KeyStone>& SeekObjectPtr) :
+	PlayerHpGauge::PlayerHpGauge(const shared_ptr<Stage>& StagePtr,
+		const shared_ptr<PlayerStatusController>& objectPtr,
+		const wstring& texKey) :
 		GameObject(StagePtr),
-		m_keyStoneHp(SeekObjectPtr)
+		m_AddPosY(1.5f),
+		m_DefaultSize(Vec2(1.0f, 0.25f)),
+		m_TexKey(texKey),
+		m_playerStatus(objectPtr)
 	{}
-	KeyStoneGauge::~KeyStoneGauge() {}
+	PlayerHpGauge::~PlayerHpGauge() {}
 
 	//初期化
-	void KeyStoneGauge::OnCreate() {
+	void PlayerHpGauge::OnCreate() {
 
 		auto transform = GetComponent<Transform>();
-		if (!m_keyStoneHp.expired()) {
-			auto stonePtr = m_keyStoneHp.lock();
-			auto stoneTransPtr = stonePtr->GetComponent<Transform>();
-			auto position = stoneTransPtr->GetPosition();
-			position.y += 5.0f;
+		if (!m_playerStatus.expired()) {
+			auto playerStatusPtr = m_playerStatus.lock();
+			auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+			auto position = playerTrans->GetPosition();
+			position.y += m_AddPosY;
 			transform->SetPosition(position);
 			transform->SetScale(1.0f, 1.0f, 1.0f);
-			transform->SetQuaternion(stoneTransPtr->GetQuaternion());
+			transform->SetQuaternion(playerTrans->GetQuaternion());
 
 			const Col4 white(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -49,32 +48,53 @@ namespace basecross {
 			m_draw = AddComponent<PCTStaticDraw>();
 			m_draw->SetOriginalMeshUse(true);
 			m_draw->CreateOriginalMesh(m_vertices, m_indices);
-			m_draw->SetTextureResource(L"HPBAR_GREEN");
+			m_draw->SetTextureResource(m_TexKey);
 			SetAlphaActive(true);
-			SetDrawLayer((int)DrawLayer::Bottom);
+			if (m_TexKey == L"HPBAR_GREEN")
+			{
+				SetDrawLayer((int)DrawLayer::Bottom);
+			}
+			else if (m_TexKey == L"HPBAR_RED")
+			{
+				SetDrawLayer((int)DrawLayer::MostBottom);
+			}
 		}
 
 	}
 
-	void KeyStoneGauge::OnUpdate() {
+	void PlayerHpGauge::OnUpdate() {
 
-		if (!m_keyStoneHp.expired()) {
+		if (!m_playerStatus.expired()) {
 
 			auto transform = GetComponent<Transform>();
-			auto stonePtr = m_keyStoneHp.lock();
+			auto playerStatusPtr = m_playerStatus.lock();
 			auto cameraPtr = GetStage()->GetView()->GetTargetCamera();
-
-			// ゲージの大きさを更新
-			UpdateGaugeSize(stonePtr->GetMaxHp(), stonePtr->GetCurrentHp());
+			auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+			auto position = playerTrans->GetPosition();
+			position.y += m_AddPosY;
+			transform->SetPosition(position);
 
 			//向きをビルボードにする
 			Quat Qt;
 			Qt = Billboard(cameraPtr->GetAt() - cameraPtr->GetEye());
 			transform->SetQuaternion(Qt);
+
+			if (m_TexKey == L"HPBAR_GREEN")
+			{
+				if (!(playerStatusPtr->GetStatusValue(L"HP") < 0.0f))
+				{
+					// ゲージの大きさを更新
+					UpdateGaugeSize(playerStatusPtr->GetMaxHp(), playerStatusPtr->GetStatusValue(L"HP"));
+				}
+			}
+			else if (m_TexKey == L"HPBAR_RED")
+			{
+				UpdateGaugeSize(playerStatusPtr->GetMaxHp(), playerStatusPtr->GetMaxHp());
+			}
 		}
 	}
 
-	void KeyStoneGauge::UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize)
+	void PlayerHpGauge::UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize)
 	{
 		float gaugeSizeDiff = m_DefaultSize.x / gaugeSizeLimit;
 		for (int i = 0; i < 4; i++)

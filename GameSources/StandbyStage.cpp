@@ -29,6 +29,8 @@ namespace basecross {
 		m_player->AddTag(L"Player");
 		auto statusController = AddGameObject<PlayerStatusController>();
 		SetSharedGameObject(L"PlayerStatus", statusController);
+		AddGameObject<PlayerHpGauge>(statusController, L"HPBAR_RED");
+		AddGameObject<PlayerHpGauge>(statusController, L"HPBAR_GREEN");
 	} // end CreatePlayer	
 
 	void StandbyStage::CreateUI()
@@ -94,8 +96,6 @@ namespace basecross {
 
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
-
-			AddGameObject<KeyStoneGauge>(stone);
 
 			// UI�̍쐬
 			CreateUI();
