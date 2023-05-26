@@ -20,7 +20,7 @@ namespace basecross {
 	public:
 		EnemyBullet(const shared_ptr<Stage>& stage, const Vec3& position, const float& damage) :
 			GameObject(stage),
-			m_speed(3.0f),
+			m_speed(10.0f),
 			m_damage(damage),
 			m_position(position),
 			m_scale(Vec3(0.5f))

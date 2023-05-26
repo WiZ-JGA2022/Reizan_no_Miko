@@ -16,7 +16,7 @@ namespace basecross {
 
         auto drawComp = AddComponent<PNTStaticDraw>();
         drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-        
+
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
         m_transform = GetComponent<Transform>();
         m_transform->SetPosition(m_position);
@@ -43,7 +43,8 @@ namespace basecross {
         m_transform->SetPosition(m_position); // 移動処理
 
         auto playerPosition = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>()->GetPosition();
-        if (playerPosition.length() - m_position.length() > 10.0f || -10.0f > playerPosition.length() - m_position.length())
+        // if (playerPosition.length() - m_position.length() > 10.0f || -10.0f > playerPosition.length() - m_position.length())
+        if (playerPosition.y < -10.0f)
         {
             GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
         }
@@ -55,6 +56,10 @@ namespace basecross {
         {
             auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
             playerStatus->PlayerDamageProcess(m_damage);
+            GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
+        }
+        if (other->FindTag(L"STAGE"))
+        {
             GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
         }
     }
@@ -77,7 +82,7 @@ namespace basecross {
             m_direction.y * m_direction.y +
             m_direction.z * m_direction.z);
         m_direction *= normalizeMagnification;
-        // ここまで
+        // ここまでw
 
         float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
         m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
