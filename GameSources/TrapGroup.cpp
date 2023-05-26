@@ -76,6 +76,12 @@ namespace basecross {
 
 		// プレイヤーが実行状態かつトラップが待機状態のとき
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		if (!player->GetDrawActive())
+		{
+			m_EfkPlay->StopEffect();
+			XAPtr->Stop(m_se[0]);
+			XAPtr->Stop(m_se[1]);
+		}
 		if (player->GetCondition() == 1 && m_isState == TrapState::Wait)
 		{
 			//Rスティックを押し込んだら
