@@ -60,27 +60,20 @@ namespace basecross{
 
 	void Scene::CreateResourses()
 	{
-		RoadTexture(L"EXPBAR_BLACK", L"ExpBar(Black).png");
-		RoadTexture(L"EXPBAR_BLUE", L"ExpBar(Blue).png");
 		RoadTexture(L"HPBAR_GREEN", L"HpBar(Green).png");
 		RoadTexture(L"HPBAR_RED", L"HpBar(Red).png");
 		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
-		RoadTexture(L"EXP_NUMBER", L"ExpNumber.png");
 		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
 		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
 		RoadTexture(L"TITLE", L"Title.png");
 		RoadTexture(L"RESULT", L"Result.png");
 		RoadTexture(L"GAME_SPRITE", L"EnemyActive.png");
 		RoadTexture(L"STANDBY_PHASE", L"Standby.png");
-		RoadTexture(L"STONE", L"Stone.png");
-		RoadTexture(L"SPIKE", L"Spike.png");
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
 		RoadTexture(L"TRAP_1", L"罠1.png");
 		RoadTexture(L"TRAP_2", L"罠2.png");
 		RoadTexture(L"XBUTTON", L"Xボタン.png");
 		RoadTexture(L"YBUTTON", L"Yボタン.png");
-		RoadTexture(L"ABUTTON", L"Aボタン.png");
-		RoadTexture(L"BBUTTON", L"Bボタン.png");
 		RoadTexture(L"TRAP_NUMBER", L"TrapNumberUi.png");
 		RoadTexture(L"START_UI", L"スタートUI.png");
 		RoadTexture(L"TUTORIAL", L"チュートリアル(仮).png");
@@ -92,15 +85,12 @@ namespace basecross{
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverSE.wav");
-		RoadSound(L"TITLE_BGM", L"TitleBGM2.wav");
+		RoadSound(L"TITLE_BGM", L"TitleBGM.wav");
 		RoadSound(L"STANDBY_BGM", L"StandbyStageBGM.wav");
-		RoadSound(L"MAINGAME_BGM", L"GameStageBGM2.wav");
+		RoadSound(L"MAINGAME_BGM", L"GameStageBGM.wav");
 		RoadSound(L"GAMECLEAR_SE", L"GameClearSE.wav");
-		RoadSound(L"GAMEOVER_SE", L"GameOverSE.wav");
-		RoadSound(L"PLAYERRUN_SE", L"PlayerRunSE.wav");
-		RoadSound(L"PLAYERWALK_SE", L"PlayerWalkSE.wav");
 		RoadSound(L"PLAYERDAMAGE_SE", L"PlayerTakenDamageSE.wav");
-		RoadSound(L"SELECT_SE", L"Select2SE.wav");
+		RoadSound(L"SELECT_SE", L"SelectSE.wav");
 		RoadSound(L"ENEMYDAMAGE_SE", L"EnemyKnockDownSE.wav");
 		RoadSound(L"STONEDAMAGE_SE", L"StoneDamageSE.wav");
 		RoadSound(L"SPIKE_SE", L"SpikeSE.wav");
@@ -117,7 +107,6 @@ namespace basecross{
 
 		RoadBoneModel(L"O_miko_all", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"O_oni_all", L"ONI", L"ONI_TAN");
-		RoadBoneModel(L"O_hitotume_all", L"HITOTSUME", L"HITOTSUME_TAN");
 		RoadBoneModel(L"O_stone_animation", L"STONE_MODEL", L"STONE_MODEL_TAN");
 
 	}

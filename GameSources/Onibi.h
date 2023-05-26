@@ -10,12 +10,11 @@
 namespace basecross {
 	class Onibi : public Enemy {
 		//エフェクト
-		shared_ptr<EfkEffect> m_normalEffect;
 		shared_ptr<EfkEffect> m_damageEffect;
 		shared_ptr<EfkEffect> m_diedEffect;
+
 		//エフェクト実行オブジェクト
 		shared_ptr<EfkPlay> m_EfkPlay;
-		shared_ptr<EfkPlay> m_EfkPlay2;
 
 		Vec3 m_position;
 		Vec3 m_scale;

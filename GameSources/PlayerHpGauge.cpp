@@ -89,7 +89,7 @@ namespace basecross {
 			}
 			else if (m_TexKey == L"HPBAR_RED")
 			{
-				UpdateGaugeSize(playerStatusPtr->GetMaxHp(), playerStatusPtr->GetMaxHp());
+				UpdateGaugeSize(playerStatusPtr->GetMaxHp(), (float)playerStatusPtr->GetMaxHp());
 			}
 		}
 	}

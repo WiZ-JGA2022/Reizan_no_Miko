@@ -13,9 +13,9 @@ namespace basecross {
 
 	class HoldBar : public GameObject
 	{
-		int m_maxTime; // 最大経験値
+		int m_maxTime; // 最大時間
 
-		// EXPバーの情報を入れる変数
+		// バーの情報を入れる変数
 		shared_ptr<GaugeSizeSettings> m_bar[2];
 
 	public:

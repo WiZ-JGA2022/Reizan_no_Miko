@@ -26,6 +26,6 @@ namespace basecross {
 		void OnUpdate() override;
 		void OnDraw() override;
 
-		void UpdateValue(int trapLimit, float currentTrapCount, int index);
+		void UpdateValue(int trapLimit, int currentTrapCount, int index);
 	};
 }

@@ -35,17 +35,13 @@ namespace basecross {
 		//エフェクトの初期化
 		wstring DataDir;
 		App::GetApp()->GetDataDirectory(DataDir);
-		wstring normalEffectStr = DataDir + L"Effects\\" + L"fire04.efk";
 		wstring damageEffectStr = DataDir + L"Effects\\" + L"damage.efk";
 		wstring diedEffectStr = DataDir + L"Effects\\" + L"soul.efk";
 		auto& app = App::GetApp();
 		auto scene = app->GetScene<Scene>();
 		auto ShEfkInterface = scene->GetEfkInterface();
-		m_normalEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, normalEffectStr);
 		m_damageEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, damageEffectStr);
 		m_diedEffect = ObjectFactory::Create<EfkEffect>(ShEfkInterface, diedEffectStr);
-		//エフェクトのプレイ
-		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_normalEffect, m_transform->GetPosition(), Vec3(0.5f));
 	}
 
 	void Onibi::OnUpdate()
@@ -150,7 +146,6 @@ namespace basecross {
 		Vec3 pos = m_transform->GetPosition(); // 自身の位置ベクトルを取得
 		auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
 		auto playerPos = playerTrans->GetPosition(); // プレイヤーの位置ベクトルを取得
-		playerPos.y + 5;
 
 		m_direction = playerPos - pos; // プレイヤーへの方向を計算
 		m_direction.normalize(); // 正規化
@@ -158,7 +153,6 @@ namespace basecross {
 		pos += m_direction * m_statusValue[L"SPD"] * delta;	// 移動の計算
 		float rotationY = atan2f(-m_direction.z, m_direction.x); // 回転の計算
 
-		m_EfkPlay->AddLocation(m_direction * m_statusValue[L"SPD"] * delta); // エフェクトの移動
 		m_transform->SetPosition(pos); // 移動処理
 		m_transform->SetRotation(Vec3(0, rotationY, 0)); // 回転処理
 	}
@@ -167,7 +161,7 @@ namespace basecross {
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
-		m_EfkPlay2 = ObjectFactory::Create<EfkPlay>(m_damageEffect, m_transform->GetPosition(), Vec3(0.5f));
+		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_damageEffect, m_transform->GetPosition(), Vec3(0.5f));
 
 		m_statusValue[L"HP"] -= totalDamage;
 	}
