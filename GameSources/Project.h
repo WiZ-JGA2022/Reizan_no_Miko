@@ -44,7 +44,7 @@
 #include "ButtonUI.h"
 #include "TrapNumber.h"
 #include "Sprites.h"
-#include "KeyStoneGauge.h"
+#include "PlayerHpGauge.h"
 #include "StartButtonUI.h"
 #include "EnemySpawn.h"
 #include "TutorialUI.h"

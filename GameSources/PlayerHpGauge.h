@@ -13,7 +13,6 @@ namespace basecross {
 		const wstring m_TexKey;
 		const float m_AddPosY;
 
-
 		weak_ptr<PlayerStatusController> m_playerStatus;
 		shared_ptr<PCTStaticDraw> m_draw;
 
