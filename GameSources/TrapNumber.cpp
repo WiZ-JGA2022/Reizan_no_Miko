@@ -1,6 +1,6 @@
 /**
-@file HpNumber.cpp
-@brief Œ»İHP‚ÆÅ‘åHP‚ğ”š‚Å•\¦‚·‚éUI‚ÌÀ‘•
+@file TrapNumber.cpp
+@brief ã©‚ğ’u‚¯‚é”‚ğ”š‚Å•\¦‚·‚éUI
 */
 
 #include "stdafx.h"

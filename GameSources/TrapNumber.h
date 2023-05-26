@@ -1,6 +1,6 @@
 /**
-@file HpNumber.h
-@brief Œ»İHP‚ÆÅ‘åHP‚ğ”š‚Å•\¦‚·‚éUI
+@file TrapNumber.h
+@brief ã©‚ğ’u‚¯‚é”‚ğ”š‚Å•\¦‚·‚éUI
 */
 
 #pragma once
