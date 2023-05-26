@@ -22,8 +22,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyBullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemySpawn.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeIn.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeOut.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Field.h" />
@@ -32,7 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HoldGauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerHpGauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DefeatStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RBButtonUI.h" />
@@ -43,7 +41,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneHpGauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h" />
@@ -74,8 +72,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyBullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemySpawn.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeIn.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeOut.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Field.cpp" />
@@ -94,7 +90,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneHpGauge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)NumberUI.cpp" />
@@ -115,6 +111,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHpGauge.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 /*!
-@file HpBar.cpp
-@brief プレイヤーの体力を表示するバーの実装
+@file KeyStoneHpGauge.cpp
+@brief 要石の体力を表示するバーの実装
 */
 
 #include "stdafx.h"

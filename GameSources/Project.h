@@ -16,8 +16,7 @@
 #include "EfkInterface.h"
 
 #include "EnemyController.h"
-#include "ExpBar.h"
-#include "HpBar.h"
+#include "KeyStoneHpGauge.h"
 #include "Field.h"
 #include "PlayerController.h"
 #include "MainCamera.h"
@@ -29,7 +28,6 @@
 #include "TrapController.h"
 #include "TrapGroup.h"
 #include "HpNumber.h"
-#include "ExpNumber.h"
 #include "TimeNumber.h"
 #include "TimeChara.h"
 #include "NumberUI.h"

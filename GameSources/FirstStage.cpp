@@ -49,13 +49,11 @@ namespace basecross {
 
 	void FirstStage::CreateUI()
 	{
-		// ExpバーとHpバーの作成
+		// Hpバーの作成
 		AddGameObject<HpBar>();
-		AddGameObject<ExpBar>();
 
-		// HpとExpの数字表記を作成
+		// Hpの数字表記を作成
 		AddGameObject<HpNumber>();
-		AddGameObject<ExpNumber>();
 
 		// 残り時間の表示UIを作成
 		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds, false,false);

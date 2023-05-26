@@ -1,27 +1,26 @@
 /* !
-* 
-@file ExpBar.h
-@brief 経験値を表示するバー
-*
+@file KeyStoneHpGauge.h
+@brief 要石の体力を表示するバー
 */
 
 #pragma once
 #include "stdafx.h"
 #include "GaugeSizeSetting.h"
+#include <vector>
 
 namespace basecross {
-	
-	class ExpBar : public GameObject
+
+	class HpBar : public GameObject
 	{
-		int m_maxExp; // 最大経験値
+		// 最大HP
+		float m_maxHP;
 
-		// EXPバーの情報を入れる変数
+		// HPバーの情報を入れる変数
 		shared_ptr<GaugeSizeSettings> m_bar[2];
-
 	public:
-		ExpBar(const std::shared_ptr<Stage>& stage) :
+		HpBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
-			m_maxExp(0)
+			m_maxHP(0)
 		{
 		}
 
@@ -34,3 +33,4 @@ namespace basecross {
 	};
 }
 //end basecross
+

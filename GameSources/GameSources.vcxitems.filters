@@ -43,20 +43,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
       <Filter>Sources\Project</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpBar.cpp">
-      <Filter>Sources\UI\Gauge</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.cpp">
       <Filter>Sources\UI\Gauge</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpBar.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneHpGauge.cpp">
       <Filter>Sources\UI\Gauge</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneGauge.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHpGauge.cpp">
       <Filter>Sources\UI\Gauge</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ExpNumber.cpp">
-      <Filter>Sources\UI\Number</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp">
       <Filter>Sources\UI\Number</Filter>
@@ -198,13 +192,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
       <Filter>Headers\Project</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpBar.h">
-      <Filter>Headers\UI\Gauge</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeSizeSetting.h">
       <Filter>Headers\UI\Gauge</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpBar.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneHpGauge.h">
       <Filter>Headers\UI\Gauge</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)NumberUI.h">
@@ -219,10 +210,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h">
       <Filter>Headers\UI\Number</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ExpNumber.h">
-      <Filter>Headers\UI\Number</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneGauge.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerHpGauge.h">
       <Filter>Headers\UI\Gauge</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleSprite.h">
@@ -294,9 +282,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h">
       <Filter>Headers\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h">
-      <Filter>Headers\UI\Sprites\Other</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HoldGauge.h">
       <Filter>Headers\UI\Gauge</Filter>
     </ClInclude>
@@ -305,6 +290,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EfkInterface.h">
       <Filter>Headers\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -347,9 +335,6 @@
     <Filter Include="Headers\UI\Number">
       <UniqueIdentifier>{8a2a5eba-4885-4748-b621-5cf4d96577b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\UI\LevelEvent">
-      <UniqueIdentifier>{192309bb-a561-423d-bc6a-2b1d0e1818b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers\UI\Sprites\Inheritance">
       <UniqueIdentifier>{27f7e41b-e368-4914-96c6-9cb4602e5eec}</UniqueIdentifier>
     </Filter>
@@ -379,9 +364,6 @@
     </Filter>
     <Filter Include="Sources\Player">
       <UniqueIdentifier>{fe7e18f3-31c8-4d21-b2f6-16e741398123}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\UI\LevelEvent">
-      <UniqueIdentifier>{3fd3a486-89d8-4657-8b73-336db9489047}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sources\UI\Number">
       <UniqueIdentifier>{f0590a9f-5136-4d24-a26c-5d1de0ae5bbe}</UniqueIdentifier>
