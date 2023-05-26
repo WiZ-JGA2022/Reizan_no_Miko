@@ -15,140 +15,48 @@ namespace basecross {
 	//構築と破棄
 	MyCamera::MyCamera() :
 		Camera(),
-		m_ToTargetLerp(1.0f),
-		m_TargetToAt(0, 0, 0),
-		m_RadY(0.5f),
-		m_RadXZ(0),
+		m_toTargetLerp(1.0f),
+		m_radY(0.5f),
+		m_radXZ(0),
 		m_CameraUpDownSpeed(0.5f),
 		m_CameraUnderRot(0.1f),
 		m_ArmLen(10.0f),
-		m_MaxArm(20.0f),
-		m_MinArm(2.0f),
 		m_RotSpeed(1.0f),
-		m_ZoomSpeed(0.1f),
-		m_LRBaseMode(true),
-		m_UDBaseMode(true),
 		m_angle(XMConvertToRadians(270.0f))
 	{}
 	MyCamera::~MyCamera() {}
-	//アクセサ
-
-	void MyCamera::SetEye(const bsm::Vec3& Eye) {
-		Camera::SetEye(Eye);
-	}
-	void MyCamera::SetEye(float x, float y, float z) {
-		Camera::SetEye(x, y, z);
-	}
-
-
-	shared_ptr<GameObject> MyCamera::GetTargetObject() const {
-		if (!m_TargetObject.expired()) {
-			return m_TargetObject.lock();
-		}
-		return nullptr;
-	}
-
-	void MyCamera::SetTargetObject(const shared_ptr<GameObject>& Obj) {
-		m_TargetObject = Obj;
-	}
-
-	float MyCamera::GetToTargetLerp() const {
-		return m_ToTargetLerp;
-	}
-	void MyCamera::SetToTargetLerp(float f) {
-		m_ToTargetLerp = f;
-	}
-
-	float MyCamera::GetArmLengh() const {
-		return m_ArmLen;
-	}
-
-	Vec3 MyCamera::GetArmVec() const {
-		return m_armVec;
-	}
-
-	float MyCamera::GetMaxArm() const {
-		return m_MaxArm;
-
-	}
-	void MyCamera::SetMaxArm(float f) {
-		m_MaxArm = f;
-	}
-	float MyCamera::GetMinArm() const {
-		return m_MinArm;
-	}
-	void MyCamera::SetMinArm(float f) {
-		m_MinArm = f;
-	}
-
-	float MyCamera::GetRotSpeed() const {
-		return m_RotSpeed;
-
-	}
-	void MyCamera::SetRotSpeed(float f) {
-		m_RotSpeed = abs(f);
-	}
-
-	bsm::Vec3 MyCamera::GetTargetToAt() const {
-		return m_TargetToAt;
-
-	}
-	void MyCamera::SetTargetToAt(const bsm::Vec3& v) {
-		m_TargetToAt = v;
-	}
-
-	bool MyCamera::GetLRBaseMode() const {
-		return m_LRBaseMode;
-
-	}
-	void MyCamera::SetLRBaseMode(bool b) {
-		m_LRBaseMode = b;
-	}
-	bool MyCamera::GetUDBaseMode() const {
-		return m_UDBaseMode;
-
-	}
-	void MyCamera::SetUDBaseMode(bool b) {
-		m_UDBaseMode = b;
-
-	}
-
-
-	void MyCamera::SetAt(const bsm::Vec3& At) {
-		Camera::SetAt(At);
-		Vec3 armVec = GetEye() - GetAt();
-		armVec.normalize();
-		armVec *= m_ArmLen;
-		Vec3 newEye = GetAt() + armVec;
-		Camera::SetEye(newEye);
-	}
 
 	void MyCamera::OnCreate() {
 		// 初期値の設定
 		auto scene = App::GetApp()->GetScene<Scene>();
-		m_RadXZ = scene->GetBeforeCameraRadXZ();
-		m_RadY = scene->GetBeforeCameraRadY();
+		m_radXZ = scene->GetBeforeCameraRadXZ();
+		m_radY = scene->GetBeforeCameraRadY();
 		m_angle = scene->GetBeforeCameraAngle();
 	}
 
 	void MyCamera::OnUpdate() {
 	
+		// コントローラーの取得
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		auto keyData = App::GetApp()->GetInputDevice().GetKeyState();
-		auto scene = App::GetApp()->GetScene<Scene>();
+		// 追従するオブジェクトのポインタを取得
 		auto ptrTarget = GetTargetObject();
-		//前回のターンからの時間
+		// デルタタイム
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+		// EyeとAtの設定
 		Vec3 newEye = GetEye();
 		Vec3 newAt = Vec3(
 			ptrTarget->GetComponent<Transform>()->GetPosition().x,
 			ptrTarget->GetComponent<Transform>()->GetPosition().y + 1.0f, 
 			ptrTarget->GetComponent<Transform>()->GetPosition().z
 		);
-		//計算に使うための腕角度（ベクトル）
+
+		// 計算に使うためのベクトル
 		m_armVec = newEye - newAt;
-		//正規化しておく
+		// 正規化
 		m_armVec.normalize();
+
+		// スティックの取得
 		float fThumbRY = 0.0f;
 		float fThumbRX = 0.0f;
 		WORD wButtons = 0;
@@ -160,46 +68,35 @@ namespace basecross {
 
 		//上下角度の変更
 		if (cntlVec[0].fThumbRY >= 0.5f ) {
-			if (GetUDBaseMode()) {
-				m_RadY += m_CameraUpDownSpeed * elapsedTime;
-			}
-			else {
-				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
-			}
+			m_radY += m_CameraUpDownSpeed * elapsedTime;
+
 		}
 		else if (cntlVec[0].fThumbRY <= -0.5f ) {
-			if (GetUDBaseMode()) {
-				m_RadY -= m_CameraUpDownSpeed * elapsedTime;
-			}
-			else {
-				m_RadY += m_CameraUpDownSpeed * elapsedTime;
-			}
+			m_radY -= m_CameraUpDownSpeed * elapsedTime;
 		}
-		if (m_RadY > XM_PI * 4 / 9.0f) {
-			m_RadY = XM_PI * 4 / 9.0f;
+
+		// ここで設定した高さ以上に行かない
+		if (m_radY > XM_PI * 4 / 9.0f) {
+			m_radY = XM_PI * 4 / 9.0f;
 		}
-		else if (m_RadY <= m_CameraUnderRot) {
-			//カメラが限界下に下がったらそれ以上下がらない
-			m_RadY = m_CameraUnderRot;
+		else if (m_radY <= m_CameraUnderRot) {
+			// カメラが限界下に下がったらそれ以上下がらない
+			m_radY = m_CameraUnderRot;
 		}
-		m_armVec.y = sin(m_RadY);
-		//ここでY軸回転を作成
+		m_armVec.y = sin(m_radY); // Yの位置を設定
+
+		// Y軸回転を作成
 		if (cntlVec[0].fThumbRX != 0  ) {
-			//回転スピードを反映
+			// 回転スピードを反映
 			if (cntlVec[0].fThumbRX != 0) {
-				if (GetLRBaseMode()) {
-					m_RadXZ += -cntlVec[0].fThumbRX * elapsedTime * m_RotSpeed;
-				}
-				else {
-					m_RadXZ += cntlVec[0].fThumbRX * elapsedTime * m_RotSpeed;
-				}
+				m_radXZ += -cntlVec[0].fThumbRX * elapsedTime * m_RotSpeed;
 			}
 		}
-		//クオータニオンでY回転（つまりXZベクトルの値）を計算
+		// クオータニオンでY回転を計算
 		Quat qtXZ;
-		qtXZ.rotation(-m_RadXZ, bsm::Vec3(0, 1.0f, 0));
+		qtXZ.rotation(-m_radXZ, bsm::Vec3(0, 1.0f, 0));
 		qtXZ.normalize();
-		//移動先行の行列計算することで、XZの値を算出
+		// 移動先の行列を計算することで、XZの値を算出
 		Mat4x4 Mat;
 		Mat.strTransformation(
 			bsm::Vec3(1.0f, 1.0f, 1.0f),
@@ -208,19 +105,21 @@ namespace basecross {
 		);
 
 		Vec3 posXZ = Mat.transInMatrix();
-		//XZの値がわかったので腕角度に代入
+		// 腕角度に代入
 		m_armVec.x = posXZ.x;
 		m_armVec.z = posXZ.z;
-		//腕角度を正規化
+		// 腕角度を正規化
 		m_armVec.normalize();
 
+		// カメラアングルの設定
 		m_angle += -fThumbRX * elapsedTime;
 
-		//目指したい場所にアームの値と腕ベクトルでEyeを調整
+		// 目指したい場所にアームの値と腕ベクトルでEyeを調整
 		Vec3 toEye = newAt + m_armVec * m_ArmLen;
-		newEye = Lerp::CalculateLerp(GetEye(), toEye, 0, 1.0f, m_ToTargetLerp, Lerp::Linear);
+		newEye = Lerp::CalculateLerp(GetEye(), toEye, 0, 1.0f, m_toTargetLerp, Lerp::Linear);
 
-		Camera::SetAt(newAt);
+		// 位置の更新
+		SetAt(newAt);
 		SetEye(newEye);
 		Camera::OnUpdate();	
 	}

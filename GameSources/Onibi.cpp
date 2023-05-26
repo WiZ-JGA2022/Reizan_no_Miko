@@ -14,19 +14,24 @@ namespace basecross {
 		m_damageDelayFlame(m_DamageDelayCount),
 		m_recastFlame(0),
 		m_position(position),
-		m_scale(Vec3(3.0f))
+		m_scale(Vec3(1.0f))
 	{
 	}
 	Onibi::~Onibi() {}
 
 	void Onibi::OnCreate()
 	{
+		Enemy::CreateEnemyMesh(m_position, m_scale, L"SOUL_MODEL");
+
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		ptrDraw->AddAnimation(L"move", 0, 30, true);
+		ptrDraw->ChangeCurrentAnimation(L"move");
+
 		m_transform = GetComponent<Transform>();
 		m_transform->SetPosition(m_position);
 
 		// コリジョンをつける
 		auto ptrColl = AddComponent<CollisionCapsule>();
-		ptrColl->SetDrawActive(true);
 		// 衝突判定はNone
 		ptrColl->SetAfterCollision(AfterCollision::None);
 		
@@ -47,11 +52,12 @@ namespace basecross {
 	void Onibi::OnUpdate()
 	{
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
 		if (!player->GetDrawActive())
 		{
-			//m_EfkPlay2->StopEffect();
+			//m_EfkPlay->StopEffect();
 			// 処理を停止する
 			return;
 		}
@@ -62,14 +68,22 @@ namespace basecross {
 			SetUpdateActive(false);
 			SetDrawActive(false);
 		}
+		ptrDraw->UpdateAnimation(elapsedTime); // アニメーションの更新
+
+		// ディレイの減少
 		m_damageDelayFlame--;
 		m_recastFlame--;
+
+		// 移動処理
 		MoveEnemyPlayer();
 
+		// リキャストタイムが終わったら
 		if (m_recastFlame <= 0)
 		{
+			// 弾を発射する
 			GetStage()->AddGameObject<EnemyBullet>(m_transform->GetPosition(), m_statusValue[L"ATK"]);
 
+			// リキャストタイムの発生
 			m_recastFlame = m_RecastCount;
 		}
 	}
@@ -77,7 +91,7 @@ namespace basecross {
 	void Onibi::OnCollisionEnter(shared_ptr<GameObject>& other)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		// 弾にあたったら
+		// 主人公の弾にあたったら
 		if (other->FindTag(L"PlayerBullet"))
 		{
 			auto XAPtr = App::GetApp()->GetXAudio2Manager();
@@ -119,18 +133,6 @@ namespace basecross {
 				// ダメージを与える
 				playerStatus->PlayerDamageProcess(m_statusValue[L"ATK"]);
 				m_damageDelayFlame = m_DamageDelayCount;
-				return;
-			}
-		}
-
-		if (other->FindTag(L"KeyStone"))
-		{
-			auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
-			if (m_damageDelayFlame <= 0)
-			{
-				stone->DamageProcess();
-				m_damageDelayFlame = m_DamageDelayCount;
-
 				return;
 			}
 		}

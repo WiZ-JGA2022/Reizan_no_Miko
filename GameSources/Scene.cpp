@@ -108,6 +108,7 @@ namespace basecross{
 		RoadBoneModel(L"O_miko_all", L"MIKO", L"MIKO_TAN");
 		RoadBoneModel(L"O_oni_all", L"ONI", L"ONI_TAN");
 		RoadBoneModel(L"O_stone_animation", L"STONE_MODEL", L"STONE_MODEL_TAN");
+		RoadBoneModel(L"O_soul", L"SOUL_MODEL", L"SOUL_MODEL_TAN");
 
 	}
 
@@ -172,14 +173,6 @@ namespace basecross{
 			// アクティブステージの設定
 			ResetActiveStage<DefeatStage>();
 		}
-
-		// デバッグ用文字列オブジェクトに対する設定
-		//auto dss = GetDebugStringSprite();
-		//dss->SetFontColor(Col4(1.0f, 1.0f, 0.0f, 1.0f));
-		//dss->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		//dss->SetStartPosition(Point2D<float>(1280 - 400.0f - 20.0f, 550.0f));
-		//dss->SetTextBlockWidth(400.0f);
-		//dss->SetTextBlockHeight(200.0f);
 	}
 
 	void Scene::ResetData()
