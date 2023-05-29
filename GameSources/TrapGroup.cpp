@@ -78,7 +78,10 @@ namespace basecross {
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		if (!player->GetDrawActive())
 		{
-			m_EfkPlay->StopEffect();
+			if (m_isState == TrapState::Active)
+			{
+				m_EfkPlay->StopEffect();
+			}
 			XAPtr->Stop(m_se[0]);
 			XAPtr->Stop(m_se[1]);
 		}
@@ -111,9 +114,8 @@ namespace basecross {
 				// 待機時間を初期化しておく
 				m_activeFlame = m_DamageActiveDelayFlame;
 
-				auto Ptr = GetComponent<Transform>();
 				//エフェクトのプレイ
-				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, Ptr->GetPosition(), Vec3(0.5f));
+				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_EfkEffect, m_transform->GetPosition(), Vec3(0.5f));
 			}
 		}
 
@@ -182,6 +184,13 @@ namespace basecross {
 
 	void SpikeTrap::OnUpdate()
 	{
+		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		auto time = GetStage()->GetSharedGameObject<TimeNumber>(L"Time");
+		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
+		if (!player->GetDrawActive() || time->GetTimeLeft() < 0.0f || stone->GetCurrentHp() < 0.0f)
+		{
+			m_EfkPlay->StopEffect();
+		}
 	}
 
 	void SpikeTrap::OnCollisionEnter(shared_ptr<GameObject>& other)

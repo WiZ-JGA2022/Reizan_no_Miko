@@ -25,7 +25,7 @@ namespace basecross {
 	}
 	PlayerController::PlayerController(const std::shared_ptr<Stage>& stage, const Vec3& position, const Quat& quaternion, const int condition) :
 		GameObject(stage),
-		m_RecastCount(9.0f),
+		m_RecastCount(6.0f),
 		m_spikeTrapCount(0),
 		m_lavaTrapCount(0),
 		m_position(position),

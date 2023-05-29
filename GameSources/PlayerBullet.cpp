@@ -65,7 +65,7 @@ namespace basecross {
         m_Transform->SetPosition(pos);
         
         // ’e‚ª‰“‚­‚És‚Á‚½‚çÁ‚·
-        if (pos.length() > 50.0f)
+        if (pos.length() > 70.0f)
         {
             GetStage()->RemoveGameObject<PlayerBullet>(GetThis<PlayerBullet>());
         }
