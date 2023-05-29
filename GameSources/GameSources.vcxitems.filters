@@ -148,6 +148,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EfkInterface.cpp">
       <Filter>Sources\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StrengthSprite.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -292,6 +295,9 @@
       <Filter>Headers\Effect</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HoldSkip.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StrengthSprite.h">
       <Filter>Headers\UI\Sprites\Inheritance</Filter>
     </ClInclude>
   </ItemGroup>

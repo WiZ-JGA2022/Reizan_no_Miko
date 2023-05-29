@@ -1,6 +1,6 @@
 /*!
-@file FadeIn.h
-@brief フェードインの定義
+@file StrengthSprite.h
+@brief 耐久値スプライト
 */
 
 #pragma once
@@ -8,14 +8,14 @@
 #include "Project.h"
 
 namespace basecross {
-	class FadeIn : public Sprites {
+	class StrengthSprite : public Sprites {
 		const Vec2 m_DefaultSize;
-		
+
 		wstring m_texKey;
 
 	public:
-		FadeIn(const shared_ptr<Stage>& stage, const wstring& texKey);
-		~FadeIn();
+		StrengthSprite(const shared_ptr<Stage>& stage);
+		~StrengthSprite();
 
 		void OnCreate() override;
 		void OnUpdate() override;

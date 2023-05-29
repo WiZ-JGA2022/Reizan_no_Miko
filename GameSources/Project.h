@@ -58,3 +58,4 @@
 #include "RBButtonUI.h"
 #include "HoldSkip.h"
 #include "HoldGauge.h"
+#include "StrengthSprite.h"

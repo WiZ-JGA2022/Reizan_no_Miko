@@ -82,6 +82,7 @@ namespace basecross{
 		RoadTexture(L"RB_BUTTON", L"RBƒ{ƒ^ƒ“.png");
 		RoadTexture(L"HOLDBAR", L"HoldBar.png");
 		RoadTexture(L"HOLDBARFRAME", L"HoldBarFrame.png");
+		RoadTexture(L"STRENGTH", L"strength.png");
 
 		RoadSound(L"GAMECLEAR_BGM", L"GameClearBGM.wav");
 		RoadSound(L"GAMEOVER_BGM", L"GameOverSE.wav");

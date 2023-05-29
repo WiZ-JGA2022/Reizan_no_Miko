@@ -41,6 +41,8 @@ namespace basecross {
 		// Hpの数字表記を作成
 		AddGameObject<HpNumber>();
 
+		AddGameObject<StrengthSprite>();
+
 		// 残り時間の表示UIを作成
 		auto time = AddGameObject<TimeNumber>(m_TotalTimeSeconds, false,true);
 		SetSharedGameObject(L"Time", time);
