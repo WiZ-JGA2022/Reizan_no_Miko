@@ -16,6 +16,7 @@ namespace basecross {
 
         auto drawComp = AddComponent<PNTStaticDraw>();
         drawComp->SetMeshResource(L"DEFAULT_SPHERE");
+        drawComp->SetEmissive(Col4(0.4f, 0.6f, 0.9f, 1.0f));
 
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
         m_transform = GetComponent<Transform>();

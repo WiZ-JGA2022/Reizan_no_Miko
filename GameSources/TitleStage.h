@@ -13,6 +13,9 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	class TitleStage : public Stage {
 		shared_ptr<SoundItem> m_BGM;
+
+		bool m_start;
+
 		//ビューの作成
 		void CreateViewLight();
 		//スプライトの作成
@@ -24,7 +27,10 @@ namespace basecross {
 		InputHandler2<TitleStage> m_InputHandler;
 	public:
 		//構築と破棄
-		TitleStage() :Stage() {}
+		TitleStage() :
+			Stage(),
+			m_start(false)
+		{}
 		virtual ~TitleStage() {}
 		//初期化
 		virtual void OnCreate()override;
