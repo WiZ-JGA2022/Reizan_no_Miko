@@ -151,6 +151,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StrengthSprite.cpp">
       <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RightStick.cpp">
+      <Filter>Sources\UI\Sprites\Inheritance</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -298,6 +301,9 @@
       <Filter>Headers\UI\Sprites\Inheritance</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StrengthSprite.h">
+      <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RightStick.h">
       <Filter>Headers\UI\Sprites\Inheritance</Filter>
     </ClInclude>
   </ItemGroup>

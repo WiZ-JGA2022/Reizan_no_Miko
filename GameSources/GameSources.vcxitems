@@ -34,6 +34,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DefeatStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Onibi.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RBButtonUI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RightStick.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Sprites.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageCollision.h" />
@@ -84,6 +85,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HoldSkip.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Onibi.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RBButtonUI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RightStick.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Sprites.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageCollision.cpp" />

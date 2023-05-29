@@ -59,3 +59,4 @@
 #include "HoldSkip.h"
 #include "HoldGauge.h"
 #include "StrengthSprite.h"
+#include "RightStick.h"
