@@ -10,7 +10,7 @@
 namespace basecross {
 	StartSprite::StartSprite(const shared_ptr<Stage>& stage) :
 		Sprites(stage),
-		m_DefaultSize(Vec2(250.0f, 250.0f)),
+		m_DefaultSize(Vec2(550.0f, 64.0f)),
 		m_changeSpeed(false)
 	{
 	}
@@ -18,7 +18,7 @@ namespace basecross {
 
 	void StartSprite::OnCreate()
 	{
-		Sprites::CreateSprite(Vec3(50,-100, 0.0f), m_DefaultSize, L"START_UI");
+		Sprites::CreateSprite(Vec3(-275.0f,-200.0f, 0.0f), m_DefaultSize, L"START_UI");
 	}
 
 	void StartSprite::OnUpdate()
