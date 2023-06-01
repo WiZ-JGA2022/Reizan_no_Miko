@@ -65,8 +65,8 @@ namespace basecross{
 		RoadTexture(L"HP_NUMBER", L"HpNumber.png");
 		RoadTexture(L"TIME_NUMBER", L"TimeNumber.png");
 		RoadTexture(L"TIME_CHARA", L"LeftTime.png");
-		RoadTexture(L"TITLE", L"Title2.png");
-		RoadTexture(L"RESULT", L"Result.png");
+		RoadTexture(L"TITLE", L"Title.png");
+		RoadTexture(L"GAMEOVER", L"GameOver.png");
 		RoadTexture(L"GAME_SPRITE", L"EnemyActive.png");
 		RoadTexture(L"STANDBY_PHASE", L"Standby.png");
 		RoadTexture(L"CLEAR_SPRITE", L"Clear.png");
