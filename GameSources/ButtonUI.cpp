@@ -25,8 +25,7 @@ namespace basecross {
 		m_textureNum(textureNum),
 		m_alpha(trace),
 		m_defaultScale(startScale),
-		m_defaultPos(startPos),
-		m_texNum(texNum)
+		m_defaultPos(startPos)
 	{
 	}
 	wstring ButtonSprite::ControllerNum(int i) {

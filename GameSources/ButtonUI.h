@@ -15,8 +15,7 @@ namespace basecross {
 		Vec2 m_defaultPos;      // 位置
 		int m_textureNum;	  // テクスチャ番号
 		wstring m_textureKey; // テクスチャ
-		int m_texNum;
-		float m_alphaNum = 1.0f;
+		float m_alphaNum = 1.0f; // 
 	public:
 		//--------------------------------------------------------------------------------------
 		/*!
@@ -49,6 +48,12 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		virtual void OnUpdate() override;
 
+		/**
+		*　表示する画像の取得
+		*
+		* @param i トラップの数
+		*
+		**/
 		wstring ControllerNum(int i);
 	};
 }

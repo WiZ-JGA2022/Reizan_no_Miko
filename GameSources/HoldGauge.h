@@ -15,10 +15,10 @@ namespace basecross {
 	{
 		int m_maxTime; // 最大時間
 
-		// バーの情報を入れる変数
-		shared_ptr<GaugeSizeSettings> m_bar[2];
+		shared_ptr<GaugeSizeSettings> m_bar[2];// バーの情報を入れる変数
 
 	public:
+		//コンストラクタ
 		HoldBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
 			m_maxTime(3)

@@ -9,12 +9,10 @@
 namespace basecross {
 	class TrapSelect : public GameObject
 	{
-		// レベルアップ時に表示するボタンの数
-		static const int m_PickUpStatusCount = 2;
+		static const int m_PickUpStatusCount = 2;// 表示するトラップの数
 
-		int m_spriteNums[m_PickUpStatusCount] = { 0 };	// ボタンの数字を保存しておく用
+		int m_spriteNums[m_PickUpStatusCount] = { 0 };	// トラップを保存しておく用
 
-		bool m_isActiveSprite = false;
 
 		/**
 		* 強化できるステータス・強化できる武器をランダムに指定
@@ -23,22 +21,13 @@ namespace basecross {
 		*/
 
 	public:
+		// コンストラクタ
 		TrapSelect(const shared_ptr<Stage>& StagePtr);
+		// デストラクタ
 		~TrapSelect();
 
+		//初期化
 		virtual void OnCreate() override;
-
-		/**
-		* レベルアップ時に呼ばれる関数
-		*/
-
-
-
-
-		int GetSpriteNums(int index)
-		{
-			return m_spriteNums[index];
-		}
 	};
 }
 //end basecross
