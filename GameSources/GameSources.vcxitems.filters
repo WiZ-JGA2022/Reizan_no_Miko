@@ -154,6 +154,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RightStick.cpp">
       <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp">
+      <Filter>Sources\Stage\OtherStage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -305,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)RightStick.h">
       <Filter>Headers\UI\Sprites\Inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h">
+      <Filter>Headers\Stage\OtherStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
