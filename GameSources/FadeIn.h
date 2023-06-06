@@ -9,15 +9,20 @@
 
 namespace basecross {
 	class FadeIn : public Sprites {
-		const Vec2 m_DefaultSize;
+		// 画面のデフォルトサイズ
+		const Vec2 m_DefaultSize; 
 		
-		wstring m_texKey;
+		wstring m_texKey; // テクスチャ名
 
 	public:
+		// コンストラクタ
 		FadeIn(const shared_ptr<Stage>& stage, const wstring& texKey);
+		// デストラクタ
 		~FadeIn();
 
+		// 初期化
 		void OnCreate() override;
+		// 更新処理
 		void OnUpdate() override;
 	};
 }

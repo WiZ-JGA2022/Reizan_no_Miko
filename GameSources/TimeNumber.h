@@ -23,8 +23,8 @@ namespace basecross {
 		float m_seconds; // 秒
 		float m_oldSeconds; // 直前の時間
 
-		float m_timeSkip;
-		bool m_skipFlag;
+		float m_timeSkip; // 残り時間のスキップ
+		bool m_skipFlag; // スキップのフラグ
 
 		bool m_isPlay;
 		bool m_startCountDown;
@@ -37,8 +37,11 @@ namespace basecross {
 		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay, const bool skipFlag);
 		~TimeNumber();
 
+		//初期化
 		void OnCreate() override;
+		//更新処理
 		void OnUpdate() override;
+		//描画処理
 		void OnDraw() override;
 
 		void UpdateValue(int minites, float seconds);
