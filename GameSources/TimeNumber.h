@@ -9,12 +9,11 @@
 
 namespace basecross {
 	class TimeNumber : public GameObject {
-
+		// スキップボタン
 		const WORD BUTTON_TIMESKIP = XINPUT_GAMEPAD_RIGHT_SHOULDER;
-
-		// 大きさ
-		const Vec2 m_NumberSize;
-		const int m_OneMinite;
+				
+		const Vec2 m_NumberSize; // 大きさ
+		const int m_OneMinite; // 一分
 
 		int m_place; // 桁数
 
@@ -26,12 +25,11 @@ namespace basecross {
 		float m_timeSkip; // 残り時間のスキップ
 		bool m_skipFlag; // スキップのフラグ
 
-		bool m_isPlay;
-		bool m_startCountDown;
-		// 数字
-		vector<shared_ptr<NumberUI>> m_numbers;
-		// se用
-		shared_ptr<SoundItem> m_se;
+		bool m_isPlay; // 
+		bool m_startCountDown; // カウントダウン
+		
+		vector<shared_ptr<NumberUI>> m_numbers; // 数字
+		shared_ptr<SoundItem> m_se; // se用
 
 	public:
 		// コンストラクタ
