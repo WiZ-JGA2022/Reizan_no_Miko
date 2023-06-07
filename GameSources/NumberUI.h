@@ -32,15 +32,17 @@ namespace basecross {
 		shared_ptr<Transform> m_transform;
 
 	public :
+		// コンストラクタ
 		NumberUI(const shared_ptr<Stage>& stage, const Vec2& spriteSize, const wstring& spriteKey);
+		// デストラクタ
 		~NumberUI();
 
-		void OnCreate() override;
+		void OnCreate() override; // 初期化
 		
-		void SetNumber(int number);
+		void SetNumber(int number); // 
 
-		void SetPosition(const Vec3& pos, float h);
-		void SetPosition(const Vec2& pos, float h);
-		void SetPosition(float x, float y, float h);
+		void SetPosition(const Vec3& pos, float h); //
+		void SetPosition(const Vec2& pos, float h); //
+		void SetPosition(float x, float y, float h); //
 	};
 }

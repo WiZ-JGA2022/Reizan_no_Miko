@@ -18,6 +18,7 @@ namespace basecross {
 		// HPバーの情報を入れる変数
 		shared_ptr<GaugeSizeSettings> m_bar[2];
 	public:
+		// コンストラクタ
 		HpBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
 			m_maxHP(0)

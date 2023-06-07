@@ -15,7 +15,7 @@ namespace basecross {
 		const int m_SquareVartex;
 		// テクスチャキー
 		const wstring m_TextureKey;
-
+		
 		enum class GaugeType {
 			HP,
 			EXP

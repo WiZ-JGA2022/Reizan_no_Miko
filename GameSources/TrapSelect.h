@@ -23,17 +23,16 @@ namespace basecross {
 		*/
 
 	public:
+		// コンストラクタ
 		TrapSelect(const shared_ptr<Stage>& StagePtr);
+		// デストラクタ
 		~TrapSelect();
 
-		virtual void OnCreate() override;
+		virtual void OnCreate() override; // 初期化
 
 		/**
 		* レベルアップ時に呼ばれる関数
 		*/
-
-
-
 
 		int GetSpriteNums(int index)
 		{
