@@ -8,20 +8,19 @@
 
 namespace basecross {
 	class FadeOut : public Sprites {
-		// 画面のデフォルトサイズ
-		const Vec2 m_DefaultSize; 
+		const Vec2 m_DefaultSize; // 初期サイズ
 
-		wstring m_texKey; //テクスチャ名
+		wstring m_texKey; // テクスチャ名
 
-	public:
-		//コンストラクタ
-		FadeOut(const shared_ptr<Stage>& stage, const wstring& texKey);
-		//デストラクタ
+	public:		
+		// コンストラクタ
+		FadeOut(const shared_ptr<Stage>& stage, const wstring& texKey);	
+		// デストラクタ
 		~FadeOut();
 
-		//初期化
+		// 初期化
 		void OnCreate() override;
-		//更新処理
+		// 更新処理
 		void OnUpdate() override;
 
 	};
