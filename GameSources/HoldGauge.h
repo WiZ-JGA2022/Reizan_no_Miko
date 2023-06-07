@@ -19,6 +19,7 @@ namespace basecross {
 		shared_ptr<GaugeSizeSettings> m_bar[2];
 
 	public:
+		// コンストラクタ
 		HoldBar(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
 			m_maxTime(3)

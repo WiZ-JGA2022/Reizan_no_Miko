@@ -10,22 +10,25 @@
 namespace basecross {
 	class HpNumber : public GameObject {
 		
-		const Vec2 m_Size = Vec2(12.0f, 24.0f);
+		const Vec2 m_Size = Vec2(12.0f, 24.0f); // 初期サイズ
 		
-		int m_place;
+		int m_place; // 
 
-		float m_maxHp;
+		float m_maxHp; // 
 
+		// スプライトの元になる頂点データ
 		vector<shared_ptr<NumberUI>> m_numbers;
 
 	public :
+		// コンストラクタ
 		HpNumber(const shared_ptr<Stage>& stage);
+		// デストラクタ
 		~HpNumber();
 
-		void OnCreate() override;
-		void OnUpdate() override;
-		void OnDraw() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
+		void OnDraw() override; // 描画処理
 
-		void UpdateValue(int maxHp, float currentHp);
+		void UpdateValue(int maxHp, float currentHp); // 
 	};
 }

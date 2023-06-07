@@ -16,15 +16,18 @@ namespace basecross {
 
 		float m_maxHp;
 
+		// スプライトの元になる頂点データ
 		vector<shared_ptr<NumberUI>> m_numbers[4];
 
 	public:
+		// コンストラクタ
 		TrapNumber(const shared_ptr<Stage>& stage);
+		// デストラクタ
 		~TrapNumber();
 
-		void OnCreate() override;
-		void OnUpdate() override;
-		void OnDraw() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
+		void OnDraw() override; // 描画処理
 
 		void UpdateValue(int trapLimit, int currentTrapCount, int index);
 	};

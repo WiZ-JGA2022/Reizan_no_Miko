@@ -34,12 +34,14 @@ namespace basecross {
 		shared_ptr<SoundItem> m_se;
 
 	public:
+		// コンストラクタ
 		TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay, const bool skipFlag);
+		// デストラクタ
 		~TimeNumber();
 
-		void OnCreate() override;
-		void OnUpdate() override;
-		void OnDraw() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
+		void OnDraw() override; // 描画処理
 
 		void UpdateValue(int minites, float seconds);
 		float GetTimeLeft();

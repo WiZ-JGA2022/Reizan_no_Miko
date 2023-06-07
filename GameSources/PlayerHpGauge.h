@@ -9,13 +9,15 @@
 namespace basecross {
 	class PlayerHpGauge :public GameObject
 	{
-		const Vec2 m_DefaultSize;
-		const wstring m_TexKey;
-		const float m_AddPosY;
-
+		const Vec2 m_DefaultSize; // PlayerHpGaugeの初期サイズ
+		const wstring m_TexKey; // テクスチャキー
+		const float m_AddPosY; // PlayerHpGaugeのpos
+		
+		// ドローコンポーネントとトランスフォームコンポーネントを取得
 		weak_ptr<PlayerStatusController> m_playerStatus;
 		shared_ptr<PCTStaticDraw> m_draw;
-
+		
+		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionNormalTexture> m_vertices;
 		vector<uint16_t> m_indices;
 
@@ -38,15 +40,17 @@ namespace basecross {
 
 
 	public:
+		// コンストラクタ
 		PlayerHpGauge(const shared_ptr<Stage>& StagePtr,
 			const shared_ptr<PlayerStatusController>& objectPtr,
 			const wstring& texKey);
+		// デストラクタ
 		virtual ~PlayerHpGauge();
-		//初期化
+		// 初期化
 		virtual void OnCreate() override;
-		//変化
+		// 更新処理
 		virtual void OnUpdate() override;
-
+		// Gaugeの更新処理
 		void UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize);
 	};
 
