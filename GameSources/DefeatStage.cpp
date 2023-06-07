@@ -32,14 +32,14 @@ namespace basecross {
 	void DefeatStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GAMEOVER_BGM", 0, 0.3f);
+		m_bgm = XAPtr->Start(L"GAMEOVER_BGM", 0, 0.3f);
 	}
 
 	void DefeatStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Stop(m_BGM);
+		XAPtr->Stop(m_bgm);
 	}
 
 	//初期化
@@ -54,7 +54,7 @@ namespace basecross {
 	//更新
 	void DefeatStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<DefeatStage>());
+		m_inputHandler.PushHandle(GetThis<DefeatStage>());
 
 	} // end OnUpdate
 

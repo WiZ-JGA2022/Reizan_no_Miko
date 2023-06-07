@@ -67,11 +67,13 @@ namespace basecross {
 		enum ChangeColorState m_isChangeColorState = ChangeColorState::DefaultSpeed; // 色変更の状態
 
 	public:
+		// コンストラクタ
 		Sprites(const shared_ptr<Stage>& stage);
+		// デストラクタ
 		~Sprites();
 
-		void OnCreate() override;
-		void OnUpdate() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
 
 		/**
 		* スプライトを作成する関数
@@ -79,6 +81,7 @@ namespace basecross {
 		* @param position	表示位置
 		* @param size		表示サイズ
 		* @param texKey		使用テクスチャ
+		* 
 		*/
 		void CreateSprite(const Vec3& position, const Vec2& size, const wstring& texKey);
 
@@ -133,6 +136,8 @@ namespace basecross {
 		* @param fadeSecond フェードにかかる時間
 		*/
 		void UpdateFadeSprite(const float fadeSecond);
+
+		// サイズ変更の状態を設定する関数
 		void SetSeekSizeState(const int state)
 		{
 			m_isSeekSizeState = (SeekSizeState)state;

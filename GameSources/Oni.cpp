@@ -16,7 +16,6 @@ namespace basecross {
 		m_position(position),
 		m_scale(Vec3(3.0f)),
 		m_currentPointIndex(0),
-		m_alpha(1.0f),
 		m_died(false)
 	{
 	}

@@ -13,16 +13,14 @@ namespace basecross {
 		shared_ptr<EfkEffect> m_damageEffect;
 		shared_ptr<EfkEffect> m_diedEffect;
 
-		//エフェクト実行オブジェクト
-		shared_ptr<EfkPlay> m_EfkPlay;
+		shared_ptr<EfkPlay> m_EfkPlay; //エフェクト実行オブジェクト
 
-		Vec3 m_position;
-		Vec3 m_scale;
-		Vec3 m_direction;
+		Vec3 m_position; // 位置
+		Vec3 m_scale; // 大きさ
+		Vec3 m_direction; // 方向
 
-		// ダメージを与える間隔
-		const int m_DamageDelayCount;
-		const float m_RecastCount;
+		const int m_DamageDelayCount; // ダメージを与える間隔
+		const float m_RecastCount; // 弾発射間隔
 
 		int m_damageDelayFlame;
 		float m_recastFlame;

@@ -32,14 +32,14 @@ namespace basecross {
 	void ClearStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"GAMECLEAR_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_bgm = XAPtr->Start(L"GAMECLEAR_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void ClearStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Stop(m_BGM);
+		XAPtr->Stop(m_bgm);
 	}
 
 	//初期化
@@ -54,7 +54,7 @@ namespace basecross {
 	//更新
 	void ClearStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<ClearStage>());
+		m_inputHandler.PushHandle(GetThis<ClearStage>());
 
 	} // end OnUpdate
 

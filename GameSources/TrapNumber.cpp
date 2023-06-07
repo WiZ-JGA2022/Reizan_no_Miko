@@ -57,13 +57,13 @@ namespace basecross {
 		}
 	}
 
-	void TrapNumber::UpdateValue(int trapLimit, int currentTrap, int index)
+	void TrapNumber::UpdateValue(int trapLimit, int currentTrapCount, int index)
 	{
 		int place = 1;
 		for (auto& numberObj : m_numbers[index])
 		{
 			int maxNumber = trapLimit / place % 10; // 1Œ…–Ú‚©‚ç•\¦
-			int currentNumber = currentTrap * 1000 / place % 10; // 4Œ…–ÚˆÈ~‚É•\¦
+			int currentNumber = currentTrapCount * 1000 / place % 10; // 4Œ…–ÚˆÈ~‚É•\¦
 			int srash = 10;
 			if (place == 100)
 			{

@@ -71,14 +71,14 @@ namespace basecross {
 	void FirstStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.3f);
+		m_bgm = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 
 	void FirstStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Stop(m_BGM);
+		XAPtr->Stop(m_bgm);
 	}
 
 	void FirstStage::OnCreate() {

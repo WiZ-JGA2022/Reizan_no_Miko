@@ -12,8 +12,7 @@ namespace basecross {
         const int m_BaseRisingValue; // ステータスの基礎上昇量
         const int m_DamageDelayCount; // ダメージを受ける間隔
 
-        int m_maxHp;
-        int m_maxExp; // 必要経験値
+        int m_maxHp; // 体力上限
         int m_beforeMaxExp; // 前回必要経験値
                 
         int m_damageDelayFlame; // ダメージを受ける間隔
@@ -69,9 +68,13 @@ namespace basecross {
         vector<float> m_statusRisingValue; // ステータス上昇量
 
     public:
+        // コンストラクタ
         PlayerStatusController(const std::shared_ptr<Stage>& stage);
+        // デストラクタ
         ~PlayerStatusController();
+        // 初期化
         void OnCreate() override;
+        // 更新処理
         void OnUpdate() override;
 
         /**
@@ -83,8 +86,12 @@ namespace basecross {
         */
         float GetStatusValue(wstring statusKey);
 
+        /**
+        * HP上限を取得する関数
+        * 
+        * @return HP上限
+        */
         int GetMaxHp();
-        int GetMaxExp();
 
         /**
         * プレイヤーに与えるダメージを計算する関数
@@ -99,13 +106,6 @@ namespace basecross {
         * @param selectStatusNum 強化するステータス番号
         */
         void StatusLevelUpdate(int selectStatusNum);
-
-        /**
-        * 指定した数だけEXPを増やす関数
-        *
-        * @param expValue 増やすEXPの数
-        */
-        void ExpValueUpdate(int expValue);
     };
 
 }

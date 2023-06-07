@@ -33,14 +33,14 @@ namespace basecross {
 	void TitleStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"TITLE_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_bgm = XAPtr->Start(L"TITLE_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void TitleStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Stop(m_BGM);
+		XAPtr->Stop(m_bgm);
 	}
 
 	//初期化
@@ -57,7 +57,7 @@ namespace basecross {
 	//更新
 	void TitleStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
-		m_InputHandler.PushHandle(GetThis<TitleStage>());
+		m_inputHandler.PushHandle(GetThis<TitleStage>());
 
 	} // end OnUpdate
 

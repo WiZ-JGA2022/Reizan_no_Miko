@@ -14,10 +14,9 @@ namespace basecross {
 	//	ゲームステージクラス
 	//--------------------------------------------------------------------------------------
 	class FirstStage : public Stage {
-		const float m_TotalTimeSeconds = 120.0f;
-		bool m_isOnce = true;
+		const float m_TotalTimeSeconds = 120.0f; // 制限時間
 
-		shared_ptr<SoundItem> m_BGM;
+		shared_ptr<SoundItem> m_bgm; // サウンドアイテム
 		//ビューの作成
 		void CreateViewLight();
 		// 敵の作成
@@ -29,23 +28,23 @@ namespace basecross {
 		//BGMの再生
 		void PlayBGM();
 
-		// 各種コンポーネント
-		shared_ptr<PlayerController> m_player;
+		shared_ptr<PlayerController> m_player; // プレイヤーコンポーネント
 
 	public:
-		//構築と破棄
+		// コンストラクタ
 		FirstStage() :Stage() {}
+		// デストラクタ
 		virtual ~FirstStage() {}
+
 		//初期化
 		virtual void OnCreate() override;
+		// 更新処理
 		virtual void OnUpdate() override;
+		// 破壊処理
 		virtual void OnDestroy() override;
-
-		virtual void OnDraw() override; // デバッグ文字用に上書きする
-
+		// 描画処理
+		virtual void OnDraw() override; 
 	};
-
-
 }
 //end basecross
 

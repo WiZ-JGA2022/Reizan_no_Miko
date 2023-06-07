@@ -67,14 +67,14 @@ namespace basecross {
 	void StandbyStage::PlayBGM()
 	{
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		m_BGM = XAPtr->Start(L"STANDBY_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+		m_bgm = XAPtr->Start(L"STANDBY_BGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void StandbyStage::OnDestroy()
 	{
 		//BGMのストップ
 		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Stop(m_BGM);
+		XAPtr->Stop(m_bgm);
 	}
 
 	void StandbyStage::OnCreate() {

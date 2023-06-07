@@ -13,8 +13,6 @@ namespace basecross {
 		m_BaseRisingValue(10),
 		m_DamageDelayCount(60),
 		m_maxHp(50),
-		m_maxExp(5),
-		m_beforeMaxExp(m_maxExp),
 		m_damageDelayFlame(m_DamageDelayCount)
 	{
 	}
@@ -104,15 +102,5 @@ namespace basecross {
 	int PlayerStatusController::GetMaxHp()
 	{
 		return m_maxHp;
-	}
-
-	int PlayerStatusController::GetMaxExp()
-	{
-		return m_maxExp;
-	}
-
-	void PlayerStatusController::ExpValueUpdate(int expValue)
-	{
-		m_statusValue[L"EXP"] += expValue;
 	}
 }

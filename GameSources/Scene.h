@@ -16,18 +16,18 @@ namespace basecross{
 		//エフェクトのインターフェイス
 		shared_ptr<EfkInterface> m_EfkInterface;
 
-		int m_trapCount[4];
+		int m_trapCount[4] = { 0 }; // 罠の数
 
-		Vec3 m_playerPosition;
-		Quat m_playerRotation;
+		Vec3 m_playerPosition; // プレイヤーの位置
+		Quat m_playerRotation; // プレイヤーの向き
 		
-		float m_cameraRadY;
-		float m_cameraRadXZ;
-		float m_cameraAngle;
-		Vec3 m_cameraAt;
+		float m_cameraRadY; // カメラのY方向の位置
+		float m_cameraRadXZ; // カメラのXZ方向の位置
+		float m_cameraAngle; // カメラのアングル
+		Vec3 m_cameraAt; // カメラの注視点
 
-		Vec3 m_spikePosition[5];
-		Vec3 m_lavaPosition[1];
+		Vec3 m_spikePosition[5]; // 棘罠の位置
+		Vec3 m_lavaPosition[1]; // 溶岩罠の位置
 		
 	public:
 		//--------------------------------------------------------------------------------------
@@ -98,8 +98,10 @@ namespace basecross{
 		//--------------------------------------------------------------------------------------
 		virtual void OnCreate() override;
 
+		// 更新処理
 		virtual void OnUpdate() override;
 
+		// 描画処理
 		virtual void OnDraw() override;
 		//--------------------------------------------------------------------------------------
 		/**

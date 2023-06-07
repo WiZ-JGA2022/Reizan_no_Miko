@@ -40,10 +40,10 @@ namespace basecross {
         AddTag(L"PlayerBullet");
     
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
-        m_Transform = GetComponent<Transform>();
-        m_Transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
-        m_Transform->SetQuaternion(ownerTrans->GetQuaternion());
-        m_Transform->SetScale(Vec3(0.5f));
+        m_transform = GetComponent<Transform>();
+        m_transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
+        m_transform->SetQuaternion(ownerTrans->GetQuaternion());
+        m_transform->SetScale(Vec3(0.5f));
 
     }
 
@@ -60,9 +60,9 @@ namespace basecross {
         auto& app = App::GetApp();
         float delta = app->GetElapsedTime();
 
-        auto pos = m_Transform->GetPosition();
+        auto pos = m_transform->GetPosition();
         pos += m_forward * m_speed * delta;
-        m_Transform->SetPosition(pos);
+        m_transform->SetPosition(pos);
         
         // 弾が遠くに行ったら消す
         if (pos.length() > 70.0f)

@@ -10,9 +10,9 @@
 
 namespace basecross {
 	class StandbyStage : public Stage {
-		const float m_TotalTimeSeconds = 30.0f;
+		const float m_TotalTimeSeconds = 30.0f; // 制限時間
 
-		shared_ptr<SoundItem> m_BGM;
+		shared_ptr<SoundItem> m_bgm;
 
 		//ビューの作成
 		void CreateViewLight();
@@ -27,16 +27,21 @@ namespace basecross {
 		shared_ptr<PlayerController> m_player;
 
 	public:
-		//構築と破棄
+		// コンストラクタ
 		StandbyStage() :Stage() {}
+		// デストラクタ
 		virtual ~StandbyStage() {}
+
 		//初期化
 		virtual void OnCreate() override;
+		// 更新処理
 		virtual void OnUpdate() override;
+		// 破棄処理
 		virtual void OnDestroy() override;
-		// デバッグ文字列表示用
+		// 描画処理
 		virtual void OnDraw() override;
 
+		// ステージ変更処理
 		void ChangeStage();
 	};
 

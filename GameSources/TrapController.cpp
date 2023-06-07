@@ -51,13 +51,4 @@ namespace basecross {
 	{
 		GetStage()->AddGameObject<SpurtLava>(m_transform->GetPosition(), Vec3(20.0f, 4.0f, 1.0f));
 	}
-
-	int TrapController::GetDamageFlame()
-	{
-		return m_TrapDamageDelayFlame;
-	}
-	int TrapController::GetDamageDelay()
-	{
-		return m_trapDamageDelay;
-	}
 }

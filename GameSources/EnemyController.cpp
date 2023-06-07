@@ -13,9 +13,6 @@ namespace basecross {
 		m_Distance(5),
 		m_DelayCount(600),
 		m_delayFlame(0),
-		m_enemyNum(0),
-		m_sign_x(1),
-		m_sign_z(1),
 		m_position(Vec3(-3.0f, 0.0f, 5.0f))
 	{
 	}
@@ -54,11 +51,5 @@ namespace basecross {
 			m_delayFlame = m_DelayCount;
 		}
 	}
-
-	int EnemyController::GetEnemyNumber()
-	{
-		return m_enemyNum;
-	}
-
 }
 //end basecross

@@ -15,11 +15,6 @@ namespace basecross {
 		const int m_DelayCount; // “G‚Ì¶¬’x‰„
 
 		int m_delayFlame; // ’x‰„		
-		int m_enemyNum; // ¯•Ê”Ô†
-
-		//“G‚ÌˆÊ’u‚Ì•„†
-		int m_sign_x; 
-		int m_sign_z;
 
 		Vec3 m_position; // ‚±‚ÌƒIƒuƒWƒFƒNƒg‚ÌˆÊ’uî•ñ
 		Vec3 m_enemyPos; // “G‚ÌˆÊ’uî•ñ
@@ -32,13 +27,6 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
-
-		/**
-		* “G‚Ì¯•Ê”Ô†‚ğæ“¾‚·‚éŠÖ”
-		* 
-		* @return “G‚Ì¯•Ê”Ô†
-		*/
-		int GetEnemyNumber();
 	};
 }
 //end basecross

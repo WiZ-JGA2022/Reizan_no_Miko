@@ -7,9 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	/**
-	溶岩が吹き出すタイプの罠
-	*/
+	// 溶岩が吹き出すタイプの罠
 	class SpurtLava : public GameObject {
 		//エフェクト
 		shared_ptr<EfkEffect> m_EfkEffect;
@@ -39,19 +37,21 @@ namespace basecross {
 		Vec3 m_position; // 位置情報
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
-		shared_ptr<SoundItem> m_se[2];
+		shared_ptr<SoundItem> m_se[2]; // サウンドアイテム
 
 	public:
+		// コンストラクタ
 		SpurtLava(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale);
+		// デストラクタ
 		~SpurtLava();
 
+		// 初期化
 		void OnCreate() override;
+		// 更新処理
 		void OnUpdate() override;
 	};
 
-	/**
-	踏むと刺さる棘を設置する罠
-	*/
+	// 踏むと刺さる棘を設置する罠
 	class SpikeTrap : public GameObject {
 		//エフェクト
 		shared_ptr<EfkEffect> m_EfkEffect;
@@ -64,19 +64,21 @@ namespace basecross {
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 	public:
+		// コンストラクタ
 		SpikeTrap(const shared_ptr<Stage>& stage, const Vec3& position, const Vec3& scale);
+		// デストラクタ
 		~SpikeTrap();
 
+		// 初期化
 		void OnCreate() override;
+		// 更新処理
 		void OnUpdate() override;
 
 		// 衝突応答処理
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 	};
 
-	/**
-	侵攻を妨害するオブジェクトを設置する罠
-	*/
+	// 侵攻を妨害するオブジェクトを設置する罠
 	class BlockingStone : public GameObject
 	{
 		const int m_DefaultDelay;
