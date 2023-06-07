@@ -10,11 +10,11 @@
 namespace basecross {
 	class TrapNumber : public GameObject {
 
-		const Vec2 m_Size = Vec2(24.0f, 48.0f); //初期サイズ
+		const Vec2 m_Size = Vec2(24.0f, 48.0f); // 初期サイズ
 
 		int m_place; // 桁
 
-		vector<shared_ptr<NumberUI>> m_numbers[4]; //ナンバーオブジェクト
+		vector<shared_ptr<NumberUI>> m_numbers[4]; // ナンバーオブジェクト
 
 	public:
 		// コンストラクタ
