@@ -9,26 +9,30 @@
 
 namespace basecross {
 	class ResultSprite : public Sprites {
-		const Vec2 m_DefaultSize;
+		const Vec2 m_DefaultSize; // 初期サイズ
 
 	public:
+		// コンストラクタ
 		ResultSprite(const shared_ptr<Stage>& stage);
+		// デストラクタ
 		~ResultSprite();
 
-		void OnCreate() override;
-		void OnUpdate() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
 
 	};
-
+			
 	class ClearSprite : public Sprites {
-		const Vec2 m_DefaultSize;
+		const Vec2 m_DefaultSize; // 初期サイズ
 
 	public:
+		// コンストラクタ
 		ClearSprite(const shared_ptr<Stage>& stage);
+		// デストラクタ
 		~ClearSprite();
 
-		void OnCreate() override;
-		void OnUpdate() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
 
 	};
 }

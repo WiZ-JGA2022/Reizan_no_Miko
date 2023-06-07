@@ -9,15 +9,17 @@
 
 namespace basecross {
 	class StrengthSprite : public Sprites {
-		const Vec2 m_DefaultSize;
+		const Vec2 m_DefaultSize; // 初期サイズ
 
-		wstring m_texKey;
+		wstring m_texKey; // テクスチャ名
 
 	public:
+		// コンストラクタ
 		StrengthSprite(const shared_ptr<Stage>& stage);
+		// デストラクタ
 		~StrengthSprite();
 
-		void OnCreate() override;
-		void OnUpdate() override;
+		void OnCreate() override; // 初期化
+		void OnUpdate() override; // 更新処理
 	};
 }
