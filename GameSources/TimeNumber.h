@@ -25,7 +25,7 @@ namespace basecross {
 		float m_timeSkip; // 残り時間のスキップ
 		bool m_skipFlag; // スキップのフラグ
 
-		bool m_isPlay; // 
+		bool m_isPlay; // プレイ
 		bool m_startCountDown; // カウントダウン
 		
 		vector<shared_ptr<NumberUI>> m_numbers; // 数字

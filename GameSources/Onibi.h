@@ -28,10 +28,10 @@ namespace basecross {
 
 		// ステータス値
 		std::map<wstring, float> m_statusValue = {
-			{L"HP", 10.0f}, //HP
-			{L"ATK", 10.0f}, //ATTACK
-			{L"DEF", 1.0f}, //DRFENDER
-			{L"SPD", 1.0f} //SPEED
+			{L"HP", 10.0f}, // HP
+			{L"ATK", 10.0f}, // ATTACK
+			{L"DEF", 1.0f}, // DRFENDER
+			{L"SPD", 1.0f} // SPEED
 		};
 
 	public:
