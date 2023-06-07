@@ -1,8 +1,6 @@
-/* !
-*
-@file ExpBar.h
-@brief 経験値を表示するバー
-*
+/**
+* @file HoldGauge.h
+* @brief スキップボタン長押し中に増えるゲージ
 */
 
 #pragma once
@@ -15,8 +13,7 @@ namespace basecross {
 	{
 		int m_maxTime; // 最大時間
 
-		// バーの情報を入れる変数
-		shared_ptr<GaugeSizeSettings> m_bar[2];
+		shared_ptr<GaugeSizeSettings> m_bar[2];// バーの情報を入れる変数
 
 	public:
 		// コンストラクタ

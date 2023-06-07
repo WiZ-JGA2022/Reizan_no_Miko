@@ -9,8 +9,7 @@
 namespace basecross {
 	TrapNumber::TrapNumber(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
-		m_place(5),
-		m_maxHp(0)
+		m_place(5)
 	{
 	}
 	TrapNumber::~TrapNumber() {}

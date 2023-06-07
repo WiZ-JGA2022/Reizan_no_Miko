@@ -1,6 +1,6 @@
 /*!
 @file Oni.h
-@brief 単純な動きの敵
+@brief プレイヤーに直接くる敵
 */
 
 #pragma once
@@ -21,30 +21,34 @@ namespace basecross {
 
 		const int m_DamageDelayCount; // ダメージを与える間隔
 		const float m_RecastCount; // 弾発射間隔
-
-		int m_damageDelayFlame;
-		float m_recastFlame;
+		int m_damageDelayFlame; 
+		float m_recastFlame; 
 
 		shared_ptr<Transform> m_transform; // トランスフォームコンポーネント
 
 		// ステータス値
 		std::map<wstring, float> m_statusValue = {
-			{L"HP", 10.0f},
-			{L"ATK", 10.0f},
-			{L"DEF", 1.0f},
-			{L"SPD", 1.0f}
+			{L"HP", 10.0f}, //HP
+			{L"ATK", 10.0f}, //ATTACK
+			{L"DEF", 1.0f}, //DRFENDER
+			{L"SPD", 1.0f} //SPEED
 		};
 
 	public:
+		//コンストラクタ
 		Onibi(const shared_ptr<Stage>& stage, const Vec3& position);
+		//デストラクタ
 		~Onibi();
 
+		//初期化
 		void OnCreate() override;
+		//更新処理
 		void OnUpdate() override;
 
-		// 衝突応答処理
+		//当たった瞬間
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 
+		//当たってる間
 		virtual void OnCollisionExcute(shared_ptr<GameObject>& other) override;
 
 		/**
