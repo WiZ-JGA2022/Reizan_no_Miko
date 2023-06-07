@@ -31,32 +31,38 @@ namespace basecross {
 
 
 	public:
+		// コンストラクタ
 		MyCamera();
-		virtual ~MyCamera();
+		// デストラクタ
+		virtual ~MyCamera(); 
 
+		// 初期化
 		virtual void OnCreate() override;
+		// 更新処理
 		virtual void OnUpdate() override;
 
+		// カメラが追尾するオブジェクトを取得する関数
 		shared_ptr<GameObject> GetTargetObject() const {
 			if (!m_targetObject.expired()) {
 				return m_targetObject.lock();
 			}
 			return nullptr;
 		}
+		// カメラが追尾するオブジェクトを設定する関数
 		void SetTargetObject(const shared_ptr<GameObject>& Obj) {
 			m_targetObject = Obj;
 		}
-
+		// カメラのY方向の位置を取得
 		float GetRadY() const
 		{
 			return m_radY;
 		}
-
+		// カメラのXZ方向の位置を取得
 		float GetRadXZ() const
 		{
 			return m_radXZ;
 		}
-
+		// カメラのアングルを取得
 		float GetAngle()
 		{
 			return m_angle;
