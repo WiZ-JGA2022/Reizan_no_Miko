@@ -9,12 +9,12 @@
 namespace basecross {
 	Onibi::Onibi(const shared_ptr<Stage>& stage, const Vec3& position) :
 		Enemy(stage),
-		m_DamageDelayCount(60),
-		m_RecastCount(120),
-		m_damageDelayFlame(m_DamageDelayCount),
-		m_recastFlame(0),
-		m_position(position),
-		m_scale(Vec3(1.0f))
+		m_DamageDelayCount(60), // ダメージを与える間隔
+		m_RecastCount(120), // 発射間隔
+		m_damageDelayFlame(m_DamageDelayCount), //
+		m_recastFlame(0),  // 
+		m_position(position), // 初期位置
+		m_scale(Vec3(1.0f)) // 初期サイズ
 	{
 	}
 	Onibi::~Onibi() {}
@@ -23,7 +23,7 @@ namespace basecross {
 	{
 		Enemy::CreateEnemyMesh(m_position, m_scale, L"SOUL_MODEL");
 
-		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>(); 
 		ptrDraw->AddAnimation(L"move", 0, 30, true);
 		ptrDraw->ChangeCurrentAnimation(L"move");
 
@@ -54,6 +54,7 @@ namespace basecross {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
 		if (!player->GetDrawActive())
 		{
@@ -91,6 +92,7 @@ namespace basecross {
 	void Onibi::OnCollisionEnter(shared_ptr<GameObject>& other)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
+		
 		// 主人公の弾にあたったら
 		if (other->FindTag(L"PlayerBullet"))
 		{
@@ -162,9 +164,10 @@ namespace basecross {
 	void Onibi::EnemyDamageProcess(float damage)
 	{
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
-		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f));
+		float totalDamage = damage - (damage * (m_statusValue[L"DEF"] - 1.0f)); //敵の防御力に応じてダメージの値の変更
 		m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_damageEffect, m_transform->GetPosition(), Vec3(0.5f));
 
+		// 敵のHPからダメージを減らす
 		m_statusValue[L"HP"] -= totalDamage;
 	}
 
