@@ -9,7 +9,7 @@
 namespace basecross {
 	class EnemySpawn :public GameObject
 	{
-		Vec3 m_enemyInterval;
+		Vec3 m_enemyInterval;//敵の出現間隔
 
 	public:
 		EnemySpawn(const shared_ptr<Stage>& stage) :
@@ -18,17 +18,60 @@ namespace basecross {
 		{
 		}
 
+		//初期化処理
 		void OnCreate() override;
+		//更新処理
 		void OnUpdate() override;
 
 		//出現パターン
-		void Spawn1(Vec3 pos);//1体
-		void Spawn2(Vec3 pos);//2体
-		void Spawn3(Vec3 pos);//3体
-		void Spawn4(Vec3 pos);//4体
-		void Spawn5(Vec3 pos);//5体
-		void Spawn6(Vec3 pos);//6体
+		/**
+		* 敵を1体生成位置を求める関数
+		*
+		* @param pos 初期位置
+		*/
+		void Spawn1(Vec3 pos);
 
+		/**
+		* 敵を2体生成位置を求める関数
+		*
+		* @param pos 初期位置
+		*
+		*/
+		void Spawn2(Vec3 pos);//2体
+
+		/**
+		* 敵を3体生成位置を求める関数
+		*
+		* @param pos 初期位置
+		*/
+		void Spawn3(Vec3 pos);
+
+		/**
+		* 敵を4体生成する関数
+		*
+		* @param pos 初期位置
+		*/
+		void Spawn4(Vec3 pos);
+
+		/**
+		* 敵を5体生成位置を求める関数
+		*
+		* @param pos 初期位置
+		*/
+		void Spawn5(Vec3 pos);
+
+		/**
+		* 敵を6体生成位置を求める関数
+		*
+		* @param pos 初期位置
+		*/
+		void Spawn6(Vec3 pos);
+
+		/**
+		* 敵を生成する関数
+		*
+		* @param pos 生成位置
+		*/
 		void EnemyCreate(Vec3 transPos);
 	};
 
