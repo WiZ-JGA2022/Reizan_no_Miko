@@ -1,6 +1,6 @@
 /*!
-@file RandomSelectLevelUpButton.cpp
-@brief ランダムにレベルアップできる項目を出すクラスの実装
+@file TrapSelect.cpp
+@brief トラップを連続で表示させるクラスの実装
 */
 
 #include "stdafx.h"

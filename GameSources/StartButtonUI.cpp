@@ -1,6 +1,6 @@
 /* !
 @file StartbuttonUI.h
-@brief タイトルシーンのボタンの実装
+@brief タイトルシーンのスタートボタンの実装
 */
 
 #pragma once
