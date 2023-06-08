@@ -12,7 +12,11 @@ namespace basecross {
 	class StandbyStage : public Stage {
 		const float m_TotalTimeSeconds = 30.0f; // 制限時間
 
+		bool m_isChangeStage;
+
 		shared_ptr<SoundItem> m_bgm;
+		// プレイヤーコンポーネント
+		shared_ptr<PlayerController> m_player;
 
 		//ビューの作成
 		void CreateViewLight();
@@ -23,12 +27,13 @@ namespace basecross {
 		//BGMの再生
 		void PlayBGM();
 
-		// プレイヤーコンポーネント
-		shared_ptr<PlayerController> m_player;
 
 	public:
 		// コンストラクタ
-		StandbyStage() :Stage() {}
+		StandbyStage() :
+			Stage(),
+			m_isChangeStage(false)
+		{}
 		// デストラクタ
 		virtual ~StandbyStage() {}
 
@@ -43,6 +48,11 @@ namespace basecross {
 
 		// ステージ変更処理
 		void ChangeStage();
+
+		bool GetChangingStage()
+		{
+			return m_isChangeStage;
+		}
 	};
 
 }

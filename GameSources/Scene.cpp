@@ -160,6 +160,8 @@ namespace basecross{
 			ResetActiveStage<StandbyStage>();
 		}
 		else if (event->m_MsgStr == L"ToTitleStage") {
+			// データのリセット
+			ResetData();
 			// アクティブステージの設定
 			ResetActiveStage<TitleStage>();
 		}
@@ -169,7 +171,7 @@ namespace basecross{
 			// アクティブステージの設定
 			ResetActiveStage<ClearStage>();
 		}
-		else if (event->m_MsgStr == L"ToResultStage") {
+		else if (event->m_MsgStr == L"ToDefeatStage") {
 			// データのリセット
 			ResetData();
 			// アクティブステージの設定

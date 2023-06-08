@@ -85,15 +85,27 @@ namespace basecross {
 			XAPtr->Stop(m_se[0]);
 			XAPtr->Stop(m_se[1]);
 		}
-		if (player->GetCondition() == 1 && m_isState == TrapState::Wait)
+		if (player->GetCondition() == 1)
 		{
-			//Rスティックを押し込んだら
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_THUMB)
+			auto& stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
+			auto& firstStage = dynamic_pointer_cast<FirstStage>(stage);
+			if (firstStage->GetChangingStage())
 			{
-				// SEの再生
-				m_se[0] = XAPtr->Start(L"LAVA_SE", 0, 0.3f);
-				// 実行待機状態に入る
-				m_isState = TrapState::ActiveDelay;
+				m_EfkPlay->StopEffect();
+				XAPtr->Stop(m_se[0]);
+				XAPtr->Stop(m_se[1]);
+			}
+
+			if (m_isState == TrapState::Wait)
+			{
+				// Rスティックを押し込んだら
+				if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_THUMB)
+				{
+					// SEの再生
+					m_se[0] = XAPtr->Start(L"LAVA_SE", 0, 0.3f);
+					// 実行待機状態に入る
+					m_isState = TrapState::ActiveDelay;
+				}
 			}
 		}
 
@@ -187,6 +199,25 @@ namespace basecross {
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		auto time = GetStage()->GetSharedGameObject<TimeNumber>(L"Time");
 		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
+		if (player->GetCondition() == 1)
+		{
+			auto& stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
+			auto& firstStage = dynamic_pointer_cast<FirstStage>(stage);
+			if (firstStage->GetChangingStage())
+			{
+				m_EfkPlay->StopEffect();
+			}
+		}
+		else if (player->GetCondition() == 0)
+		{
+			auto& stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
+			auto& standbyStage = dynamic_pointer_cast<StandbyStage>(stage);
+			if (standbyStage->GetChangingStage())
+			{
+				m_EfkPlay->StopEffect();
+			}
+		}
+
 		if (!player->GetDrawActive() || time->GetTimeLeft() < 0.0f || stone->GetCurrentHp() < 0.0f)
 		{
 			m_EfkPlay->StopEffect();

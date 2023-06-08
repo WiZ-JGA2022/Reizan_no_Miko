@@ -101,7 +101,7 @@ namespace basecross {
 			}
 			if (drawComp->IsTargetAnimeEnd() && drawComp->GetCurrentAnimation() == L"broken")
 			{
-				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");		
+				PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToDefeatStage");		
 			}
 		}
 	}

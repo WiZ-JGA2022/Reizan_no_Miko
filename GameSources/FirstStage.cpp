@@ -131,18 +131,36 @@ namespace basecross {
 
 	//更新
 	void FirstStage::OnUpdate() {
+		// 各種情報の取得
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
 		auto player = GetSharedGameObject<PlayerController>(L"Player");
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		
+		// リセットコマンド
+		if (pad.wButtons & XINPUT_GAMEPAD_START && pad.wButtons & XINPUT_GAMEPAD_BACK)
+		{
+			m_isChangeStage = true;
+			// タイトルに戻る
+			PostEvent(0.1f, GetThis<ObjectInterface>(), scene, L"ToTitleStage");
+		}
+
+		// プレイヤーが描画されなくなったら
 		if (!player->GetDrawActive())
 		{
+			m_isChangeStage = true;
+			// Defeatステージに移動
 			AddGameObject<FadeOut>(L"FADE_BLACK");
-			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToResultStage");
+			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToDefeatStage");
 			return;
 		}
-		// クリア
+		// 時間切れになったら
 		if (time->GetTimeLeft() <= 0.0f)
 		{
+			m_isChangeStage = true;
+			// Clearステージに移動
 			AddGameObject<FadeOut>(L"FADE_WHITE");
 			PostEvent(1.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToClearStage");
 			return;

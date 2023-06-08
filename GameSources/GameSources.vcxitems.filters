@@ -154,9 +154,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RightStick.cpp">
       <Filter>Sources\UI\Sprites\Inheritance</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp">
-      <Filter>Sources\Stage\OtherStage</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -309,9 +306,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RightStick.h">
       <Filter>Headers\UI\Sprites\Inheritance</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h">
-      <Filter>Headers\Stage\OtherStage</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -380,9 +374,6 @@
     <Filter Include="Sources\Stage">
       <UniqueIdentifier>{2fca0b7e-64da-4092-b5af-fcc5b6ba8edc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Player">
-      <UniqueIdentifier>{fe7e18f3-31c8-4d21-b2f6-16e741398123}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\UI\Number">
       <UniqueIdentifier>{f0590a9f-5136-4d24-a26c-5d1de0ae5bbe}</UniqueIdentifier>
     </Filter>
@@ -415,6 +406,9 @@
     </Filter>
     <Filter Include="Sources\Stage\OtherStage">
       <UniqueIdentifier>{2d0ac158-d731-404b-bf95-747dafb286b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Player">
+      <UniqueIdentifier>{fe7e18f3-31c8-4d21-b2f6-16e741398123}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

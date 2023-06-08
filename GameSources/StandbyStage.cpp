@@ -113,6 +113,20 @@ namespace basecross {
 	}
 
 	void StandbyStage::OnUpdate() {
+
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
+
+		// リセットコマンド
+		if (pad.wButtons & XINPUT_GAMEPAD_START && pad.wButtons & XINPUT_GAMEPAD_BACK)
+		{
+			m_isChangeStage = true;
+			// タイトルに戻る
+			PostEvent(0.1f, GetThis<ObjectInterface>(), scene, L"ToTitleStage");
+		}
+
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
@@ -129,6 +143,9 @@ namespace basecross {
 
 	void StandbyStage::ChangeStage()
 	{
+		m_isChangeStage = true;
+
+		// 各種情報をシーンに設定
 		auto scene = App::GetApp()->GetScene<Scene>();
 		auto camera = GetView()->GetTargetCamera();
 		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
@@ -138,6 +155,8 @@ namespace basecross {
 		scene->SetBeforeCameraRadY(maincamera->GetRadY());
 		scene->SetBeforeCameraAngle(maincamera->GetAngle());
 		scene->SetBeforeCameraAt(maincamera->GetAt());
-		PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToFirstStage");
+
+		// ゲームステージへ移動
+		PostEvent(0.01f, GetThis<ObjectInterface>(), scene, L"ToFirstStage");
 	}
 }

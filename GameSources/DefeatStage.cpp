@@ -53,6 +53,18 @@ namespace basecross {
 
 	//更新
 	void DefeatStage::OnUpdate() {
+		// デバイスの取得
+		auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
+		// リセットコマンド
+		if (pad.wButtons & XINPUT_GAMEPAD_START && pad.wButtons & XINPUT_GAMEPAD_BACK)
+		{
+			// タイトルに戻る
+			PostEvent(0.0f, GetThis<ObjectInterface>(), scene, L"ToTitleStage");
+		}
+
 		//コントローラチェックして入力があればコマンド呼び出し
 		m_inputHandler.PushHandle(GetThis<DefeatStage>());
 
