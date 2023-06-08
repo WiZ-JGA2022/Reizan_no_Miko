@@ -9,6 +9,7 @@
 namespace basecross {
 	void GaugeSizeSettings::OnCreate()
 	{
+		// 頂点データの生成
 		SetVartices();
 
 		m_indices = {
@@ -16,12 +17,14 @@ namespace basecross {
 			2, 1, 3  // 右下の三角(ポリゴン)
 		};
 
+		// トランスフォームコンポーネントの取得
+		m_transform = GetComponent<Transform>();
+		// 見た目の設定
 		m_draw = AddComponent<PCTSpriteDraw>(m_vertices, m_indices);
 		m_draw->SetTextureResource(m_TextureKey);
+
+		// 描画レイヤーを設定
 		SetDrawLayer((int)DrawLayer::ForeFront);
-
-		m_transform = GetComponent<Transform>();
-
 		// 透過処理を有効にする
 		SetAlphaActive(true);
 	}
@@ -41,13 +44,16 @@ namespace basecross {
 
 	void GaugeSizeSettings::UpdateGaugeSize(int gaugeSizeLimit, float currentGaugeSize)
 	{
+		// 1ごとのゲージのサイズを計算
 		float gaugeSizeDiff = m_DefaultSize.x / gaugeSizeLimit;
 
 		// 頂点データを更新
 		for (int i = 0; i < m_SquareVartex; i++)
 		{
+			// テクスチャ名がHPBAR_GREENまたはHPBAR_REDなら
 			if (m_TextureKey == L"HPBAR_GREEN" || m_TextureKey == L"HPBAR_RED")
 			{
+				// 右側から減らす
 				float currentLostGauge = gaugeSizeLimit - currentGaugeSize;
 
 				if (i % 2 == 1 && currentGaugeSize <= gaugeSizeLimit)
@@ -55,8 +61,9 @@ namespace basecross {
 					m_vertices[i].position.x = m_DefaultSize.x - gaugeSizeDiff * currentLostGauge;
 				}
 			}
-			else
+			else // そうでないなら
 			{
+				// 左側から増やす
 				if (i % 2 == 1 && currentGaugeSize <= gaugeSizeLimit)
 				{
 					m_vertices[i].position.x = gaugeSizeDiff * currentGaugeSize;
@@ -77,7 +84,8 @@ namespace basecross {
 		auto width = app->GetGameWidth();
 		auto height = app->GetGameHeight();
 
-		m_transform->SetPosition(Vec3(-pos.x + (width * 0.5f), -pos.y + (height * h), pos.z)); // 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
+		// 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
+		m_transform->SetPosition(Vec3(-pos.x + (width * 0.5f), -pos.y + (height * h), pos.z)); 
 	}
 
 }

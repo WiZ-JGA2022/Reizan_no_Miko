@@ -105,7 +105,7 @@ namespace basecross {
 
 		auto group = GetStage()->GetSharedObjectGroup(L"EnemyGroup");
 		group->IntoGroup(GetThis<GameObject>());
-		//“§–¾ˆ—
+		// “§–¾ˆ—
 		SetAlphaActive(true);
 
 		// •`‰æ‡‚Ì•ÏX

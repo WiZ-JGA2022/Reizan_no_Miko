@@ -21,8 +21,8 @@ namespace basecross {
 
 		for (int i = 0; i < m_place; i++)
 		{
-			auto numberObj = ObjectFactory::Create<NumberUI>(GetStage(), m_Size, L"HP_NUMBER"); // オブジェクトを生成するけどステージに追加しない
-			numberObj->SetPosition(Vec2(535.0f - m_Size.x * i, 0.0f), 0.49f); // 画面の右端から、スコアのすべての桁が収まる位置に調整する
+			auto numberObj = ObjectFactory::Create<NumberUI>(GetStage(), m_Size, L"HP_NUMBER"); 
+			numberObj->SetPosition(Vec2(535.0f - m_Size.x * i, 0.0f), 0.49f); 
 			m_numbers.push_back(numberObj);
 		}
 	}
@@ -32,6 +32,7 @@ namespace basecross {
 		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
 		if (!(stone->GetCurrentHp() < 0.0f))
 		{
+			// 値の更新
 			UpdateValue(stone->GetMaxHp(), stone->GetCurrentHp());
 		}
 	}
@@ -46,7 +47,7 @@ namespace basecross {
 
 	void HpNumber::UpdateValue(int maxHp, float currentHp)
 	{
-		int place = 1; 
+		int place = 1; // 桁の初期位置を設定
 		for (auto& numberObj : m_numbers)
 		{
 			int maxNumber = maxHp / place % 10; // 1桁目から表示

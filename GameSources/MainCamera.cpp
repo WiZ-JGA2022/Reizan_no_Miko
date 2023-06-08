@@ -8,11 +8,7 @@
 
 namespace basecross {
 
-
-	//--------------------------------------------------------------------------------------
-	//	MyCameraカメラ（コンポーネントではない）
-	//--------------------------------------------------------------------------------------
-	//構築と破棄
+	// コンストラクタとデストラクタ
 	MyCamera::MyCamera() :
 		Camera(),
 		m_toTargetLerp(1.0f),
@@ -25,6 +21,7 @@ namespace basecross {
 		m_angle(XMConvertToRadians(270.0f))
 	{}
 	MyCamera::~MyCamera() {}
+	// ここまで
 
 	void MyCamera::OnCreate() {
 		// 初期値の設定
@@ -59,11 +56,9 @@ namespace basecross {
 		// スティックの取得
 		float fThumbRY = 0.0f;
 		float fThumbRX = 0.0f;
-		WORD wButtons = 0;
 		if (cntlVec[0].bConnected) {
 			fThumbRY = cntlVec[0].fThumbRY;
 			fThumbRX = cntlVec[0].fThumbRX;
-			wButtons = cntlVec[0].wButtons;
 		}
 
 		//上下角度の変更
