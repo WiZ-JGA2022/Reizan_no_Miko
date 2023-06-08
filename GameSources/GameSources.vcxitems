@@ -63,7 +63,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapSelect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapUI.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TutorialStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TutorialUI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +113,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapSelect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapUI.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TutorialStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TutorialUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHpGauge.cpp" />
