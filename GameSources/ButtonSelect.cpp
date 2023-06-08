@@ -18,6 +18,7 @@ namespace basecross {
 	ButtonSelect::~ButtonSelect() {}
 	// end デストラクタ
 
+	//初期化
 	void ButtonSelect::OnCreate()
 	{
 
@@ -26,7 +27,7 @@ namespace basecross {
 
 		for (int i = 0; i < m_PickUpStatusCount; i++)
 		{
-			GetStage()->AddGameObject<ButtonSprite>(i, true, Vec2(75.0f, 75.0f), Vec2(-500.0f + (i * 250.0f) + (i * 20), -300.0f), i);	//連続で表示する複数の画像の位置座標の競って利
+			GetStage()->AddGameObject<ButtonSprite>(i, true, Vec2(75.0f, 75.0f), Vec2(-500.0f + (i * 250.0f) + (i * 20), -300.0f), i);	//連続で表示する複数の画像の位置座標の設定
 		}
 	} // end OnCreate
 
