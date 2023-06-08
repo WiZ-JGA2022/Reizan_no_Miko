@@ -28,6 +28,8 @@ namespace basecross {
 		m_defaultPos(startPos)
 	{
 	}
+
+	//˜A‘±‚Å•\Ž¦‚³‚¹‚é‰æ‘œ‚ÌŽæ“¾
 	wstring ButtonSprite::ControllerNum(int i) {
 		if (i == 0)
 		{

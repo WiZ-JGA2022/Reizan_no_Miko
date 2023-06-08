@@ -10,7 +10,7 @@
 namespace basecross {
 	HoldSkipSprite::HoldSkipSprite(const shared_ptr<Stage>& stage) :
 		Sprites(stage),
-		m_DefaultSize(Vec2(150.0f, 150.0f))
+		m_DefaultSize(Vec2(150.0f, 150.0f))	//ƒTƒCƒY‚Ì‰Šúİ’è
 	{
 	}
 	HoldSkipSprite::~HoldSkipSprite() {}
