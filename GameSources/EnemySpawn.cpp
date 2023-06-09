@@ -8,20 +8,9 @@
 
 namespace basecross {
 
-	void EnemySpawn::OnCreate()
-	{
-		//Spawn1(Vec3(20.0f, 0.0f, 40.0f));
-		//Spawn2(Vec3(20.0f, 0.0f, 40.0f));
-		//Spawn3(Vec3(20.0f, 0.0f, 40.0f));
-		//Spawn4(Vec3(20.0f, 0.0f, 40.0f));
-		//Spawn5(Vec3(20.0f, 0.0f, 40.0f));
-	}
-
-	void EnemySpawn::OnUpdate()
-	{
-
-	}
-
+	//------------------------------------------------------------------
+	//“G‚ÌoŒ»êŠ‚ðŒˆ‚ß‚éŠÖ”
+	//------------------------------------------------------------------
 	void EnemySpawn::Spawn1(Vec3 pos)
 	{
 		EnemyCreate(pos);
@@ -99,6 +88,7 @@ namespace basecross {
 		}
 	}
 
+	//“G‚ðoŒ»‚³‚¹‚éŠÖ”
 	void EnemySpawn::EnemyCreate(Vec3 transPos)
 	{
 		GetStage()->AddGameObject<Oni>(transPos);

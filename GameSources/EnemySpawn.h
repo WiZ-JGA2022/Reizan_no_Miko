@@ -18,11 +18,6 @@ namespace basecross {
 		{
 		}
 
-		//初期化処理
-		void OnCreate() override;
-		//更新処理
-		void OnUpdate() override;
-
 		//出現パターン
 		/**
 		* 敵を1体生成位置を求める関数
