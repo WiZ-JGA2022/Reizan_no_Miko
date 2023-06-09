@@ -70,14 +70,14 @@ namespace basecross {
 
 	void FirstStage::PlayBGM()
 	{
-		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		auto& XAPtr = App::GetApp()->GetXAudio2Manager();
 		m_bgm = XAPtr->Start(L"MAINGAME_BGM", XAUDIO2_LOOP_INFINITE, 0.3f);
 	}
 
 	void FirstStage::OnDestroy()
 	{
 		//BGMのストップ
-		auto XAPtr = App::GetApp()->GetXAudio2Manager();
+		auto& XAPtr = App::GetApp()->GetXAudio2Manager();
 		XAPtr->Stop(m_bgm);
 	}
 
@@ -120,7 +120,7 @@ namespace basecross {
 			PlayBGM();
 
 			// メインカメラにプレイヤーをセットする
-			auto camera = GetView()->GetTargetCamera();
+			auto& camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
 			maincamera->SetTargetObject(m_player);
 		}
@@ -134,7 +134,7 @@ namespace basecross {
 		// 各種情報の取得
 		auto& app = App::GetApp();
 		auto scene = app->GetScene<Scene>();
-		auto device = app->GetInputDevice();
+		auto& device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];
 		auto player = GetSharedGameObject<PlayerController>(L"Player");
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");

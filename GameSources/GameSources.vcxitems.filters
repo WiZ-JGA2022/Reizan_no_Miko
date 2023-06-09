@@ -34,9 +34,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Spike Drawing Process.cpp">
       <Filter>Sources\Trap</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp">
-      <Filter>Sources\Trap</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrapGroup.cpp">
       <Filter>Sources\Trap</Filter>
     </ClCompile>
@@ -181,9 +178,6 @@
       <Filter>Headers\Player</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrapGroup.h">
-      <Filter>Headers\Trap</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h">
       <Filter>Headers\Trap</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Spike Drawing Process.h">

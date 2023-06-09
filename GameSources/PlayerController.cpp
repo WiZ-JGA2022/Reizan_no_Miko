@@ -75,71 +75,93 @@ namespace basecross {
 		//透明処理
 		SetAlphaActive(true);
 
+		// 描画レイヤーを設定
 		SetDrawLayer((int)DrawLayer::Bottom);
 	}
 
 	void PlayerController::OnUpdate()
 	{
+		// 各種情報の取得
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		float elapsedTime = App::GetApp()->GetElapsedTime();
+
+		// アニメーションの更新
 		ptrDraw->UpdateAnimation(elapsedTime);
+
+		// HPが0以下になったら
 		if (playerStatus->GetStatusValue(L"HP") <= 0)
 		{
 			if (m_action != PlayerAction::Died)
 			{
+				// 死亡アニメーションに切り替える
 				ptrDraw->ChangeCurrentAnimation(L"died_player");
+				// プレイヤーを死亡状態にする
 				m_action = PlayerAction::Died;
 			}
 
+			// 死亡アニメーションが終わった時
 			if (ptrDraw->IsTargetAnimeEnd() && ptrDraw->GetCurrentAnimation() == L"died_player")
 			{
+				// プレイヤーの更新処理と描画処理を停止する
 				SetUpdateActive(false);
 				SetDrawActive(false);
 			}
-
+			// これ以降の処理は行わない
 			return;
 		}
 
+		// 弾のリキャストタイムを減少させる
 		m_recastFlame -= 0.1f;
 		
+		// プレイヤーの移動処理
 		PlayerMoveProcess();
 
-		if (m_recastFlame <= 0 && m_condition == PlayerCondition::Play)
+		// リキャストタイムが0以下かつプレイヤーの状態がスタンバイ状態でなければ
+		if (m_recastFlame <= 0 && m_condition != PlayerCondition::Standby)
 		{
+			// 弾を発射する
 			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
 
+			// リキャストタイムのリセット
 			m_recastFlame = m_RecastCount - (m_RecastCount * (playerStatus->GetStatusValue(L"HASTE") - 1.0f));
 		}
 
+		// コントローラーデバイスの取得
 		auto& app = App::GetApp();
 		auto device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];
-		// プレイヤーの状態が準備状態なら
+		// プレイヤーがスタンバイ状態のとき
 		if (m_condition == PlayerCondition::Standby)
 		{	
-			// スパイクトラップの上限未満なら
+			// スパイク罠の設置数が上限未満なら
 			if (m_trapCount[0] < (int)TrapLimit::SpikeTrap)
 			{
+				// Xボタンで
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_X)
 				{
+					// SEの再生
 					auto XAPtr = app->GetXAudio2Manager();
 					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
 
+					// 罠を設置
 					Vec3 trapPosition = Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z);
 					GetStage()->AddGameObject<SpikeTrap>(trapPosition, Vec3(5.0f, 0.5f, 5.0f));
 					app->GetScene<Scene>()->SetBeforeSpikePosition(trapPosition, m_trapCount[0]);
 					m_trapCount[0]++;
 				}
 			}
-			// 溶岩罠の上限未満なら
+			// 溶岩罠の設置数が上限未満なら
 			if (m_trapCount[1] < (int)TrapLimit::SpurtLava)
 			{
+				// Yボタンで
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_Y)
 				{
+					// SEの再生
 					auto XAPtr = app->GetXAudio2Manager();
 					XAPtr->Start(L"SPIKE_SE", 0, 0.3f);
 
+					// 罠の設置
 					Vec3 trapPosition = Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z);
 					GetStage()->AddGameObject<SpurtLava>(trapPosition, Vec3(4.0f, 20.0f, 4.0f));
 					app->GetScene<Scene>()->SetBeforeLavaPosition(trapPosition, m_trapCount[1]);
@@ -151,24 +173,28 @@ namespace basecross {
 
 	void PlayerController::PlayerMoveProcess()
 	{
+		// コントローラーデバイスの取得
 		auto& app = App::GetApp();
-		float delta = app->GetElapsedTime();
 		auto device = app->GetInputDevice();
 		auto& pad = device.GetControlerVec()[0];	
+		// デルタタイムの取得
+		float delta = app->GetElapsedTime();
 
+		// Lスティックのベクトルを取得する変数
 		Vec3 padLStick(pad.fThumbLX, 0.0f, pad.fThumbLY);
 
+		// Lスティックが傾いているとき
 		if (padLStick.length() > 0.0f)
 		{
 			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 			if (m_action != PlayerAction::Walk)
 			{
+				// 歩きモーションになる
 				ptrDraw->ChangeCurrentAnimation(L"walk_player");
 				m_action = PlayerAction::Walk;
 			}
-			auto XAPtr = App::GetApp()->GetXAudio2Manager();
-			//XAPtr->Start(L"PLAYERRUN_SE", 1, 0.1f);
 
+			// カメラの角度に合わせてプレイヤーの動きを調整する処理
 			float stickRad = atan2(padLStick.z, padLStick.x);
 			auto camera = GetStage()->GetView()->GetTargetCamera();
 			auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
@@ -186,16 +212,18 @@ namespace basecross {
 			// 移動処理
 			auto pos = m_transform->GetPosition();
 			pos += padLStick * playerStatus->GetStatusValue(L"SPD") * delta;
-
 			m_transform->SetPosition(pos);
+
+			// 回転処理
 			float rotY = atan2f(-padLStick.z, padLStick.x);
-			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); // 回転処理
+			m_transform->SetRotation(Vec3(0, rotY + XM_PIDIV2, 0)); 
 		}
-		else
+		else // Lスティックが傾いていない時
 		{
 			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 			if (m_action != PlayerAction::Wait)
 			{
+				// 待機モーションになる
 				ptrDraw->ChangeCurrentAnimation(L"wait_player");
 				m_action = PlayerAction::Wait;
 			}

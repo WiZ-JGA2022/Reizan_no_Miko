@@ -9,14 +9,6 @@
 namespace basecross {
     class PlayerStatusController : public GameObject
     {
-        const int m_BaseRisingValue; // ステータスの基礎上昇量
-        const int m_DamageDelayCount; // ダメージを受ける間隔
-
-        int m_maxHp; // 体力上限
-        int m_beforeMaxExp; // 前回必要経験値
-                
-        int m_damageDelayFlame; // ダメージを受ける間隔
-
         //エフェクト
         shared_ptr<EfkEffect> m_EfkEffect;
         //エフェクト実行オブジェクト
@@ -29,8 +21,7 @@ namespace basecross {
             {2, L"DEF"},
             {3, L"SPD"},
             {4, L"HASTE"},
-            {5, L"PICKUP"},
-            {6, L"EXP"}
+            {5, L"PICKUP"}
         };
 
         // ステータス値の初期値
@@ -40,8 +31,7 @@ namespace basecross {
             1.0f,
             3.0f,
             1.0f,
-            3.0f,
-            0.0f
+            3.0f
         };
         // ステータス値
         std::map<wstring, float> m_statusValue = {
@@ -50,22 +40,8 @@ namespace basecross {
             {L"DEF", m_DefaultStatusValue[2]},
             {L"SPD", m_DefaultStatusValue[3]},
             {L"HASTE", m_DefaultStatusValue[4]},
-            {L"PICKUP", m_DefaultStatusValue[5]},
-            {L"EXP", m_DefaultStatusValue[6]}
+            {L"PICKUP", m_DefaultStatusValue[5]}
         };
-
-        // ステータスレベル
-        std::map<wstring, int> m_statusLevel = {
-            {L"HP", 0},
-            {L"ATK", 0},
-            {L"DEF", 0},
-            {L"SPD", 0},
-            {L"HASTE", 0},
-            {L"PICKUP", 0},
-            {L"EXP", 0}
-        };
-
-        vector<float> m_statusRisingValue; // ステータス上昇量
 
     public:
         // コンストラクタ
@@ -78,22 +54,6 @@ namespace basecross {
         void OnUpdate() override;
 
         /**
-        * ステータスの値を取得する関数
-        * 
-        * @param statusKey 取得するステータスの名前
-        * 
-        * @return 指定したステータスの値
-        */
-        float GetStatusValue(wstring statusKey);
-
-        /**
-        * HP上限を取得する関数
-        * 
-        * @return HP上限
-        */
-        int GetMaxHp();
-
-        /**
         * プレイヤーに与えるダメージを計算する関数
         * 
         * @param damage 与えるダメージ量
@@ -101,11 +61,27 @@ namespace basecross {
         void PlayerDamageProcess(float damage);
 
         /**
-        * ステータスを強化する関数
-        * 
-        * @param selectStatusNum 強化するステータス番号
+        * ステータスの値を取得する関数
+        *
+        * @param statusKey 取得するステータスの名前
+        *
+        * @return 指定したステータスの値
         */
-        void StatusLevelUpdate(int selectStatusNum);
+        float GetStatusValue(wstring statusKey)
+        {
+            return m_statusValue[statusKey];
+        }
+
+        /**
+        * HP上限を取得する関数
+        *
+        * @return HP上限
+        */
+        int GetMaxHp()
+        {
+            return (int)m_DefaultStatusValue[0];
+        }
+
     };
 
 }

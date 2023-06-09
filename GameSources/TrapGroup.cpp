@@ -44,13 +44,17 @@ namespace basecross {
 		ptrShadow->SetMeshResource(L"SPURTLAVA_MODEL");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
+		// 見た目の設定
 		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
 		drawComp->SetFogEnabled(false);
 		drawComp->SetMeshResource(L"SPURTLAVA_MODEL");
 		drawComp->SetMeshToTransformMatrix(spanMat);
 
+		// タグの追加
 		AddTag(L"SpurtLava");
+		// 透明処理を有効化
 		SetAlphaActive(true);
+		// 描画レイヤーを設定
 		SetDrawLayer((int)DrawLayer::Bottom);
 
 		//エフェクトの初期化
@@ -74,10 +78,11 @@ namespace basecross {
 		auto ptrColl = GetComponent<CollisionObb>();
 		ptrColl->SetUpdateActive(false);
 
-		// プレイヤーが実行状態かつトラップが待機状態のとき
+		// プレイヤーが描画されなくなったら
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		if (!player->GetDrawActive())
 		{
+			// エフェクトとSEを停止する
 			if (m_isState == TrapState::Active)
 			{
 				m_EfkPlay->StopEffect();
@@ -85,13 +90,20 @@ namespace basecross {
 			XAPtr->Stop(m_se[0]);
 			XAPtr->Stop(m_se[1]);
 		}
-		if (player->GetCondition() == 1)
+
+		// プレイヤーの状態がスタンバイ状態でないとき
+		if (player->GetCondition() != 0)
 		{
 			auto& stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
 			auto& firstStage = dynamic_pointer_cast<FirstStage>(stage);
+			// ステージが切り替わったら
 			if (firstStage->GetChangingStage())
 			{
-				m_EfkPlay->StopEffect();
+				// エフェクトとSEを停止する
+				if (m_isState == TrapState::Active)
+				{
+					m_EfkPlay->StopEffect();
+				}
 				XAPtr->Stop(m_se[0]);
 				XAPtr->Stop(m_se[1]);
 			}
@@ -196,95 +208,50 @@ namespace basecross {
 
 	void SpikeTrap::OnUpdate()
 	{
+		// 各種オブジェクトの情報を取得
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
 		auto time = GetStage()->GetSharedGameObject<TimeNumber>(L"Time");
 		auto stone = GetStage()->GetSharedGameObject<KeyStone>(L"KeyStone");
-		if (player->GetCondition() == 1)
+
+		// プレイヤーがスタンバイ状態じゃないとき
+		if (player->GetCondition() != 0)
 		{
 			auto& stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
 			auto& firstStage = dynamic_pointer_cast<FirstStage>(stage);
+			// ステージが変わったら
 			if (firstStage->GetChangingStage())
 			{
+				// エフェクトを消す
 				m_EfkPlay->StopEffect();
 			}
 		}
-		else if (player->GetCondition() == 0)
+		else
 		{
 			auto& stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
 			auto& standbyStage = dynamic_pointer_cast<StandbyStage>(stage);
 			if (standbyStage->GetChangingStage())
 			{
+				// エフェクトを消す
 				m_EfkPlay->StopEffect();
 			}
 		}
 
+		// 「プレイヤーが消える」「時間切れになる」「石が壊れる」のうちどれかを満たしたら
 		if (!player->GetDrawActive() || time->GetTimeLeft() < 0.0f || stone->GetCurrentHp() < 0.0f)
 		{
+			// エフェクトを消す
 			m_EfkPlay->StopEffect();
 		}
 	}
 
 	void SpikeTrap::OnCollisionEnter(shared_ptr<GameObject>& other)
 	{
+		// enemyに当たったら
 		if (other->FindTag(L"Enemy"))
 		{
+			// 棘オブジェクトを追加し、このオブジェクトを消去
 			GetStage()->AddGameObject<SpikeModel>(m_transform->GetPosition());
 			GetStage()->RemoveGameObject<SpikeTrap>(GetThis<SpikeTrap>());
 		}
 	}
-
-
-	//妨害するオブジェクト
-	void BlockingStone::OnCreate()
-	{
-		auto collComp = AddComponent<CollisionSphere>();
-		// 衝突判定はAuto
-		collComp->SetAfterCollision(AfterCollision::Auto);
-		collComp->SetSleepActive(false);
-
-		auto playerPos = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>()->GetPosition();
-		m_objectPosition = Vec3(playerPos.x, playerPos.y, playerPos.z + 5.0f);
-
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(m_objectPosition);
-		transComp->SetRotation(0.0f, 0.0f, 0.0f);
-		transComp->SetScale(5.0f, 5.0f, 5.0f);
-
-		AddTag(L"BlockingStone");
-
-		auto drawComp = AddComponent<PNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-		drawComp->SetTextureResource(L"STONE");//妨害用に変更必須
-
-		SetDrawLayer((int)DrawLayer::MostBottom);
-	}
-
-	void BlockingStone::OnUpdate()
-	{
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(m_objectPosition);
-
-		m_delay--;
-		if (m_delay <= 0)
-		{
-			auto drawComp = GetComponent<PNTStaticDraw>();
-			drawComp->SetEmissive(Col4(0.6f, 0.6f, 0.6f, 1.0f)); // Normalカラー
-		}
-		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
-		if (m_hp <= 0)
-		{
-			GetStage()->RemoveGameObject<BlockingStone>(GetThis<BlockingStone>());
-		}
-	}
-
-	void BlockingStone::DamageProcess()
-	{
-		auto XAPtr = App::GetApp()->GetXAudio2Manager();
-		XAPtr->Start(L"STONEDAMAGE_SE", 0, 0.5f);
-		auto drawComp = GetComponent<PNTStaticDraw>();
-		drawComp->SetEmissive(Col4(1.0f, 0.2f, 0.2f, 1.0f));
-		m_delay = m_DefaultDelay;
-		m_hp -= 10.0f;
-	}
-
 }

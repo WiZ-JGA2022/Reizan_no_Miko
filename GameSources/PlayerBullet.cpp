@@ -1,11 +1,10 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file PlayerBullet.cpp
+@brief プレイヤーが発射する弾
 */
 
 #include "stdafx.h"
 #include "Project.h"
-#include <time.h>
 
 namespace basecross {
 
@@ -37,6 +36,7 @@ namespace basecross {
         // 衝突判定はAuto
         ptrColl->SetAfterCollision(AfterCollision::None);
 
+        // タグの追加
         AddTag(L"PlayerBullet");
     
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する

@@ -42,7 +42,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StartButtonUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StrengthSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrapController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyStoneHpGauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HpNumber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
@@ -93,7 +92,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StartButtonUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StrengthSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrapController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)KeyStoneHpGauge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HpNumber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
