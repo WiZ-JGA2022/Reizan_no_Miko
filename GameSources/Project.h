@@ -25,7 +25,6 @@
 #include "GaugeSizeSetting.h"
 #include "Enemy.h"
 #include "EnemyBullet.h"
-#include "TrapController.h"
 #include "TrapGroup.h"
 #include "HpNumber.h"
 #include "TimeNumber.h"
