@@ -73,8 +73,8 @@ namespace basecross {
 
     void PlayerBullet::OnCollisionEnter(shared_ptr<GameObject>& other)
     {
-        // “G‚É‚ ‚½‚Á‚½‚ç
-        if (other->FindTag(L"Enemy"))
+        // “G‚Ü‚½‚ÍƒXƒe[ƒW‚É‚ ‚½‚Á‚½‚ç
+        if (other->FindTag(L"Enemy") || other->FindTag(L"Stage"))
         {
             // Á‚·
             GetStage()->RemoveGameObject<PlayerBullet>(GetThis<PlayerBullet>());

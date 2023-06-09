@@ -23,16 +23,21 @@ namespace basecross {
 		collComp->SetSleepActive(false);
 		collComp->SetFixed(true);
 
+		// 位置情報の設定
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
 		transComp->SetScale(m_scale);
+
+		// 見た目の設定
 		auto drawComp = AddComponent<BcPNTStaticModelDraw>();
 		drawComp->SetFogEnabled(true);
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
+		// 描画レイヤーを設定
 		SetDrawLayer((int)DrawLayer::MostBottom);
 
-		AddTag(L"STAGE");
+		// タグを追加
+		AddTag(L"Stage");
 	}
 
 	void StageCollision::OnUpdate()

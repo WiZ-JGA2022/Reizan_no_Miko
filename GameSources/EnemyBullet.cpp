@@ -53,14 +53,19 @@ namespace basecross {
 
     void EnemyBullet::OnCollisionEnter(shared_ptr<GameObject>& other)
     {
+        // プレイヤーに当たったら
         if (other->FindTag(L"Player"))
         {
+            // プレイヤーにダメージを与える
             auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
             playerStatus->PlayerDamageProcess(m_damage);
+            // このオブジェクトを消す
             GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
         }
-        if (other->FindTag(L"STAGE"))
+        // ステージに当たったら
+        if (other->FindTag(L"Stage"))
         {
+            // このオブジェクトを消す
             GetStage()->RemoveGameObject<EnemyBullet>(GetThis<EnemyBullet>());
         }
     }
