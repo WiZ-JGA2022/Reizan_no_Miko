@@ -1,6 +1,6 @@
 /*!
-@file ExpBar.cpp
-@brief 経験値を表示するバーの実装
+@file HoldGauge.cpp
+@brief 長押しバーの実装
 */
 
 #include "stdafx.h"
@@ -8,6 +8,7 @@
 
 namespace basecross {
 
+	//初期化
 	void HoldBar::OnCreate()
 	{
 		// timeNumberオブジェクトを取得
@@ -24,6 +25,7 @@ namespace basecross {
 		m_bar[1]->SetPosition(275.0f, -330.0f, 0.0f);
 	}
 
+	//更新処理
 	void HoldBar::OnUpdate()
 	{
 		// ゲージサイズの更新
@@ -32,6 +34,7 @@ namespace basecross {
 		m_bar[1]->UpdateGaugeSize(m_maxTime, (float)m_maxTime);
 	}
 
+	//描画処理
 	void HoldBar::OnDraw()
 	{
 		// ゲージの描画

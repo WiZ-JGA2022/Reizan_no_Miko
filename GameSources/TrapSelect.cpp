@@ -1,6 +1,6 @@
 /*!
-@file RandomSelectLevelUpButton.cpp
-@brief ランダムにレベルアップできる項目を出すクラスの実装
+@file TrapSelect.cpp
+@brief トラップを連続で表示させるクラスの実装
 */
 
 #include "stdafx.h"
@@ -20,7 +20,7 @@ namespace basecross {
 
 	void TrapSelect::OnCreate()
 	{
-		for (int i = 0; i < m_PickUpStatusCount; i++)
+		for (int i = 0; i < m_PickUpStatusCount; i++) //for文で連続で表示させる画像の位置座標の処理
 		{
 			GetStage()->AddGameObject<TrapSprite>(i, true, Vec2(75.0f, 75.0f), Vec2(-400.0f + (i * 250.0f) + (i * 20), -300.0f), i);
 		}

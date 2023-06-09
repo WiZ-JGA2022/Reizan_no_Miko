@@ -7,13 +7,17 @@
 #include "Project.h"
 
 namespace basecross {
+
+	//コンストラクタとデストラクタ
 	TrapNumber::TrapNumber(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
 		m_place(5)
 	{
 	}
 	TrapNumber::~TrapNumber() {}
+	//終了
 
+	//初期化
 	void TrapNumber::OnCreate()
 	{
 		for (int i = 0; i < 4; i++)
@@ -29,6 +33,7 @@ namespace basecross {
 		}
 	}
 
+	//更新処理
 	void TrapNumber::OnUpdate()
 	{
 		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
@@ -45,6 +50,7 @@ namespace basecross {
 		}
 	}
 
+	//描画処理
 	void TrapNumber::OnDraw()
 	{
 		for (int i = 0; i < 2; i++) // 2は将来的に4にする
