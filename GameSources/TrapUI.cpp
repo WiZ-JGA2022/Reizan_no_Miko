@@ -14,7 +14,7 @@ namespace basecross {
 	constexpr float m_startPosZ = 1.0f;	 // 奥行き
 	constexpr float m_helfSize = 0.5f;	 // 半分の大きさ
 
-	//コンストラクタとデストラクタ
+	// コンストラクタ
 	TrapSprite::TrapSprite(const shared_ptr<Stage>& stage,
 		const int& textureNum,
 		bool trace,
@@ -30,9 +30,8 @@ namespace basecross {
 		m_texNum(texNum)
 	{
 	}
-	//終了
 
-	//連続で表示させる画像の取得
+	// 連続で表示させる画像の取得
 	wstring TrapSprite::ControllerNum(int i) {
 		if (i == 0)
 		{

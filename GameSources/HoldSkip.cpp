@@ -8,23 +8,18 @@
 #include "Project.h"
 
 namespace basecross {
-	//コンストラクタ
+	// コンストラクタ
 	HoldSkipSprite::HoldSkipSprite(const shared_ptr<Stage>& stage) :
 		Sprites(stage),
 		m_DefaultSize(Vec2(150.0f, 150.0f))	//サイズの初期設定
 	{
 	}
-	//デストラクタ
+	// デストラクタ
 	HoldSkipSprite::~HoldSkipSprite() {}
 
-	//初期化
+	// 初期化
 	void HoldSkipSprite::OnCreate()
 	{
 		Sprites::CreateSprite(Vec3(400.0f, 300.0f, 0.0f), m_DefaultSize, L"HOLDDOWN_SKIP");	//位置座標,サイズ,ソース画像
-	}
-
-	//更新処理
-	void HoldSkipSprite::OnUpdate()
-	{
 	}
 }

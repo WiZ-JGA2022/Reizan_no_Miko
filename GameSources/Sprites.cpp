@@ -7,6 +7,7 @@
 #include "Project.h"
 
 namespace basecross {
+	// コンストラクタ
 	Sprites::Sprites(const shared_ptr<Stage>& stage) :
 		GameObject(stage),
 		m_spriteSize(Vec2(0.0f)),
@@ -19,15 +20,8 @@ namespace basecross {
 		m_fadeSpeed(0.01f)
 	{
 	}
+	// デストラクタ
 	Sprites::~Sprites() {}
-
-	void Sprites::OnCreate()
-	{
-	}
-
-	void Sprites::OnUpdate()
-	{
-	}
 
 	void Sprites::CreateSprite(const Vec3& position, const Vec2& size, const wstring& texKey)
 	{

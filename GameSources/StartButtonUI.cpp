@@ -8,24 +8,23 @@
 #include "Project.h"
 
 namespace basecross {
-
-	//コンストラクタとデストラクタ
+	// コンストラクタ
 	StartSprite::StartSprite(const shared_ptr<Stage>& stage) :
 		Sprites(stage),
 		m_DefaultSize(Vec2(550.0f, 64.0f)),
 		m_changeSpeed(false)
 	{
 	}
+	// デストラクタ
 	StartSprite::~StartSprite() {}
-	//終了
 
-	//初期化
+	// 初期化
 	void StartSprite::OnCreate()
 	{
 		Sprites::CreateSprite(Vec3(-275.0f,-200.0f, 0.0f), m_DefaultSize, L"START_UI");	//位置座標、初期サイズ、ソース画像
 	}
 
-	//更新処理
+	// 更新処理
 	void StartSprite::OnUpdate()
 	{
 		//ゲームパッドの取得

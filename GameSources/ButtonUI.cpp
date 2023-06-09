@@ -14,7 +14,7 @@ namespace basecross {
 	constexpr float m_helfSize = 0.5f;	 // 半分の大きさ
 	constexpr float m_startScaleZ = 1.0f;// 大きさ
 
-	//コンスタラクタとデストラクタ
+	// コンストラクタ
 	ButtonSprite::ButtonSprite(const shared_ptr<Stage>& stage,
 		const int& textureNum,
 		bool trace,
@@ -29,7 +29,6 @@ namespace basecross {
 		m_defaultPos(startPos)
 	{
 	}
-	//コンストラクタとデストラクタ終了
 
 	//連続で表示させる画像の取得
 	wstring ButtonSprite::ControllerNum(int i) {
@@ -44,18 +43,6 @@ namespace basecross {
 			return m_textureKey;
 
 		}
-		/*else if (i == 2)
-		{
-			m_textureKey = L"ABUTTON";
-			return m_textureKey;
-
-		}
-		else if (i == 3)
-		{
-			m_textureKey = L"BBUTTON";
-			return m_textureKey;
-
-		}*/
 	}
 
 	// 初期化

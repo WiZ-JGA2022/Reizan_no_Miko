@@ -19,8 +19,6 @@ namespace basecross {
 
 		//‰Šú‰»
 		void OnCreate() override;
-		//XVˆ—
-		void OnUpdate() override;
 
 	};
 }
