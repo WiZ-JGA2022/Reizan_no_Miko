@@ -72,8 +72,6 @@ namespace basecross {
 		// デストラクタ
 		~Sprites();
 
-		void OnCreate() override; // 初期化
-		void OnUpdate() override; // 更新処理
 
 		/**
 		* スプライトを作成する関数

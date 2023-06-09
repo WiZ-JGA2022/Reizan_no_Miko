@@ -20,6 +20,5 @@ namespace basecross {
 		~StrengthSprite();
 
 		void OnCreate() override; // ‰Šú‰»
-		void OnUpdate() override; // XVˆ—
 	};
 }

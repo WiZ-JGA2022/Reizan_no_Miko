@@ -7,6 +7,7 @@
 #include "Project.h"
 
 namespace basecross {
+	// コンストラクタ
 	TutorialUI::TutorialUI(const shared_ptr<Stage>& stage
 	) :
 		Sprites(stage),
@@ -21,6 +22,7 @@ namespace basecross {
 		Sprites::CreateSprite(Vec3(350.0f, 0.0f, 0.0f), m_DefaultSize, L"TUTORIAL");
 	}
 
+	// 更新処理
 	void TutorialUI::OnUpdate()
 	{
 		Sprites::UpdateSeekSizeSprite(m_AfterSize, 0.5f, SeekType::BottomRight, 5.0f);

@@ -20,6 +20,5 @@ namespace basecross {
 		~RightStick();
 
 		void OnCreate() override; // ‰Šú‰» 
-		void OnUpdate() override; // XVˆ—
 	};
 }

@@ -14,6 +14,7 @@ namespace basecross {
 	constexpr float m_startPosZ = 1.0f;	 // 奥行き
 	constexpr float m_helfSize = 0.5f;	 // 半分の大きさ
 
+	// コンストラクタ
 	ButtonSprite::ButtonSprite(const shared_ptr<Stage>& stage,
 		const int& textureNum,
 		bool trace,
@@ -28,6 +29,7 @@ namespace basecross {
 		m_defaultPos(startPos)
 	{
 	}
+	// テクスチャ
 	wstring ButtonSprite::ControllerNum(int i) {
 		if (i == 0)
 		{
@@ -40,18 +42,6 @@ namespace basecross {
 			return m_textureKey;
 
 		}
-		/*else if (i == 2)
-		{
-			m_textureKey = L"ABUTTON";
-			return m_textureKey;
-
-		}
-		else if (i == 3)
-		{
-			m_textureKey = L"BBUTTON";
-			return m_textureKey;
-
-		}*/
 	}
 
 	// 初期化
