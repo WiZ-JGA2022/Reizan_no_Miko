@@ -1,6 +1,7 @@
 /*!
 @file TrapSelect.cpp
 @brief トラップを連続で表示させるクラスの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

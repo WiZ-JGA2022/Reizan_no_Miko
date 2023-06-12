@@ -15,8 +15,6 @@ namespace basecross {
 		bool m_isChangeStage;
 
 		shared_ptr<SoundItem> m_bgm;
-		// プレイヤーコンポーネント
-		shared_ptr<PlayerController> m_player;
 
 		//ビューの作成
 		void CreateViewLight();

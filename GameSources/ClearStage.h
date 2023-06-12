@@ -1,6 +1,7 @@
 /*!
 @file ClearStage.h
 @brief ゲームクリア時のステージ
+@prod 矢吹悠葉
 */
 
 #pragma once

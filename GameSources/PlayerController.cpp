@@ -1,6 +1,7 @@
 /*!
 @file PlayerController.cpp
 @brief プレイヤーキャラ
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"
@@ -121,7 +122,7 @@ namespace basecross {
 		if (m_recastFlame <= 0 && m_condition != PlayerCondition::Standby)
 		{
 			// 弾を発射する
-			GetStage()->AddGameObject<PlayerBullet>(GetThis<PlayerController>());
+			GetStage()->AddGameObject<PlayerBullet>();
 
 			// リキャストタイムのリセット
 			m_recastFlame = m_RecastCount - (m_RecastCount * (playerStatus->GetStatusValue(L"HASTE") - 1.0f));

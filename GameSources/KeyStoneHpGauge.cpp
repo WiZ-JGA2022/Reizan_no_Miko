@@ -1,6 +1,7 @@
 /*!
 @file KeyStoneHpGauge.cpp
 @brief 要石の体力を表示するバーの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

@@ -1,6 +1,7 @@
 /*!
 @file Sprites.cpp
 @brief スプライトの親クラスの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

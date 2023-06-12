@@ -1,6 +1,7 @@
 /*!
 @file PlayerBullet.cpp
 @brief プレイヤーが発射する弾
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"
@@ -29,8 +30,8 @@ namespace basecross {
         drawComp->SetMeshToTransformMatrix(spanMat);
 
         // オーナーの向きをベクトルで取得しておく
-        auto ownerTrans = m_owner->GetComponent<Transform>();
-        m_forward = ownerTrans->GetForward(); // 前方向を示すベクトル
+        auto playerTrans = GetStage()->GetSharedGameObject<PlayerController>(L"Player")->GetComponent<Transform>();
+        m_forward = playerTrans->GetForward(); // 前方向を示すベクトル
         // コリジョンをつける
         auto ptrColl = AddComponent<CollisionObb>();
         // 衝突判定はAuto
@@ -41,8 +42,8 @@ namespace basecross {
     
         // 自分のトランスフォームコンポーネントを取得して座標や大きさを設定する
         m_transform = GetComponent<Transform>();
-        m_transform->SetPosition(ownerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
-        m_transform->SetQuaternion(ownerTrans->GetQuaternion());
+        m_transform->SetPosition(playerTrans->GetPosition() + m_forward * 0.75f); // オーナーと重ならないように、進行方向に少しずらす
+        m_transform->SetQuaternion(playerTrans->GetQuaternion());
         m_transform->SetScale(Vec3(0.5f));
 
     }

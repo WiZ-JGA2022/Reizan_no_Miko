@@ -1,6 +1,7 @@
 /*!
 @file PlayerStatusController.cpp
 @brief プレイヤーのステータスを管理するクラスの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

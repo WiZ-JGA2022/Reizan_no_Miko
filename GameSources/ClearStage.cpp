@@ -1,6 +1,7 @@
 /*!
 @file ClearStage.cpp
 @brief ゲーム勝利時のステージの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

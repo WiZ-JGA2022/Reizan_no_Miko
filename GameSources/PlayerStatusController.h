@@ -1,6 +1,7 @@
 /*!
 @file PlayerStatusController.h
 @brief プレイヤーのステータスを管理するクラス
+@prod 矢吹悠葉
 */
 
 #pragma once
@@ -45,7 +46,7 @@ namespace basecross {
 
     public:
         // コンストラクタ
-        PlayerStatusController(const std::shared_ptr<Stage>& stage);
+        PlayerStatusController(const shared_ptr<Stage>& stage);
         // デストラクタ
         ~PlayerStatusController();
         // 初期化

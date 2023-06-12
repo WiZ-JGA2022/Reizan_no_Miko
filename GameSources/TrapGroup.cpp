@@ -1,6 +1,7 @@
 /*!
 @file TrapGroup.cpp
 @brief ã©‚ÌÀ‘•
+@prod –î—I—t
 */
 
 #include "stdafx.h"

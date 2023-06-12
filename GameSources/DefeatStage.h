@@ -1,6 +1,7 @@
 /*!
 @file DefeatStage.h
 @brief ゲーム失敗時のステージ
+@prod 矢吹悠葉
 */
 
 #pragma once

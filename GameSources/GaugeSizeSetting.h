@@ -1,6 +1,7 @@
 /* !
 @file GaugeSizeSettings.h
 @brief 各種ゲージの頂点データなどの設定
+@prod 矢吹悠葉
 */
 
 #pragma once

@@ -1,6 +1,7 @@
 /*!
 @file FirstStage.cpp
 @brief ゲームステージ実体
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

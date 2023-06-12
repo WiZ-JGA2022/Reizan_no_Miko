@@ -43,11 +43,6 @@ namespace basecross {
 		{
 			GetStage()->AddGameObject<EnemySpawn>()->Spawn2(Vec3(20.0f, 1.5f, 60.0f));
 			
-			//GetStage()->AddGameObject<EnemySpawn>();
-
-			//auto enemy = GetStage()->AddGameObject<Oni>(Vec3(20.0f, 0.0f, 40.0f));
-			//GetStage()->AddGameObject<EnemyBullet>();
-			//GetStage()->AddGameObject<EnemyBullet>(enemy);
 			m_delayFlame = m_DelayCount;
 		}
 	}

@@ -1,6 +1,7 @@
 /*!
 @file DefeatStage.cpp
 @brief ゲーム敗北時のステージの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

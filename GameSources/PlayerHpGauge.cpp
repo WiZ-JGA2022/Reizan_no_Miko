@@ -1,6 +1,7 @@
 /*!
 @file PlayerHpGauge.cpp
 @brief プレイヤーのHPバーの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

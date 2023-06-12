@@ -1,6 +1,7 @@
 /*!
 @file PlayerHpGauge.h
 @brief プレイヤーのHPバー
+@prod 矢吹悠葉
 */
 
 #pragma once

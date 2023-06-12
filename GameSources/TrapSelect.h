@@ -1,6 +1,7 @@
 /*!
-@file RandomSelectLevelUpButton.h
-@brief ランダムにレベルアップできる項目を出すクラス
+@file TrapSelect.h
+@brief トラップを選ぶUI
+@prod 矢吹悠葉
 */
 
 #pragma once

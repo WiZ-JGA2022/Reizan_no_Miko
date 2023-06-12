@@ -1,6 +1,7 @@
 /**
 @file TrapNumber.cpp
 @brief ã©‚ğ’u‚¯‚é”‚ğ”š‚Å•\¦‚·‚éUI
+@prod –î—I—t
 */
 
 #include "stdafx.h"

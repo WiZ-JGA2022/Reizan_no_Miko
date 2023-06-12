@@ -1,5 +1,5 @@
 /*!
-@file Oni.h
+@file Onibi.h
 @brief ƒvƒŒƒCƒ„[‚É’¼Ú‚­‚é“G
 */
 

@@ -1,6 +1,7 @@
 /*!
 @file GaugeSizeSettings.cpp
 @brief 各種ゲージの頂点データなどの設定の実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"

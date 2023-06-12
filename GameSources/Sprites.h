@@ -1,6 +1,7 @@
 /*!
 @file Sprites.h
 @brief スプライトの親クラスの実装
+@prod 矢吹悠葉
 */
 
 #pragma once

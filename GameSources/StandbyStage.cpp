@@ -1,6 +1,7 @@
 /*!
 @file StandbyStage.cpp
 @brief 準備フェーズステージの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"
@@ -24,9 +25,9 @@ namespace basecross {
 
 	//プレイヤーの作成
 	void StandbyStage::CreatePlayer() {
-		m_player = AddGameObject<PlayerController>(0);
-		SetSharedGameObject(L"Player", m_player);
-		m_player->AddTag(L"Player");
+		auto player = AddGameObject<PlayerController>(0);
+		SetSharedGameObject(L"Player", player);
+		player->AddTag(L"Player");
 		auto statusController = AddGameObject<PlayerStatusController>();
 		SetSharedGameObject(L"PlayerStatus", statusController);
 		AddGameObject<PlayerHpGauge>(statusController, L"HPBAR_RED");
@@ -103,9 +104,10 @@ namespace basecross {
 			PlayBGM();
 
 			// メインカメラにプレイヤーをセットする
+			auto player = GetSharedGameObject<PlayerController>(L"Player");
 			auto camera = GetView()->GetTargetCamera();
 			auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
-			maincamera->SetTargetObject(m_player);
+			maincamera->SetTargetObject(player);
 		}
 		catch (...) {
 			throw;
@@ -146,11 +148,12 @@ namespace basecross {
 		m_isChangeStage = true;
 
 		// 各種情報をシーンに設定
+		auto player = GetSharedGameObject<PlayerController>(L"Player");
 		auto scene = App::GetApp()->GetScene<Scene>();
 		auto camera = GetView()->GetTargetCamera();
 		auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
-		scene->SetBeforePlayerPosition(m_player->GetComponent<Transform>()->GetPosition());
-		scene->SetBeforePlayerQuaternion(m_player->GetComponent<Transform>()->GetQuaternion());
+		scene->SetBeforePlayerPosition(player->GetComponent<Transform>()->GetPosition());
+		scene->SetBeforePlayerQuaternion(player->GetComponent<Transform>()->GetQuaternion());
 		scene->SetBeforeCameraRadXZ(maincamera->GetRadXZ());
 		scene->SetBeforeCameraRadY(maincamera->GetRadY());
 		scene->SetBeforeCameraAngle(maincamera->GetAngle());

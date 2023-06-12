@@ -1,6 +1,7 @@
 /* !
 @file KeyStoneHpGauge.h
 @brief 要石の体力を表示するバー
+@prod 矢吹悠葉
 */
 
 #pragma once

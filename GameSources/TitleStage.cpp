@@ -1,6 +1,7 @@
 /*!
 @file TitleStage.cpp
 @brief タイトルステージの実装
+@prod 矢吹悠葉
 */
 
 #include "stdafx.h"
