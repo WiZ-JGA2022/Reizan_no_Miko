@@ -1,6 +1,7 @@
 /* !
 @file FadeOut.cpp
 @brief フェードアウトの実装
+@prod 芳賀 祐紀
 */
 
 #pragma once

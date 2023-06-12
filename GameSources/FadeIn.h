@@ -1,6 +1,7 @@
 /*!
 @file FadeIn.h
 @brief フェードインの定義
+@prod 芳賀 祐紀
 */
 
 #pragma once
