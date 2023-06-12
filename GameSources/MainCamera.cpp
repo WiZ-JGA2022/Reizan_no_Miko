@@ -1,6 +1,7 @@
 /*!
 @file MyCamera.cpp
 @brief ƒJƒƒ‰À‘Ì
+@prod –F‰ê —S‹I
 */
 
 #include "stdafx.h"

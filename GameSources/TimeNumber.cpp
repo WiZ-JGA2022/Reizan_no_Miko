@@ -8,6 +8,7 @@
 #include "Project.h"
 
 namespace basecross {
+	// コンストラクタとデストラクタ
 	TimeNumber::TimeNumber(const shared_ptr<Stage>& stage, const float totalTime, const bool isPlay, const bool skipFlag) :
 		GameObject(stage),
 		m_NumberSize(Vec2(24.0f, 48.0f)),
@@ -24,6 +25,7 @@ namespace basecross {
 	{
 	}
 	TimeNumber::~TimeNumber() {}
+	//ここまで
 
 	void TimeNumber::OnCreate()
 	{
