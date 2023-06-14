@@ -65,7 +65,10 @@ namespace basecross {
 		{
 			if (!m_died)
 			{
+				auto ptrColl = GetComponent<CollisionCapsule>();
+				ptrColl->SetUpdateActive(false);
 				ptrDraw->ChangeCurrentAnimation(L"died");
+				
 				//エフェクトのプレイ
 				m_EfkPlay = ObjectFactory::Create<EfkPlay>(m_diedEffect, m_transform->GetPosition(), Vec3(0.5f));
 				m_died = true;

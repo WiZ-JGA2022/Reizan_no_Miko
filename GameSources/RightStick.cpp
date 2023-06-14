@@ -25,4 +25,19 @@ namespace basecross {
 			Sprites::CreateSprite(Vec3(-600.0f, -200.0f, 0.0f), m_DefaultSize, L"RIGHT_STICK");
 		}
 	}
+
+	void RightStick::OnUpdate()
+	{
+		// コントローラーデバイスの取得
+		auto& app = App::GetApp();
+		auto device = app->GetInputDevice();
+		auto& pad = device.GetControlerVec()[0];
+
+		// Rスティックが押されたら
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_THUMB)
+		{
+			// このオブジェクトを消す
+			GetStage()->RemoveGameObject<RightStick>(GetThis<RightStick>());
+		}
+	}
 }
