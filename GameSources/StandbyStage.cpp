@@ -87,6 +87,8 @@ namespace basecross {
 
 			// 地面の作成
 			AddGameObject<Field>();
+
+			// ステージの当たり判定を生成
 			AddGameObject<StageCollision>(Vec3(30.4f, 4.5f, 29.0f), Vec3(1.0f, 10.0f, 90.0f));
 			AddGameObject<StageCollision>(Vec3(-30.4f, 4.5f, 29.0f), Vec3(1.0f, 10.0f, 90.0f));
 			AddGameObject<StageCollision>(Vec3(0.0f, 4.5f, -16.0f), Vec3(60.0f, 10.0f, 1.0f));
@@ -95,6 +97,7 @@ namespace basecross {
 			AddGameObject<StageCollision>(Vec3(7.5f, 1.0f, 53.0f), Vec3(3.0f, 3.0f, 18.0f));
 			AddGameObject<StageCollision>(Vec3(-8.0f, 1.0f, 52.0f), Vec3(3.0f, 3.0f, 16.5f));
 
+			// 要石の生成
 			auto stone = AddGameObject<KeyStone>();
 			SetSharedGameObject(L"KeyStone", stone);
 
@@ -129,18 +132,12 @@ namespace basecross {
 			PostEvent(0.1f, GetThis<ObjectInterface>(), scene, L"ToTitleStage");
 		}
 
+		// 時間切れでステージ変更
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		if (time->GetTimeLeft() <= 0.0f)
 		{
 			ChangeStage();
 		}
-	}
-
-	// デバッグ文字列表示用
-	void StandbyStage::OnDraw()
-	{
-		Stage::OnDraw();
-		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
 	}
 
 	void StandbyStage::ChangeStage()

@@ -41,8 +41,6 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		// 破棄処理
 		virtual void OnDestroy() override;
-		// 描画処理
-		virtual void OnDraw() override;
 
 		// ステージ変更処理
 		void ChangeStage();

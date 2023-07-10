@@ -2,6 +2,7 @@
 @file NumberUI.cpp
 @brief 各種パラメータに使用する数字の実装
 @prod 矢吹悠葉
+@detail 殆どの処理は授業サンプルを参考にしました。
 */
 
 #include "stdafx.h"
@@ -12,6 +13,8 @@ namespace basecross {
 		Sprites(stage),
 		m_DefaultSize(spriteSize),
 		m_SpriteColor(Col4(1.0f, 1.0f, 1.0f, 1.0f)),
+		m_SpriteNumber(11.0f),
+		m_SpriteUvPosition(0.09f),
 		m_spriteKey(spriteKey),
 		m_number(0)
 	{
@@ -20,8 +23,6 @@ namespace basecross {
 
 	void NumberUI::OnCreate()
 	{
-		float uv = m_number / m_SpriteNumber;
-
 		m_vertices = {
 			{Vec3(0.0f				, 0.0f				, 0.0f), m_SpriteColor, Vec2(0				   , 0.0f)}, // 左上
 			{Vec3(m_DefaultSize.x	, 0.0f				, 0.0f), m_SpriteColor, Vec2(m_SpriteUvPosition, 0.0f)}, // 右上

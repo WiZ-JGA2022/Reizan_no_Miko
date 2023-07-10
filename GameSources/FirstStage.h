@@ -17,10 +17,9 @@ namespace basecross {
 	class FirstStage : public Stage {
 		const float m_TotalTimeSeconds = 120.0f; // 制限時間
 
-		bool m_isChangeStage;
+		bool m_isChangeStage; // ステージ変更フラグ
 
 		shared_ptr<SoundItem> m_bgm; // サウンドアイテム
-		shared_ptr<PlayerController> m_player; // プレイヤーコンポーネント
 
 		//ビューの作成
 		void CreateViewLight();
@@ -48,9 +47,11 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		// 破壊処理
 		virtual void OnDestroy() override;
-		// 描画処理
-		virtual void OnDraw() override; 
 
+		/**
+		* @brief ステージが変更されているかどうか取得する関数
+		* @return trueならステージ変更中 falseならステージ変更されていない
+		*/
 		bool GetChangingStage()
 		{
 			return m_isChangeStage;

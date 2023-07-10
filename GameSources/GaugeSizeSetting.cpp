@@ -85,8 +85,8 @@ namespace basecross {
 		auto width = app->GetGameWidth();
 		auto height = app->GetGameHeight();
 
-		// 画面半分ずつずらして原点を画面左上にずらす。また、Y座標は下向きに反転させる
-		m_transform->SetPosition(Vec3(-pos.x + (width * 0.5f), -pos.y + (height * h), pos.z)); 
+		// 原点を画面左上にする。また、Y座標は下向きに反転させる
+		m_transform->SetPosition(Vec3(-pos.x + (width * 0.5f), -pos.y + (height * h), pos.z));
 	}
 
 }

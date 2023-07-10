@@ -10,25 +10,22 @@
 
 namespace basecross {
 	class NumberUI : public Sprites {
-		// 大きさ
-		const Vec2 m_DefaultSize;
-		// 色
-		const Col4 m_SpriteColor;
+		const Vec2 m_DefaultSize; // 大きさ
+		const Col4 m_SpriteColor; // 色
+
 		// スプライトの数とずらすUV座標
-		const float m_SpriteNumber = 11.0f;
-		const float m_SpriteUvPosition = 0.09f;
+		const float m_SpriteNumber;
+		const float m_SpriteUvPosition;
+		
+		int m_number; // 表示される数字を表す値
 
-		// 表示される数字を表す値
-		int m_number;
-
-		// 使用するスプライトの名前
-		wstring m_spriteKey;
+		wstring m_spriteKey; // 使用するスプライトの名前
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;
 		vector<uint16_t> m_indices;
 
-		// 頻繁に使用するコンポーネントを持たせてアクセスしやすくする
+		// トランスフォームコンポーネントとドローコンポーネント
 		shared_ptr<PCTSpriteDraw> m_draw;
 		shared_ptr<Transform> m_transform;
 
@@ -38,12 +35,35 @@ namespace basecross {
 		// デストラクタ
 		~NumberUI();
 
-		void OnCreate() override; // 初期化
-		
-		void SetNumber(int number); // 
+		// 初期化
+		void OnCreate() override;
 
-		void SetPosition(const Vec3& pos, float h); //
-		void SetPosition(const Vec2& pos, float h); //
-		void SetPosition(float x, float y, float h); //
+		// 表示する数字の設定
+		void SetNumber(int number); 
+
+		/**
+		* 数字の表示位置を設定する関数
+		*
+		* @param pos 表示したい位置(Vec3型)
+		* @param h Y座標の係数
+		*/
+		void SetPosition(const Vec3& pos, float h);
+
+		/**
+		* 数字の表示位置を設定する関数
+		*
+		* @param pos 表示したい位置(Vec2型)
+		* @param h Y座標の係数
+		*/
+		void SetPosition(const Vec2& pos, float h);
+
+		/**
+		* 数字の表示位置を設定する関数
+		*
+		* @param x : 表示したいx座標
+		* @param y : 表示したいy座標
+		* @param h : Y座標の係数
+		*/
+		void SetPosition(float x, float y, float h);
 	};
 }

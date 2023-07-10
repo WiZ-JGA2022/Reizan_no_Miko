@@ -53,12 +53,11 @@ namespace basecross {
 	{
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		
-		// レベルアップイベント実行中またはプレイヤーが居ないとき
-		if (!player->GetDrawActive())
+		// レベルアップイベント実行中またはプレイヤーが死亡したとき
+		if (playerStatus->GetStatusValue(L"HP") <= 0)
 		{
-			//m_EfkPlay->StopEffect();
 			// 処理を停止する
 			return;
 		}

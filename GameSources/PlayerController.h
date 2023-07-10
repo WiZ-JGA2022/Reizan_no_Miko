@@ -13,30 +13,28 @@ namespace basecross{
 	{
 		// プレイヤーの状態
 		enum class PlayerCondition {
-			Standby,
-			Play
+			Standby, // 準備状態
+			Play // 防衛状態
 		};
 
 		// プレイヤーの行動
-		enum class PlayerAction {
-			Wait,
-			Walk,
-			Attack,
-			Damage,
-			Died
+		enum class PlayerMotion {
+			Wait, // 待機モーション
+			Walk, // 歩きモーション
+			Died  // 死亡モーション
 		};
 
 		// 置ける罠の数
 		enum class TrapLimit {
-			SpikeTrap = 5,
-			SpurtLava = 1
+			SpikeTrap = 5, // 棘罠
+			SpurtLava = 1 // 溶岩罠
 		};
 
 		PlayerCondition m_condition = PlayerCondition::Standby; // 状態
 
-		PlayerAction m_action = PlayerAction::Wait; // 行動
+		PlayerMotion m_action = PlayerMotion::Wait; // 行動
 
-		// 罠の数
+		// 罠の上限数
 		TrapLimit m_trapLimit[2] = {
 			TrapLimit::SpikeTrap,
 			TrapLimit::SpurtLava

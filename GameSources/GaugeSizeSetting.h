@@ -16,11 +16,6 @@ namespace basecross {
 		const int m_SquareVartex;
 		// テクスチャキー
 		const wstring m_TextureKey;
-		
-		enum class GaugeType {
-			HP,
-			EXP
-		};
 
 		// スプライトの元になる頂点データと頂点インデックス
 		vector<VertexPositionColorTexture> m_vertices;

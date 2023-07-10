@@ -52,9 +52,9 @@ namespace basecross {
 	{
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
-		auto player = GetStage()->GetSharedGameObject<PlayerController>(L"Player");
+		auto playerStatus = GetStage()->GetSharedGameObject<PlayerStatusController>(L"PlayerStatus");
 		// レベルアップイベント実行中またはプレイヤーが居ないとき
-		if (!player->GetDrawActive())
+		if (playerStatus->GetStatusValue(L"HP") <= 0)
 		{
 			// 処理を停止する
 			return;

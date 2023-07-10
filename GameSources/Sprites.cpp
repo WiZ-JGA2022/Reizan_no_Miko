@@ -18,7 +18,12 @@ namespace basecross {
 		m_totalTime(0.0f),
 		m_waitSecond(5.0f),
 		m_alphaNum(0.0f),
-		m_fadeSpeed(0.01f)
+		m_fadeSpeed(0.01f),
+		m_spriteType(SpriteType::Normal),
+		m_fadeType(FadeType::None),
+		m_isSeekSizeState(SeekSizeState::Wait),
+		m_seekType(SeekType::BottomRight),
+		m_isChangeColorState(ChangeColorState::DefaultSpeed)
 	{
 	}
 	// デストラクタ
@@ -78,14 +83,10 @@ namespace basecross {
 		CreateSprite(position, size, texKey);
 	}
 
-	void Sprites::UpdateFlashingSprite(const int flashSpeed)
+	void Sprites::UpdateFlashingSprite(int flashSpeed)
 	{
 		auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime(); // 時間の取得
-
-		// コントローラーデバイスの取得
-		auto device = app->GetInputDevice();
-		auto& pad = device.GetControlerVec()[0];
 
 		// サインカーブを使って点滅を表現
 		float color = sinf(m_totalTime);
@@ -107,14 +108,10 @@ namespace basecross {
 		drawComp->UpdateVertices(m_vertices);
 	}
 
-	void Sprites::UpdateFlashingSprite(const int flashSpeed, const int afterFlashSpeed, const bool speedChangeTrigger)
+	void Sprites::UpdateFlashingSprite(int flashSpeed, int afterFlashSpeed, bool speedChangeTrigger)
 	{
 		auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();	// 時間の取得
-
-		// コントローラーデバイスの取得
-		auto device = app->GetInputDevice();
-		auto& pad = device.GetControlerVec()[0];
 
 		// サインカーブを使って点滅を表現
 		float color = sinf(m_totalTime);
@@ -164,12 +161,10 @@ namespace basecross {
 				// スピードを戻す
 				m_isChangeColorState = ChangeColorState::DefaultSpeed;
 			}
-
 		}
-		
 	}
 
-	void Sprites::UpdateSeekSizeSprite(const Vec2& afterSize, const float seekSecond, const SeekType& seekType)
+	void Sprites::UpdateSeekSizeSprite(const Vec2& afterSize, float seekSecond, const SeekType& seekType)
 	{
 		// ステートが停止状態でなければ
 		if (m_isSeekSizeState != SeekSizeState::Stop)
@@ -248,7 +243,7 @@ namespace basecross {
 		}
 	}
 
-	void Sprites::UpdateSeekSizeSprite(const Vec2& afterSize, const float seekSecond, const SeekType& seekType, const float waitSecond)
+	void Sprites::UpdateSeekSizeSprite(const Vec2& afterSize, float seekSecond, const SeekType& seekType, float waitSecond)
 	{
 		// 時間の取得
 		auto& app = App::GetApp();
@@ -322,7 +317,7 @@ namespace basecross {
 		}
 	}
 
-	void Sprites::UpdateFadeSprite(const float fadeSecond)
+	void Sprites::UpdateFadeSprite(float fadeSecond)
 	{
 		// 時間の取得
 		auto& app = App::GetApp();

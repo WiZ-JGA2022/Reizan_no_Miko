@@ -114,6 +114,10 @@ namespace basecross{
 		// データを初期化する関数
 		void ResetData();
 
+		/**
+		* @brief 主人公の位置を保存する関数
+		* @param pos : 主人公の位置
+		*/
 		void SetBeforePlayerPosition(const Vec3& pos)
 		{
 			m_playerPosition = pos;
@@ -143,13 +147,19 @@ namespace basecross{
 		{
 			m_cameraAt = at;
 		}
-		void SetBeforeSpikePosition(const Vec3& pos, int index)
+
+		/**
+		* @brief 棘罠の設置位置を保存する関数
+		* @param pos : 罠の位置
+		* @param index : 配列の添字
+		*/
+		void SaveSpikePosition(const Vec3& pos, int index)
 		{
 			m_trapCount[0]++;
 			m_spikePosition[index] = pos;
 		}
 
-		void SetBeforeLavaPosition(const Vec3& pos, int index)
+		void SaveLavaPosition(const Vec3& pos, int index)
 		{
 			m_trapCount[1]++;
 			m_lavaPosition[index] = pos;

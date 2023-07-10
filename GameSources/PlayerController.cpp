@@ -56,7 +56,7 @@ namespace basecross {
 		);
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
+		//影の形を設定
 		ptrShadow->SetMeshResource(L"MIKO");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
@@ -66,14 +66,14 @@ namespace basecross {
 		//描画するメッシュを設定
 		drawComp->SetMeshResource(L"MIKO");
 		drawComp->SetMeshToTransformMatrix(spanMat);
+		// アニメーションの追加
 		drawComp->AddAnimation(L"wait_player", 0, 30, true, 20.0f);
-		drawComp->AddAnimation(L"attack_player", 31, 13, false, 20.0f);
-		drawComp->AddAnimation(L"damage_player", 61, 14, false, 20.0f);
 		drawComp->AddAnimation(L"died_player", 92, 30, false, 20.0f);
 		drawComp->AddAnimation(L"walk_player", 124, 30, true, 20.0f);
+		// 初期アニメーションを設定
 		drawComp->ChangeCurrentAnimation(L"wait_player");
 
-		//透明処理
+		// 透過処理を有効化
 		SetAlphaActive(true);
 
 		// 描画レイヤーを設定
@@ -90,15 +90,16 @@ namespace basecross {
 		// アニメーションの更新
 		ptrDraw->UpdateAnimation(elapsedTime);
 
-		// HPが0以下になったら
+		// HPが0以下になった時
 		if (playerStatus->GetStatusValue(L"HP") <= 0)
 		{
-			if (m_action != PlayerAction::Died)
+			// プレイヤーがまだ死亡状態でなかったなら
+			if (m_action != PlayerMotion::Died)
 			{
 				// 死亡アニメーションに切り替える
 				ptrDraw->ChangeCurrentAnimation(L"died_player");
 				// プレイヤーを死亡状態にする
-				m_action = PlayerAction::Died;
+				m_action = PlayerMotion::Died;
 			}
 
 			// 死亡アニメーションが終わった時
@@ -148,7 +149,7 @@ namespace basecross {
 					// 罠を設置
 					Vec3 trapPosition = Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z);
 					GetStage()->AddGameObject<SpikeTrap>(trapPosition, Vec3(5.0f, 0.5f, 5.0f));
-					app->GetScene<Scene>()->SetBeforeSpikePosition(trapPosition, m_trapCount[0]);
+					app->GetScene<Scene>()->SaveSpikePosition(trapPosition, m_trapCount[0]);
 					m_trapCount[0]++;
 				}
 			}
@@ -165,7 +166,7 @@ namespace basecross {
 					// 罠の設置
 					Vec3 trapPosition = Vec3(m_transform->GetPosition().x, -0.5f, m_transform->GetPosition().z);
 					GetStage()->AddGameObject<SpurtLava>(trapPosition, Vec3(4.0f, 20.0f, 4.0f));
-					app->GetScene<Scene>()->SetBeforeLavaPosition(trapPosition, m_trapCount[1]);
+					app->GetScene<Scene>()->SaveLavaPosition(trapPosition, m_trapCount[1]);
 					m_trapCount[1]++;
 				}
 			}
@@ -188,21 +189,22 @@ namespace basecross {
 		if (padLStick.length() > 0.0f)
 		{
 			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-			if (m_action != PlayerAction::Walk)
+			if (m_action != PlayerMotion::Walk)
 			{
 				// 歩きモーションになる
 				ptrDraw->ChangeCurrentAnimation(L"walk_player");
-				m_action = PlayerAction::Walk;
+				m_action = PlayerMotion::Walk;
 			}
 
-			// カメラの角度に合わせてプレイヤーの動きを調整する処理
+			// ラジアンでスティックの角度を取得
 			float stickRad = atan2(padLStick.z, padLStick.x);
+			// カメラの取得
 			auto camera = GetStage()->GetView()->GetTargetCamera();
-			auto mainCamera = dynamic_pointer_cast<MyCamera>(camera);
-			if (mainCamera)
+			auto myCamera = dynamic_pointer_cast<MyCamera>(camera);
+			if (myCamera)
 			{
-				float cameraAngle = mainCamera->GetAngle();
-
+				// カメラの角度に合わせてプレイヤーの動きを調整する処理
+				float cameraAngle = myCamera->GetAngle();
 				stickRad += cameraAngle + XM_PIDIV2;
 				padLStick.x = cos(stickRad);
 				padLStick.z = sin(stickRad);
@@ -222,11 +224,11 @@ namespace basecross {
 		else // Lスティックが傾いていない時
 		{
 			auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-			if (m_action != PlayerAction::Wait)
+			if (m_action != PlayerMotion::Wait)
 			{
 				// 待機モーションになる
 				ptrDraw->ChangeCurrentAnimation(L"wait_player");
-				m_action = PlayerAction::Wait;
+				m_action = PlayerMotion::Wait;
 			}
 
 		}

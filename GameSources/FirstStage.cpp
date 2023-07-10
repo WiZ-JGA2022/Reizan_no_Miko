@@ -37,11 +37,14 @@ namespace basecross {
 
 	//プレイヤーの作成
 	void FirstStage::CreatePlayer() {
+		// スタンバイステージ終了時の情報を取得
 		Vec3 beforePlayerPosition = App::GetApp()->GetScene<Scene>()->GetBeforePlayerPosition();
 		Quat beforePlayerQuaternion = App::GetApp()->GetScene<Scene>()->GetBeforePlayerQuaternion();
-		m_player = AddGameObject<PlayerController>(beforePlayerPosition, beforePlayerQuaternion, 1);
-		SetSharedGameObject(L"Player", m_player);
-		m_player->AddTag(L"Player");
+
+		// 生成時に位置と回転の情報を入力
+		auto player = AddGameObject<PlayerController>(beforePlayerPosition, beforePlayerQuaternion, 1);
+		SetSharedGameObject(L"Player", player);
+		player->AddTag(L"Player");
 		auto statusController = AddGameObject<PlayerStatusController>();
 		SetSharedGameObject(L"PlayerStatus", statusController);
 		AddGameObject<PlayerHpGauge>(statusController, L"HPBAR_RED");
@@ -103,16 +106,19 @@ namespace basecross {
 			AddGameObject<StageCollision>(Vec3(7.5f, 1.0f, 53.0f), Vec3(3.0f, 3.0f, 18.0f));
 			AddGameObject<StageCollision>(Vec3(-8.0f, 1.0f, 52.0f), Vec3(3.0f, 3.0f, 16.5f));
 
-
+			// シーンの取得
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
 
+			// スタンバイステージで罠が設置されている時のみループする
 			for (int i = 0; i < scene->GetBeforePlacedTrap(0); i++)
 			{
+				// 棘罠の生成
 				AddGameObject<SpikeTrap>(scene->GetBeforeSpikePosition(i), Vec3(5.0f, 0.5f, 5.0f));
 			}
 			for (int i = 0; i < scene->GetBeforePlacedTrap(1); i++)
 			{
+				// 溶岩罠の生成
 				AddGameObject<SpurtLava>(scene->GetBeforeLavaPosition(i), Vec3(4.0f, 20.0f, 4.0f));
 			}
 
@@ -120,10 +126,12 @@ namespace basecross {
 			CreateUI();
 			PlayBGM();
 
-			// メインカメラにプレイヤーをセットする
+			// プレイヤーとカメラを取得
+			auto player = GetSharedGameObject<PlayerController>(L"Player");
 			auto& camera = GetView()->GetTargetCamera();
-			auto maincamera = dynamic_pointer_cast<MyCamera>(camera);
-			maincamera->SetTargetObject(m_player);
+			auto myCamera = dynamic_pointer_cast<MyCamera>(camera);
+			// メインカメラのターゲットにプレイヤーをセットする
+			myCamera->SetTargetObject(player);
 		}
 		catch (...) {
 			throw;
@@ -140,9 +148,10 @@ namespace basecross {
 		auto player = GetSharedGameObject<PlayerController>(L"Player");
 		auto time = GetSharedGameObject<TimeNumber>(L"Time");
 		
-		// リセットコマンド
+		// リセットコマンドが押されたら
 		if (pad.wButtons & XINPUT_GAMEPAD_START && pad.wButtons & XINPUT_GAMEPAD_BACK)
 		{
+			// ステージ変更フラグをオン
 			m_isChangeStage = true;
 			// タイトルに戻る
 			PostEvent(0.1f, GetThis<ObjectInterface>(), scene, L"ToTitleStage");
@@ -151,6 +160,7 @@ namespace basecross {
 		// プレイヤーが描画されなくなったら
 		if (!player->GetDrawActive())
 		{
+			// ステージ変更フラグをオン
 			m_isChangeStage = true;
 			// Defeatステージに移動
 			AddGameObject<FadeOut>(L"FADE_BLACK");
@@ -160,6 +170,7 @@ namespace basecross {
 		// 時間切れになったら
 		if (time->GetTimeLeft() <= 0.0f)
 		{
+			// ステージ変更フラグをオン
 			m_isChangeStage = true;
 			// Clearステージに移動
 			AddGameObject<FadeOut>(L"FADE_WHITE");
@@ -167,12 +178,5 @@ namespace basecross {
 			return;
 		}
 	} // end OnUpdate
-
-	void FirstStage::OnDraw()
-	{	
-		Stage::OnDraw();
-		App::GetApp()->GetScene<Scene>()->SetDebugString(L"");
-	}
-
 }
 //end basecross
